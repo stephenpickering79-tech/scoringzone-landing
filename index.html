@@ -402,14 +402,18 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="mono-label">See It In Action</span>
-                <h2 class="display-lg">Watch the App</h2>
+                <h2 class="display-lg">See Scoring Zone In Action</h2>
                 <p>See how drills, pressure tests, and progress tracking work together in one place.</p>
             </div>
             <div class="reveal" style="margin-top: 3rem;">
                 <div style="max-width: 720px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(34,197,94,0.2); box-shadow: 0 0 40px rgba(34,197,94,0.08);">
-                    <video controls playsinline preload="metadata" style="width:100%; display:block;">
+                    <video controls playsinline preload="auto" style="width:100%; display:block;" id="promo-video">
                         <source src="video/ScoringZonePromo-16x9.mp4" type="video/mp4">
                     </video>
+                    <script>
+                      const v = document.getElementById('promo-video');
+                      v.addEventListener('loadeddata', function() { v.currentTime = 0.5; });
+                    </script>
                 </div>
             </div>
         </div>
