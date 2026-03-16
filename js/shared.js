@@ -33,6 +33,18 @@ if (mobileBtn && mobileMenu) {
   });
 }
 
+// ── Mobile dropdown toggle ──
+const mobileTrigger = document.querySelector('.mobile-dropdown-trigger');
+if (mobileTrigger) {
+  mobileTrigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    const items = mobileTrigger.nextElementSibling;
+    items.classList.toggle('open');
+    const svg = mobileTrigger.querySelector('svg');
+    if (svg) svg.style.transform = items.classList.contains('open') ? 'rotate(180deg)' : '';
+  });
+}
+
 // ── Smooth scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
