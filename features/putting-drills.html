@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Golf Chipping Drills App — Scored Short Game Practice | Scoring Zone</title>
-  <meta name="description" content="Scored chipping drills for every level. Build consistency, track progress, and finally fix your short game with Scoring Zone.">
+  <title>Golf Putting Drills App — Track Your Putting & Lower Scores | Scoring Zone</title>
+  <meta name="description" content="Structured putting drills with scoring, benchmarks, and progress tracking. Stop three-putting and build confidence on the greens with Scoring Zone.">
   <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-log.png">
-  <link rel="canonical" href="https://www.scoringzone.net/features/chipping-drills.html">
+  <link rel="canonical" href="https://www.scoringzone.net/features/putting-drills.html">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Golf Chipping Drills App — Scored Short Game Practice | Scoring Zone">
-  <meta property="og:description" content="Scored chipping drills for every level. Build consistency, track progress, and finally fix your short game with Scoring Zone.">
+  <meta property="og:title" content="Golf Putting Drills App — Track Your Putting & Lower Scores | Scoring Zone">
+  <meta property="og:description" content="Structured putting drills with scoring, benchmarks, and progress tracking. Stop three-putting and build confidence on the greens with Scoring Zone.">
   <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
-  <meta property="og:url" content="https://www.scoringzone.net/features/chipping-drills.html">
+  <meta property="og:url" content="https://www.scoringzone.net/features/putting-drills.html">
   <meta property="og:type" content="website">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Golf Chipping Drills App — Scored Short Game Practice | Scoring Zone">
-  <meta name="twitter:description" content="Scored chipping drills for every level. Build consistency, track progress, and finally fix your short game.">
+  <meta name="twitter:title" content="Golf Putting Drills App — Track Your Putting & Lower Scores | Scoring Zone">
+  <meta name="twitter:description" content="Structured putting drills with scoring, benchmarks, and progress tracking. Stop three-putting and build confidence on the greens.">
   <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +46,7 @@
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Chipping Drills"
+        "name": "Putting Drills"
       }
     ]
   }
@@ -60,26 +60,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How many chipping drills are there?",
+        "name": "How many putting drills are there?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The Scoring Zone chipping drills app includes a growing library covering every short game scenario — bump and run, flops, bunkers, distance control, up-and-downs, and full pressure tests. New drills are added regularly based on player feedback."
+          "text": "Scoring Zone includes a growing library of putting drills covering ladder putts, pressure putts, gate drills, distance control, and full putting assessments. New drills are added regularly."
         }
       },
       {
         "@type": "Question",
-        "name": "Do I need any special equipment?",
+        "name": "What are the best putting drills to lower scores?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Just your wedges and some balls. The app works wherever you can chip — a practice facility, short game area, or your backyard."
+          "text": "The drills that lower scores fastest are the ones that simulate real pressure — consecutive make challenges, scored ladder drills, and timed assessments. These are exactly what the putting practice app is built around, because outcome-focused practice transfers to the course far better than mindless repetition."
         }
       },
       {
         "@type": "Question",
-        "name": "Is it right for beginners?",
+        "name": "Can beginners use these drills?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Scoring Zone starts with guided fundamentals and scales all the way to advanced pressure challenges for scratch golfers. Every level is covered."
+          "text": "Yes. Scoring Zone includes golf putting tips for beginners built into guided drills that teach alignment, distance feel, and green reading from scratch. You can also practice putting at home with just a putter and a target — no green required for the foundational drills."
         }
       },
       {
@@ -87,7 +87,7 @@
         "name": "How does progress tracking work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Every drill in the chipping drills app is scored automatically and saved. Over time you'll see your trends, spot weaknesses, and watch your short game handicap fall — session by session."
+          "text": "Every drill in the putting drills app is scored automatically and saved. Over time you'll see your trends, spot weaknesses in your game — whether that's lag putting or short putts under pressure — and watch your putting handicap fall session by session."
         }
       },
       {
@@ -121,6 +121,8 @@
       --border-green: rgba(34, 197, 94, 0.2);
       --amber: #f5a623;
       --amber-glow: rgba(245, 166, 35, 0.25);
+      --putting: #9B6FE8;
+      --putting-glow: rgba(155, 111, 232, 0.25);
     }
 
     html { scroll-behavior: smooth; }
@@ -603,7 +605,7 @@
       max-width: 224px;
       aspect-ratio: 9 / 19;
       border-radius: 28px;
-      border: 2px solid var(--border-green);
+      border: 2px solid rgba(155, 111, 232, 0.25);
       background: #0a0a0f;
       display: flex;
       flex-direction: column;
@@ -767,8 +769,8 @@
 
     .drill-card {
       background: var(--bg-card);
-      border: 1px solid rgba(245, 166, 35, 0.12);
-      border-top: 2px solid var(--amber);
+      border: 1px solid rgba(155, 111, 232, 0.12);
+      border-top: 2px solid var(--putting);
       border-radius: 16px;
       padding: 28px 22px;
       transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
@@ -784,14 +786,14 @@
       left: 0;
       right: 0;
       height: 60px;
-      background: linear-gradient(180deg, rgba(245, 166, 35, 0.04) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(155, 111, 232, 0.04) 0%, transparent 100%);
       pointer-events: none;
     }
 
     .drill-card:hover {
-      border-color: rgba(245, 166, 35, 0.3);
+      border-color: rgba(155, 111, 232, 0.3);
       transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 24px rgba(245, 166, 35, 0.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 24px rgba(155, 111, 232, 0.08);
     }
 
     .drill-card-icon {
@@ -802,8 +804,8 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
-      background: rgba(245, 166, 35, 0.1);
-      border: 1px solid rgba(245, 166, 35, 0.2);
+      background: rgba(155, 111, 232, 0.1);
+      border: 1px solid rgba(155, 111, 232, 0.2);
       position: relative;
       z-index: 1;
     }
@@ -811,7 +813,7 @@
     .drill-card-icon svg {
       width: 20px;
       height: 20px;
-      stroke: var(--amber);
+      stroke: var(--putting);
       fill: none;
       stroke-width: 2;
       stroke-linecap: round;
@@ -859,7 +861,7 @@
     }
 
     .level-card:nth-child(1) { border-top: 2px solid var(--green); }
-    .level-card:nth-child(2) { border-top: 2px solid var(--amber); }
+    .level-card:nth-child(2) { border-top: 2px solid var(--putting); }
     .level-card:nth-child(3) { border-top: 2px solid #ef4444; }
 
     .level-badge {
@@ -882,9 +884,9 @@
     }
 
     .level-card:nth-child(2) .level-badge {
-      background: rgba(245, 166, 35, 0.1);
-      color: var(--amber);
-      border: 1px solid rgba(245, 166, 35, 0.2);
+      background: rgba(155, 111, 232, 0.1);
+      color: var(--putting);
+      border: 1px solid rgba(155, 111, 232, 0.2);
     }
 
     .level-card:nth-child(3) .level-badge {
@@ -1233,13 +1235,13 @@
           <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="dropdown-menu">
-          <a href="https://www.scoringzone.net/features/chipping-drills" class="current">
+          <a href="https://www.scoringzone.net/features/chipping-drills">
             <span class="dropdown-icon">🎯</span>
             <span>Chipping Drills</span>
           </a>
-          <a href="#">
+          <a href="https://www.scoringzone.net/features/putting-drills" class="current">
             <span class="dropdown-icon">🕳️</span>
-            <span>Putting System</span>
+            <span>Putting Drills</span>
           </a>
           <a href="#">
             <span class="dropdown-icon">🔥</span>
@@ -1270,8 +1272,8 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <a href="https://www.scoringzone.net">Home</a>
-    <a href="https://www.scoringzone.net/features/chipping-drills" class="active">Chipping Drills</a>
-    <a href="#">Putting System</a>
+    <a href="https://www.scoringzone.net/features/chipping-drills">Chipping Drills</a>
+    <a href="https://www.scoringzone.net/features/putting-drills" class="active">Putting Drills</a>
     <a href="#">Pressure Mode</a>
     <a href="https://www.scoringzone.net/blog/">Blog</a>
     <a href="https://www.scoringzone.net#signup" target="_blank" rel="noopener" style="color: var(--green);">Get the App</a>
@@ -1288,7 +1290,7 @@
         <li style="color: var(--text-muted); opacity: 0.4;">→</li>
         <li><a href="https://www.scoringzone.net/#features" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;">Features</a></li>
         <li style="color: var(--text-muted); opacity: 0.4;">→</li>
-        <li style="color: var(--green);">Chipping Drills</li>
+        <li style="color: var(--green);">Putting Drills</li>
       </ol>
     </nav>
 
@@ -1302,10 +1304,10 @@
       </div>
       <div class="hero-content">
         <div class="hero-text">
-          <div class="hero-badge">Chipping &amp; Wedge Practice</div>
-          <h1>Stop Practising. <span>Start Improving.</span></h1>
-          <p class="hero-subtitle" style="font-weight: 500; color: var(--text); margin-bottom: 8px;">Golf chipping drills that track every shot and show real progress.</p>
-          <p class="hero-subtitle">Scoring Zone turns short game sessions into scored challenges — so every chip counts, every session builds, and you always know if you're getting better.</p>
+          <div class="hero-badge">Putting Practice</div>
+          <h1>Putt Less. <span>Score More.</span></h1>
+          <p class="hero-subtitle" style="font-weight: 500; color: var(--text); margin-bottom: 8px;">The golf putting practice app that tracks every putt, scores every session, and shows you exactly how to improve.</p>
+          <p class="hero-subtitle">Scoring Zone turns your time on the greens into structured, scored practice — so you stop guessing and start improving with every session.</p>
           <div class="hero-actions">
             <a href="https://www.scoringzone.net#signup" class="btn-primary" target="_blank" rel="noopener">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -1319,7 +1321,7 @@
         </div>
         <div class="hero-screenshot">
           <div class="screenshot">
-            <img src="images/21-shots.jpg" alt="Scoring Zone chipping drill — 21 Points challenge">
+            <img src="images/putting-drills-1.jpg" alt="Scoring Zone putting drills screen">
           </div>
         </div>
       </div>
@@ -1332,9 +1334,9 @@
       <div class="section reveal">
         <div class="problem-content">
           <div class="section-label">The Problem</div>
-          <h2 class="section-title">Your Short Game Isn't the Problem. <span>Your Practice Is.</span></h2>
+          <h2 class="section-title">Why Am I Still <span>Three-Putting?</span></h2>
           <p class="problem-quote">
-            If you've ever searched how to get better at golf chipping and tried random YouTube tips — you already know they don't stick. Most golfers chip for hours and never improve. No structure. No targets. No feedback. Just skulls and chunks — repeated until it's time to go home.<br><br>Without a clear system, you're not practising. You're just warming up badly.
+            If you've ever wondered why you're bad at putting despite hours of practice, the answer is usually the same: you're not practising the right way. Most golfers roll a few putts before a round, miss a couple, and call it a day. No structure. No targets. No feedback. And no idea how to stop three-putting when it actually matters.<br><br>The best way to improve putting isn't more repetition — it's the right kind of practice. Structured. Scored. Built to transfer to the course.
           </p>
         </div>
       </div>
@@ -1347,22 +1349,22 @@
       <div class="section">
         <div class="reveal">
           <div class="section-label">What Performance Based Practice Looks Like</div>
-          <h2 class="section-title">A Better Way to <span>Practise Chipping</span></h2>
-          <p class="section-subtitle">Three steps. Real scores. Actual progress.</p>
+          <h2 class="section-title">A Smarter <span>Golf Putting Trainer</span></h2>
+          <p class="section-subtitle">Three steps. Real scores. Putts that hold up under pressure.</p>
         </div>
 
         <div class="reveal reveal-delay-1" style="max-width: 760px; margin-top: 40px;">
           <p style="font-size: 1rem; color: var(--text-dim); line-height: 1.85; margin-bottom: 24px;">
-            Scoring Zone is built around the way golfers actually get better. Research consistently shows that performance-based practice — hitting to targets, varying distances, and measuring outcomes — develops skill faster than working on technique alone. For anyone searching how to get better at golf chipping, the answer isn't more YouTube tips — it's structured, scored short game practice drills that transfer directly to on-course performance.
+            The best way to improve putting isn't more time on the practice green — it's the right kind of structured putting practice. Performance-based drills shift your sessions from mindless repetition to deliberate, measurable work that directly targets the skills that matter most on the course.
           </p>
           <p style="font-size: 1rem; color: var(--text-dim); line-height: 1.85; margin-bottom: 24px;">
-            Dave Pelz, whose Short Game Bible remains the definitive text on the subject, makes exactly this point: data-driven, feedback-oriented practice that prioritises results over mindless mechanics is what separates improving golfers from ones who plateau. That's exactly what this golf chipping drills app does.
+            Scoring Zone is built around exactly this principle. Ladder drills develop putting distance control. Gate and string-line challenges train starting line accuracy. Pressure putting drills — like "make 10 in a row" or "miss one and start over" — build the mental toughness you need to stop three-putting when it actually counts.
           </p>
           <p style="font-size: 1rem; color: var(--text-dim); line-height: 1.85; margin-bottom: 24px;">
-            Every drill gives you a target score to chase, which creates the kind of mild pressure that sharpens focus and mirrors real on-course situations. Instead of thinking about your wrist hinge at the top or your weight shift, you're thinking about the flag — an external focus that lets your body execute naturally, the way it does when you're playing well.
+            Brad Faxon, the PGA Tour's all-time leader in putting average, put it simply: "The best drill is one where you can measure makes from different distances — consistency comes from chasing numbers." That's the entire philosophy behind Scoring Zone as a golf putting trainer.
           </p>
           <p style="font-size: 1rem; color: var(--text-dim); line-height: 1.85;">
-            The result is golf practice that's actually fun and builds adaptable, transferable skill rather than a swing that only works on the range. Variable lies, different wedge practice drills, scored outcomes — Scoring Zone doesn't just make practice more engaging, it makes it the best way to improve your chipping and lower your scores.
+            Every drill tracks makes, exposes flaws in setup, stroke path, or tempo, and gives you instant feedback to correct them. The result is a golf putting practice app where every session produces data you can act on — improving speed control, starting line accuracy, and stroke repeatability in ways that transfer directly to the course.
           </p>
         </div>
       </div>
@@ -1375,65 +1377,58 @@
       <div class="section">
         <div class="reveal">
           <div class="section-label">Drill Library</div>
-          <h2 class="section-title">Every Short Game Situation. <span>Covered.</span></h2>
-          <p class="section-subtitle">From tight lies to fluffy rough — covering every wedge practice drill you'll need from 10 to 80 yards.</p>
+          <h2 class="section-title">Every Putting Situation. <span>Covered.</span></h2>
+          <p class="section-subtitle">From 3-footers to 40-foot lag putts — covering every putting distance control drill you'll need to lower your scores.</p>
         </div>
 
         <div class="drill-grid">
           <div class="drill-card reveal reveal-delay-1">
             <div class="drill-card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 3v18"/><path d="M4 3l8 4v6l-8-4"/><circle cx="4" cy="21" r="1.5" fill="currentColor" stroke="none" opacity="0.4"/></svg>
             </div>
-            <h3>The 10-Yarder</h3>
-            <p>Chip to a target 10 yards away — master close-range precision with scored feedback on every shot.</p>
+            <h3>Ladder Putting</h3>
+            <p>The essential putting distance control drill. Putt from 3, 6, 9, 12, and 15 feet — advancing only when you make three in a row. Builds the consistency that eliminates three-putts.</p>
           </div>
           <div class="drill-card reveal reveal-delay-2">
             <div class="drill-card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 3v18"/><path d="M4 3l8 4v6l-8-4"/><circle cx="4" cy="21" r="1.5" fill="currentColor" stroke="none" opacity="0.4"/></svg>
             </div>
-            <h3>One-Club Wizard</h3>
-            <p>Chip with only your 8 or 9 iron to targets at 20ft and 30ft. Build creativity and feel with one club.</p>
+            <h3>Lag Putting Drills</h3>
+            <p>Two-putt from 20, 30, and 40 feet. Scored lag putting drills that build the touch to leave every long putt tap-in close.</p>
           </div>
           <div class="drill-card reveal reveal-delay-3">
             <div class="drill-card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 3v18"/><path d="M4 3l8 4v6l-8-4"/><circle cx="4" cy="21" r="1.5" fill="currentColor" stroke="none" opacity="0.4"/></svg>
             </div>
-            <h3>Ladder Up</h3>
-            <p>Chip through 4 gates front-to-back then back-to-front. Build distance control under progressive pressure.</p>
+            <h3>Short Putt Drills</h3>
+            <p>Make every putt inside five feet automatic. Consecutive make challenges that build the confidence to convert when it counts.</p>
           </div>
           <div class="drill-card reveal reveal-delay-1">
             <div class="drill-card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 3v18"/><path d="M4 3l8 4v6l-8-4"/><circle cx="4" cy="21" r="1.5" fill="currentColor" stroke="none" opacity="0.4"/></svg>
             </div>
-            <h3>Par in 2</h3>
-            <p>Complete each chip in 2 strokes or less — simulate real up-and-down pressure around the green.</p>
+            <h3>Gate Challenge</h3>
+            <p>Putt through a narrow gate to train a consistent, on-line stroke. Immediate feedback on every rep — no guessing if you're starting it on line.</p>
           </div>
           <div class="drill-card reveal reveal-delay-2">
             <div class="drill-card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 3v18"/><path d="M4 3l8 4v6l-8-4"/><circle cx="4" cy="21" r="1.5" fill="currentColor" stroke="none" opacity="0.4"/></svg>
             </div>
-            <h3>21 Points</h3>
-            <p>Practice under scoring pressure. Reach exactly 21 — go over and you bust. Strategy meets touch.</p>
+            <h3>Pressure Putting Drills</h3>
+            <p>Timed challenges, consecutive requirements, and penalty scoring. The pressure putting drills that replicate what you feel standing over a four-footer to save par.</p>
           </div>
           <div class="drill-card reveal reveal-delay-3">
             <div class="drill-card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 3v18"/><path d="M4 3l8 4v6l-8-4"/><circle cx="4" cy="21" r="1.5" fill="currentColor" stroke="none" opacity="0.4"/></svg>
             </div>
-            <h3>Hole Out Gauntlet</h3>
-            <p>From the fringe, try to hole out under pressure. The ultimate test of precision and nerve.</p>
-          </div>
-          <div class="drill-card reveal reveal-delay-1">
-            <div class="drill-card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" opacity="0.6"/></svg>
-            </div>
-            <h3>Flop Around</h3>
-            <p>High lob chips over obstacles. Develop the confidence to open the face and commit to the shot.</p>
+            <h3>Scoring Zone Putting Tests</h3>
+            <p>Full assessments combining distance control, short putts, and pressure situations into one scored challenge. See exactly where your putting game stands.</p>
           </div>
         </div>
 
         <div class="reveal reveal-delay-4 screenshot-row">
           <div class="screenshot screenshot-inline">
-            <img src="images/challenge-complete.jpg" alt="Scoring Zone challenge complete — results and scoring">
+            <img src="images/putting-score-3.jpg" alt="Scoring Zone putting score to beat">
           </div>
         </div>
       </div>
@@ -1452,19 +1447,19 @@
         <div class="levels-grid">
           <div class="level-card reveal reveal-delay-1">
             <div class="level-badge">Beginner</div>
-            <p style="font-size: 0.78rem; color: var(--green); font-style: italic; margin-bottom: 8px;">Looking for golf short game tips for beginners? Start here.</p>
-            <h3>Learn the Right Technique</h3>
-            <p>Guided drills that build grip, setup, and fundamentals from scratch — with scored checkpoints so you know what "good" actually looks like.</p>
+            <p style="font-size: 0.78rem; color: var(--green); font-style: italic; margin-bottom: 8px;">Looking for golf putting tips for beginners or how to practice putting at home? Start here.</p>
+            <h3>Build a Stroke You Can Trust</h3>
+            <p>Guided drills that develop fundamentals — alignment, green reading basics, and distance feel — with scored checkpoints so you know what a good putting session actually looks like.</p>
           </div>
           <div class="level-card reveal reveal-delay-2">
             <div class="level-badge">Intermediate</div>
-            <h3>Build Consistency You Can Count On</h3>
-            <p>Progressive challenges to sharpen distance control, shot selection, and the touch needed to get up and down more often.</p>
+            <h3>Find Your Putting Consistency</h3>
+            <p>Progressive challenges designed to sharpen putting consistency, help you read greens better, and build the distance control needed to stop leaving yourself difficult second putts.</p>
           </div>
           <div class="level-card reveal reveal-delay-3">
             <div class="level-badge">Advanced</div>
-            <h3>Compete Against Yourself</h3>
-            <p>Tour-level pressure tests, timed challenges, and precision scoring. For golfers who aren't satisfied with good enough.</p>
+            <h3>Compete Against Tour-Level Benchmarks</h3>
+            <p>Tour-level putting benchmarks, timed pressure tests, and precision scoring. For golfers who know their putting can be better and want data to prove it.</p>
           </div>
         </div>
       </div>
@@ -1478,32 +1473,32 @@
         <div class="gamification-layout">
           <div class="reveal">
             <div class="section-label">Gamification</div>
-            <h2 class="section-title">Practice That Feels Like <span>Playing</span></h2>
-            <p class="section-subtitle">Every session has a score. Every score has a story.</p>
+            <h2 class="section-title">Putting Practice That Doesn't <span>Feel Like Work</span></h2>
+            <p class="section-subtitle">Fun putting practice with real stakes — every session is a putting practice game with a score to beat.</p>
 
             <ul class="gamification-features">
               <li>
                 <span class="feat-icon">🏆</span>
-                <span><strong style="color: var(--text);">Scored Challenges</strong> — every drill ends with a real number. Beat it next time.</span>
+                <span><strong style="color: var(--text);">Golf Putting Challenge</strong> — every drill ends with a real score. Chase it next session. Beat it the one after.</span>
               </li>
               <li>
                 <span class="feat-icon">🔥</span>
-                <span><strong style="color: var(--text);">Streak System</strong> — build daily practice habits with visible momentum you won't want to break.</span>
+                <span><strong style="color: var(--text);">Streak System</strong> — build a daily putting practice habit with visible momentum you won't want to break.</span>
               </li>
               <li>
                 <span class="feat-icon">⬆️</span>
-                <span><strong style="color: var(--text);">XP &amp; Levels</strong> — earn points every session. Level up. Unlock harder challenges as your game improves.</span>
+                <span><strong style="color: var(--text);">XP &amp; Levels</strong> — earn points for every session. Level up. Unlock harder challenges as your putting improves.</span>
               </li>
               <li>
                 <span class="feat-icon">📊</span>
-                <span><strong style="color: var(--text);">Benchmarks</strong> — see exactly how your scores compare to amateur and tour-level standards.</span>
+                <span><strong style="color: var(--text);">Benchmarks</strong> — see how your scores compare to amateur and tour-level standards — and know exactly what to work on next.</span>
               </li>
             </ul>
           </div>
 
           <div class="reveal reveal-delay-2">
             <div class="screenshot screenshot-inline" style="margin: 0 auto;">
-              <img src="images/benchmarks.jpg" alt="Scoring Zone benchmarks and scoring system">
+              <img src="images/putting-congrats-4.jpg" alt="Scoring Zone putting challenge complete">
             </div>
           </div>
         </div>
@@ -1525,31 +1520,31 @@
         <div class="faq-list reveal reveal-delay-1">
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
-              How many chipping drills are there?
+              How many putting drills are there?
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="faq-answer">
-              <div class="faq-answer-inner">The Scoring Zone chipping drills app includes a growing library covering every short game scenario — bump and run, flops, bunkers, distance control, up-and-downs, and full pressure tests. New drills are added regularly based on player feedback.</div>
+              <div class="faq-answer-inner">The Scoring Zone putting drills app includes a growing library covering every putting situation — ladders, lag putts, short putt challenges, gate drills, and full pressure tests. New drills are added regularly based on player feedback.</div>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
-              Do I need any special equipment?
+              What are the best putting drills to lower scores?
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="faq-answer">
-              <div class="faq-answer-inner">Just your wedges and some balls. The app works wherever you can chip — a practice facility, short game area, or your backyard.</div>
+              <div class="faq-answer-inner">The drills that lower scores fastest are the ones that simulate real pressure — consecutive make challenges, scored ladder drills, and timed assessments. These are exactly what the putting practice app is built around, because outcome-focused practice transfers to the course far better than mindless repetition.</div>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
-              Is it right for beginners?
+              Can beginners use these drills?
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="faq-answer">
-              <div class="faq-answer-inner">Yes. Scoring Zone starts with guided fundamentals and scales all the way to advanced pressure challenges for scratch golfers. Every level is covered.</div>
+              <div class="faq-answer-inner">Yes. Scoring Zone includes golf putting tips for beginners built into guided drills that teach alignment, distance feel, and green reading from scratch. You can also practice putting at home with just a putter and a target — no green required for the foundational drills.</div>
             </div>
           </div>
 
@@ -1559,7 +1554,7 @@
               <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="faq-answer">
-              <div class="faq-answer-inner">Every drill in the chipping drills app is scored automatically and saved. Over time you'll see your trends, spot weaknesses, and watch your short game handicap fall — session by session.</div>
+              <div class="faq-answer-inner">Every drill in the putting drills app is scored automatically and saved. Over time you'll see your trends, spot weaknesses in your game — whether that's lag putting or short putts under pressure — and watch your putting handicap fall session by session.</div>
             </div>
           </div>
 
@@ -1579,30 +1574,14 @@
     <!-- ═══════════════════════════════════════════
          RELATED FEATURES
          ═══════════════════════════════════════════ -->
-    <section class="section" style="padding-bottom: 0;">
-      <div class="reveal">
-        <p class="section-label">Keep Improving</p>
-        <h2 class="section-title">More Ways to <span>Lower Your Scores</span></h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px;">
-          <a href="putting-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
-            <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Putting Drills →</h3>
-            <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Structured putting practice with scored challenges — from 3-foot pressure putts to 40-foot lag drills. Track your putting handicap and lower your scores.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         RELATED FEATURES
-         ═══════════════════════════════════════════ -->
+    <!-- Related Features -->
     <section class="section" style="padding-bottom: 0;">
       <p class="section-label">Keep Improving</p>
       <h2 class="section-title">More Ways to <span>Lower Your Scores</span></h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px;">
-        <a href="putting-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s;">
-          <h3 style="color: var(--green); margin-bottom: 8px;">Putting Drills →</h3>
-          <p style="color: var(--text-dim); font-size: 0.9rem;">Scored putting challenges to eliminate three-putts and build confidence on the greens.</p>
+        <a href="chipping-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s;">
+          <h3 style="color: var(--green); margin-bottom: 8px;">Chipping Drills →</h3>
+          <p style="color: var(--text-dim); font-size: 0.9rem;">Scored chipping challenges for every lie and distance.</p>
         </a>
       </div>
     </section>
@@ -1612,11 +1591,11 @@
          ═══════════════════════════════════════════ -->
     <section class="final-cta">
       <div class="section reveal" style="text-align: center;">
-        <h2 class="cta-title">Your Short Game <span>Won't Fix Itself.</span></h2>
-        <p class="cta-subtitle">Join golfers already chipping better with structured, scored practice. It takes one session to feel the difference.</p>
+        <h2 class="cta-title">Your Putting <span>Won't Fix Itself.</span></h2>
+        <p class="cta-subtitle">Join golfers already lowering their scores with structured, scored putting practice. One session is all it takes to feel the difference.</p>
         <a href="https://www.scoringzone.net#signup" class="btn-primary" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 16px 36px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Scoring Zone Free
+          Improve Your Putting — It's Free
         </a>
       </div>
     </section>
