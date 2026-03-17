@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Stat Tracking App — Round Stats & Performance Analysis | Scoring Zone</title>
+  <meta name="description" content="Track every round, see where you're losing strokes, and watch your scores drop. Scoring Zone's round stats give you the data to improve faster.">
+  <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-log.png">
+  <link rel="canonical" href="https://www.scoringzone.net/features/round-stats.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Golf Stat Tracking App — Round Stats & Performance Analysis | Scoring Zone">
+  <meta property="og:description" content="Track every round, see where you're losing strokes, and watch your scores drop.">
+  <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
+  <meta property="og:url" content="https://www.scoringzone.net/features/round-stats.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Golf Stat Tracking App — Round Stats & Performance Analysis | Scoring Zone">
+  <meta name="twitter:description" content="Track every round, see where you're losing strokes, and watch your scores drop.">
+  <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <!-- Breadcrumb Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.scoringzone.net"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Features",
+        "item": "https://www.scoringzone.net/#features"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Round Stats"
+      }
+    ]
+  }
+  </script>
+
+  <!-- FAQ Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What stats does the app track?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Scoring Zone's golf stat tracking app records scores, greens in regulation, up-and-down percentage, sand save rate, putting stats, proximity to the hole, and more — all broken down per round and tracked over time in your performance dashboard."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does strokes gained work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Golf strokes gained measures how each part of your game performs relative to a benchmark — typically your handicap level. Instead of just counting putts or fairways hit, it tells you how many strokes each area of your game is costing or saving you compared to similar golfers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I track my handicap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The golf handicap tracker in Scoring Zone updates automatically as you log rounds, giving you an accurate, up-to-date index that reflects your real performance — not just your best few rounds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I have to track live during the round?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. You can use detailed live entry during the round or quick round entry after you finish. Both give you usable stats — detailed entry just gives you more of them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many courses are available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every course in the world. Whether you're playing a links course in Western Ireland, a parkland in California, or a desert layout in Central Asia — select your course, choose your tees, and Scoring Zone handles the rest."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Scoring Zone free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Scoring Zone is currently in early access. Sign up to get full access to all stats, drills, and features — no payment required to get started."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060b08;
+      --bg-card: #0c1410;
+      --bg-card-hover: #111d16;
+      --green: #22c55e;
+      --green-light: #4ade80;
+      --green-dark: #166534;
+      --green-glow: rgba(34, 197, 94, 0.35);
+      --green-subtle: rgba(34, 197, 94, 0.06);
+      --text: #f0fdf4;
+      --text-dim: rgba(240, 253, 244, 0.55);
+      --text-muted: rgba(240, 253, 244, 0.35);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-green: rgba(34, 197, 94, 0.2);
+      --amber: #f5a623;
+      --amber-glow: rgba(245, 166, 35, 0.25);
+      --putting: #9B6FE8;
+      --putting-glow: rgba(155, 111, 232, 0.25);
+      --assistant-color: #22c55e;
+      --assistant-glow: rgba(34, 197, 94, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    /* ── Noise texture ── */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .font-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+
+    /* ── Layout ── */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--green);
+      opacity: 0.5;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .section-title span {
+      color: var(--green);
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ── Navigation ── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(6, 11, 8, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .nav-wordmark {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .nav-wordmark em {
+      color: var(--green);
+      font-style: normal;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-links a.active {
+      color: var(--green);
+    }
+
+    .nav-links .dropdown {
+      position: relative;
+    }
+
+    .nav-links .dropdown-label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--green);
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      border: none;
+      background: none;
+    }
+
+    .nav-links .dropdown-label:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .dropdown-arrow {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s;
+    }
+
+    .dropdown:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 220px;
+      background: #0c1410;
+      border: 1px solid var(--border-green);
+      border-radius: 12px;
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      transform: translateX(-50%) translateY(4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(34, 197, 94, 0.08);
+      color: var(--green-light);
+    }
+
+    .dropdown-menu a.current {
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--green);
+    }
+
+    .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: rgba(34, 197, 94, 0.1);
+      flex-shrink: 0;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border-radius: 8px;
+      background: var(--green);
+      color: #060b08;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+    }
+
+    /* ── Mobile nav ── */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--text);
+    }
+
+    .mobile-menu-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg-placeholder {
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(34, 197, 94, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 30% 70%, rgba(34, 197, 94, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, #081a0e 50%, var(--bg) 100%);
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(6,11,8,0.4) 0%, transparent 30%, transparent 50%, rgba(6,11,8,0.85) 75%, var(--bg) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .hero-text {
+      padding-bottom: 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.2s forwards;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green-glow);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.35s forwards;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.5s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.65s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: none;
+      background: var(--green);
+      color: #060b08;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 24px rgba(34, 197, 94, 0.3), 0 0 60px rgba(34, 197, 94, 0.1);
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+      pointer-events: none;
+    }
+
+    .btn-primary:hover::after {
+      left: 120%;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(34, 197, 94, 0.3);
+      color: var(--text);
+      background: rgba(34, 197, 94, 0.05);
+    }
+
+    .hero-screenshot {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.5s forwards;
+    }
+
+    /* ── Screenshot placeholder ── */
+    .screenshot {
+      width: 100%;
+      max-width: 224px;
+      aspect-ratio: 9 / 19;
+      border-radius: 28px;
+      border: 2px solid var(--border-green);
+      background: #0a0a0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(34, 197, 94, 0.08), 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .screenshot img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 26px;
+    }
+
+    .screenshot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 80%, rgba(6,11,8,0.6) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .screenshot-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .screenshot-wide {
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      margin: 40px auto 0;
+    }
+
+    .screenshot-inline {
+      max-width: 240px;
+      aspect-ratio: 9 / 19;
+    }
+
+    .screenshot-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    /* ── Problem section ── */
+    .problem {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .problem-content {
+      max-width: 680px;
+    }
+
+    .problem-quote {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-top: 24px;
+      padding-left: 24px;
+      border-left: 2px solid rgba(34, 197, 94, 0.3);
+      font-style: italic;
+    }
+
+    /* ── Steps section ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+
+    .step-card:hover {
+      border-color: var(--border-green);
+      transform: translateY(-2px);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -8px;
+      right: -4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 6rem;
+      font-weight: 900;
+      color: rgba(34, 197, 94, 0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .step-num-small {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+
+    .step-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .step-card p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ── Drill types grid ── */
+    .drill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .drill-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(34, 197, 94, 0.12);
+      border-top: 2px solid var(--green);
+      border-radius: 16px;
+      padding: 28px 22px;
+      transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .drill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.04) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .drill-card:hover {
+      border-color: rgba(34, 197, 94, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 24px rgba(34, 197, 94, 0.08);
+    }
+
+    .drill-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .drill-card-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .drill-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      position: relative;
+      z-index: 1;
+    }
+
+    .drill-card p {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Levels section ── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .level-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+
+    .level-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .level-card:nth-child(1) { border-top: 2px solid var(--green); }
+    .level-card:nth-child(2) { border-top: 2px solid var(--green); }
+    .level-card:nth-child(3) { border-top: 2px solid #ef4444; }
+
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .level-card:nth-child(1) .level-badge {
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--green);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .level-card:nth-child(2) .level-badge {
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--green);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .level-card:nth-child(3) .level-badge {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .level-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .level-card p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    /* ── Gamification section ── */
+    .gamification {
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .gamification-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .gamification-features {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .gamification-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .gamification-features .feat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 48px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--border-green);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: none;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .faq-chevron {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: transform 0.3s ease, color 0.2s;
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--green);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* ── CTA ── */
+    .final-cta {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .cta-title span {
+      color: var(--green);
+    }
+
+    .cta-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+
+    .footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer a:hover {
+      color: var(--green);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--green-glow); }
+      50% { opacity: 0.5; box-shadow: 0 0 4px rgba(34, 197, 94, 0.15); }
+    }
+
+    /* Scroll-triggered fade */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        padding-bottom: 60px;
+      }
+
+      .hero-screenshot {
+        display: flex;
+        justify-content: center;
+      }
+
+      .screenshot {
+        max-width: 260px;
+      }
+
+      .steps-grid,
+      .drill-grid,
+      .levels-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gamification-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+
+      .section { padding: 56px 20px; }
+
+      .hero { min-height: 80vh; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-content { padding: 0 20px 48px; }
+
+      .steps-grid,
+      .drill-grid,
+      .levels-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-screenshot { order: -1; }
+      .screenshot { max-width: 200px; }
+      .screenshot-inline { max-width: 200px; }
+    }
+
+    /* ── Mobile menu overlay ── */
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(6, 11, 8, 0.97);
+      backdrop-filter: blur(24px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .mobile-nav.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      transition: color 0.2s;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      color: var(--green);
+    }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-nav-close svg {
+      width: 28px;
+      height: 28px;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="https://www.scoringzone.net" class="nav-left">
+      <img src="https://www.scoringzone.net/logo/new-log.png" alt="Scoring Zone" class="nav-logo">
+      <span class="nav-wordmark">SCORING <em>ZONE</em></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="https://www.scoringzone.net">Home</a></li>
+      <li class="dropdown">
+        <button class="dropdown-label" aria-expanded="false">
+          Platform
+          <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu">
+          <a href="https://www.scoringzone.net/features/chipping-drills.html">
+            <span class="dropdown-icon">🎯</span>
+            <span>Chipping Drills</span>
+          </a>
+          <a href="https://www.scoringzone.net/features/putting-drills.html">
+            <span class="dropdown-icon">🕳️</span>
+            <span>Putting Drills</span>
+          </a>
+          <a href="https://www.scoringzone.net/features/practice-assistant.html">
+            <span class="dropdown-icon">✨</span>
+            <span>Practice Assistant</span>
+          </a>
+          <a href="https://www.scoringzone.net/features/round-stats.html" class="current">
+            <span class="dropdown-icon">📊</span>
+            <span>Round Stats</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="https://www.scoringzone.net/blog/">Blog</a></li>
+    </ul>
+
+    <a href="https://www.scoringzone.net#signup" class="nav-cta" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Get the App
+    </a>
+
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileNav').classList.add('open')" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" onclick="document.getElementById('mobileNav').classList.remove('open')" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="https://www.scoringzone.net">Home</a>
+    <a href="https://www.scoringzone.net/features/chipping-drills.html">Chipping Drills</a>
+    <a href="https://www.scoringzone.net/features/putting-drills.html">Putting Drills</a>
+    <a href="https://www.scoringzone.net/features/practice-assistant.html">Practice Assistant</a>
+    <a href="https://www.scoringzone.net/features/round-stats.html" class="active">Round Stats</a>
+    <a href="https://www.scoringzone.net/blog/">Blog</a>
+    <a href="https://www.scoringzone.net#signup" target="_blank" rel="noopener" style="color: var(--green);">Get the App</a>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- ═══════════════════════════════════════════
+         BREADCRUMB
+         ═══════════════════════════════════════════ -->
+    <nav aria-label="Breadcrumb" style="max-width: 1080px; margin: 0 auto; padding: 80px 24px 0;">
+      <ol style="display: flex; align-items: center; gap: 8px; list-style: none; font-family: 'DM Sans', sans-serif; font-size: 0.8rem;">
+        <li><a href="https://www.scoringzone.net" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;">Home</a></li>
+        <li style="color: var(--text-muted); opacity: 0.4;">→</li>
+        <li><a href="https://www.scoringzone.net/#features" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;">Features</a></li>
+        <li style="color: var(--text-muted); opacity: 0.4;">→</li>
+        <li style="color: var(--green);">Round Stats</li>
+      </ol>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════
+         HERO
+         ═══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-bg-placeholder"></div>
+        <div class="hero-gradient"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">Round Stats &amp; Performance</div>
+          <h1>Stop Guessing. <span>Start Knowing.</span></h1>
+          <p class="hero-subtitle" style="font-weight: 500; color: var(--text); margin-bottom: 8px;">The golf stat tracking app that shows you exactly where your strokes are going — and how to get them back.</p>
+          <p class="hero-subtitle">Scoring Zone tracks your round stats, analyses your short game, and turns raw numbers into a clear plan for improvement.</p>
+          <div class="hero-actions">
+            <a href="https://www.scoringzone.net#signup" class="btn-primary" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Get Scoring Zone Free
+            </a>
+            <a href="#how-it-works" class="btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              See How It Works
+            </a>
+          </div>
+        </div>
+        <div class="hero-screenshot">
+          <div class="screenshot">
+            <img src="images/stats-1.jpg" alt="Scoring Zone round stats dashboard">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         THE PROBLEM
+         ═══════════════════════════════════════════ -->
+    <section class="problem">
+      <div class="section reveal">
+        <div class="problem-content">
+          <div class="section-label">The Problem</div>
+          <h2 class="section-title">You're Playing Rounds. <span>But Are You Learning From Them?</span></h2>
+          <p class="problem-quote">
+            If you've ever wondered how to lower your golf scores, the answer isn't more range time — it's knowing where you're actually losing strokes. Most golfers finish a round, add up the scorecard, and move on. No record of what went wrong. No way to spot patterns. No idea whether it's the short game, the putting, or the tee shots that are costing them the most.<br><br>Without data, every practice session is a guess. With it, every session has a purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         WHY STATS MATTER
+         ═══════════════════════════════════════════ -->
+    <section class="gamification">
+      <div class="section">
+        <div class="gamification-layout">
+          <div class="reveal">
+            <div class="section-label">Why It Matters</div>
+            <h2 class="section-title">Why <span>Stats Tracking</span> Matters</h2>
+
+            <div style="margin-top: 24px;">
+              <p style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.85; margin-bottom: 20px;">Most golfers practise what they enjoy, not what they need. Without data, it's almost impossible to know the difference.</p>
+              <p style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.85; margin-bottom: 20px;">If your GIR rate is strong but your up-and-down percentage is poor, more time on the range won't help — but thirty focused minutes on chipping drills will. If your short game is solid but your putting stats reveal a high three-putt rate, a structured putting session will do more for your scorecard than anything else.</p>
+              <p style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.85;">The golfers who improve fastest aren't the ones who work hardest — they're the ones who work on the right things. A golf stat tracking app makes sure every session is pointed at the problem that's actually costing you strokes.</p>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2">
+            <div class="screenshot screenshot-inline" style="margin: 0 auto;">
+              <img src="images/stats-3.jpg" alt="Scoring Zone stats analysis">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         ROUND ENTRY MODES
+         ═══════════════════════════════════════════ -->
+    <section style="border-top: 1px solid var(--border);">
+      <div class="section">
+        <div class="reveal">
+          <div class="section-label">Round Entry</div>
+          <h2 class="section-title">Two Ways to Track. <span>One Clear Picture.</span></h2>
+          <p class="section-subtitle">Whether you track live or log after the round, Scoring Zone gives you usable stats every time.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px;">
+          <div class="reveal reveal-delay-1" style="background: var(--bg-card); border: 1px solid var(--border); border-top: 2px solid var(--green); border-radius: 16px; padding: 32px 24px;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Detailed Round Entry</h3>
+            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.7;">Select your course, choose your tees, and record full stats hole by hole as you play — including up and downs, greens in regulation, sand saves, and proximity to the hole. Every round becomes a complete performance breakdown you can act on.</p>
+          </div>
+          <div class="reveal reveal-delay-2" style="background: var(--bg-card); border: 1px solid var(--border); border-top: 2px solid var(--green); border-radius: 16px; padding: 32px 24px;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Quick Round Entry</h3>
+            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.7;">Played a round and didn't track live? No problem. Enter your score after the round and still get the key stats that matter. Fast to log, still genuinely useful.</p>
+          </div>
+        </div>
+        <p class="reveal reveal-delay-3" style="margin-top: 24px; font-size: 0.88rem; color: var(--green); font-style: italic; text-align: center;">Every course in the world is available for selection — from courses in California to Western Ireland to Central Asia. Wherever you play, Scoring Zone tracks it.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         STATS FEATURES
+         ═══════════════════════════════════════════ -->
+    <section>
+      <div class="section">
+        <div class="reveal">
+          <div class="section-label">Stats &amp; Analytics</div>
+          <h2 class="section-title">Everything You Need to <span>Track Golf Stats</span></h2>
+          <p class="section-subtitle">A complete golf scoring app that turns round data into improvement.</p>
+        </div>
+
+        <div class="drill-grid">
+          <div class="drill-card reveal reveal-delay-1">
+            <div class="drill-card-icon">
+              <svg viewBox="0 0 24 24"><polyline points="3 18 8 12 13 15 21 6"/><polyline points="17 6 21 6 21 10"/></svg>
+            </div>
+            <h3>Strokes Gained Analysis</h3>
+            <p>See exactly which part of your game is costing you strokes against your handicap. Golf strokes gained data cuts through the noise and tells you where improvement will have the most impact.</p>
+          </div>
+          <div class="drill-card reveal reveal-delay-2">
+            <div class="drill-card-icon">
+              <svg viewBox="0 0 24 24"><polyline points="3 18 8 12 13 15 21 6"/><polyline points="17 6 21 6 21 10"/></svg>
+            </div>
+            <h3>Short Game Breakdown</h3>
+            <p>Up-and-down percentage, sand save rate, proximity to the hole — individual short game statistics displayed per round and tracked over time.</p>
+          </div>
+          <div class="drill-card reveal reveal-delay-3">
+            <div class="drill-card-icon">
+              <svg viewBox="0 0 24 24"><polyline points="3 18 8 12 13 15 21 6"/><polyline points="17 6 21 6 21 10"/></svg>
+            </div>
+            <h3>Putting Stats</h3>
+            <p>Putts per round, putts per GIR, three-putt rate. Know exactly whether it's your lag putting or your short putts that are adding strokes.</p>
+          </div>
+          <div class="drill-card reveal reveal-delay-1">
+            <div class="drill-card-icon">
+              <svg viewBox="0 0 24 24"><polyline points="3 18 8 12 13 15 21 6"/><polyline points="17 6 21 6 21 10"/></svg>
+            </div>
+            <h3>Golf Round Analysis</h3>
+            <p>Hole-by-hole breakdowns, scoring patterns, and performance trends across multiple rounds. See how you perform under pressure and from different tees.</p>
+          </div>
+          <div class="drill-card reveal reveal-delay-2">
+            <div class="drill-card-icon">
+              <svg viewBox="0 0 24 24"><polyline points="3 18 8 12 13 15 21 6"/><polyline points="17 6 21 6 21 10"/></svg>
+            </div>
+            <h3>Course-by-Course History</h3>
+            <p>Track your performance on every course you play. See scoring trends, identify which courses suit your game, and benchmark progress on the tracks you play most.</p>
+          </div>
+          <div class="drill-card reveal reveal-delay-3">
+            <div class="drill-card-icon">
+              <svg viewBox="0 0 24 24"><polyline points="3 18 8 12 13 15 21 6"/><polyline points="17 6 21 6 21 10"/></svg>
+            </div>
+            <h3>Golf Handicap Tracker</h3>
+            <p>Your handicap index updates automatically as rounds are logged. Watch it fall as your stats improve — a single number that reflects everything you've put into your game.</p>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4 screenshot-row">
+          <div class="screenshot screenshot-inline">
+            <img src="images/stats-2.jpg" alt="Scoring Zone round analysis">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SKILL LEVELS
+         ═══════════════════════════════════════════ -->
+    <section>
+      <div class="section">
+        <div class="reveal">
+          <div class="section-label">For Every Level</div>
+          <h2 class="section-title">Built for Every Golfer. <span>From First Round to Scratch.</span></h2>
+        </div>
+
+        <div class="levels-grid">
+          <div class="level-card reveal reveal-delay-1">
+            <div class="level-badge">Beginner</div>
+            <p style="font-size: 0.78rem; color: var(--green); font-style: italic; margin-bottom: 8px;">New to tracking golf stats? Start with the basics and build from there.</p>
+            <h3>Understand Your Game for the First Time</h3>
+            <p>Simple round entry, automatic stat calculation, and a clear overview that shows where you're losing shots — no prior tracking experience needed.</p>
+          </div>
+          <div class="level-card reveal reveal-delay-2">
+            <div class="level-badge">Intermediate</div>
+            <h3>Find the Patterns Holding You Back</h3>
+            <p>Dig into your up-and-down percentage, GIR rate, and putting stats round by round. Spot the recurring weaknesses that are quietly adding strokes to every scorecard.</p>
+          </div>
+          <div class="level-card reveal reveal-delay-3">
+            <div class="level-badge">Advanced</div>
+            <h3>Tour-Level Analytics for Serious Improvement</h3>
+            <p>Strokes gained analysis, proximity data, scoring trends, and benchmarks against scratch-level performance. For golfers who want every decision backed by data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FAQ
+         ═══════════════════════════════════════════ -->
+    <section class="faq-section">
+      <div class="section">
+        <div class="reveal" style="text-align: center;">
+          <div class="section-label" style="justify-content: center;">
+            <span style="display: none;"></span>Common Questions
+          </div>
+          <h2 class="section-title" style="margin-left: auto; margin-right: auto;">Common <span>Questions</span></h2>
+        </div>
+
+        <div class="faq-list reveal reveal-delay-1">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              What stats does the app track?
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Scoring Zone's golf stat tracking app records scores, greens in regulation, up-and-down percentage, sand save rate, putting stats, proximity to the hole, and more — all broken down per round and tracked over time in your performance dashboard.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How does strokes gained work?
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Golf strokes gained measures how each part of your game performs relative to a benchmark — typically your handicap level. Instead of just counting putts or fairways hit, it tells you how many strokes each area of your game is costing or saving you compared to similar golfers.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Can I track my handicap?
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Yes. The golf handicap tracker in Scoring Zone updates automatically as you log rounds, giving you an accurate, up-to-date index that reflects your real performance — not just your best few rounds.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Do I have to track live during the round?
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">No. You can use detailed live entry during the round or quick round entry after you finish. Both give you usable stats — detailed entry just gives you more of them.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How many courses are available?
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Every course in the world. Whether you're playing a links course in Western Ireland, a parkland in California, or a desert layout in Central Asia — select your course, choose your tees, and Scoring Zone handles the rest.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Is Scoring Zone free?
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Scoring Zone is currently in early access. Sign up to get full access to all stats, drills, and features — no payment required to get started.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         RELATED FEATURES
+         ═══════════════════════════════════════════ -->
+    <section class="section" style="padding-bottom: 0;">
+      <div class="reveal">
+        <p class="section-label">Turn Your Stats Into Action</p>
+        <h2 class="section-title">Turn Your Stats Into <span>Action</span></h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px;">
+          <a href="chipping-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+            <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Chipping Drills →</h3>
+            <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Your stats showing a weak up-and-down percentage? Scored chipping challenges for every lie and distance will fix it.</p>
+          </a>
+          <a href="putting-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+            <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Putting Drills →</h3>
+            <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">High three-putt rate? Structured putting practice with scored ladder drills and pressure putts will bring it down.</p>
+          </a>
+          <a href="practice-assistant.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+            <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Practice Assistant →</h3>
+            <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Let your round stats build your next practice session automatically — drills, targets, and time splits tailored to your weaknesses.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FINAL CTA
+         ═══════════════════════════════════════════ -->
+    <section class="final-cta">
+      <div class="section reveal" style="text-align: center;">
+        <h2 class="cta-title">Your Scores Won't Drop <span>By Accident.</span></h2>
+        <p class="cta-subtitle">Join golfers already using Scoring Zone as their golf improvement tracker — logging rounds, finding weaknesses, and practising with purpose. One round of data is all it takes to start.</p>
+        <a href="https://www.scoringzone.net#signup" class="btn-primary" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 16px 36px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Start Tracking Free
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════ -->
+    <footer class="footer">
+      <p>&copy; 2025 Scoring Zone. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── FAQ toggle ──
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-answer').style.maxHeight = '0';
+      });
+
+      // Open clicked (if it was closed)
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    // ── Nav scroll effect ──
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      const scroll = window.scrollY;
+      if (scroll > 100) {
+        nav.style.background = 'rgba(6, 11, 8, 0.95)';
+      } else {
+        nav.style.background = 'rgba(6, 11, 8, 0.85)';
+      }
+      lastScroll = scroll;
+    });
+  </script>
+</body>
+</html>
