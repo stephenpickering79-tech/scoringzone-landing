@@ -112,13 +112,13 @@
       --green: #22c55e;
       --green-light: #4ade80;
       --green-dark: #166534;
-      --green-glow: rgba(34, 197, 94, 0.35);
-      --green-subtle: rgba(34, 197, 94, 0.06);
+      --green-glow: rgba(74, 144, 217, 0.35);
+      --green-subtle: rgba(74, 144, 217, 0.06);
       --text: #f0fdf4;
       --text-dim: rgba(240, 253, 244, 0.55);
       --text-muted: rgba(240, 253, 244, 0.35);
       --border: rgba(255, 255, 255, 0.08);
-      --border-green: rgba(34, 197, 94, 0.2);
+      --border-green: rgba(74, 144, 217, 0.2);
       --amber: #f5a623;
       --amber-glow: rgba(245, 166, 35, 0.25);
       --putting: #9B6FE8;
@@ -126,7 +126,7 @@
       --sim-lab: hsl(210, 70%, 60%);
       --sim-lab-rgb: 74, 144, 217;
       --assistant-color: #22c55e;
-      --assistant-glow: rgba(34, 197, 94, 0.25);
+      --assistant-glow: rgba(74, 144, 217, 0.25);
     }
 
     html { scroll-behavior: smooth; }
@@ -186,7 +186,7 @@
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--green);
+      color: var(--sim-lab);
       margin-bottom: 16px;
       display: flex;
       align-items: center;
@@ -197,7 +197,7 @@
       content: '';
       width: 24px;
       height: 1px;
-      background: var(--green);
+      background: var(--sim-lab);
       opacity: 0.5;
     }
 
@@ -209,7 +209,7 @@
     }
 
     .section-title span {
-      color: var(--green);
+      color: var(--sim-lab);
     }
 
     .section-subtitle {
@@ -261,7 +261,7 @@
     }
 
     .nav-wordmark em {
-      color: var(--green);
+      color: var(--sim-lab);
       font-style: normal;
     }
 
@@ -290,7 +290,7 @@
     }
 
     .nav-links a.active {
-      color: var(--green);
+      color: var(--sim-lab);
     }
 
     .nav-links .dropdown {
@@ -305,7 +305,7 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 0.85rem;
       font-weight: 500;
-      color: var(--green);
+      color: var(--sim-lab);
       padding: 8px 14px;
       border-radius: 8px;
       transition: color 0.2s, background 0.2s;
@@ -363,13 +363,13 @@
     }
 
     .dropdown-menu a:hover {
-      background: rgba(34, 197, 94, 0.08);
+      background: rgba(74, 144, 217, 0.08);
       color: var(--green-light);
     }
 
     .dropdown-menu a.current {
-      background: rgba(34, 197, 94, 0.1);
-      color: var(--green);
+      background: rgba(74, 144, 217, 0.1);
+      color: var(--sim-lab);
     }
 
     .dropdown-icon {
@@ -380,7 +380,7 @@
       align-items: center;
       justify-content: center;
       font-size: 16px;
-      background: rgba(34, 197, 94, 0.1);
+      background: rgba(74, 144, 217, 0.1);
       flex-shrink: 0;
     }
 
@@ -390,7 +390,7 @@
       gap: 6px;
       padding: 8px 20px;
       border-radius: 8px;
-      background: var(--green);
+      background: var(--sim-lab);
       color: #060b08;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.85rem;
@@ -403,7 +403,7 @@
 
     .nav-cta:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+      box-shadow: 0 4px 20px rgba(74, 144, 217, 0.3);
     }
 
     /* ── Mobile nav ── */
@@ -441,8 +441,8 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(34, 197, 94, 0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 30% 70%, rgba(34, 197, 94, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(74, 144, 217, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 30% 70%, rgba(74, 144, 217, 0.06) 0%, transparent 60%),
         linear-gradient(180deg, var(--bg) 0%, #081a0e 50%, var(--bg) 100%);
     }
 
@@ -482,8 +482,8 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--green-light);
-      background: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.2);
+      background: rgba(74, 144, 217, 0.08);
+      border: 1px solid rgba(74, 144, 217, 0.2);
       margin-bottom: 24px;
       opacity: 0;
       animation: fadeUp 0.8s ease-out 0.2s forwards;
@@ -494,7 +494,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--green);
+      background: var(--sim-lab);
       box-shadow: 0 0 8px var(--green-glow);
       animation: pulse 2.4s ease-in-out infinite;
     }
@@ -509,7 +509,7 @@
     }
 
     .hero h1 span {
-      color: var(--green);
+      color: var(--sim-lab);
     }
 
     .hero-subtitle {
@@ -537,7 +537,7 @@
       padding: 14px 28px;
       border-radius: 12px;
       border: none;
-      background: var(--green);
+      background: var(--sim-lab);
       color: #060b08;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
@@ -553,7 +553,7 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 24px rgba(34, 197, 94, 0.3), 0 0 60px rgba(34, 197, 94, 0.1);
+      box-shadow: 0 4px 24px rgba(74, 144, 217, 0.3), 0 0 60px rgba(74, 144, 217, 0.1);
     }
 
     .btn-primary::after {
@@ -593,9 +593,9 @@
     }
 
     .btn-ghost:hover {
-      border-color: rgba(34, 197, 94, 0.3);
+      border-color: rgba(74, 144, 217, 0.3);
       color: var(--text);
-      background: rgba(34, 197, 94, 0.05);
+      background: rgba(74, 144, 217, 0.05);
     }
 
     .hero-screenshot {
@@ -620,7 +620,7 @@
       font-size: 0.85rem;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(34, 197, 94, 0.08), 0 20px 60px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 40px rgba(74, 144, 217, 0.08), 0 20px 60px rgba(0, 0, 0, 0.4);
     }
 
     .screenshot img {
@@ -646,8 +646,8 @@
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.15);
+      background: rgba(74, 144, 217, 0.1);
+      border: 1px solid rgba(74, 144, 217, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -688,7 +688,7 @@
       line-height: 1.8;
       margin-top: 24px;
       padding-left: 24px;
-      border-left: 2px solid rgba(34, 197, 94, 0.3);
+      border-left: 2px solid rgba(74, 144, 217, 0.3);
       font-style: italic;
     }
 
@@ -722,7 +722,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 6rem;
       font-weight: 900;
-      color: rgba(34, 197, 94, 0.06);
+      color: rgba(74, 144, 217, 0.06);
       line-height: 1;
       pointer-events: none;
       user-select: none;
@@ -732,7 +732,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 2rem;
       font-weight: 800;
-      color: var(--green);
+      color: var(--sim-lab);
       margin-bottom: 4px;
       line-height: 1;
     }
@@ -741,8 +741,8 @@
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      background: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.15);
+      background: rgba(74, 144, 217, 0.08);
+      border: 1px solid rgba(74, 144, 217, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -864,8 +864,8 @@
       transform: translateY(-2px);
     }
 
-    .level-card:nth-child(1) { border-top: 2px solid var(--green); }
-    .level-card:nth-child(2) { border-top: 2px solid var(--green); }
+    .level-card:nth-child(1) { border-top: 2px solid var(--sim-lab); }
+    .level-card:nth-child(2) { border-top: 2px solid var(--sim-lab); }
     .level-card:nth-child(3) { border-top: 2px solid #ef4444; }
 
     .level-badge {
@@ -882,15 +882,15 @@
     }
 
     .level-card:nth-child(1) .level-badge {
-      background: rgba(34, 197, 94, 0.1);
-      color: var(--green);
-      border: 1px solid rgba(34, 197, 94, 0.2);
+      background: rgba(74, 144, 217, 0.1);
+      color: var(--sim-lab);
+      border: 1px solid rgba(74, 144, 217, 0.2);
     }
 
     .level-card:nth-child(2) .level-badge {
-      background: rgba(34, 197, 94, 0.1);
-      color: var(--green);
-      border: 1px solid rgba(34, 197, 94, 0.2);
+      background: rgba(74, 144, 217, 0.1);
+      color: var(--sim-lab);
+      border: 1px solid rgba(74, 144, 217, 0.2);
     }
 
     .level-card:nth-child(3) .level-badge {
@@ -945,8 +945,8 @@
       width: 36px;
       height: 36px;
       border-radius: 10px;
-      background: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.12);
+      background: rgba(74, 144, 217, 0.08);
+      border: 1px solid rgba(74, 144, 217, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1011,7 +1011,7 @@
 
     .faq-item.open .faq-chevron {
       transform: rotate(180deg);
-      color: var(--green);
+      color: var(--sim-lab);
     }
 
     .faq-answer {
@@ -1044,7 +1044,7 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(74, 144, 217, 0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -1055,7 +1055,7 @@
     }
 
     .cta-title span {
-      color: var(--green);
+      color: var(--sim-lab);
     }
 
     .cta-subtitle {
@@ -1083,7 +1083,7 @@
     }
 
     .footer a:hover {
-      color: var(--green);
+      color: var(--sim-lab);
     }
 
     /* ── Animations ── */
@@ -1094,7 +1094,7 @@
 
     @keyframes pulse {
       0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--green-glow); }
-      50% { opacity: 0.5; box-shadow: 0 0 4px rgba(34, 197, 94, 0.15); }
+      50% { opacity: 0.5; box-shadow: 0 0 4px rgba(74, 144, 217, 0.15); }
     }
 
     /* Scroll-triggered fade */
@@ -1201,7 +1201,7 @@
 
     .mobile-nav a:hover,
     .mobile-nav a.active {
-      color: var(--green);
+      color: var(--sim-lab);
     }
 
     .mobile-nav-close {
@@ -1305,7 +1305,7 @@
         <li style="color: var(--text-muted); opacity: 0.4;">→</li>
         <li><a href="https://www.scoringzone.net/#features" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;">Features</a></li>
         <li style="color: var(--text-muted); opacity: 0.4;">→</li>
-        <li style="color: var(--green);">SIM Lab</li>
+        <li style="color: var(--sim-lab);">SIM Lab</li>
       </ol>
     </nav>
 
@@ -1496,7 +1496,7 @@
         <div class="levels-grid">
           <div class="level-card reveal reveal-delay-1">
             <div class="level-badge">Beginner</div>
-            <p style="font-size: 0.78rem; color: var(--green); font-style: italic; margin-bottom: 8px;">New to pressure practice? Start with single-skill tests before combining disciplines.</p>
+            <p style="font-size: 0.78rem; color: var(--sim-lab); font-style: italic; margin-bottom: 8px;">New to pressure practice? Start with single-skill tests before combining disciplines.</p>
             <h3>Learn What Pressure Feels Like</h3>
             <p>Start with straightforward scored challenges — chipping to targets, putting with consecutive requirements. Build the habit of practising with stakes before the stakes get higher.</p>
           </div>
@@ -1588,28 +1588,28 @@
         <p class="section-label">Keep Improving</p>
         <h2 class="section-title">More Ways to <span>Lower Your Scores</span></h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px;">
-          <a href="chipping-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+          <a href="chipping-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(74,144,217,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sim-lab); opacity: 0.7;">Feature</span>
             <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Chipping Drills →</h3>
             <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Structured chipping challenges for every lie and distance — the foundation that makes SIM Lab pressure tests easier to pass.</p>
           </a>
-          <a href="putting-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+          <a href="putting-drills.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(74,144,217,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sim-lab); opacity: 0.7;">Feature</span>
             <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Putting Drills →</h3>
             <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Ladder drills, gate challenges, and scored putting practice that build the consistency SIM Lab tests will demand.</p>
           </a>
-          <a href="practice-assistant.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+          <a href="practice-assistant.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(74,144,217,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sim-lab); opacity: 0.7;">Feature</span>
             <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Practice Assistant →</h3>
             <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Let your SIM Lab results shape your next practice session — automatically matched to the weaknesses your pressure tests exposed.</p>
           </a>
-          <a href="round-stats.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+          <a href="round-stats.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(74,144,217,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sim-lab); opacity: 0.7;">Feature</span>
             <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Round Stats →</h3>
             <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Track how your SIM Lab improvements show up on the course — round by round, stat by stat.</p>
           </a>
-          <a href="elite-mode.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); opacity: 0.7;">Feature</span>
+          <a href="elite-mode.html" style="display: block; padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; transition: border-color 0.3s, transform 0.2s;" onmouseover="this.style.borderColor='rgba(74,144,217,0.3)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+            <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sim-lab); opacity: 0.7;">Feature</span>
             <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin: 8px 0;">Elite Mode →</h3>
             <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Tour-level analytics, strokes gained tracking, and pro benchmarks — the data layer that turns good golfers into data-driven ones.</p>
           </a>
