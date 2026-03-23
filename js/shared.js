@@ -103,25 +103,6 @@ function handleSignup(e) {
   });
 }
 
-// ── Newsletter form handler ──
-function handleNewsletter(e) {
-  e.preventDefault();
-  const form = e.target;
-  const email = form.querySelector('input[type="email"]').value;
-
-  fetch('https://scoringzone.app/api/signup', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, source: 'newsletter' })
-  }).finally(() => {
-    form.style.display = 'none';
-    const hint = form.nextElementSibling;
-    if (hint) hint.style.display = 'none';
-    const success = document.getElementById('newsletter-success');
-    if (success) success.classList.add('visible');
-  });
-}
-
 // ── iPhone 3D tilt ──
 const iphoneMockup = document.querySelector('.iphone-mockup');
 if (iphoneMockup && window.innerWidth > 1024) {
