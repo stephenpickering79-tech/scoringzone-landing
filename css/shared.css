@@ -1276,7 +1276,8 @@ body::after {
 
 .signup-form input::placeholder { color: rgba(240, 253, 244, 0.3); }
 
-.signup-form input:focus {
+.signup-form input:focus,
+.newsletter-form input:focus {
   border-color: rgba(34, 197, 94, 0.4);
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
 }
@@ -1608,5 +1609,9 @@ body::after {
   /* Inline 3-col grids */
   div[style*="grid-template-columns: repeat(3"] {
     grid-template-columns: 1fr !important;
+  }
+
+  .newsletter-form {
+    flex-direction: column !important;
   }
 }
