@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-08M47VV5NM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-08M47VV5NM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Scoring Zone Report &mdash; Weekly Golf Newsletter | Scoring Zone</title>
+    <meta name="description" content="Your weekly golf performance newsletter. Top stories, short game tips, drill of the week, and stats that matter &mdash; delivered every Monday, Wednesday, and Friday.">
+    <meta property="og:title" content="The Scoring Zone Report &mdash; Weekly Golf Newsletter">
+    <meta property="og:description" content="Top golf stories rewritten with a short game angle. Drills, stats, and tips to lower your scores.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.scoringzone.net/newsletter/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-scoring-zone-logo.png">
+    <link rel="canonical" href="https://www.scoringzone.net/newsletter/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
+        { "@type": "ListItem", "position": 2, "name": "Newsletter", "item": "https://www.scoringzone.net/newsletter" }
+      ]
+    }
+    </script>
+
+    <style>
+        /* ── Newsletter-specific styles ── */
+        .newsletter-hero {
+            padding: 140px 0 40px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .newsletter-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: rgba(34,197,94,0.08);
+            border: 1px solid rgba(34,197,94,0.2);
+        }
+
+        .newsletter-container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-date {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .newsletter-intro {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Story cards */
+        .story {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .story-num {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+
+        .story h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .story p {
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-bottom: 12px;
+            font-size: 0.92rem;
+        }
+
+        .story-take {
+            background: rgba(34,197,94,0.06);
+            border-left: 3px solid var(--green);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .story-take strong {
+            color: var(--green);
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .story-take p {
+            color: rgba(240,253,244,0.7);
+            margin-bottom: 0;
+            font-size: 0.88rem;
+            line-height: 1.65;
+        }
+
+        .story-source {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+        }
+
+        /* Drill of the week */
+        .drill-card {
+            background: rgba(139,92,246,0.06);
+            border: 1px solid rgba(139,92,246,0.15);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: 32px 0;
+        }
+
+        .drill-card .mono-label {
+            color: hsl(265,76%,67%);
+        }
+
+        .drill-card h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            color: var(--text);
+            margin: 8px 0;
+        }
+
+        .drill-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin-bottom: 0;
+        }
+
+        /* Stat of the week */
+        .stat-card {
+            background: rgba(245,158,11,0.06);
+            border: 1px solid rgba(245,158,11,0.15);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .stat-card .mono-label {
+            color: var(--amber);
+        }
+
+        .stat-card p {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text);
+            line-height: 1.4;
+            margin: 8px 0 0;
+        }
+
+        /* CTA */
+        .newsletter-cta {
+            text-align: center;
+            padding: 40px;
+            margin: 40px 0;
+            background: rgba(34,197,94,0.04);
+            border: 1px solid rgba(34,197,94,0.12);
+            border-radius: 16px;
+        }
+
+        .newsletter-cta p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Archive list */
+        .archive-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .archive-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .archive-item:hover {
+            background: rgba(34,197,94,0.03);
+            padding-left: 12px;
+            padding-right: 12px;
+            margin-left: -12px;
+            margin-right: -12px;
+            border-radius: 8px;
+        }
+
+        .archive-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .archive-date {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-muted);
+        }
+
+        .loading-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            margin: 0 4px;
+            animation: pulse 1.2s ease infinite;
+        }
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .empty-state h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Noise overlay -->
+    <div class="noise"></div>
+
+    <!-- ========== NAV ========== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">
+                <img src="../logo/new-log.webp" width="36" height="36" alt="Scoring Zone logo">
+                SCORING <span>ZONE</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../blog/">Blog</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="./" style="color: var(--green);">Newsletter</a></li>
+            </ul>
+            <a href="../index.html#signup" class="btn-primary btn-sm">Get Early Access</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <a href="../index.html#features">Features</a>
+            <a href="../blog/">Blog</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <a href="./">Newsletter</a>
+            <a href="../index.html#signup">Get Early Access</a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="newsletter-hero">
+        <div class="container">
+            <span class="newsletter-badge">Published Mon &bull; Wed &bull; Fri</span>
+            <h1 class="display-lg" style="margin-top: 16px;">The Scoring Zone <span style="color: var(--green);">Report</span></h1>
+            <p style="color: var(--text-muted); margin-top: 12px; font-size: 0.95rem; max-width: 520px; margin-left: auto; margin-right: auto;">Top golf stories rewritten with a short game angle. Drills, stats, and tips to lower your scores &mdash; delivered three times a week.</p>
+        </div>
+    </section>
+
+    <!-- ========== LATEST NEWSLETTER ========== -->
+    <section class="section" style="padding-top: 20px; position: relative; z-index: 1;">
+        <div class="newsletter-container" id="newsletter-content">
+
+            <!-- This content is a static example. In production, n8n pushes new newsletters here via GitHub -->
+
+            <div class="newsletter-date">Monday, March 24, 2026</div>
+
+            <h2 class="display-md" style="margin-bottom: 16px;">When the Pressure&rsquo;s On: How Tour Pros <span style="color: var(--green);">Win with Their Short Game</span></h2>
+
+            <p class="newsletter-intro">This week&rsquo;s professional golf showcased the ultimate truth about scoring: tournaments are won and lost within 100 yards of the pin. From DeChambeau&rsquo;s clutch playoff heroics to Kim&rsquo;s wire-to-wire dominance, the world&rsquo;s best players proved that short game mastery is what separates champions from everyone else.</p>
+
+            <!-- Story 1 -->
+            <div class="story">
+                <div class="story-num">Story 01</div>
+                <h3>DeChambeau&rsquo;s Playoff Magic: The Short Game Skills That Win Majors</h3>
+                <p>Bryson DeChambeau&rsquo;s dramatic playoff victory this weekend wasn&rsquo;t decided by his legendary driving distance. It came down to a clutch up-and-down from 40 yards that saved par when it mattered most. His scrambling percentage in the final round? 78% &mdash; well above the tour average of 62%.</p>
+                <p>What makes DeChambeau&rsquo;s short game so effective under pressure is his systematic approach to distance control. He treats every wedge shot like a science experiment, tracking exact carry distances and spin rates for each club.</p>
+                <div class="story-take">
+                    <strong>Scoring Zone Take</strong>
+                    <p>DeChambeau&rsquo;s up-and-down percentage in pressure moments mirrors what the Chipping Pressure Test measures. 10 chips under tournament conditions, timer running, consecutive requirements active. That&rsquo;s where you find out if your practice transfers to the course.</p>
+                </div>
+                <span class="story-source">Source: PGA Tour / Golf.com</span>
+            </div>
+
+            <!-- Story 2 -->
+            <div class="story">
+                <div class="story-num">Story 02</div>
+                <h3>Fitzpatrick Earns Redemption at Valspar Championship</h3>
+                <p>Matt Fitzpatrick roared back from last week&rsquo;s heartbreak with a commanding performance at the Valspar Championship. His putting stats told the story: zero three-putts across 72 holes and a putting average of 1.67 per green in regulation.</p>
+                <p>Fitzpatrick&rsquo;s putting consistency stems from his obsession with lag putting. He rarely leaves himself in three-putt range because his speed control from 30+ feet is tour-elite.</p>
+                <div class="story-take">
+                    <strong>Scoring Zone Take</strong>
+                    <p>Zero three-putts in 72 holes. That&rsquo;s what the Lag King drill trains &mdash; 10 putts from 30+ feet, every ball inside 3 feet. Track your score over time and watch your three-putt rate plummet.</p>
+                </div>
+                <span class="story-source">Source: ESPN Golf / BBC Sport</span>
+            </div>
+
+            <!-- Story 3 -->
+            <div class="story">
+                <div class="story-num">Story 03</div>
+                <h3>Weekend Data: Why 65% of Strokes Happen Within 100 Yards</h3>
+                <p>Fresh ShotLink data from this weekend&rsquo;s events confirms what we already know: the average PGA Tour player hits 65% of their total shots from inside 100 yards. For amateurs, that number is even higher &mdash; nearly 70%.</p>
+                <p>Yet most golfers spend 80% of their practice time on the driving range, hitting full shots that account for only 30% of their score.</p>
+                <div class="story-take">
+                    <strong>Scoring Zone Take</strong>
+                    <p>The math doesn&rsquo;t lie. If you want to lower your scores, stop practicing what matters least. Scoring Zone&rsquo;s 50+ drills target the 65% of shots that actually determine your score &mdash; and the AI Practice Assistant builds you a plan based on where you&rsquo;re weakest.</p>
+                </div>
+                <span class="story-source">Source: PGA Tour ShotLink Data</span>
+            </div>
+
+            <!-- Drill of the Week -->
+            <div class="drill-card">
+                <span class="mono-label">Drill of the Week</span>
+                <h3>Chipping Pressure Test</h3>
+                <p>10 chips under tournament conditions &mdash; timer running, consecutive requirements active, penalties for missed targets. Score 8/10 to match under-5 handicap level. Score 10/10 for tour-pro benchmarks. This is the drill that tells you if your short game holds up when it counts.</p>
+            </div>
+
+            <!-- Stat of the Week -->
+            <div class="stat-card">
+                <span class="mono-label">Stat of the Week</span>
+                <p>Tour pros convert 62% of up-and-downs. The average amateur? Just 28%. That 34-point gap is where handicaps live &mdash; and where Scoring Zone focuses every drill.</p>
+            </div>
+
+            <!-- CTA -->
+            <div class="newsletter-cta">
+                <span class="mono-label">Ready to Improve?</span>
+                <h3 class="display-md" style="margin: 12px 0;">Stop Practicing for Fun. <span style="color: var(--green);">Start Practicing for Performance.</span></h3>
+                <p>Simulate tournament pressure, track every shot, and level up with data-driven short game drills.</p>
+                <a href="https://scoringzone.app" class="btn-primary">Try Scoring Zone Free &rarr;</a>
+            </div>
+
+            <!-- Archive -->
+            <div class="archive-section">
+                <span class="mono-label">Previous Editions</span>
+                <h3 class="display-md" style="margin: 8px 0 24px;">Newsletter <span style="color: var(--green);">Archive</span></h3>
+
+                <a href="#" class="archive-item">
+                    <span class="archive-title">When the Pressure&rsquo;s On: How Tour Pros Win with Their Short Game</span>
+                    <span class="archive-date">Mar 24, 2026</span>
+                </a>
+                <!-- Future newsletters will be prepended here by n8n -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== FINAL CTA ========== -->
+    <section class="section final-cta" style="position: relative; z-index: 1;">
+        <div class="final-cta-bg"></div>
+        <div class="container" style="text-align: center; position: relative;">
+            <div class="reveal">
+                <span class="mono-label">Early Access</span>
+                <h2 class="display-md" style="margin-top: 12px;">Start Training Smarter. <span style="color: var(--green);">Join the Waitlist.</span></h2>
+                <p style="color: var(--text-muted); margin-top: 12px;">Free premium access for early members. No credit card required.</p>
+                <a href="../index.html#signup" class="btn-primary" style="margin-top: 24px;">Get Early Access &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" style="position: relative; z-index: 1;">
+        <div class="container">
+            <a href="../index.html" class="nav-logo" style="justify-content: center;">
+                <img src="../logo/new-log.webp" width="36" height="36" alt="Scoring Zone logo">
+                SCORING <span>ZONE</span>
+            </a>
+            <ul class="footer-links">
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#drills">Drills</a></li>
+                <li><a href="../blog/">Blog</a></li>
+                <li><a href="./">Newsletter</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+            </ul>
+            <p class="footer-copy">&copy; 2026 Scoring Zone</p>
+        </div>
+    </footer>
+
+    <script src="../js/shared.js"></script>
+</body>
+</html>
