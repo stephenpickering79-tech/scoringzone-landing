@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-08M47VV5NM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-08M47VV5NM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Practice App for Beginners — Start Improving Today | Scoring Zone</title>
+    <meta name="description" content="New to golf? Scoring Zone gives beginners structured short game drills with guided scoring, progress tracking, and a clear path from first chip to confident scrambling.">
+    <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-scoring-zone-logo.png">
+    <link rel="canonical" href="https://www.scoringzone.net/for-beginners.html">
+    <meta property="og:title" content="Golf Practice App for Beginners | Scoring Zone">
+    <meta property="og:description" content="New to golf? Structured short game drills with guided scoring and a clear improvement path.">
+    <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
+    <meta property="og:url" content="https://www.scoringzone.net/for-beginners.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Golf Practice App for Beginners | Scoring Zone">
+    <meta name="twitter:description" content="New to golf? Structured short game drills with guided scoring and a clear improvement path.">
+    <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
+        { "@type": "ListItem", "position": 2, "name": "For Beginners" }
+      ]
+    }
+    </script>
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Scoring Zone good for complete beginners?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Scoring Zone starts with guided fundamentals — basic chipping, simple putting drills, and clear scoring so you always know what good looks like. No experience required." }
+        },
+        {
+          "@type": "Question",
+          "name": "What equipment do I need to use Scoring Zone?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Just a putter, a wedge, and some golf balls. The app works at any practice green, short game area, or even your backyard." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should a beginner practice session be?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Start with 15-20 minutes, two or three times per week. Short, focused sessions with scoring produce better results than long, unstructured range sessions." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Scoring Zone free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Scoring Zone is currently in free early access. Sign up to get full access to all drills and features — no payment required." }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      .beginner-breadcrumb {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+      }
+      .beginner-breadcrumb a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .beginner-breadcrumb a:hover {
+        color: var(--green);
+      }
+      .beginner-breadcrumb span {
+        margin: 0 6px;
+        opacity: 0.4;
+      }
+      .beginner-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+      .beginner-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px 28px;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .beginner-card:hover {
+        border-color: rgba(34, 197, 94, 0.25);
+        background: rgba(34, 197, 94, 0.03);
+      }
+      .beginner-card h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .beginner-card p {
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      .drill-card {
+        display: block;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px 28px;
+        text-decoration: none;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .drill-card:hover {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.04);
+      }
+      .drill-card .drill-label {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--green);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .drill-card h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+      .drill-card p {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      .drill-card .drill-cta {
+        color: var(--green);
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .faq-list {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .faq-item:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .faq-item h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .faq-item p {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+      .related-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .related-links a {
+        display: block;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: border-color 0.2s, background 0.2s;
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .related-links a:hover {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.03);
+      }
+      .related-links a span {
+        color: var(--green);
+        font-size: 0.85rem;
+        margin-left: 4px;
+      }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="logo/new-log.webp" alt="Scoring Zone" width="36" height="36" style="width: 36px; height: 36px; border-radius: 50%;">
+                SCORING <span>ZONE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#features" class="nav-dropdown-trigger">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="features/putting-drills.html">Putting Drills</a>
+                        <a href="features/chipping-drills.html">Chipping & Wedge Drills</a>
+                        <a href="features/practice-assistant.html">Practice Assistant</a>
+                        <a href="features/round-stats.html">Round Stats</a>
+                        <a href="features/sim-lab.html">SIM Lab</a>
+                        <a href="features/elite-mode.html">Elite Mode</a>
+                    </div>
+                </div>
+                <a href="blog/">Blog</a>
+                <a href="index.html#pricing">Pricing</a>
+            </div>
+            <a href="index.html#signup" class="btn-primary btn-sm">Start Free</a>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== BREADCRUMB ========== -->
+    <section style="padding: 100px 0 0; position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <div class="beginner-breadcrumb">
+                <a href="index.html">Home</a>
+                <span>&rsaquo;</span>
+                For Beginners
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HERO ========== -->
+    <section style="padding: 32px 0 48px; position: relative; z-index: 1;">
+        <div class="container" style="text-align: center; max-width: 780px;">
+            <span class="mono-label reveal" style="color: var(--green);">Built for New Golfers</span>
+            <h1 class="display-lg reveal" style="margin-top: 12px; font-size: clamp(2rem, 5vw, 3.2rem);">Golf Practice <span style="color: var(--green);">for Beginners</span></h1>
+            <p class="reveal" style="font-size: 1.1rem; color: var(--text-dim); max-width: 620px; margin: 20px auto 0; line-height: 1.7;">The short game is where beginners drop the most strokes &mdash; and where the fastest improvement happens. Scoring Zone gives you structured drills, clear scoring, and a progression path so you always know what to practice next.</p>
+            <div class="reveal" style="margin-top: 28px;">
+                <a href="index.html#signup" class="btn-primary">Start Free</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== THE BEGINNER'S PROBLEM ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <span class="mono-label reveal" style="color: var(--green);">The Problem</span>
+            <h2 class="display-md reveal" style="margin-top: 12px;">Most Beginners Practice the Wrong Thing</h2>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 20px; line-height: 1.8;">If you are new to golf, here is what you probably did at your last practice session: walked to the driving range, bought a bucket of balls, and hit driver for an hour. Maybe you moved to a 7-iron for a bit. Then you left. That is the default for almost every beginner &mdash; and it is the slowest possible way to lower your scores.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;">Here is the reality. When you play an actual round, more than 60% of your strokes happen inside 100 yards &mdash; chips, pitches, bunker shots, and putts. For a beginner shooting around 105&ndash;115, that number is closer to 65&ndash;70%. You might hit driver 14 times per round. You will putt 35&ndash;40 times. You will chip or pitch 10&ndash;15 times. The short game is where your score lives, and right now, it is getting almost none of your attention.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;">This is not a knock on range practice &mdash; full swing work has its place. But if you want to see your scores drop quickly, the answer is not a new driver. It is 20 minutes with a putter and a wedge, two or three times a week, with a plan.</p>
+        </div>
+    </section>
+
+    <!-- ========== WHY THE SHORT GAME IS THE FASTEST PATH ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <span class="mono-label reveal" style="color: var(--green);">Why It Works</span>
+            <h2 class="display-md reveal" style="margin-top: 12px;">The Short Game Is the Fastest Path to Lower Scores</h2>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 20px; line-height: 1.8;">As a beginner, you do not need a perfect swing to save strokes. You need to stop skulling chips across the green. You need to eliminate the three-putt. You need a basic up-and-down technique that gets the ball on the putting surface and reasonably close to the hole. These are learnable skills, and they improve faster than any other part of the game because the movements are small and repeatable.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;"><strong style="color: var(--text);">Chipping:</strong> A beginner who skulls or chunks two or three chips per round is losing 4&ndash;6 strokes to one basic error. Learning clean contact with a simple bump-and-run technique can fix this in a few focused sessions. You do not need to hit fancy flop shots. You need the ball to land on the green and roll toward the hole. That is it.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;"><strong style="color: var(--text);">Putting:</strong> Beginners commonly three-putt 8&ndash;10 times per round. Each three-putt is a full stroke wasted. If you cut that number in half, you have saved 4&ndash;5 shots without touching the rest of your game. The fix is usually two things: better distance control on long putts (so your first putt finishes within 3 feet) and a higher make rate on short putts inside 4&ndash;6 feet.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;"><strong style="color: var(--text);">Up-and-downs:</strong> Getting up and down means chipping onto the green and making the putt in one shot. A beginner might convert 5&ndash;10% of up-and-down attempts. Moving that to 20&ndash;25% &mdash; which is very achievable with basic technique &mdash; saves another 2&ndash;3 strokes per round. Combined with the putting improvement, that is 6&ndash;8 fewer strokes. No new equipment. No swing overhaul. Just smarter practice.</p>
+        </div>
+    </section>
+
+    <!-- ========== WHAT SCORING ZONE OFFERS BEGINNERS ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 880px;">
+            <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+                <span class="mono-label reveal" style="color: var(--green);">Built for You</span>
+                <h2 class="display-md reveal" style="margin-top: 12px;">What Scoring Zone Gives Beginners</h2>
+                <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.7;">Most golf apps assume you already know what you are doing. Scoring Zone does not. It is designed to meet you where you are and give you a clear path forward.</p>
+            </div>
+
+            <div class="beginner-grid" style="margin-top: 40px;">
+                <div class="beginner-card reveal">
+                    <h3>Guided Drills That Start Simple</h3>
+                    <p>Every drill in Scoring Zone has a clear setup, a simple objective, and a scoring system. You do not need to invent your own practice routine. The app tells you what to do, how to score it, and what a good result looks like. Drills start with the basics &mdash; short putts, simple chips &mdash; and progress as your skills improve. You will never feel lost wondering what to practice.</p>
+                </div>
+                <div class="beginner-card reveal">
+                    <h3>Clear Scoring (So You Know "Good")</h3>
+                    <p>When you are new, the hardest question is: was that good? Scoring Zone answers it. Every drill has a points system and benchmarks. You will see exactly where you stand and what a realistic target looks like for your level. No guessing. No vague feelings. Just numbers that tell you whether you are improving &mdash; and by how much.</p>
+                </div>
+                <div class="beginner-card reveal">
+                    <h3>XP and Levels That Reward Effort</h3>
+                    <p>Practice can feel thankless when you are starting out. Scoring Zone uses an XP system and levels to make every session count. Complete a drill, earn XP. Beat your personal best, earn more. Level up over time. It sounds simple because it is &mdash; but the dopamine hit of leveling up after a good putting session keeps you coming back, which is the whole point.</p>
+                </div>
+                <div class="beginner-card reveal">
+                    <h3>Practice Alone, at Your Own Pace</h3>
+                    <p>Golf can feel intimidating when you are new. Scoring Zone is a solo practice tool. There is no leaderboard full of scratch golfers making you feel behind. No social pressure. Just you, your phone, and a practice green. Go at your own speed, take as long as you need, and build confidence before you ever step onto a course with other people.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 3 BEGINNER DRILLS TO TRY ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 880px;">
+            <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+                <span class="mono-label reveal" style="color: var(--green);">Get Started</span>
+                <h2 class="display-md reveal" style="margin-top: 12px;">3 Beginner Drills to Try Today</h2>
+                <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.7;">You do not need to master the whole app before you start. These three drills are perfect first sessions for any new golfer.</p>
+            </div>
+
+            <div class="beginner-grid" style="margin-top: 32px;">
+                <a href="features/putting-drills.html" class="drill-card reveal">
+                    <div class="drill-label">Putting</div>
+                    <h3>The 4-Foot Circle</h3>
+                    <p>Place 4 balls around the hole at 4 feet &mdash; north, south, east, west. Make all four. Miss one and you restart. This is the single most important distance for a beginner to own. If you can make putts from 4 feet reliably, you will save more strokes than any other single skill. Track your completions per session and watch the number climb.</p>
+                    <span class="drill-cta">See Putting Drills &rarr;</span>
+                </a>
+                <a href="features/chipping-drills.html" class="drill-card reveal">
+                    <div class="drill-label">Chipping</div>
+                    <h3>Bump-and-Run Basics</h3>
+                    <p>Pick one spot 5 yards off the green. Chip 10 balls to a single hole using a 7, 8, or 9 iron with a putting stroke. The goal is clean contact and getting the ball rolling on the green &mdash; not height, not spin, not style. Score 1 point for each ball that finishes within 6 feet of the hole. Aim for 5 out of 10 to start. This teaches the most reliable short game shot in golf.</p>
+                    <span class="drill-cta">See Chipping Drills &rarr;</span>
+                </a>
+                <a href="features/putting-drills.html" class="drill-card reveal">
+                    <div class="drill-label">Distance Control</div>
+                    <h3>Lag Putt Ladder</h3>
+                    <p>Place tees at 15, 25, and 35 feet from the hole. Putt two balls from each distance. Your only goal: get every putt within a putter-length of the hole. No three-putts. Score 1 point each time you finish inside that range. This drill teaches the feel that eliminates most three-putts &mdash; the ability to judge speed on longer putts and leave yourself a tap-in.</p>
+                    <span class="drill-cta">See Putting Drills &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <span class="mono-label reveal" style="color: var(--green);">FAQ</span>
+                <h2 class="display-md reveal" style="margin-top: 12px;">Common Questions from Beginners</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <h3>Is Scoring Zone good for complete beginners?</h3>
+                    <p>Yes. Scoring Zone starts with guided fundamentals &mdash; basic chipping, simple putting drills, and clear scoring so you always know what good looks like. No experience required.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h3>What equipment do I need to use Scoring Zone?</h3>
+                    <p>Just a putter, a wedge, and some golf balls. The app works at any practice green, short game area, or even your backyard.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h3>How long should a beginner practice session be?</h3>
+                    <p>Start with 15&ndash;20 minutes, two or three times per week. Short, focused sessions with scoring produce better results than long, unstructured range sessions. Consistency matters more than duration &mdash; three 15-minute sessions will beat one 90-minute session every time.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h3>Is Scoring Zone free?</h3>
+                    <p>Scoring Zone is currently in free early access. Sign up to get full access to all drills and features &mdash; no payment required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="text-align: center; max-width: 620px;">
+            <span class="mono-label reveal" style="color: var(--green);">Free Early Access</span>
+            <h2 class="display-md reveal" style="margin-top: 12px;">Your Short Game Journey Starts Here</h2>
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.7;">You do not need to be good at golf to start practicing your short game. You just need a putter, a wedge, and 15 minutes. Scoring Zone handles the rest &mdash; the drills, the scoring, the progression. Sign up for free and see what structured practice feels like.</p>
+            <div class="reveal" style="margin-top: 28px;">
+                <a href="index.html#signup" class="btn-primary">Start Free</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RELATED LINKS ========== -->
+    <section class="section" style="padding-bottom: 80px; position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <span class="mono-label reveal" style="color: var(--text-muted);">Keep Reading</span>
+            <h2 class="reveal" style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; margin-top: 8px; margin-bottom: 8px;">Related Pages</h2>
+
+            <div class="related-links reveal">
+                <a href="blog/how-to-break-90.html">How to Break 90 in Golf <span>&rarr;</span></a>
+                <a href="blog/how-to-make-golf-practice-fun.html">How to Make Golf Practice Fun <span>&rarr;</span></a>
+                <a href="features/chipping-drills.html">Chipping & Wedge Drills <span>&rarr;</span></a>
+                <a href="features/putting-drills.html">Putting Drills <span>&rarr;</span></a>
+                <a href="features/practice-assistant.html">Practice Assistant <span>&rarr;</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p>&copy; 2026 Scoring Zone. All rights reserved.</p>
+    </footer>
+
+    <script src="js/shared.js"></script>
+</body>
+</html>

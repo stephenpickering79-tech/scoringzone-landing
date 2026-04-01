@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-08M47VV5NM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-08M47VV5NM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Golf Training App &mdash; Fun Short Game Drills | Scoring Zone</title>
+    <meta name="description" content="Make golf practice fun for juniors. Scoring Zone turns short game drills into scored challenges with XP, levels, and achievements that keep young golfers engaged.">
+    <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-scoring-zone-logo.png">
+    <link rel="canonical" href="https://www.scoringzone.net/for-juniors.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Junior Golf Training App &mdash; Fun Short Game Drills | Scoring Zone">
+    <meta property="og:description" content="Make golf practice fun for juniors. Scoring Zone turns short game drills into scored challenges with XP, levels, and achievements that keep young golfers engaged.">
+    <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
+    <meta property="og:url" content="https://www.scoringzone.net/for-juniors.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Junior Golf Training App &mdash; Fun Short Game Drills | Scoring Zone">
+    <meta name="twitter:description" content="Make golf practice fun for juniors. Scoring Zone turns short game drills into scored challenges with XP, levels, and achievements that keep young golfers engaged.">
+    <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
+        { "@type": "ListItem", "position": 2, "name": "For Juniors" }
+      ]
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What age is Scoring Zone suitable for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scoring Zone works for any junior golfer old enough to chip and putt — typically ages 8 and up. The drills scale from basic to advanced, so it grows with the player."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Scoring Zone keep juniors engaged?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "XP points, level progression, achievements, and scored challenges turn practice into a game. Juniors compete against their own benchmarks and watch their stats improve — the same feedback loop that makes video games addictive, applied to golf."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can coaches use Scoring Zone with junior programmes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Scoring Zone gives coaches a structured drill library with automatic scoring. Instead of managing drills manually, coaches can assign challenges and track each student's progress over time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Scoring Zone free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scoring Zone is currently in free early access. Sign up to get full access to all drills and features — no payment required."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      .landing-body { font-size: 1.05rem; color: rgba(240, 253, 244, 0.7); line-height: 1.75; max-width: 720px; }
+      .landing-body p + p { margin-top: 1.25rem; }
+      .landing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+      .landing-card {
+        padding: 28px;
+        background: rgba(255,255,255,0.025);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .landing-card:hover { border-color: rgba(34, 197, 94, 0.2); background: rgba(255,255,255,0.04); }
+      .landing-card h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+      .landing-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
+      .faq-item { padding: 28px 0; border-bottom: 1px solid var(--border); }
+      .faq-item:first-child { border-top: 1px solid var(--border); }
+      .faq-q {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+      .faq-a { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; max-width: 680px; }
+      .related-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+      .related-links a {
+        padding: 10px 20px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s, border-color 0.2s;
+      }
+      .related-links a:hover { color: var(--green); border-color: rgba(34, 197, 94, 0.3); }
+      .final-cta-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(34, 197, 94, 0.06), transparent);
+        pointer-events: none;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Noise overlay -->
+    <div class="noise"></div>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="logo/new-log.webp" alt="Scoring Zone" width="36" height="36" style="width: 36px; height: 36px; border-radius: 50%;">
+                SCORING <span>ZONE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#features" class="nav-dropdown-trigger">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="features/putting-drills.html">Putting Drills</a>
+                        <a href="#features">Short Game Challenges</a>
+                        <a href="features/chipping-drills.html">Chipping & Wedge Drills</a>
+                        <a href="features/practice-assistant.html">Practice Assistant</a>
+                        <a href="features/round-stats.html">Round Stats</a>
+                        <a href="features/sim-lab.html">SIM Lab</a>
+                        <a href="features/elite-mode.html">Elite Mode</a>
+                        <a href="#drills">40+ Challenges</a>
+                    </div>
+                </div>
+                <a href="blog/">Blog</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#signup">Download</a>
+            </div>
+            <a href="#signup" class="btn-primary btn-sm">Start Free</a>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html">Home</a>
+            <div class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-trigger">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <div class="mobile-dropdown-items">
+                    <a href="features/putting-drills.html">Putting Drills</a>
+                    <a href="#features">Short Game Challenges</a>
+                    <a href="features/chipping-drills.html">Chipping & Wedge Drills</a>
+                    <a href="features/practice-assistant.html">Practice Assistant</a>
+                    <a href="features/round-stats.html">Round Stats</a>
+                    <a href="features/sim-lab.html">SIM Lab</a>
+                    <a href="features/elite-mode.html">Elite Mode</a>
+                    <a href="#drills">40+ Challenges</a>
+                </div>
+            </div>
+            <a href="blog/">Blog</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#signup">Download</a>
+            <a href="#signup" class="btn-primary" style="width: 100%; justify-content: center;">Start Free</a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" style="min-height: auto; padding: 10rem 0 5rem;">
+        <div class="hero-bg">
+            <div class="hero-grid"></div>
+        </div>
+        <div class="container">
+            <div class="reveal" style="max-width: 720px;">
+                <span class="mono-label">Junior Golf Training</span>
+                <h1 class="display-xl" style="margin-top: 16px;">Short Game Practice<br>That Feels Like <span class="hero-accent">a Game</span></h1>
+                <p class="hero-sub">Young golfers don&rsquo;t need more lectures on technique. They need a reason to pick up a wedge and practise until the lights go out. Scoring Zone turns short game drills into scored challenges with XP, levels, and achievements &mdash; the same hooks that keep kids glued to their favourite games, redirected toward real skill development.</p>
+                <div class="hero-ctas">
+                    <a href="index.html#signup" class="btn-primary">Get Scoring Zone Free &rarr;</a>
+                    <a href="#how-it-works" class="btn-outline">See How It Works</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== THE PROBLEM ========== -->
+    <section class="section" id="the-problem">
+        <div class="container">
+            <div class="reveal">
+                <span class="mono-label">The Problem</span>
+                <h2 class="display-lg" style="margin-top: 12px; max-width: 600px;">Practice Greens Are Where <span style="color: var(--green);">Motivation Goes to Die</span></h2>
+            </div>
+            <div class="reveal landing-body" style="margin-top: 28px;">
+                <p>Every coach and parent knows the scene. A junior arrives at the practice green, drops a handful of balls, chips a few toward a flag, and within ten minutes they&rsquo;re bored. No score. No objective. No feedback beyond the ball finishing close or not. So they start goofing around or asking when they can go play &ldquo;actual golf.&rdquo;</p>
+                <p>It&rsquo;s not a discipline problem &mdash; it&rsquo;s a design problem. Unstructured practice gives juniors nothing to aim at, nothing to measure, and nothing to compete against. Compare that to a round on the course, where every hole has a target, every shot matters, and there&rsquo;s a score at the end. The course is inherently engaging. The practice green is not.</p>
+                <p>The result is predictable. Juniors avoid short game practice &mdash; the area where they have the most strokes to gain &mdash; and gravitate toward the driver range or the first tee. Their long game develops; their scoring game stalls. And when they reach a competitive level where short game separates good from great, they&rsquo;re playing catch-up.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY GAMIFICATION WORKS ========== -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="reveal">
+                <span class="mono-label">Why It Works</span>
+                <h2 class="display-lg" style="margin-top: 12px; max-width: 640px;">The Same Psychology That Powers <span style="color: var(--green);">Their Favourite Games</span></h2>
+            </div>
+            <div class="reveal landing-body" style="margin-top: 28px;">
+                <p>There&rsquo;s a reason juniors will spend three hours grinding through levels on a video game but can&rsquo;t last fifteen minutes on a practice green. Video games give constant, measurable feedback. Every action earns points. Every session advances you toward a visible goal. That feedback loop &mdash; action, score, reward, repeat &mdash; is the most powerful engagement mechanism in behavioural psychology, and it&rsquo;s entirely absent from traditional golf practice.</p>
+                <p>Scoring Zone applies that loop to short game training. Every drill has a scoring system. Every completed challenge earns XP. Accumulated XP unlocks new levels and achievements. Juniors aren&rsquo;t just hitting chips and putts &mdash; they&rsquo;re chasing a personal best, working toward their next level, or trying to unlock an achievement.</p>
+                <p>The drills themselves are the training &mdash; real chipping challenges, real putting tests, real pressure scenarios. The gamification layer ensures juniors want to do them, voluntarily, repeatedly, and with focus. When practice has a score, kids pay attention to every shot. When that score feeds into a progression system, they come back tomorrow.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHAT SCORING ZONE OFFERS ========== -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="reveal">
+                <span class="mono-label">Features for Juniors</span>
+                <h2 class="display-lg" style="margin-top: 12px; max-width: 600px;">Everything a Young Golfer Needs to <span style="color: var(--green);">Stay Engaged</span></h2>
+            </div>
+            <div class="landing-grid">
+                <div class="reveal landing-card">
+                    <h3>Scored Challenges with XP Rewards</h3>
+                    <p>Every drill produces a score. Every score earns XP. Juniors see exactly how they performed and get immediate credit for the work they put in &mdash; no ambiguity, no guessing whether practice &ldquo;counted.&rdquo;</p>
+                </div>
+                <div class="reveal landing-card">
+                    <h3>Level Progression System</h3>
+                    <p>XP accumulates into levels that juniors can track and share. It turns a single session into part of a bigger story &mdash; a long-term progression that rewards consistency and volume of quality practice.</p>
+                </div>
+                <div class="reveal landing-card">
+                    <h3>Progressive Difficulty</h3>
+                    <p>Drills start approachable and scale up. Juniors build confidence on the fundamentals before unlocking harder challenges that demand sharper technique and better decision-making under pressure.</p>
+                </div>
+                <div class="reveal landing-card">
+                    <h3>Pressure Drills That Simulate Competition</h3>
+                    <p>Scoring against a benchmark creates the same nerves as standing over a short putt on the last hole. Juniors learn to perform under pressure during practice, so they&rsquo;re ready when it matters on the course.</p>
+                </div>
+                <div class="reveal landing-card">
+                    <h3>Stats That Show Real Improvement</h3>
+                    <p>Progress isn&rsquo;t a feeling &mdash; it&rsquo;s a number. Juniors can see their scores trending upward across sessions, identify which areas are improving fastest, and understand what still needs work.</p>
+                </div>
+                <div class="reveal landing-card">
+                    <h3>Achievements and Milestones</h3>
+                    <p>Unlockable achievements mark key moments &mdash; first level up, first perfect score, longest practice streak. These landmarks give juniors goals beyond the session in front of them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOR COACHES AND PARENTS ========== -->
+    <section class="section">
+        <div class="container">
+            <div class="reveal">
+                <span class="mono-label">For Coaches &amp; Parents</span>
+                <h2 class="display-lg" style="margin-top: 12px; max-width: 640px;">Structure Between Lessons. <span style="color: var(--green);">Progress You Can See.</span></h2>
+            </div>
+            <div class="reveal landing-body" style="margin-top: 28px;">
+                <p>The hardest part of junior development isn&rsquo;t the lesson &mdash; it&rsquo;s what happens between lessons. A coach can teach the perfect bump-and-run, but if that junior doesn&rsquo;t practise independently, the skill won&rsquo;t stick. Most juniors need structure to practise on their own, and most parents don&rsquo;t have the golf knowledge to provide it.</p>
+                <p>Scoring Zone fills that gap. Each session has clear drills, defined scoring criteria, and automatic tracking. A junior can walk up to any practice green, open the app, and immediately have a focused, productive session &mdash; no coach required.</p>
+                <p>For coaches running junior programmes, Scoring Zone replaces the clipboard. Instead of designing drills and tracking results manually, coaches can point students toward the app and let it handle the structure. The data is captured automatically &mdash; which drills were completed, what scores were achieved, and how those scores trend over time.</p>
+                <p>For parents, the benefit is simpler: your junior actually wants to practise. Instead of coaxing them to the practice green, you&rsquo;ll find them asking to go. The gamification turns short game practice from something kids endure into something they choose &mdash; and the stats show whether that practice is translating into real improvement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="reveal">
+                <span class="mono-label">FAQ</span>
+                <h2 class="display-lg" style="margin-top: 12px;">Frequently Asked <span style="color: var(--green);">Questions</span></h2>
+            </div>
+            <div style="margin-top: 40px; max-width: 700px;">
+                <div class="reveal faq-item">
+                    <h3 class="faq-q">What age is Scoring Zone suitable for?</h3>
+                    <p class="faq-a">Scoring Zone works for any junior golfer old enough to chip and putt &mdash; typically ages 8 and up. The drills scale from basic to advanced, so it grows with the player.</p>
+                </div>
+                <div class="reveal faq-item">
+                    <h3 class="faq-q">How does Scoring Zone keep juniors engaged?</h3>
+                    <p class="faq-a">XP points, level progression, achievements, and scored challenges turn practice into a game. Juniors compete against their own benchmarks and watch their stats improve &mdash; the same feedback loop that makes video games addictive, applied to golf.</p>
+                </div>
+                <div class="reveal faq-item">
+                    <h3 class="faq-q">Can coaches use Scoring Zone with junior programmes?</h3>
+                    <p class="faq-a">Yes. Scoring Zone gives coaches a structured drill library with automatic scoring. Instead of managing drills manually, coaches can assign challenges and track each student&rsquo;s progress over time.</p>
+                </div>
+                <div class="reveal faq-item">
+                    <h3 class="faq-q">Is Scoring Zone free?</h3>
+                    <p class="faq-a">Scoring Zone is currently in free early access. Sign up to get full access to all drills and features &mdash; no payment required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FINAL CTA ========== -->
+    <section class="section" style="position: relative; z-index: 1;" id="signup">
+        <div class="final-cta-bg"></div>
+        <div class="container" style="text-align: center; position: relative;">
+            <div class="reveal">
+                <span class="mono-label">Early Access</span>
+                <h2 class="display-md" style="margin-top: 12px;">Make Practice the Best Part of Their Day.</h2>
+                <p style="color: var(--text-muted); margin-top: 12px; max-width: 520px; margin-left: auto; margin-right: auto;">Full access to all drills, XP, stats, and features. No payment required during early access.</p>
+                <a href="index.html#signup" class="btn-primary" style="margin-top: 24px;">Get Scoring Zone Free &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RELATED PAGES ========== -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="reveal">
+                <span class="mono-label">Keep Exploring</span>
+                <div class="related-links">
+                    <a href="features/chipping-drills.html">Chipping Drills</a>
+                    <a href="features/putting-drills.html">Putting Drills</a>
+                    <a href="blog/how-to-make-golf-practice-fun.html">How to Make Golf Practice Fun</a>
+                    <a href="features/sim-lab.html">SIM Lab</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p>&copy; 2026 Scoring Zone. All rights reserved.</p>
+    </footer>
+
+    <script src="js/shared.js"></script>
+</body>
+</html>
