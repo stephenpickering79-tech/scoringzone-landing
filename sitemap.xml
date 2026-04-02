@@ -103,6 +103,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.scoringzone.net/blog/pressure-putting-drills.html</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.scoringzone.net/blog/how-to-practice-short-game.html</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.scoringzone.net/blog/best-golf-practice-apps-2026.html</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -149,6 +161,18 @@
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.scoringzone.net/privacy.html</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.scoringzone.net/contact.html</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.scoringzone.net/about.html</loc>
