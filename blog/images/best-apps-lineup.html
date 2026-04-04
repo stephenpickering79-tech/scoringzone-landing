@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Best Golf Practice Apps — Lineup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 680px; overflow: hidden; background: #060b08; font-family: 'DM Sans', sans-serif; }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 680px;
+    background: linear-gradient(160deg, #060b08 0%, #0a1a0f 40%, #0d2818 80%, #060b08 100%);
+    overflow: hidden;
+  }
+
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(34,197,94,0.08) 0%, transparent 60%);
+  }
+
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  .top-label {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(34,197,94,0.6);
+    background: rgba(34,197,94,0.06);
+    padding: 6px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(34,197,94,0.12);
+  }
+
+  .cards {
+    position: absolute;
+    top: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 14px;
+  }
+
+  .card {
+    width: 214px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 22px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card:first-child {
+    background: rgba(34,197,94,0.04);
+    border: 1px solid rgba(34,197,94,0.2);
+    box-shadow: 0 0 40px rgba(34,197,94,0.08);
+  }
+
+  .card-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06);
+  }
+
+  .card:first-child .card-logo {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3), 0 0 0 2px rgba(34,197,94,0.3), 0 0 30px rgba(34,197,94,0.1);
+  }
+
+  .card-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Fix non-square logos */
+  .card-logo--contain img { object-fit: contain; padding: 8px; }
+
+  .card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #f0fdf4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .card:first-child .card-name { color: #22c55e; font-size: 18px; }
+
+  .card-best {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .card:first-child .card-best { color: rgba(34,197,94,0.5); }
+
+  .card-features {
+    list-style: none;
+    width: 100%;
+  }
+
+  .card-features li {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.4;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card:first-child .card-features li {
+    color: rgba(255,255,255,0.45);
+    border-bottom-color: rgba(34,197,94,0.08);
+  }
+
+  .card-features li:last-child { border-bottom: none; }
+
+  .card-features li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+
+  .card:first-child .card-features li::before { background: rgba(34,197,94,0.5); }
+
+  .card-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .card:first-child .card-price { color: #22c55e; font-weight: 500; }
+
+  .corner { position: absolute; width: 24px; height: 24px; z-index: 10; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(34,197,94,0.15); border-left: 2px solid rgba(34,197,94,0.15); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(34,197,94,0.15); border-left: 2px solid rgba(34,197,94,0.15); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="top-label">Quick Comparison &bull; 2026</div>
+
+  <div class="cards">
+    <!-- 1. Scoring Zone -->
+    <div class="card">
+      <div class="card-logo" style="background: #000;">
+        <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone">
+      </div>
+      <div class="card-name">Scoring Zone</div>
+      <div class="card-best">Short Game</div>
+      <ul class="card-features">
+        <li>50+ scored drills</li>
+        <li>Pressure mode</li>
+        <li>XP &amp; leaderboards</li>
+        <li>Strokes gained</li>
+        <li>AI practice plans</li>
+        <li>Short game handicap</li>
+      </ul>
+      <div class="card-price">Free</div>
+    </div>
+
+    <!-- 2. CORE Golf -->
+    <div class="card">
+      <div class="card-logo" style="background: #000;">
+        <img src="../../18 birdies brand/core golf logo.png" alt="CORE Golf">
+      </div>
+      <div class="card-name">CORE Golf</div>
+      <div class="card-best">Video Coaching</div>
+      <ul class="card-features">
+        <li>100+ video drills</li>
+        <li>Full-game coverage</li>
+        <li>Weekly coaching plans</li>
+        <li>Coach instruction</li>
+        <li>Progress tracking</li>
+        <li>Structured curriculum</li>
+      </ul>
+      <div class="card-price">~$9.99/mo</div>
+    </div>
+
+    <!-- 3. Break X Golf -->
+    <div class="card">
+      <div class="card-logo card-logo--contain" style="background: #e87830;">
+        <img src="../../18 birdies brand/Break-X-Golf-Clear-1024x576.png" alt="Break X Golf">
+      </div>
+      <div class="card-name">Break X Golf</div>
+      <div class="card-best">AI Plans</div>
+      <ul class="card-features">
+        <li>130+ skill games</li>
+        <li>AI training plans</li>
+        <li>Adapts to your stats</li>
+        <li>Progress feedback</li>
+        <li>Full-game scope</li>
+        <li>Personalised drills</li>
+      </ul>
+      <div class="card-price">Freemium</div>
+    </div>
+
+    <!-- 4. Drills.golf -->
+    <div class="card">
+      <div class="card-logo card-logo--contain" style="background: #fff;">
+        <img src="../../18 birdies brand/drills.golf" alt="Drills.golf">
+      </div>
+      <div class="card-name">Drills.golf</div>
+      <div class="card-best">Drill Logging</div>
+      <ul class="card-features">
+        <li>Simple drill log</li>
+        <li>Clean interface</li>
+        <li>Custom drills</li>
+        <li>Session history</li>
+        <li>No fluff</li>
+        <li>Self-directed</li>
+      </ul>
+      <div class="card-price">Free</div>
+    </div>
+
+    <!-- 5. Perfect Practice -->
+    <div class="card">
+      <div class="card-logo card-logo--contain" style="background: #2a6e3f;">
+        <img src="../../18 birdies brand/perfect-practice-golf-screenshot.avif" alt="Perfect Practice Golf">
+      </div>
+      <div class="card-name">Perfect Practice</div>
+      <div class="card-best">Beginners</div>
+      <ul class="card-features">
+        <li>Range session plans</li>
+        <li>Beginner-friendly</li>
+        <li>Club-by-club drills</li>
+        <li>Zero learning curve</li>
+        <li>Short sessions</li>
+        <li>Low price point</li>
+      </ul>
+      <div class="card-price">Low-cost</div>
+    </div>
+  </div>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+</body>
+</html>

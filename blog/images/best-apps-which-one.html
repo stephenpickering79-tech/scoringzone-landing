@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Which App Is Right for You?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #060b08; font-family: 'DM Sans', sans-serif; }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    background: #080c0a;
+    overflow: hidden;
+  }
+
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(34,197,94,0.06) 0%, transparent 60%);
+  }
+
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  .top-label {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.04);
+    padding: 6px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .heading {
+    position: absolute;
+    top: 68px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+  }
+
+  .heading h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+
+  .heading h2 span { color: #22c55e; }
+
+  .rows {
+    position: absolute;
+    top: 135px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 1040px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .row:first-child {
+    background: rgba(34,197,94,0.04);
+    border: 1px solid rgba(34,197,94,0.15);
+  }
+
+  .row-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .row-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .row-logo--contain img { object-fit: contain; padding: 6px; }
+
+  .row-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #f0fdf4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    width: 160px;
+    flex-shrink: 0;
+  }
+
+  .row:first-child .row-name { color: #22c55e; }
+
+  .row-arrow {
+    color: rgba(255,255,255,0.15);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .row:first-child .row-arrow { color: rgba(34,197,94,0.3); }
+
+  .row-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .row:first-child .row-desc { color: rgba(255,255,255,0.5); }
+
+  .row-best {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .row:first-child .row-best {
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    color: rgba(34,197,94,0.7);
+  }
+
+  .row:not(:first-child) .row-best {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.3);
+  }
+
+  .corner { position: absolute; width: 24px; height: 24px; z-index: 10; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(255,255,255,0.08); border-left: 2px solid rgba(255,255,255,0.08); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(255,255,255,0.08); border-left: 2px solid rgba(255,255,255,0.08); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="top-label">The Verdict</div>
+
+  <div class="heading">
+    <h2>Which App Is <span>Right for You?</span></h2>
+  </div>
+
+  <div class="rows">
+    <!-- 1. Scoring Zone -->
+    <div class="row">
+      <div class="row-logo" style="background: #000;">
+        <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone">
+      </div>
+      <div class="row-name">Scoring Zone</div>
+      <div class="row-arrow">&rarr;</div>
+      <div class="row-desc">You know your short game is costing you strokes and want scored, pressure-based practice to fix it. Free during early access.</div>
+      <div class="row-best">Best for Short Game</div>
+    </div>
+
+    <!-- 2. CORE Golf -->
+    <div class="row">
+      <div class="row-logo" style="background: #000;">
+        <img src="../../18 birdies brand/core golf logo.png" alt="CORE Golf">
+      </div>
+      <div class="row-name">CORE Golf</div>
+      <div class="row-arrow">&rarr;</div>
+      <div class="row-desc">You want guided, video-based coaching across your entire game with structured weekly plans from a qualified coach.</div>
+      <div class="row-best">Video Coaching</div>
+    </div>
+
+    <!-- 3. Break X Golf -->
+    <div class="row">
+      <div class="row-logo row-logo--contain" style="background: #e87830;">
+        <img src="../../18 birdies brand/Break-X-Golf-Clear-1024x576.png" alt="Break X Golf">
+      </div>
+      <div class="row-name">Break X Golf</div>
+      <div class="row-arrow">&rarr;</div>
+      <div class="row-desc">You track your stats religiously and want an AI-personalised training plan that adapts as your game improves.</div>
+      <div class="row-best">AI Plans</div>
+    </div>
+
+    <!-- 4. Drills.golf -->
+    <div class="row">
+      <div class="row-logo row-logo--contain" style="background: #fff;">
+        <img src="../../18 birdies brand/drills.golf" alt="Drills.golf">
+      </div>
+      <div class="row-name">Drills.golf</div>
+      <div class="row-arrow">&rarr;</div>
+      <div class="row-desc">You already know what to practise and just need a clean, no-frills app to log your drills and track sessions.</div>
+      <div class="row-best">Drill Logging</div>
+    </div>
+
+    <!-- 5. Perfect Practice -->
+    <div class="row">
+      <div class="row-logo row-logo--contain" style="background: #2a6e3f;">
+        <img src="../../18 birdies brand/perfect-practice-golf-screenshot.avif" alt="Perfect Practice Golf">
+      </div>
+      <div class="row-name">Perfect Practice</div>
+      <div class="row-arrow">&rarr;</div>
+      <div class="row-desc">You&rsquo;re a beginner who shows up at the range and doesn&rsquo;t know what to do. Short, simple session plans.</div>
+      <div class="row-best">Beginners</div>
+    </div>
+  </div>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+</body>
+</html>
