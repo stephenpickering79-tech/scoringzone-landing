@@ -1,3 +1,113 @@
+// ── Typewriter Effect ──
+document.querySelectorAll('.typewriter').forEach(el => {
+  const cursor = el.querySelector('.typewriter-cursor');
+  const chars = [];
+
+  // Collect all child nodes (excluding the cursor)
+  const childNodes = [];
+  el.childNodes.forEach(node => {
+    if (node !== cursor) childNodes.push(node);
+  });
+
+  // Split text into words and wrap chars, grouping by word to prevent mid-word line breaks
+  function processText(text, container) {
+    const parts = text.split(/( )/); // split on single spaces, keeping them
+    parts.forEach(part => {
+      if (part === ' ') {
+        const span = document.createElement('span');
+        span.className = 'typewriter-char';
+        span.innerHTML = '&nbsp;';
+        container.appendChild(span);
+        chars.push(span);
+      } else if (part.length > 0) {
+        const wordWrap = document.createElement('span');
+        wordWrap.className = 'typewriter-word';
+        for (let i = 0; i < part.length; i++) {
+          const span = document.createElement('span');
+          span.className = 'typewriter-char';
+          span.textContent = part[i];
+          wordWrap.appendChild(span);
+          chars.push(span);
+        }
+        container.appendChild(wordWrap);
+      }
+    });
+  }
+
+  // Remove originals and rebuild with char spans
+  childNodes.forEach(node => el.removeChild(node));
+  childNodes.forEach(node => {
+    if (node.nodeType === 3) {
+      // Text node — build word-wrapped chars directly into el before cursor
+      const frag = document.createDocumentFragment();
+      processText(node.textContent, frag);
+      el.insertBefore(frag, cursor);
+    } else if (node.nodeType === 1) {
+      // Element node (e.g. .hero-accent) — replace its contents with char spans
+      const text = node.textContent;
+      node.textContent = '';
+      processText(text, node);
+      el.insertBefore(node, cursor);
+    }
+  });
+
+  el.classList.add('typing');
+
+  // Reveal chars when element scrolls into view
+  const typeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        typeObserver.unobserve(entry.target);
+        chars.forEach((char, i) => {
+          setTimeout(() => {
+            char.classList.add('revealed');
+            if (i === chars.length - 1 && cursor) {
+              cursor.classList.add('done');
+            }
+          }, i * 112);
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  typeObserver.observe(el);
+});
+
+// ── Infinite Grid Animation ──
+(function() {
+  const basePat = document.getElementById('hero-grid-pat');
+  const brightPat = document.getElementById('hero-grid-pat-bright');
+  const reveal = document.querySelector('.hero-grid-reveal');
+  const hero = document.querySelector('.hero');
+
+  if (basePat && brightPat) {
+    let offsetX = 0;
+    let offsetY = 0;
+
+    function animateGrid() {
+      offsetX = (offsetX + 0.5) % 40;
+      offsetY = (offsetY + 0.5) % 40;
+      basePat.setAttribute('x', offsetX);
+      basePat.setAttribute('y', offsetY);
+      brightPat.setAttribute('x', offsetX);
+      brightPat.setAttribute('y', offsetY);
+      requestAnimationFrame(animateGrid);
+    }
+    requestAnimationFrame(animateGrid);
+  }
+
+  if (reveal && hero) {
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const mask = `radial-gradient(300px circle at ${x}px ${y}px, black, transparent)`;
+      reveal.style.maskImage = mask;
+      reveal.style.webkitMaskImage = mask;
+    });
+  }
+})();
+
 // ── Scroll Reveal ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -9,6 +119,17 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ── Scroll Reveal Cards (one-shot, scroll-down only) ──
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      cardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.25 });
+document.querySelectorAll('.scroll-reveal-card').forEach(el => cardObserver.observe(el));
+
 // ── Nav scroll effect ──
 const nav = document.querySelector('.nav');
 if (nav) {
@@ -16,6 +137,64 @@ if (nav) {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
 }
+
+// ── Desktop mega-menu dropdown ──
+const dropdowns = document.querySelectorAll('[data-dropdown]');
+let closeTimer = null;
+
+function openDropdown(dd) {
+  dropdowns.forEach(d => { if (d !== dd) closeDropdown(d); });
+  dd.classList.add('open');
+  const trigger = dd.querySelector('.nav-dropdown-trigger');
+  if (trigger) trigger.setAttribute('aria-expanded', 'true');
+}
+
+function closeDropdown(dd) {
+  dd.classList.remove('open');
+  const trigger = dd.querySelector('.nav-dropdown-trigger');
+  if (trigger) trigger.setAttribute('aria-expanded', 'false');
+}
+
+function closeAllDropdowns() {
+  dropdowns.forEach(d => closeDropdown(d));
+}
+
+dropdowns.forEach(dd => {
+  const trigger = dd.querySelector('.nav-dropdown-trigger');
+
+  // Hover open/close with small delay to prevent flicker
+  dd.addEventListener('mouseenter', () => {
+    clearTimeout(closeTimer);
+    openDropdown(dd);
+  });
+
+  dd.addEventListener('mouseleave', () => {
+    closeTimer = setTimeout(() => closeDropdown(dd), 150);
+  });
+
+  // Click toggle for accessibility
+  if (trigger) {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (dd.classList.contains('open')) {
+        closeDropdown(dd);
+      } else {
+        openDropdown(dd);
+      }
+    });
+  }
+});
+
+// Close on outside click
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('[data-dropdown]')) closeAllDropdowns();
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeAllDropdowns();
+});
 
 // ── Mobile menu ──
 const mobileBtn = document.querySelector('.mobile-menu-btn');
@@ -54,6 +233,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeAllDropdowns();
       if (mobileMenu) mobileMenu.classList.remove('open');
     }
   });
