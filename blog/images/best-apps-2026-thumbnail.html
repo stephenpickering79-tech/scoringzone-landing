@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Best Golf Practice Apps 2026 — Thumbnail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #060b08;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #060b08;
+  }
+
+  /* ── PANEL 1: Scoring Zone (widest — the #1 pick) ── */
+  .panel-1 {
+    position: absolute;
+    top: 0; left: 0;
+    width: 32%;
+    height: 100%;
+    background: linear-gradient(160deg, #0a2010 0%, #0d3018 50%, #22c55e 260%);
+    clip-path: polygon(0 0, 92% 0, 76% 100%, 0 100%);
+    z-index: 1;
+  }
+  .panel-1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 70% at 40% 40%, rgba(34,197,94,0.18) 0%, transparent 60%);
+  }
+  .panel-1::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ── PANEL 2: CORE Golf ── */
+  .panel-2 {
+    position: absolute;
+    top: 0; left: 21%;
+    width: 24%;
+    height: 100%;
+    background: linear-gradient(160deg, #0a1e2a 0%, #0d2e3e 50%, #4dd8e0 300%);
+    clip-path: polygon(24% 0, 92% 0, 76% 100%, 8% 100%);
+    z-index: 2;
+  }
+  .panel-2::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(77,216,224,0.1) 0%, transparent 60%);
+  }
+
+  /* ── PANEL 3: Break X Golf ── */
+  .panel-3 {
+    position: absolute;
+    top: 0; left: 39%;
+    width: 24%;
+    height: 100%;
+    background: linear-gradient(160deg, #1a0e05 0%, #2a1508 50%, #e87830 300%);
+    clip-path: polygon(22% 0, 92% 0, 76% 100%, 6% 100%);
+    z-index: 3;
+  }
+  .panel-3::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,120,48,0.1) 0%, transparent 60%);
+  }
+
+  /* ── PANEL 4: Drills.golf ── */
+  .panel-4 {
+    position: absolute;
+    top: 0; left: 57%;
+    width: 24%;
+    height: 100%;
+    background: linear-gradient(160deg, #121212 0%, #1a1a1a 50%, #3a3a3a 300%);
+    clip-path: polygon(22% 0, 92% 0, 76% 100%, 6% 100%);
+    z-index: 4;
+  }
+  .panel-4::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+  }
+
+  /* ── PANEL 5: Perfect Practice ── */
+  .panel-5 {
+    position: absolute;
+    top: 0; left: 75%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(160deg, #0a1a10 0%, #122a18 50%, #2a6e3f 300%);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 4% 100%);
+    z-index: 5;
+  }
+  .panel-5::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 60% 50%, rgba(42,110,63,0.12) 0%, transparent 60%);
+  }
+
+  /* ── SLASH LINES between panels ── */
+  .slash {
+    position: absolute;
+    top: 0;
+    width: 4px;
+    height: 140%;
+    transform: rotate(8deg);
+    transform-origin: center 40%;
+    z-index: 15;
+  }
+
+  .slash-1 {
+    left: 24.5%;
+    background: linear-gradient(180deg, rgba(34,197,94,0.6) 0%, rgba(77,216,224,0.4) 50%, rgba(34,197,94,0.6) 100%);
+    box-shadow: 0 0 16px rgba(34,197,94,0.3), 0 0 40px rgba(34,197,94,0.1);
+  }
+  .slash-2 {
+    left: 42.5%;
+    background: linear-gradient(180deg, rgba(77,216,224,0.4) 0%, rgba(232,120,48,0.4) 50%, rgba(77,216,224,0.4) 100%);
+    box-shadow: 0 0 16px rgba(77,216,224,0.2), 0 0 40px rgba(232,120,48,0.1);
+  }
+  .slash-3 {
+    left: 60.5%;
+    background: linear-gradient(180deg, rgba(232,120,48,0.4) 0%, rgba(255,255,255,0.2) 50%, rgba(232,120,48,0.4) 100%);
+    box-shadow: 0 0 16px rgba(232,120,48,0.2);
+  }
+  .slash-4 {
+    left: 78.5%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(42,110,63,0.4) 50%, rgba(255,255,255,0.15) 100%);
+    box-shadow: 0 0 16px rgba(42,110,63,0.2);
+  }
+
+  /* Thin companion lines */
+  .slash::before,
+  .slash::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(255,255,255,0.08);
+  }
+  .slash::before { left: -6px; }
+  .slash::after { right: -6px; }
+
+  /* ── NOISE OVERLAY ── */
+  .noise {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    opacity: 0.035;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  /* ── APP BRAND CONTENT ── */
+  .brand {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand-logo {
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 0 1.5px rgba(255,255,255,0.1);
+  }
+
+  .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .brand-name {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  }
+
+  .brand-tag {
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-align: center;
+    margin-top: -4px;
+  }
+
+  /* ── Individual brand positions & sizes ── */
+
+  /* All logos same size */
+  .brand-logo {
+    width: 110px;
+    height: 110px;
+    border-radius: 26px;
+  }
+
+  /* 1. Scoring Zone */
+  .brand--sz {
+    left: 8%;
+  }
+  .brand--sz .brand-logo {
+    background: #000;
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.5),
+      0 0 0 2.5px rgba(34,197,94,0.5),
+      0 0 50px rgba(34,197,94,0.2);
+  }
+  .brand--sz .brand-name {
+    font-size: 26px;
+    color: #fff;
+  }
+  .brand--sz .brand-name span { color: #22c55e; }
+  .brand--sz .brand-tag {
+    font-size: 11px;
+    color: rgba(34,197,94,0.65);
+  }
+
+  /* 2. CORE Golf */
+  .brand--core {
+    left: 28.5%;
+  }
+  .brand--core .brand-logo {
+    background: #000;
+  }
+  .brand--core .brand-name {
+    font-size: 22px;
+    color: #c8f5f8;
+  }
+  .brand--core .brand-tag {
+    font-size: 11px;
+    color: rgba(77,216,224,0.5);
+  }
+
+  /* 3. Break X Golf */
+  .brand--break {
+    left: 47%;
+  }
+  .brand--break .brand-logo {
+    background: #e87830;
+  }
+  .brand--break .brand-logo img {
+    object-fit: contain;
+    padding: 12px;
+  }
+  .brand--break .brand-name {
+    font-size: 22px;
+    color: #fcd4b8;
+  }
+  .brand--break .brand-tag {
+    font-size: 11px;
+    color: rgba(232,120,48,0.5);
+  }
+
+  /* 4. Drills.golf */
+  .brand--drills {
+    left: 64.5%;
+  }
+  .brand--drills .brand-logo {
+    background: #fff;
+  }
+  .brand--drills .brand-logo img {
+    object-fit: contain;
+    padding: 8px;
+  }
+  .brand--drills .brand-name {
+    font-size: 22px;
+    color: rgba(255,255,255,0.8);
+  }
+  .brand--drills .brand-tag {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* 5. Perfect Practice */
+  .brand--pp {
+    left: 83%;
+  }
+  .brand--pp .brand-logo {
+    background: #2a6e3f;
+  }
+  .brand--pp .brand-logo img {
+    object-fit: contain;
+    padding: 10px;
+  }
+  .brand--pp .brand-name {
+    font-size: 20px;
+    color: rgba(200,240,210,0.8);
+    line-height: 1.15;
+  }
+  .brand--pp .brand-tag {
+    font-size: 11px;
+    color: rgba(42,110,63,0.55);
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    background: rgba(0,0,0,0.6);
+    padding: 6px 24px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+  }
+
+  /* ── TITLE OVERLAY ── */
+  .title-overlay {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .title-overlay h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 46px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.8), 0 0 60px rgba(0,0,0,0.5);
+  }
+
+  .title-overlay h1 span {
+    color: #22c55e;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.8), 0 0 40px rgba(34,197,94,0.3);
+  }
+
+  /* ── BOTTOM BAR ── */
+  .bottom-bar {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  }
+
+  /* ── CORNER ACCENTS ── */
+  .corner {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    z-index: 30;
+  }
+  .corner--tl { top: 18px; left: 18px; border-top: 2px solid rgba(34,197,94,0.25); border-left: 2px solid rgba(34,197,94,0.25); }
+  .corner--tr { top: 18px; right: 18px; border-top: 2px solid rgba(42,110,63,0.3); border-right: 2px solid rgba(42,110,63,0.3); }
+  .corner--bl { bottom: 18px; left: 18px; border-bottom: 2px solid rgba(34,197,94,0.25); border-left: 2px solid rgba(34,197,94,0.25); }
+  .corner--br { bottom: 18px; right: 18px; border-bottom: 2px solid rgba(42,110,63,0.3); border-right: 2px solid rgba(42,110,63,0.3); }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <!-- Angled color panels -->
+  <div class="panel-1"></div>
+  <div class="panel-2"></div>
+  <div class="panel-3"></div>
+  <div class="panel-4"></div>
+  <div class="panel-5"></div>
+
+  <!-- Diagonal slash lines -->
+  <div class="slash slash-1"></div>
+  <div class="slash slash-2"></div>
+  <div class="slash slash-3"></div>
+  <div class="slash slash-4"></div>
+
+  <!-- Noise -->
+  <div class="noise"></div>
+
+  <!-- Top label -->
+  <div class="top-bar">The 5 Best Golf Practice Apps &bull; 2026</div>
+
+  <!-- 1. Scoring Zone -->
+  <div class="brand brand--sz">
+    <div class="brand-logo" style="position: relative;">
+
+      <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone">
+    </div>
+    <div class="brand-name">Scoring <span>Zone</span></div>
+    <div class="brand-tag">Short Game &bull; Practice</div>
+  </div>
+
+  <!-- 2. CORE Golf -->
+  <div class="brand brand--core">
+    <div class="brand-logo" style="position: relative;">
+
+      <img src="../../18 birdies brand/core golf logo.png" alt="CORE Golf">
+    </div>
+    <div class="brand-name">CORE Golf</div>
+    <div class="brand-tag">Video Coaching</div>
+  </div>
+
+  <!-- 3. Break X Golf -->
+  <div class="brand brand--break">
+    <div class="brand-logo" style="position: relative;">
+
+      <img src="../../18 birdies brand/Break-X-Golf-Clear-1024x576.png" alt="Break X Golf">
+    </div>
+    <div class="brand-name">Break X Golf</div>
+    <div class="brand-tag">AI Plans</div>
+  </div>
+
+  <!-- 4. Drills.golf -->
+  <div class="brand brand--drills">
+    <div class="brand-logo" style="position: relative;">
+
+      <img src="../../18 birdies brand/drills.golf" alt="Drills.golf">
+    </div>
+    <div class="brand-name">Drills.golf</div>
+    <div class="brand-tag">Drill Logging</div>
+  </div>
+
+  <!-- 5. Perfect Practice -->
+  <div class="brand brand--pp">
+    <div class="brand-logo" style="position: relative;">
+
+      <img src="../../18 birdies brand/perfect-practice-golf-screenshot.avif" alt="Perfect Practice Golf">
+    </div>
+    <div class="brand-name">Perfect<br>Practice</div>
+    <div class="brand-tag">Beginners</div>
+  </div>
+
+  <!-- Title overlay -->
+  <div class="title-overlay">
+    <h1>The 5 Best Golf <span>Practice Apps</span></h1>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">scoringzone.net</div>
+
+  <!-- Corner accents -->
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+
+</body>
+</html>
