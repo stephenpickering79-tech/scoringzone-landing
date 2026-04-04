@@ -2031,7 +2031,7 @@ body::after {
   height: 100%;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: none;
   background: var(--bg-card);
   opacity: 0;
   transform: translateY(60px) scale(0.95);
