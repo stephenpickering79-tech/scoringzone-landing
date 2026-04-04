@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-08M47VV5NM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-08M47VV5NM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Practice App for Competitive Golfers | Scoring Zone</title>
+    <meta name="description" content="Train your short game like a tour player. Scored pressure drills, strokes gained tracking, SIM Lab tests, and Elite Mode analytics for golfers chasing scratch and beyond.">
+    <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-scoring-zone-logo.png">
+    <link rel="canonical" href="https://www.scoringzone.net/for-competitive-golfers.html">
+    <meta property="og:title" content="Golf Practice App for Competitive Golfers | Scoring Zone">
+    <meta property="og:description" content="Scored pressure drills, strokes gained tracking, and Elite Mode analytics for golfers chasing scratch and beyond.">
+    <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
+    <meta property="og:url" content="https://www.scoringzone.net/for-competitive-golfers.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Golf Practice App for Competitive Golfers | Scoring Zone">
+    <meta name="twitter:description" content="Scored pressure drills, strokes gained tracking, and Elite Mode analytics for golfers chasing scratch and beyond.">
+    <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
+        { "@type": "ListItem", "position": 2, "name": "For Competitive Golfers" }
+      ]
+    }
+    </script>
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes Scoring Zone different from other golf apps for competitive players?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Scoring Zone focuses entirely on the short game with scored drills, tour-level benchmarks, and pressure simulation. Elite Mode adds strokes gained analysis and advanced analytics that most apps only offer for full-round tracking." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Scoring Zone help me prepare for tournament play?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The SIM Lab runs timed challenges and elimination rounds that simulate on-course pressure. Practising under stress inoculation conditions builds the composure that separates practice performance from tournament performance." }
+        },
+        {
+          "@type": "Question",
+          "name": "What handicap level is Scoring Zone designed for?",
+          "acceptedAnswer": { "@type": "Answer", "text": "All levels. Competitive golfers benefit most from Elite Mode and the SIM Lab, but every drill scales from beginner to advanced. The benchmarks adjust to your level and the app tracks your Short Game Handicap separately from your overall handicap." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Scoring Zone free for competitive golfers?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Scoring Zone is currently in free early access. All features including Elite Mode and SIM Lab are available at no cost." }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      .comp-breadcrumb {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+      }
+      .comp-breadcrumb a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .comp-breadcrumb a:hover {
+        color: var(--green);
+      }
+      .comp-breadcrumb span {
+        margin: 0 6px;
+        opacity: 0.4;
+      }
+      .comp-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+      .comp-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px 28px;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .comp-card:hover {
+        border-color: rgba(34, 197, 94, 0.25);
+        background: rgba(34, 197, 94, 0.03);
+      }
+      .comp-card h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .comp-card p {
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      .drill-card {
+        display: block;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px 28px;
+        text-decoration: none;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .drill-card:hover {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.04);
+      }
+      .drill-card .drill-label {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--green);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .drill-card h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+      .drill-card p {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      .drill-card .drill-cta {
+        color: var(--green);
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .faq-list {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .faq-item:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .faq-item h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .faq-item p {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+      .related-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .related-links a {
+        display: block;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: border-color 0.2s, background 0.2s;
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .related-links a:hover {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.03);
+      }
+      .related-links a span {
+        color: var(--green);
+        font-size: 0.85rem;
+        margin-left: 4px;
+      }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="logo/new-log.webp" alt="Scoring Zone" width="36" height="36" style="width: 36px; height: 36px; border-radius: 50%;">
+                SCORING <span>ZONE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#features" class="nav-dropdown-trigger">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="features/putting-drills.html">Putting Drills</a>
+                        <a href="features/chipping-drills.html">Chipping & Wedge Drills</a>
+                        <a href="features/practice-assistant.html">Practice Assistant</a>
+                        <a href="features/round-stats.html">Round Stats</a>
+                        <a href="features/sim-lab.html">SIM Lab</a>
+                        <a href="features/elite-mode.html">Elite Mode</a>
+                    </div>
+                </div>
+                <a href="blog/">Blog</a>
+                <a href="index.html#pricing">Pricing</a>
+            </div>
+            <a href="index.html#signup" class="btn-primary btn-sm">Start Free</a>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== BREADCRUMB ========== -->
+    <section style="padding: 100px 0 0; position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <div class="comp-breadcrumb">
+                <a href="index.html">Home</a>
+                <span>&rsaquo;</span>
+                For Competitive Golfers
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HERO ========== -->
+    <section style="padding: 32px 0 48px; position: relative; z-index: 1;">
+        <div class="container" style="text-align: center; max-width: 780px;">
+            <span class="mono-label reveal" style="color: var(--green);">Built for Serious Players</span>
+            <h1 class="display-lg reveal" style="margin-top: 12px; font-size: clamp(2rem, 5vw, 3.2rem);">Short Game Training <span style="color: var(--green);">for Competitive Golfers</span></h1>
+            <p class="reveal" style="font-size: 1.1rem; color: var(--text-dim); max-width: 620px; margin: 20px auto 0; line-height: 1.7;">You already know how to play. You need to sharpen the shots that decide tournaments. Scoring Zone gives competitive golfers scored pressure drills, tour-level benchmarks, and the analytics to close the gap between your practice green and your scorecard.</p>
+            <div class="reveal" style="margin-top: 28px;">
+                <a href="index.html#signup" class="btn-primary">Start Free</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== THE COMPETITIVE GOLFER'S PROBLEM ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <span class="mono-label reveal" style="color: var(--green);">The Problem</span>
+            <h2 class="display-md reveal" style="margin-top: 12px;">Your Short Game Practice Has No Pressure</h2>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 20px; line-height: 1.8;">You can get up and down on the practice green all day. Then you stand over a 4-footer on the 17th with something on the line and your hands feel different. The stroke tightens. The speed changes. You miss. This is not a technique problem. It is a training problem. Your practice does not prepare you for the moments that matter.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;">Most competitive golfers practise their short game with no score, no consequence, and no clock. They chip to a flag, roll putts to a hole, and leave when it feels right. That is maintenance, not improvement. <a href="https://www.pgatour.com/stats" target="_blank" rel="noopener">Tour players</a> who gain strokes around the green do not practise casually. They train with structure, targets, and pressure &mdash; because that is what competition demands.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;">If you are playing in club competitions, interclub matches, or amateur events, the strokes you gain or lose between 50 yards and the hole determine whether you post a number or go home frustrated. Scoring Zone is built for exactly this gap.</p>
+        </div>
+    </section>
+
+    <!-- ========== WHY PRESSURE PRACTICE WORKS ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <span class="mono-label reveal" style="color: var(--green);">The Edge</span>
+            <h2 class="display-md reveal" style="margin-top: 12px;">Pressure Practice Is the Competitive Advantage</h2>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 20px; line-height: 1.8;"><strong style="color: var(--text);">Stress inoculation:</strong> <a href="https://www.sciencedirect.com/topics/psychology/stress-inoculation-training" target="_blank" rel="noopener">Sport psychologists</a> have shown that practising under simulated pressure builds resilience to the real thing. When you train with consequences &mdash; timed challenges, elimination rounds, must-make putts &mdash; your nervous system learns to perform under arousal instead of shutting down. Scoring Zone&rsquo;s SIM Lab is built on this principle.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;"><strong style="color: var(--text);">Measurable benchmarks:</strong> A competitive golfer needs to know where they stand relative to tour averages. Your up-and-down percentage, three-putt rate, and proximity from greenside positions are the numbers that predict scoring. If you are not tracking them in practice, you are guessing about your readiness. Scoring Zone tracks all of it and benchmarks you against <a href="https://www.pgatour.com/stats/detail/02564" target="_blank" rel="noopener">PGA Tour standards</a>.</p>
+
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.8;"><strong style="color: var(--text);">Deliberate practice:</strong> Hitting 50 chips to the same pin is repetition, not improvement. Competitive improvement comes from <a href="https://pubmed.ncbi.nlm.nih.gov/16248354/" target="_blank" rel="noopener">varied, spaced practice</a> with feedback. Scoring Zone rotates targets, distances, and shot types to build the adaptability that transfers from the practice green to the course.</p>
+        </div>
+    </section>
+
+    <!-- ========== WHAT SCORING ZONE OFFERS COMPETITIVE GOLFERS ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 880px;">
+            <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+                <span class="mono-label reveal" style="color: var(--green);">Built for Competition</span>
+                <h2 class="display-md reveal" style="margin-top: 12px;">What Scoring Zone Gives Competitive Golfers</h2>
+                <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.7;">Every feature is designed around one question: does this make you better when it counts?</p>
+            </div>
+
+            <div class="comp-grid" style="margin-top: 40px;">
+                <div class="comp-card reveal">
+                    <h3>SIM Lab Pressure Tests</h3>
+                    <p>Timed challenges, elimination rounds, and must-complete sequences that simulate on-course pressure. The SIM Lab does not care how good your technique is. It tests whether you can execute when the stakes are up. Train your composure before you need it on the 18th hole.</p>
+                </div>
+                <div class="comp-card reveal">
+                    <h3>Elite Mode Analytics</h3>
+                    <p>Tour-level metrics including strokes gained around the green, proximity analysis, and trend data across sessions. Elite Mode shows you exactly where your short game is costing you strokes &mdash; and whether your practice is actually closing the gap. This is the data serious golfers need.</p>
+                </div>
+                <div class="comp-card reveal">
+                    <h3>Tour-Level Benchmarks</h3>
+                    <p>Every drill in Scoring Zone is benchmarked against PGA Tour performance. You will know exactly how your lag putting compares to the best in the world &mdash; and what realistic targets look like for your handicap level. No guesswork. Just numbers that tell you where you stand.</p>
+                </div>
+                <div class="comp-card reveal">
+                    <h3>Short Game &amp; Putting Handicaps</h3>
+                    <p>Your overall handicap hides where the strokes are going. Scoring Zone calculates a separate Short Game Handicap and Putting Handicap based on scored assessments. A 5-handicap with a 10-handicap short game has a clear target. These numbers tell you exactly what to fix.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 3 COMPETITIVE DRILLS ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 880px;">
+            <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+                <span class="mono-label reveal" style="color: var(--green);">Train Like You Compete</span>
+                <h2 class="display-md reveal" style="margin-top: 12px;">3 Drills for Competitive Golfers</h2>
+                <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.7;">These are not warm-up drills. They are designed to test your execution under conditions that mirror competition.</p>
+            </div>
+
+            <div class="comp-grid" style="margin-top: 32px;">
+                <a href="features/sim-lab.html" class="drill-card reveal">
+                    <div class="drill-label">Pressure</div>
+                    <h3>The 3-2-1 Elimination</h3>
+                    <p>3 putts from 20 feet. 2 putts from 10 feet. 1 putt from 4 feet. You must two-putt every long putt and make every short putt. One miss and you restart from the beginning. This drill builds the composure you need when closing out a round. Track your completion rate &mdash; tour-calibre players complete it 70%+ of the time.</p>
+                    <span class="drill-cta">See SIM Lab &rarr;</span>
+                </a>
+                <a href="features/chipping-drills.html" class="drill-card reveal">
+                    <div class="drill-label">Scoring</div>
+                    <h3>Up-and-Down Challenge</h3>
+                    <p>10 different greenside positions &mdash; varying lies, distances, and pin locations. Chip and putt from each. Score 1 point for each up-and-down converted. Tour average is around 60%. Track your percentage over time and watch the gap close. This is the single most important competitive short game metric.</p>
+                    <span class="drill-cta">See Chipping Drills &rarr;</span>
+                </a>
+                <a href="features/putting-drills.html" class="drill-card reveal">
+                    <div class="drill-label">Distance Control</div>
+                    <h3>Tour Lag Test</h3>
+                    <p>5 putts each from 30, 40, and 50 feet. Score based on proximity: inside 3 feet scores 2 points, inside 6 feet scores 1. Maximum score: 30. PGA Tour players average 22+. This drill isolates the skill that eliminates three-putts and turns two-putts into birdie looks from the fringe.</p>
+                    <span class="drill-cta">See Putting Drills &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <span class="mono-label reveal" style="color: var(--green);">FAQ</span>
+                <h2 class="display-md reveal" style="margin-top: 12px;">Common Questions from Competitive Golfers</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <h3>What makes Scoring Zone different from other golf apps for competitive players?</h3>
+                    <p>Scoring Zone focuses entirely on the short game with scored drills, tour-level benchmarks, and pressure simulation. Elite Mode adds strokes gained analysis and advanced analytics that most apps only offer for full-round tracking. It is a training tool, not a GPS app.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h3>Can Scoring Zone help me prepare for tournament play?</h3>
+                    <p>Yes. The SIM Lab runs timed challenges and elimination rounds that simulate on-course pressure. Practising under stress inoculation conditions builds the composure that separates practice performance from tournament performance. Many competitive golfers use the SIM Lab as part of their pre-tournament routine.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h3>What handicap level is Scoring Zone designed for?</h3>
+                    <p>All levels. Competitive golfers benefit most from Elite Mode and the SIM Lab, but every drill scales from beginner to advanced. The benchmarks adjust to your level and the app tracks your Short Game Handicap separately from your overall handicap &mdash; giving you a precise view of where the strokes are going.</p>
+                </div>
+                <div class="faq-item reveal">
+                    <h3>Is Scoring Zone free for competitive golfers?</h3>
+                    <p>Scoring Zone is currently in free early access. All features including Elite Mode, SIM Lab, and full analytics are available at no cost. No payment required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="section" style="position: relative; z-index: 1;">
+        <div class="container" style="text-align: center; max-width: 620px;">
+            <span class="mono-label reveal" style="color: var(--green);">Free Early Access</span>
+            <h2 class="display-md reveal" style="margin-top: 12px;">Stop Practising. Start Competing.</h2>
+            <p class="reveal" style="color: var(--text-dim); margin-top: 16px; line-height: 1.7;">Your technique is not the problem. Your practice is. Scoring Zone gives competitive golfers the pressure, the data, and the benchmarks to turn practice sessions into tournament preparation. Sign up for free and train the way the best players do.</p>
+            <div class="reveal" style="margin-top: 28px;">
+                <a href="index.html#signup" class="btn-primary">Start Free</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RELATED LINKS ========== -->
+    <section class="section" style="padding-bottom: 80px; position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <span class="mono-label reveal" style="color: var(--text-muted);">Keep Reading</span>
+            <h2 class="reveal" style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; margin-top: 8px; margin-bottom: 8px;">Related Pages</h2>
+
+            <div class="related-links reveal">
+                <a href="features/elite-mode.html">Elite Mode &rarr; <span>&rarr;</span></a>
+                <a href="features/sim-lab.html">SIM Lab Pressure Tests <span>&rarr;</span></a>
+                <a href="blog/pressure-putting-drills.html">Pressure Putting Drills <span>&rarr;</span></a>
+                <a href="blog/how-to-stop-three-putting.html">How to Stop Three Putting <span>&rarr;</span></a>
+                <a href="features/putting-drills.html">Putting Drills <span>&rarr;</span></a>
+                <a href="features/chipping-drills.html">Chipping Drills <span>&rarr;</span></a>
+                <a href="features/round-stats.html">Round Stats <span>&rarr;</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p>&copy; 2026 Scoring Zone. All rights reserved.</p>
+    </footer>
+
+    <script src="js/shared.js"></script>
+</body>
+</html>
