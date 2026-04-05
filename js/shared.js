@@ -119,6 +119,22 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ── Word-by-Word Reveal ──
+(function() {
+  const wordObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        wordObserver.unobserve(entry.target);
+        entry.target.querySelectorAll('.word-animate').forEach(word => {
+          const delay = parseInt(word.getAttribute('data-delay')) || 0;
+          setTimeout(() => word.classList.add('visible'), delay);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.hero-sub-words').forEach(el => wordObserver.observe(el));
+})();
+
 // ── Scroll Reveal Cards (one-shot, scroll-down only) ──
 const cardObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
