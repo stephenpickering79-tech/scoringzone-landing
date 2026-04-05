@@ -467,34 +467,171 @@
     </section>
 
     <!-- ========== GET STARTED (below hero) ========== -->
+    <style>
+      .signup-split-card {
+        display: flex;
+        background: #060b08;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid rgba(34,197,94,0.12);
+        box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      }
+      .signup-left-panel {
+        display: none;
+        position: relative;
+        width: 50%;
+        min-height: 420px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #060b08 0%, #071208 100%);
+        border-right: 1px solid rgba(34,197,94,0.1);
+      }
+      @media (min-width: 768px) {
+        .signup-left-panel { display: block; }
+      }
+      .signup-right-panel {
+        flex: 1;
+        padding: 48px 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      @media (max-width: 767px) {
+        .signup-right-panel { padding: 36px 28px; }
+      }
+      .signup-right-panel .signup-form {
+        max-width: none;
+        margin: 0;
+      }
+    </style>
     <section class="section" id="signup" style="padding: 4rem 0; position: relative; z-index: 1;">
-        <div class="container" style="max-width: 560px; text-align: center;">
-            <!-- Early Access Badge -->
-            <div class="reveal" style="margin-bottom: 28px;">
-                <div class="hero-badge" style="margin: 0 auto; display: inline-flex;">
-                    Early Access
+        <div class="container" style="max-width: 900px;">
+            <div class="signup-split-card reveal">
+
+                <!-- Left Panel: Branding + Dot Canvas -->
+                <div class="signup-left-panel">
+                    <canvas id="signup-dot-canvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+                    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(34,197,94,0.07) 0%,transparent 70%);"></div>
+                    <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:48px;text-align:center;">
+                        <img src="logo/new-log.webp" alt="Scoring Zone" width="56" height="56" style="width:56px;height:56px;border-radius:50%;margin-bottom:20px;box-shadow:0 0 30px rgba(34,197,94,0.3);" loading="lazy">
+                        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#f0fdf4;margin-bottom:4px;line-height:1;">SCORING <span style="color:#22c55e;">ZONE</span></h2>
+                        <p style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(34,197,94,0.55);margin-bottom:28px;">Short Game Practice</p>
+                        <p style="font-size:0.875rem;color:rgba(240,253,244,0.45);line-height:1.65;max-width:210px;">Scored drills, XP, pressure tests&mdash;and real stats to back it up.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="reveal">
-                <h2 class="display-md">Join the Early Access</h2>
-                <p style="color: var(--text-muted); margin-top: 8px; font-size: 0.9rem;">Sign up now and get premium features free. No credit card required.</p>
-            </div>
-            <div class="reveal" style="margin-top: 24px;">
-                <div class="form-wrapper">
-                    <form class="signup-form" onsubmit="handleSignup(event)">
-                        <input type="text" name="name" placeholder="Your name" required>
-                        <input type="email" name="email" placeholder="Your email" required>
-                        <div class="btn-border-anim" style="width: 100%;"><button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Get Early Access</button></div>
-                    </form>
+
+                <!-- Right Panel: Form -->
+                <div class="signup-right-panel">
+                    <div class="hero-badge" style="display:inline-flex;margin-bottom:18px;">Early Access</div>
+                    <h2 class="display-md" style="margin-bottom:8px;">Join the Early Access</h2>
+                    <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;">Sign up now and get premium features free. No credit card required.</p>
+                    <div class="form-wrapper">
+                        <form class="signup-form" onsubmit="handleSignup(event)">
+                            <input type="text" name="name" placeholder="Your name" required>
+                            <input type="email" name="email" placeholder="Your email" required>
+                            <div class="btn-border-anim" style="width:100%;"><button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Get Early Access</button></div>
+                        </form>
+                    </div>
+                    <div class="success-state" id="signup-success-hero">
+                        <div class="success-check">&#10003;</div>
+                        <h2 class="display-md" style="margin-top:8px;">You&rsquo;re In</h2>
+                        <p style="color:var(--text-muted);font-size:0.9rem;">Welcome to the early access list.</p>
+                        <a href="https://scoringzone.app" target="_blank" class="btn-primary">Launch the App &rarr;</a>
+                    </div>
                 </div>
-                <div class="success-state" id="signup-success-hero">
-                    <div class="success-check">&#10003;</div>
-                    <h2 class="display-md" style="margin-top: 8px;">You're In</h2>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Welcome to the early access list.</p>
-                    <a href="https://scoringzone.app" target="_blank" class="btn-primary">Launch the App &rarr;</a>
-                </div>
+
             </div>
         </div>
+        <script>
+        (function() {
+            var canvas = document.getElementById('signup-dot-canvas');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var dots = [];
+
+            function resize() {
+                canvas.width = canvas.offsetWidth || canvas.parentElement.offsetWidth;
+                canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+                dots = [];
+                var gap = 18;
+                for (var x = 9; x < canvas.width; x += gap) {
+                    for (var y = 9; y < canvas.height; y += gap) {
+                        if (Math.random() > 0.3) {
+                            dots.push({ x: x, y: y, o: Math.random() * 0.35 + 0.05 });
+                        }
+                    }
+                }
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            var paths = [
+                { pts: [{x:0.12,y:0.25},{x:0.32,y:0.38},{x:0.55,y:0.3},{x:0.78,y:0.48}], delay:0 },
+                { pts: [{x:0.15,y:0.68},{x:0.38,y:0.58},{x:0.62,y:0.62},{x:0.82,y:0.52}], delay:2.5 },
+                { pts: [{x:0.1,y:0.12},{x:0.28,y:0.22},{x:0.52,y:0.16},{x:0.75,y:0.28}], delay:5 }
+            ];
+            var cycleDur = 9, animDur = 3;
+            var t0 = Date.now();
+
+            function ptOnPath(pts, progress) {
+                var seg = pts.length - 1;
+                var idx = Math.min(Math.floor(progress * seg), seg - 1);
+                var st = progress * seg - idx;
+                return {
+                    x: pts[idx].x + (pts[idx+1].x - pts[idx].x) * st,
+                    y: pts[idx].y + (pts[idx+1].y - pts[idx].y) * st
+                };
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                dots.forEach(function(d) {
+                    ctx.beginPath();
+                    ctx.arc(d.x, d.y, 1, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba(255,255,255,' + d.o + ')';
+                    ctx.fill();
+                });
+
+                var elapsed = (Date.now() - t0) / 1000;
+                paths.forEach(function(p) {
+                    var t = ((elapsed - p.delay) % cycleDur) / cycleDur;
+                    if (t <= 0) return;
+                    var prog = Math.min((((elapsed - p.delay) % cycleDur)) / animDur, 1);
+
+                    ctx.beginPath();
+                    for (var i = 0; i <= 60; i++) {
+                        var pt = ptOnPath(p.pts, i/60 * prog);
+                        var px = pt.x * canvas.width, py = pt.y * canvas.height;
+                        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                    }
+                    ctx.strokeStyle = '#22c55e';
+                    ctx.lineWidth = 1.5;
+                    ctx.globalAlpha = 0.35;
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+
+                    var ball = ptOnPath(p.pts, prog);
+                    var bx = ball.x * canvas.width, by = ball.y * canvas.height;
+                    var s0 = p.pts[0];
+                    ctx.beginPath();
+                    ctx.arc(s0.x * canvas.width, s0.y * canvas.height, 2.5, 0, Math.PI*2);
+                    ctx.fillStyle = '#22c55e';
+                    ctx.globalAlpha = 0.5;
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+                    ctx.beginPath();
+                    ctx.arc(bx, by, 6, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba(34,197,94,0.22)';
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(bx, by, 3, 0, Math.PI*2);
+                    ctx.fillStyle = '#86efac';
+                    ctx.fill();
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+        </script>
     </section>
 
     <!-- ========== NUMBERS STRIP ========== -->
@@ -866,6 +1003,7 @@
             <!-- XP Multiplier Cards -->
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;">
                 <div class="xp-card reveal">
+                    <div class="bento-dots"></div>
                     <div class="xp-card-accent" style="background: var(--green);"></div>
                     <span class="xp-value" style="color: var(--green);">1&times;</span>
                     <span class="xp-label">Base XP</span>
@@ -873,6 +1011,7 @@
                     <span class="xp-reward">Reward: 40&ndash;150 XP</span>
                 </div>
                 <div class="xp-card reveal">
+                    <div class="bento-dots"></div>
                     <div class="xp-card-accent" style="background: var(--amber);"></div>
                     <span class="xp-value" style="color: var(--amber);">2&times;</span>
                     <span class="xp-label">Benchmark Bonus</span>
@@ -880,6 +1019,7 @@
                     <span class="xp-reward">Reward: 80&ndash;300 XP</span>
                 </div>
                 <div class="xp-card reveal">
+                    <div class="bento-dots"></div>
                     <div class="xp-card-accent" style="background: var(--pressure);"></div>
                     <span class="xp-value" style="color: var(--pressure);">3&times;</span>
                     <span class="xp-label">Super Bonus</span>
