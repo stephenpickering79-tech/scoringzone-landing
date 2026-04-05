@@ -2314,8 +2314,11 @@ body::after {
   .nav-links { display: none; }
   .nav-inner .btn-primary.btn-sm { display: none; }
   .mobile-menu-btn { display: flex; }
-  .hero { min-height: auto; padding-top: 80px; padding-bottom: 2.5rem; }
-  .hero-content { gap: 20px; }
+  .hero { min-height: auto; padding-top: 72px; padding-bottom: 1.5rem; }
+  .hero-content { gap: 16px; }
+  .hero-badge { margin-bottom: 10px; }
+  .hero-sub { margin: 10px 0 16px; }
+  .hero-ctas { margin-bottom: 1rem; }
   .hero-content > div:first-child { order: 2; }
   .hero-content > div:last-child { order: 1; }
   .stats-widget { max-width: 320px; }
