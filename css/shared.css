@@ -514,6 +514,39 @@ body::after {
 
 .btn-primary:hover::after { left: 120%; }
 
+/* ── Animated border wrapper for primary CTAs ── */
+@property --btn-glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.btn-border-anim {
+  display: inline-block;
+  padding: 2px;
+  border-radius: 12px;
+  background: conic-gradient(
+    from var(--btn-glow-angle),
+    transparent 0%,
+    transparent 40%,
+    rgba(134, 239, 172, 0.7) 47%,
+    #4ade80 50%,
+    rgba(134, 239, 172, 0.7) 53%,
+    transparent 60%,
+    transparent 100%
+  );
+  animation: btn-glow-spin 3s linear infinite;
+}
+
+@keyframes btn-glow-spin {
+  to { --btn-glow-angle: 360deg; }
+}
+
+.btn-border-anim .btn-primary {
+  display: inline-flex;
+  width: 100%;
+}
+
 .btn-outline {
   display: inline-flex;
   align-items: center;
@@ -1301,27 +1334,39 @@ body::after {
 .challenge-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 28px;
+  border-radius: 16px;
+  padding: 28px 28px 36px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s;
-}
-
-.challenge-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
+  transition: all 0.3s ease;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
 }
 
 .challenge-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--card-border-hover);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+  border-color: var(--border-bright);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
 }
+
+.challenge-card .bento-dots {
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+
+.challenge-card:hover .bento-dots { opacity: 1; }
+
+.challenge-card .bento-glow {
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.07), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.challenge-card:hover .bento-glow { opacity: 1; }
 
 .challenge-pill {
   display: inline-block;

@@ -214,7 +214,7 @@
                     <span class="word-animate" data-delay="2220">drills.</span>
                 </p>
                 <div class="hero-ctas reveal">
-                    <a href="#signup" class="btn-primary">Free Early Access</a>
+                    <div class="btn-border-anim"><a href="#signup" class="btn-primary">Free Early Access</a></div>
                     <a href="#process" class="btn-outline">See How It Works</a>
                 </div>
             </div>
@@ -365,10 +365,6 @@
                     <span class="dsh-word" data-delay="1420">and</span>
                     <span class="dsh-word dsh-accent" data-delay="1440">on-course</span>
                     <span class="dsh-word dsh-accent" data-delay="1465">performance.</span>
-                </div>
-
-                <!-- Tertiary line -->
-                <div style="font-size:clamp(0.9rem,2vw,1.15rem); font-weight:300; color:#64748b; line-height:1.7; letter-spacing:0.02em; margin-top:20px;">
                     <span class="dsh-word" data-delay="1525">Currently</span>
                     <span class="dsh-word dsh-accent" data-delay="1550">free</span>
                     <span class="dsh-word" data-delay="1575">during</span>
@@ -488,7 +484,7 @@
                     <form class="signup-form" onsubmit="handleSignup(event)">
                         <input type="text" name="name" placeholder="Your name" required>
                         <input type="email" name="email" placeholder="Your email" required>
-                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Get Early Access</button>
+                        <div class="btn-border-anim" style="width: 100%;"><button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Get Early Access</button></div>
                     </form>
                 </div>
                 <div class="success-state" id="signup-success-hero">
@@ -903,9 +899,11 @@
                 <h2 class="display-lg">Featured Challenges</h2>
                 <p>Pick your challenge and start building real short game skills — from beginner drills to elite pressure tests.</p>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 4px;">
                 <!-- Card 1 — Up & Down -->
                 <div class="challenge-card reveal" style="border-top: 3px solid var(--chips);">
+                    <div class="bento-dots"></div>
+                    <div class="bento-glow"></div>
                     <span class="challenge-pill" style="background: rgba(234, 179, 8, 0.15); color: var(--chips); border: 1px solid rgba(234, 179, 8, 0.3);">Beginner</span>
                     <h3 style="margin-top: 16px;">Up &amp; Down Challenge</h3>
                     <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">Complete 5 up-and-downs from varied positions. Track your chip-and-putt success rate and build real green-side confidence.</p>
@@ -923,10 +921,12 @@
                             <span class="challenge-meta-value">Chipping</span>
                         </div>
                     </div>
-                    <a href="#signup" class="btn-outline" style="width: 100%; justify-content: center; margin-top: 20px;">Start Drill</a>
+                    <div style="margin-top: auto; padding-top: 24px;"><a href="#signup" class="btn-outline" style="width: 100%; justify-content: center;">Start Drill</a></div>
                 </div>
                 <!-- Card 2 — Ladder Putting -->
                 <div class="challenge-card reveal" style="border-top: 3px solid var(--putting);">
+                    <div class="bento-dots"></div>
+                    <div class="bento-glow"></div>
                     <span class="challenge-pill" style="background: rgba(139, 92, 246, 0.15); color: var(--putting); border: 1px solid rgba(139, 92, 246, 0.3);">Intermediate</span>
                     <h3 style="margin-top: 16px;">Ladder Putting</h3>
                     <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">Putt from 3, 6, 9, 12, and 15 feet. Requires 3 consecutive makes at each distance before you advance up the ladder.</p>
@@ -944,13 +944,15 @@
                             <span class="challenge-meta-value">Putting</span>
                         </div>
                     </div>
-                    <a href="#signup" class="btn-outline" style="width: 100%; justify-content: center; margin-top: 20px;">Start Drill</a>
+                    <div style="margin-top: auto; padding-top: 24px;"><a href="#signup" class="btn-outline" style="width: 100%; justify-content: center;">Start Drill</a></div>
                 </div>
                 <!-- Card 3 — Chipping Pressure Test -->
                 <div class="challenge-card reveal" style="border-top: 3px solid var(--pressure);">
+                    <div class="bento-dots"></div>
+                    <div class="bento-glow"></div>
                     <span class="challenge-pill" style="background: rgba(239, 68, 68, 0.15); color: var(--pressure); border: 1px solid rgba(239, 68, 68, 0.3);">Advanced</span>
                     <h3 style="margin-top: 16px;">Chipping Pressure Test</h3>
-                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">10 chips under tournament conditions — timer running, consecutive requirements active, penalties for missed targets. This is where improvement happens.</p>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">10 chips under tournament conditions — timer running, consecutive requirements active, penalties for missed targets.</p>
                     <div class="challenge-meta" style="margin-top: 20px;">
                         <div>
                             <span class="challenge-meta-label">Format</span>
@@ -965,7 +967,7 @@
                             <span class="challenge-meta-value">Pressure</span>
                         </div>
                     </div>
-                    <a href="#signup" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 20px;">Start Drill</a>
+                    <div style="margin-top: auto; padding-top: 24px;"><a href="#signup" class="btn-primary" style="width: 100%; justify-content: center;">Start Drill</a></div>
                 </div>
             </div>
         </div>
@@ -1109,6 +1111,7 @@
             </div>
         </div>
     </section>
+
 
 
 
