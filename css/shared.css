@@ -2314,6 +2314,8 @@ body::after {
   .nav-links { display: none; }
   .nav-inner .btn-primary.btn-sm { display: none; }
   .mobile-menu-btn { display: flex; }
+  .hero { min-height: auto; padding-top: 80px; padding-bottom: 2.5rem; }
+  .hero-content { gap: 20px; }
   .hero-content > div:first-child { order: 2; }
   .hero-content > div:last-child { order: 1; }
   .stats-widget { max-width: 320px; }
