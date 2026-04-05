@@ -1946,6 +1946,74 @@ body::after {
   flex-shrink: 0;
 }
 
+/* ── Simple Footer (Blog / inner pages) ── */
+.footer-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .footer-simple {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.footer-simple-brand .footer-tagline {
+  margin-top: 10px;
+}
+
+.footer-simple-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .footer-simple-right {
+    align-items: flex-end;
+  }
+}
+
+.footer-simple-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+
+.footer-simple-links a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-simple-links a:hover { color: var(--green); }
+
+.footer-simple-social {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.footer-simple-social a {
+  color: var(--text-muted);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.footer-simple-social a:hover { color: var(--green); }
+
+.footer-simple-social svg {
+  width: 17px;
+  height: 17px;
+}
+
 /* ── Section Headers ── */
 .section-header {
   text-align: center;
