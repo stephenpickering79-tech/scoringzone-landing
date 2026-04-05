@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Round Tracking Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #060b08; font-family: 'DM Sans', sans-serif; }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    background: #080c0a;
+    overflow: hidden;
+  }
+
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 40% 50% at 25% 50%, rgba(26,106,224,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 75% 50%, rgba(34,197,94,0.08) 0%, transparent 60%);
+  }
+
+  .top-label {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.04);
+    padding: 6px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .title {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+  }
+
+  .title h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .title p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px;
+  }
+
+  /* Two columns */
+  .columns {
+    position: absolute;
+    top: 155px;
+    left: 60px;
+    right: 60px;
+    bottom: 50px;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .col {
+    border-radius: 16px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col--left {
+    background: rgba(26,106,224,0.06);
+    border: 1px solid rgba(26,106,224,0.15);
+  }
+
+  .col--right {
+    background: rgba(34,197,94,0.04);
+    border: 1px solid rgba(34,197,94,0.15);
+  }
+
+  .col-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .col-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .col-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .col-logo--sz { background: #000; box-shadow: 0 0 16px rgba(34,197,94,0.1); }
+
+  .col-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .col--left .col-name { color: #6ba8f5; }
+  .col--right .col-name { color: #22c55e; }
+
+  .stat-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    flex: 1;
+  }
+
+  .stat-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+
+  .stat-val--yes {
+    background: rgba(34,197,94,0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34,197,94,0.2);
+  }
+
+  .stat-val--basic {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-val--no {
+    background: rgba(255,255,255,0.02);
+    color: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .stat-val--blue {
+    background: rgba(26,106,224,0.12);
+    color: #6ba8f5;
+    border: 1px solid rgba(26,106,224,0.2);
+  }
+
+  .corner { position: absolute; width: 24px; height: 24px; z-index: 10; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(255,255,255,0.08); border-left: 2px solid rgba(255,255,255,0.08); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(255,255,255,0.08); border-right: 2px solid rgba(255,255,255,0.08); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(255,255,255,0.08); border-left: 2px solid rgba(255,255,255,0.08); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(255,255,255,0.08); border-right: 2px solid rgba(255,255,255,0.08); }
+
+  /* Center divider */
+  .center-line {
+    position: absolute;
+    top: 155px;
+    left: 50%;
+    bottom: 50px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
+    z-index: 5;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="top-label">Round Tracking &bull; Where They Overlap</div>
+
+  <div class="title">
+    <h2>Round Data: Overview <span style="color:rgba(255,255,255,0.3);">vs</span> Diagnosis</h2>
+    <p>Same round data. Different depth. Here&rsquo;s what each app shows you.</p>
+  </div>
+
+  <div class="center-line"></div>
+
+  <div class="columns">
+    <!-- 18 Birdies -->
+    <div class="col col--left">
+      <div class="col-header">
+        <div class="col-logo">
+          <img src="../../18 birdies brand/18 bridies logo .jpg" alt="18 Birdies">
+        </div>
+        <span class="col-name">18 Birdies</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Score tracking</span>
+        <span class="stat-val stat-val--blue">Yes</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Fairways &amp; GIR</span>
+        <span class="stat-val stat-val--blue">Yes</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Total putts</span>
+        <span class="stat-val stat-val--blue">Yes</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Strokes gained</span>
+        <span class="stat-val stat-val--basic">Limited</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Short game by type</span>
+        <span class="stat-val stat-val--no">No</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Putting by distance</span>
+        <span class="stat-val stat-val--basic">Basic</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Short game handicap</span>
+        <span class="stat-val stat-val--no">No</span>
+      </div>
+    </div>
+
+    <!-- Scoring Zone -->
+    <div class="col col--right">
+      <div class="col-header">
+        <div class="col-logo col-logo--sz">
+          <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone">
+        </div>
+        <span class="col-name">Scoring Zone</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Score tracking</span>
+        <span class="stat-val stat-val--yes">Yes</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Fairways &amp; GIR</span>
+        <span class="stat-val stat-val--yes">Yes</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Total putts</span>
+        <span class="stat-val stat-val--yes">Yes</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Strokes gained</span>
+        <span class="stat-val stat-val--yes">Full breakdown</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Short game by type</span>
+        <span class="stat-val stat-val--yes">Chip / Pitch / Bunker</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Putting by distance</span>
+        <span class="stat-val stat-val--yes">By bracket</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Short game handicap</span>
+        <span class="stat-val stat-val--yes">Yes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+</body>
+</html>

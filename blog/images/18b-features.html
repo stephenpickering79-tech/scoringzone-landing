@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>18 Birdies Features</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #0d1e3a; font-family: 'DM Sans', sans-serif; }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(135deg, #0a1628 0%, #122a52 40%, #1a6ae0 100%);
+    overflow: hidden;
+  }
+
+  /* Radial glow */
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 75% 45%, rgba(26,106,224,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(26,106,224,0.15) 0%, transparent 50%);
+  }
+
+  /* Subtle grid */
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .top-label {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    background: rgba(0,0,0,0.3);
+    padding: 6px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Logo + brand */
+  .brand {
+    position: absolute;
+    top: 80px;
+    left: 80px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .brand-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+  }
+
+  .brand-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+  .brand-text h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .brand-text p {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Feature cards */
+  .features {
+    position: absolute;
+    bottom: 60px;
+    left: 80px;
+    right: 80px;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .feat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 24px 20px;
+    backdrop-filter: blur(6px);
+  }
+
+  .feat-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .feat h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+
+  .feat p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+
+  /* Decorative line */
+  .divider {
+    position: absolute;
+    top: 175px;
+    left: 80px;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+    z-index: 10;
+  }
+
+  /* Corner accents */
+  .corner { position: absolute; width: 24px; height: 24px; z-index: 10; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(255,255,255,0.12); border-left: 2px solid rgba(255,255,255,0.12); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(255,255,255,0.12); border-right: 2px solid rgba(255,255,255,0.12); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(255,255,255,0.12); border-left: 2px solid rgba(255,255,255,0.12); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(255,255,255,0.12); border-right: 2px solid rgba(255,255,255,0.12); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="top-label">What 18 Birdies Does Well</div>
+
+  <div class="brand">
+    <div class="brand-icon">
+      <img src="../../18 birdies brand/18 bridies logo .jpg" alt="18 Birdies logo">
+    </div>
+    <div class="brand-text">
+      <h2>18 Birdies</h2>
+      <p>On-Course GPS &bull; Scorecard &bull; Social</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="features">
+    <div class="feat">
+      <span class="feat-icon">&#x1F4CD;</span>
+      <h3>GPS Rangefinder</h3>
+      <p>Front, middle, and back distances for 42,000+ courses worldwide</p>
+    </div>
+    <div class="feat">
+      <span class="feat-icon">&#x1F4CB;</span>
+      <h3>Digital Scorecard</h3>
+      <p>Fairways, GIR, putts per hole. Quick snapshot of every round</p>
+    </div>
+    <div class="feat">
+      <span class="feat-icon">&#x1F5FA;</span>
+      <h3>Course Maps</h3>
+      <p>Aerial views with hazard distances and layup targets</p>
+    </div>
+    <div class="feat">
+      <span class="feat-icon">&#x1F3AF;</span>
+      <h3>Club Suggestions</h3>
+      <p>AI-powered recommendations based on your shot history</p>
+    </div>
+    <div class="feat">
+      <span class="feat-icon">&#x1F91D;</span>
+      <h3>Social Feed</h3>
+      <p>Follow friends, share rounds, compare scores in the community</p>
+    </div>
+    <div class="feat">
+      <span class="feat-icon">&#x2705;</span>
+      <h3>Generous Free Tier</h3>
+      <p>GPS, scorecard, and basic stats without paying a penny</p>
+    </div>
+  </div>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+</body>
+</html>

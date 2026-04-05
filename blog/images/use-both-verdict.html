@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Use Both Apps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #060b08; font-family: 'DM Sans', sans-serif; }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    background: #080c0a;
+    overflow: hidden;
+  }
+
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(34,197,94,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 40% at 30% 30%, rgba(26,106,224,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 30% 40% at 70% 30%, rgba(34,197,94,0.04) 0%, transparent 50%);
+  }
+
+  /* Noise */
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  .top-label {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.04);
+    padding: 6px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .heading {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+  }
+
+  .heading h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+
+  .heading h2 span { color: #22c55e; }
+
+  .heading p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 10px;
+    max-width: 550px;
+  }
+
+  /* App cards row */
+  .apps {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .app-card {
+    width: 320px;
+    border-radius: 18px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .app-card--left {
+    background: rgba(26,106,224,0.06);
+    border: 1px solid rgba(26,106,224,0.18);
+  }
+
+  .app-card--right {
+    background: rgba(34,197,94,0.04);
+    border: 1px solid rgba(34,197,94,0.18);
+  }
+
+  .app-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0 auto 16px;
+  }
+
+  .app-logo--sz { background: #000; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+
+  .app-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .app-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  .app-card--left .app-name { color: #6ba8f5; }
+  .app-card--right .app-name { color: #22c55e; }
+
+  .app-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .app-card--left .app-role { color: rgba(107,168,245,0.5); }
+  .app-card--right .app-role { color: rgba(34,197,94,0.5); }
+
+  .app-tasks {
+    text-align: left;
+    list-style: none;
+  }
+
+  .app-tasks li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .app-tasks li:last-child { border-bottom: none; }
+
+  .app-tasks li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .app-card--left .app-tasks li::before { background: rgba(26,106,224,0.5); }
+  .app-card--right .app-tasks li::before { background: rgba(34,197,94,0.5); }
+
+  /* Plus connector */
+  .plus {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* Bottom tagline */
+  .bottom-bar {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+  }
+
+  .bottom-bar p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    font-style: italic;
+  }
+
+  .corner { position: absolute; width: 24px; height: 24px; z-index: 10; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(255,255,255,0.08); border-left: 2px solid rgba(255,255,255,0.08); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(255,255,255,0.08); border-left: 2px solid rgba(255,255,255,0.08); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="top-label">The Verdict</div>
+
+  <div class="heading">
+    <h2>Use Both. Get the <span>Full Picture.</span></h2>
+    <p>One helps you during the round. The other helps you improve for the next one.</p>
+  </div>
+
+  <div class="apps">
+    <div class="app-card app-card--left">
+      <div class="app-logo">
+        <img src="../../18 birdies brand/18 bridies logo .jpg" alt="18 Birdies">
+      </div>
+      <div class="app-name">18 Birdies</div>
+      <div class="app-role">On the Course</div>
+      <ul class="app-tasks">
+        <li>GPS distances to green</li>
+        <li>Digital scorecard</li>
+        <li>Course maps &amp; layouts</li>
+        <li>AI club suggestions</li>
+        <li>Social round sharing</li>
+      </ul>
+    </div>
+
+    <span class="plus">+</span>
+
+    <div class="app-card app-card--right">
+      <div class="app-logo app-logo--sz">
+        <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone">
+      </div>
+      <div class="app-name">Scoring Zone</div>
+      <div class="app-role">Between Rounds</div>
+      <ul class="app-tasks">
+        <li>50+ scored practice drills</li>
+        <li>Pressure mode challenges</li>
+        <li>Full strokes gained breakdown</li>
+        <li>AI practice assistant</li>
+        <li>Short game handicap</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <p>Round data and practice data together tell the full story.</p>
+  </div>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Scoring Zone Features</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #060b08; font-family: 'DM Sans', sans-serif; }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(135deg, #060b08 0%, #0a1a0f 40%, #0d2818 100%);
+    overflow: hidden;
+  }
+
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 75% 45%, rgba(34,197,94,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(34,197,94,0.06) 0%, transparent 50%);
+  }
+
+  /* Noise */
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  .top-label {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(34,197,94,0.6);
+    background: rgba(34,197,94,0.06);
+    padding: 6px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(34,197,94,0.12);
+  }
+
+  .brand {
+    position: absolute;
+    top: 80px;
+    left: 80px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .brand-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(34,197,94,0.2), 0 0 30px rgba(34,197,94,0.1);
+  }
+
+  .brand-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+  .brand-text h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: #f0fdf4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .brand-text h2 span { color: #22c55e; }
+
+  .brand-text p {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(34,197,94,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .divider {
+    position: absolute;
+    top: 175px;
+    left: 80px;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(34,197,94,0.4) 0%, transparent 100%);
+    z-index: 10;
+  }
+
+  .features {
+    position: absolute;
+    bottom: 60px;
+    left: 80px;
+    right: 80px;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .feat {
+    background: rgba(34,197,94,0.04);
+    border: 1px solid rgba(34,197,94,0.12);
+    border-radius: 14px;
+    padding: 24px 20px;
+  }
+
+  .feat-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #22c55e;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+  }
+
+  .feat h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #f0fdf4;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+
+  .feat p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  .corner { position: absolute; width: 24px; height: 24px; z-index: 10; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(34,197,94,0.15); border-left: 2px solid rgba(34,197,94,0.15); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(34,197,94,0.15); border-left: 2px solid rgba(34,197,94,0.15); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(34,197,94,0.15); border-right: 2px solid rgba(34,197,94,0.15); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="top-label">What Scoring Zone Does Differently</div>
+
+  <div class="brand">
+    <div class="brand-icon">
+      <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone logo">
+    </div>
+    <div class="brand-text">
+      <h2>Scoring <span>Zone</span></h2>
+      <p>Short Game &bull; Practice &bull; Analytics</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="features">
+    <div class="feat">
+      <div class="feat-icon">50</div>
+      <h3>Scored Drills</h3>
+      <p>Putting, chipping, pitching, bunker. Every session produces a trackable score</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">&#x26A1;</div>
+      <h3>Pressure Mode</h3>
+      <p>Streak-based challenges that simulate on-course nerves. Miss and restart</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">XP</div>
+      <h3>XP &amp; Leaderboards</h3>
+      <p>Earn XP every drill. Compete against golfers at your level</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">AI</div>
+      <h3>Practice Assistant</h3>
+      <p>Analyses your data. Builds sessions targeting your weakest areas</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">SG</div>
+      <h3>Strokes Gained</h3>
+      <p>Full breakdown: tee-to-green, approach, short game, putting by distance</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">HC</div>
+      <h3>Short Game Handicap</h3>
+      <p>Dedicated handicap for your short game and putting, separate from overall</p>
+    </div>
+  </div>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+</body>
+</html>
