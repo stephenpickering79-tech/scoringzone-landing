@@ -542,9 +542,27 @@ body::after {
   to { --btn-glow-angle: 360deg; }
 }
 
-.btn-border-anim .btn-primary {
+.btn-border-anim .btn-primary,
+.btn-border-anim .btn-amber {
   display: inline-flex;
   width: 100%;
+}
+
+.btn-border-anim--amber {
+  display: inline-block;
+  padding: 2px;
+  border-radius: 12px;
+  background: conic-gradient(
+    from var(--btn-glow-angle),
+    transparent 0%,
+    transparent 40%,
+    rgba(251, 191, 36, 0.7) 47%,
+    #f59e0b 50%,
+    rgba(251, 191, 36, 0.7) 53%,
+    transparent 60%,
+    transparent 100%
+  );
+  animation: btn-glow-spin 3s linear infinite;
 }
 
 .btn-outline {
