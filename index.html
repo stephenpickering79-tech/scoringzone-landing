@@ -496,14 +496,18 @@
         justify-content: center;
       }
       @media (max-width: 767px) {
-        .signup-right-panel { padding: 36px 28px; }
+        .signup-right-panel { padding: 24px 20px; }
+        .signup-right-panel .hero-badge { margin-bottom: 10px !important; }
+        .signup-right-panel h2 { margin-bottom: 6px !important; }
+        .signup-right-panel > p { margin-bottom: 18px !important; }
       }
       .signup-right-panel .signup-form {
         max-width: none;
         margin: 0;
       }
     </style>
-    <section class="section" id="signup" style="padding: 4rem 0; position: relative; z-index: 1;">
+    <section class="section" id="signup" style="padding: 4rem 0; position: relative; z-index: 1; --signup-section-padding: 2rem;">
+    <style>@media (max-width: 767px) { #signup { padding: 2rem 0 !important; } }</style>
         <div class="container" style="max-width: 900px;">
             <div class="signup-split-card reveal">
 
