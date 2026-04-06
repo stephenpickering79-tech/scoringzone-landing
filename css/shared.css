@@ -1,5 +1,8 @@
 /* ── CSS Variables ── */
 :root {
+  --font-heading: 'Barlow Condensed', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
   --bg: #060b08;
   --bg-2: #0b0b0b;
   --bg-card: #0a0a0a;
