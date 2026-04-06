@@ -55,6 +55,28 @@
 
     <!-- Coaching-specific component styles -->
     <style>
+        /* Card hover lift */
+        .bento-item:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2) !important;
+        }
+        .benefit-card {
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1), border-color 0.3s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
+        }
+
+        /* CTA pulse */
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+        }
+        .cta-pulse {
+            animation: cta-pulse 2.5s cubic-bezier(0.4,0,0.6,1) infinite;
+        }
+
         /* Benefit cards (green left border) */
         .benefit-card {
             background: var(--bg-card);
@@ -501,7 +523,7 @@
     <!-- ========== HERO CTA ========== -->
     <div class="container reveal" style="padding-bottom: 4rem; text-align: center;">
         <div class="btn-border-anim" style="display: inline-block;">
-            <a href="https://scoring-zone-referral.vercel.app/coaches" class="btn-primary" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 16px 40px;">Join the Founders Program &ndash; It&rsquo;s Free</a>
+            <a href="https://scoring-zone-referral.vercel.app/coaches" class="btn-primary cta-pulse" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 16px 40px;">Join the Founders Program &ndash; It&rsquo;s Free</a>
         </div>
         <p style="margin-top: 14px;">
             <a href="https://scoring-zone-referral.vercel.app" target="_blank" rel="noopener" style="font-family: var(--font-body); font-size: 0.9rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px;">Back to Referral Page &rarr;</a>
@@ -956,7 +978,7 @@
             </div>
             <div class="reveal" style="text-align: center;">
                 <div class="btn-border-anim" style="display: inline-block;">
-                    <a href="https://scoring-zone-referral.vercel.app/coaches#signup" class="btn-primary" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 16px 40px;">Join the Founders Program &ndash; It&rsquo;s Free</a>
+                    <a href="https://scoring-zone-referral.vercel.app/coaches#signup" class="btn-primary cta-pulse" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 16px 40px;">Join the Founders Program &ndash; It&rsquo;s Free</a>
                 </div>
                 <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; margin-top: 16px; text-transform: uppercase;">Free to join &bull; No minimums &bull; Paid monthly</p>
             </div>
