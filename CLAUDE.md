@@ -36,7 +36,7 @@ for-juniors.html                    — Audience page
 about.html                          — About / E-E-A-T page
 contact.html                        — Contact page
 privacy.html                        — Privacy policy
-professionals/index.html            — Coach partner page (separate design, deferred rebuild)
+professionals/index.html            — Coach partner page (live, actively maintained)
 sitemap.xml                         — 30+ URLs with lastmod
 robots.txt                          — Allows all bots including AI crawlers
 og-image.png                        — Shared OG image (1200x630)
@@ -87,8 +87,21 @@ Use the `golf-blog-copywriting` skill for writing blog content. Key rules:
 - YouTube: https://www.youtube.com/@ScoringZone1
 - Facebook: https://www.facebook.com/yourgolfjourney/
 
+## Professionals Page (`professionals/index.html`)
+- Live at `scoringzone.net/professionals/` — fully rebuilt and actively maintained
+- Target audience: PGA Teaching Professionals
+- Founders Commission: 50% from student #1 (first 60 days), then tiers: 1–10 → 30%, 11–20 → 40%, 21+ → 50%
+- All CTAs link to `https://scoring-zone-referral.vercel.app/coaches` (sign up) or `https://scoring-zone-referral.vercel.app` (home)
+- Final signup CTA links to `https://scoring-zone-referral.vercel.app/coaches#signup`
+- "Back to Home" button links to `https://scoring-zone-referral.vercel.app`
+- Hero commission card uses `.bento-item.bento-persistent` with animated border wrapper
+- Feature cards use `.bento-grid` (9 cards, 2-col desktop, 1-col mobile)
+- CSS font variables defined in `shared.css`: `--font-heading` (Barlow Condensed), `--font-body` (DM Sans), `--font-mono` (DM Mono)
+- Section spacing: 6.5rem desktop, 5rem tablet, 3.5rem mobile
+- CTA buttons have `.cta-pulse` green glow animation
+- Do NOT add emoji icons to headings on this page
+
 ## Things to Avoid
-- Don't touch `professionals/index.html` — separate design, deferred until rebrand
 - Don't use the old `images/` directory — it's empty. Use `golf images/` instead
 - Don't use `scoringzone.net` without `www.` in any canonical, OG, or schema URLs
 - Don't add more than 1 H1 per page
