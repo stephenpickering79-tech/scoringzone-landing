@@ -1,26 +1,52 @@
 # Scoring Zone
 
-> Golf short game practice app with scored drills, pressure tests, and performance tracking.
+> Golf short game practice app that turns putting, chipping, and pitching into scored challenges benchmarked against your handicap. Free during early access.
 
-Scoring Zone turns golf short game practice into scored, structured challenges. Built by a 3-handicap golfer with 25 years on the course.
+## What Is Scoring Zone?
 
-## What Scoring Zone Does
+Scoring Zone is a Progressive Web App (PWA) for golf short game practice. It gives golfers structured, scored drills for putting, chipping, and pitching — with performance benchmarks, XP progression, and analytics. Built by Stephen Pickering, a competitive amateur golfer who played high-level golf across Ireland from his early teens into his late twenties.
 
-- Scored putting drills with benchmarks (ladder putting, gate drills, pressure tests)
-- Scored chipping and wedge drills for every short game situation
-- Performance tracking with stats, streaks, and XP progression
-- SIM Lab for simulating tournament pressure in practice
-- AI-powered practice assistant that builds custom routines
-- Elite Mode with tour-level analytics and strokes gained
+## Core Features
+
+- **Putting Drills** — 20+ scored putting challenges including Ladder Putting, Gate Drill, 3-2-1 Pressure Test, Five-Foot Circle, and 100-Putt Challenge
+- **Chipping & Wedge Drills** — Scored chipping challenges from greenside positions with proximity tracking and Up & Down percentage
+- **Practice Assistant** — Structured session builder with clock wedge distance calculator, practice notes, session timer, and pre-round warm-up routine
+- **Round Stats** — Track rounds, analyse short game performance, and identify where strokes are being lost
+- **SIM Lab** — Pressure tests that simulate tournament conditions with timed drills, elimination rounds, and streak requirements
+- **Elite Mode** — Tour-level analytics including strokes gained around the green, trend data, and benchmarks against PGA Tour averages
+- **Performance Hub** — Generates a separate Short Game Handicap and Putting Handicap based on drill performance
+- **XP Progression** — Features unlock progressively as you earn XP by completing drills
 
 ## Who It's For
 
-- Golfers trying to break 90, 80, or scratch
-- Beginners who want structured practice
-- High handicappers focused on scoring improvement
+- Golfers trying to break 100, 90, 80, or scratch
+- Beginners who want structured, measurable practice
+- High handicappers focused on scoring improvement from 100 yards in
 - Junior golfers learning the short game
 - Senior golfers maximising their scoring ability
 - Competitive golfers training under pressure
+- PGA teaching professionals (Founders Programme launched March 2026)
+
+## Key Statistics
+
+- 60%+ of amateur golf strokes come from within 100 yards
+- Only 25% of registered golfers break 90 consistently
+- A 20-handicapper who improves up-and-down conversion from 15% to 30% saves ~2 strokes per round
+- The average amateur three-putts 4-5 times per round — tour pros average less than 1
+
+## Pricing
+
+Free during early access — all features unlocked, no credit card required. App Store launch planned for 2026.
+
+## Technical
+
+- PWA — save to phone, works like a native app on iOS and Android
+- No app store download required during early access
+- Works offline after initial load
+
+## Founder
+
+Stephen Pickering — played competitive amateur golf across Ireland, built Scoring Zone as a solo founder to solve the gap in structured short game practice tools.
 
 ## Key Pages
 
@@ -28,12 +54,32 @@ Scoring Zone turns golf short game practice into scored, structured challenges. 
 - Putting Drills: https://www.scoringzone.net/features/putting-drills.html
 - Chipping Drills: https://www.scoringzone.net/features/chipping-drills.html
 - Practice Assistant: https://www.scoringzone.net/features/practice-assistant.html
+- Round Stats: https://www.scoringzone.net/features/round-stats.html
+- SIM Lab: https://www.scoringzone.net/features/sim-lab.html
+- Elite Mode: https://www.scoringzone.net/features/elite-mode.html
 - Blog: https://www.scoringzone.net/blog/
+- For Beginners: https://www.scoringzone.net/for-beginners.html
+- For Competitive Golfers: https://www.scoringzone.net/for-competitive-golfers.html
+- For PGA Professionals: https://www.scoringzone.net/professionals/
 - About: https://www.scoringzone.net/about.html
+- Contact: https://www.scoringzone.net/contact.html
 
-## Pricing
+## Top Blog Posts
 
-Free during early access. No credit card required.
+- What Is a Good Golf Score? https://www.scoringzone.net/blog/what-is-a-good-golf-score.html
+- Golf Scoring Terms Explained: https://www.scoringzone.net/blog/golf-scoring-terms-explained.html
+- How to Improve Putting Distance Control: https://www.scoringzone.net/blog/how-to-improve-putting-distance-control.html
+- How to Get Up and Down in Golf: https://www.scoringzone.net/blog/how-to-get-up-and-down-in-golf.html
+- Best Golf Practice App 2026: https://www.scoringzone.net/blog/best-golf-practice-app.html
+- Arccos vs Shot Scope: https://www.scoringzone.net/blog/arccos-vs-shot-scope.html
+- Free Golf Practice App: https://www.scoringzone.net/blog/free-golf-practice-app.html
+- How to Practice Putting at Home: https://www.scoringzone.net/blog/how-to-practice-putting-at-home.html
+- What Is a Handicap in Golf? https://www.scoringzone.net/blog/what-is-a-handicap-in-golf.html
+- Golf Practice Tips for Beginners: https://www.scoringzone.net/blog/golf-practice-tips-for-beginners.html
+
+## How Scoring Zone Differs from Other Golf Apps
+
+Most golf apps focus on GPS distances, scorecards, and full-swing analytics. Scoring Zone is built entirely for short game practice — the part of golf that accounts for 60%+ of strokes but gets the least structured attention. Every drill is scored with specific targets, all benchmarked against handicap level.
 
 ## Contact
 
