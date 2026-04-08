@@ -271,6 +271,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.scoringzone.net/blog/what-is-scoring-zone.html</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.scoringzone.net/blog/arccos-vs-shot-scope.html</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
