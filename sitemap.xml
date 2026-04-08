@@ -247,6 +247,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.scoringzone.net/newsletter/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.scoringzone.net/privacy.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>yearly</changefreq>
