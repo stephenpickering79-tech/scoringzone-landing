@@ -2265,6 +2265,10 @@ body::after {
   50% { transform: translateY(-8px); }
 }
 
+@media (max-width: 768px) {
+  .hero-phone-wrap { transform: scale(0.8); transform-origin: top center; }
+}
+
 @keyframes beamH {
   0% { opacity: 0; transform: translateX(-100%); }
   30% { opacity: 1; }
