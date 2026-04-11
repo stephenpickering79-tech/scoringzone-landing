@@ -87,7 +87,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
 </head>
 <body>
@@ -227,11 +227,30 @@
                     </div>
                 </div>
             </div>
-            <div class="reveal" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
-                <div class="stats-widget">
-                    <div class="stats-widget-glow"></div>
-                    <img src="Scrolling Reveal/grok-image-c7cb18b2-f39f-40ae-92ea-4cbde4883519_nobg.png" alt="Scoring Zone App — Home Screen" style="width: 40%; display: block; margin: 0 auto;">
+            <div class="reveal" style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+                <!-- iPhone 14 Pro Mockup -->
+                <div style="position:relative; animation:heroFloat 4.5s ease-in-out infinite;">
+                    <!-- Green glow behind phone -->
+                    <div aria-hidden="true" style="position:absolute; inset:-60px; border-radius:50%; background:radial-gradient(circle,rgba(34,197,94,0.1),transparent 70%); z-index:0; pointer-events:none;"></div>
+                    <!-- Outer frame -->
+                    <div style="position:relative; z-index:1; width:215px; height:452px; border-radius:37px; background:linear-gradient(135deg,#1e2025 0%,#1c1e22 40%,#181a1d 100%); padding:7px; box-sizing:border-box; box-shadow:0 12px 30px rgba(0,0,0,0.45),0 2px 6px rgba(0,0,0,0.3); overflow:hidden;" aria-label="Scoring Zone app screenshot">
+                        <!-- Side button highlights -->
+                        <div aria-hidden="true" style="position:absolute; left:-2px; top:73px; width:3px; height:23px; background:linear-gradient(180deg,#28292d,#1c1e22,#28292d); border-radius:2px 0 0 2px;"></div>
+                        <div aria-hidden="true" style="position:absolute; left:-2px; top:106px; width:3px; height:42px; background:linear-gradient(180deg,#28292d,#1c1e22,#28292d); border-radius:2px 0 0 2px;"></div>
+                        <div aria-hidden="true" style="position:absolute; left:-2px; top:157px; width:3px; height:42px; background:linear-gradient(180deg,#28292d,#1c1e22,#28292d); border-radius:2px 0 0 2px;"></div>
+                        <div aria-hidden="true" style="position:absolute; right:-2px; top:98px; width:3px; height:59px; background:linear-gradient(180deg,#28292d,#1c1e22,#28292d); border-radius:0 2px 2px 0;"></div>
+                        <!-- Screen -->
+                        <div style="width:100%; height:100%; border-radius:30px; position:relative; overflow:hidden; background:#000; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.03),inset 0 10px 20px rgba(0,0,0,0.35),inset 0 -8px 16px rgba(0,0,0,0.28);">
+                            <!-- Wallpaper image -->
+                            <img src="Scrolling%20Reveal/Screenshots/scoringzone-home.jpg" alt="Scoring Zone app home screen" style="position:absolute; inset:9px; width:calc(100% - 18px); height:calc(100% - 18px); object-fit:contain; object-position:center top; display:block;">
+                            <!-- Dynamic Island -->
+                            <div aria-hidden="true" style="position:absolute; top:7px; left:50%; transform:translateX(-50%); width:65px; height:20px; border-radius:10px; background:#000; z-index:2; box-shadow:0 1px 2px rgba(0,0,0,0.7);"></div>
+                            <!-- Home indicator -->
+                            <div aria-hidden="true" style="position:absolute; bottom:4px; left:50%; transform:translateX(-50%); width:68px; height:3px; border-radius:2px; background:linear-gradient(180deg,rgba(255,255,255,0.65),rgba(255,255,255,0.3)); opacity:0.9; z-index:3; pointer-events:none;"></div>
+                        </div>
+                    </div>
                 </div>
+                <!-- Stars + trust text -->
                 <div style="text-align:center;">
                     <div style="display:flex; justify-content:center; gap:3px; margin-bottom:6px;">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -240,7 +259,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     </div>
-                    <p style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff; margin:0; text-shadow:0 1px 4px rgba(0,0,0,0.6);">Trusted &amp; Reviewed by Professional Golf Coaches</p>
+                    <p style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff; margin:0; text-shadow:0 1px 4px rgba(0,0,0,0.6); line-height:1.35;">Trusted &amp; Reviewed by<br>Professional Golf Coaches</p>
                 </div>
             </div>
             </div>
@@ -419,7 +438,32 @@
                     <div style="width:4px; height:4px; background:var(--green,#22c55e); border-radius:50%; opacity:0.3;"></div>
                 </div>
             </div>
+
+            <!-- Stats Row -->
+            <div style="width:100%; max-width:860px; margin:0 auto; opacity:0; animation:dsh-word-appear 0.4s ease-out forwards; animation-delay:2.3s;">
+                <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(34,197,94,0.25),transparent); margin-bottom:40px;"></div>
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0; text-align:center;">
+                    <div style="padding:0 24px; border-right:1px solid rgba(34,197,94,0.12);">
+                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#ffffff; line-height:1; text-shadow:0 0 20px rgba(34,197,94,0.2);">50<span style="color:#22c55e;">+</span></div>
+                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Practice Drills</div>
+                    </div>
+                    <div style="padding:0 24px; border-right:1px solid rgba(34,197,94,0.12);">
+                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#ffffff; line-height:1; text-shadow:0 0 20px rgba(34,197,94,0.2);">4</div>
+                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Short Game Categories</div>
+                    </div>
+                    <div style="padding:0 24px; border-right:1px solid rgba(34,197,94,0.12);">
+                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#22c55e; line-height:1; text-shadow:0 0 24px rgba(34,197,94,0.4);">3.2</div>
+                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Avg Stroke Improvement</div>
+                    </div>
+                    <div style="padding:0 24px;">
+                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#ffffff; line-height:1; text-shadow:0 0 20px rgba(34,197,94,0.2);">&#8734;</div>
+                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Pressure Simulations</div>
+                    </div>
+                </div>
+                <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(34,197,94,0.25),transparent); margin-top:40px;"></div>
+            </div>
         </div>
+
 
         <!-- Mouse Gradient -->
         <div id="dsh-mouse-gradient"></div>
@@ -556,6 +600,9 @@
           <div class="seren-float" style="top:80%;left:88%;animation-delay:0.5s;animation-play-state:running;"></div>
         </div>
         <div class="container" style="max-width: 900px; position: relative; z-index: 1;">
+            <div style="text-align:center; margin-bottom:24px; position:relative; z-index:10;">
+                <span style="font-family:'DM Mono',monospace; font-size:1.375rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#22c55e;">Sign up now for instant free access</span>
+            </div>
             <div class="signup-split-card reveal">
 
                 <!-- Left Panel: Branding + Dot Canvas -->
@@ -685,67 +732,139 @@
         </script>
     </section>
 
-    <!-- ========== NUMBERS STRIP ========== -->
-    <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
-    <div class="numbers-strip reveal">
-        <div class="numbers-strip-item">
-            <span class="numbers-strip-value">50<span class="numbers-strip-plus">+</span></span>
-            <span class="numbers-strip-label">Practice Drills</span>
-        </div>
-        <div class="numbers-strip-item">
-            <span class="numbers-strip-value">4</span>
-            <span class="numbers-strip-label">Short Game Categories</span>
-        </div>
-        <div class="numbers-strip-item">
-            <span class="numbers-strip-value">3.2</span>
-            <span class="numbers-strip-label">Avg Stroke Improvement</span>
-        </div>
-        <div class="numbers-strip-item">
-            <span class="numbers-strip-value">&infin;</span>
-            <span class="numbers-strip-label">Pressure Simulations</span>
-        </div>
-    </div>
-    </div>
 
     <!-- ========== SCROLLING REVEAL ========== -->
-    <section class="section scroll-reveal-section">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="mono-label">Your Short Game Journey</span>
-                <h2 class="display-lg">Built for Every Part of Your Game</h2>
-                <p class="section-sub">Scored drills, pressure tests, and real stats &mdash; all in one app.</p>
+    <section class="section scroll-reveal-section" style="padding-top: 7rem;">
+        <style>
+          /* ── Liquid Glass Section ── */
+          .chipping-hero-wrap { display: flex; align-items: flex-start; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+          .chipping-text-col { flex: 1; padding-right: 185px; }
+          .chipping-text-col .mono-label { display: block; margin-bottom: 0.75rem; }
+          .chipping-text-col h2 { margin-bottom: 1rem; color: #fff; }
+          .chipping-text-col p { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.6; }
+          .chipping-img-col { position: relative; width: 40%; flex-shrink: 0; }
+          .chipping-hero-wrap img { width: 100%; border-radius: 20px; display: block; object-fit: cover; max-height: 560px; object-position: center center; }
+          /* Card wrapper */
+          .lg-wrap {
+            position: absolute;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.25);
+          }
+          .lg-wrap--top-left    { top: 14%; left: -115px; width: 189px; height: 189px; }
+          .lg-wrap--bottom-left { bottom: calc(-1% + 40px); left: -155px; width: 209px; height: 209px; }
+          .lg-card {
+            position: absolute;
+            inset: 2px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.45);
+            border: 1px solid rgba(255,255,255,0.2);
+          }
+          .lg-filter {
+            position: absolute; inset: 0;
+            backdrop-filter: blur(28px) saturate(160%);
+            -webkit-backdrop-filter: blur(28px) saturate(160%);
+            border-radius: inherit;
+          }
+          .lg-overlay {
+            position: absolute; inset: 0;
+            background: rgba(255,255,255,0.15);
+            border-radius: inherit;
+          }
+          .lg-specular {
+            position: absolute; top: 0; left: 0; right: 0; height: 44%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 16px 16px 0 0;
+            pointer-events: none;
+          }
+          .lg-content {
+            position: relative; z-index: 1;
+            padding: 1rem 1.25rem;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+          }
+          @media (max-width: 640px) { .lg-wrap { display: none; } }
+        </style>
+        <div class="chipping-hero-wrap">
+          <!-- Left text -->
+          <div class="chipping-text-col reveal">
+            <span class="mono-label">Your Short Game Journey</span>
+            <h2 class="display-lg">Built for Every Part of Your Game</h2>
+            <p>Scored drills, pressure tests, and real stats &mdash; all in one app.</p>
+            <ul style="list-style:none; padding:0; margin:1.5rem 0 0; display:flex; flex-direction:column; gap:0.9rem;">
+              <li style="display:flex; align-items:flex-start; gap:0.65rem;">
+                <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Scored chipping and putting drills &mdash; every session generates a benchmark you can beat next time</span>
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:0.65rem;">
+                <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Pressure challenges that reset on a miss &mdash; so practice actually feels like the course</span>
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:0.65rem;">
+                <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Full round stats with strokes gained &mdash; know exactly where you&rsquo;re losing shots before you practise</span>
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:0.65rem;">
+                <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">XP progression that unlocks harder drills &mdash; structure that keeps you improving, not just repeating</span>
+              </li>
+            </ul>
+          </div>
+          <div class="chipping-img-col">
+            <img src="Images%20for%20n8n/Chipping-image-1.png" alt="Golfer hitting a chip shot on the course" loading="lazy">
+
+            <!-- Top-left glass card -->
+            <div class="lg-wrap lg-wrap--top-left">
+              <div class="lg-card" style="inset: 0; border-radius: 18px; border: 3px solid #93c5fd;">
+                <div class="lg-filter"></div>
+                <div class="lg-overlay"></div>
+                <div class="lg-specular"></div>
+                <div class="lg-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:0.6rem;">
+                  <span style="font-family:'DM Mono',monospace; font-size:0.85rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; opacity:0.85; display:block; text-align:center;">Short Game HCP</span>
+                  <div style="width:100px; height:100px; flex-shrink:0; background:transparent; border:3px solid #22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 24px rgba(34,197,94,0.45);">
+                    <span style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:3.2rem; color:#fff; line-height:1;">5</span>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- Bottom-left glass card -->
+            <div class="lg-wrap lg-wrap--bottom-left">
+              <div class="lg-card" style="inset: 0; border-radius: 18px; border: 3px solid #f97316;">
+                <div class="lg-filter"></div>
+                <div class="lg-overlay"></div>
+                <div class="lg-specular"></div>
+                <div class="lg-content" style="display:flex; flex-direction:column; justify-content:center; height:100%; gap:0.75rem; padding:1rem 1.1rem 1rem calc(1.1rem + 15px);">
+                <!-- Challenges Completed -->
+                <div>
+                  <span style="font-family:'DM Mono',monospace; font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; opacity:0.7; display:block; margin-bottom:0.25rem;">Challenges Completed</span>
+                  <span style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.8rem; color:#22c55e; line-height:1; letter-spacing:0.02em;">13<span style="opacity:0.5; font-size:1.7rem;">/40</span></span>
+                </div>
+                <!-- Divider -->
+                <div style="height:1px; background:rgba(255,255,255,0.15);"></div>
+                <!-- XP Level -->
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <div style="width:44px; height:44px; background:#f97316; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 16px rgba(249,115,22,0.55);">
+                    <svg viewBox="0 0 24 24" width="23" height="23" fill="#fff"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  </div>
+                  <div>
+                    <span style="font-family:'DM Mono',monospace; font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; opacity:0.7; display:block;">XP Level</span>
+                    <span style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.1rem; color:#fff; line-height:1;">5</span>
+                  </div>
+                </div>
+              </div>
+              </div><!-- /.lg-card -->
+            </div><!-- /.lg-wrap -->
+          </div>
         </div>
-        <ul class="scroll-reveal-grid">
-            <li>
-                <article class="scroll-reveal-card" style="background-image: url('golf%20images/golfer%20putting%20at%20sunset.webp');">
-                    <a href="features/putting-drills.html">
-                        <span><span class="scroll-reveal-word"><span>MASTER</span></span></span>
-                    </a>
-                </article>
-            </li>
-            <li>
-                <article class="scroll-reveal-card" style="background-image: url('golf%20images/college%20kid%20lining%20up%20a%20putt.webp');">
-                    <a href="features/round-stats.html">
-                        <span><span class="scroll-reveal-word"><span>YOUR</span></span></span>
-                    </a>
-                </article>
-            </li>
-            <li>
-                <article class="scroll-reveal-card" style="background-image: url('scrolling-reveal/Placeholder%20images%20/Golfer%20chipping%20agusta%20perfect.png');">
-                    <a href="features/chipping-drills.html">
-                        <span><span class="scroll-reveal-word"><span>SHORT</span></span></span>
-                    </a>
-                </article>
-            </li>
-            <li>
-                <article class="scroll-reveal-card" style="background-image: url('golf%20images/golfer%20celebrating.webp');">
-                    <a href="features/elite-mode.html">
-                        <span><span class="scroll-reveal-word"><span>GAME</span></span></span>
-                    </a>
-                </article>
-            </li>
-        </ul>
     </section>
 
     <!-- ========== HOW IT WORKS ========== -->
@@ -785,7 +904,7 @@
       .carousel-section { position: relative; z-index: 1; height: 300vh; }
       .carousel-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
       .carousel-header-inner { text-align: center; padding: 0 1.5rem; margin-bottom: 2rem; flex-shrink: 0; position: relative; z-index: 1; }
-      .carousel-header-inner .mono-label { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; }
+      .carousel-header-inner .mono-label { margin-bottom: 0.75rem; }
       .carousel-header-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); text-transform: uppercase; color: #0f172a; line-height: 1.05; }
       .carousel-header-inner p { color: #64748b; font-size: 1.05rem; margin-top: 0.75rem; max-width: 620px; margin-inline: auto; }
       .carousel-track { display: flex; align-items: flex-end; gap: 2.5rem; padding: 0; will-change: transform; position: relative; z-index: 1; }
@@ -793,7 +912,7 @@
       .carousel-img-wrap { width: 100%; height: 65vh; max-height: 620px; position: relative; }
       .carousel-card img { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(var(--img-scale, 1)); width: 100%; height: 100%; object-fit: contain; filter: none; transition: filter 0.3s ease, transform 0.3s ease; }
       .carousel-card:hover img { transform: translate(-50%, -50%) scale(calc(var(--img-scale, 1) * 1.03)); filter: none; }
-      .carousel-label { margin-top: 0.5rem; display: flex; align-items: center; gap: 0.6rem; position: relative; }
+      .carousel-label { margin-top: 0.1rem; display: flex; align-items: center; gap: 0.6rem; position: relative; }
       .carousel-label::before { content: ''; flex-shrink: 0; width: 3px; height: 0; border-radius: 2px; transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s; }
       .carousel-card.revealed .carousel-label::before { height: 1.2em; }
       .carousel-label span { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(0.95rem, 1.8vw, 1.15rem); text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; opacity: 0; transform: translateX(-8px); transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s; }
@@ -828,6 +947,13 @@
       .seren-corner { position:absolute; width:40px; height:40px; border:1px solid rgba(34,197,94,0.3); pointer-events:none; }
       .seren-corner .seren-corner-dot { position:absolute; width:6px; height:6px; background:#22c55e; opacity:0.45; border-radius:50%; }
       .seren-float { position:absolute; width:3px; height:3px; background:#22c55e; border-radius:50%; opacity:0; animation:dsh-float 3s ease-in-out infinite; }
+      /* ── Carousel serenity — boosted visibility ── */
+      @keyframes seren-line-draw-strong { 0% { stroke-dashoffset:1000; opacity:0; } 50% { opacity:0.55; } 100% { stroke-dashoffset:0; opacity:0.35; } }
+      #carousel-section .seren-line { stroke:rgba(34,197,94,0.5); stroke-width:1.1; animation-name:seren-line-draw-strong; }
+      #carousel-section .seren-dot { opacity:0; animation-name:dsh-pulse-glow; }
+      #carousel-section .seren-corner { border-color:rgba(34,197,94,0.35); }
+      #carousel-section .seren-corner-dot { opacity:0.45; }
+      #carousel-section .seren-float { width:3px; height:3px; }
     </style>
     <section class="carousel-section" id="carousel-section" style="background:#ffffff;">
       <div class="carousel-sticky" style="background:#ffffff;">
@@ -837,7 +963,7 @@
           <svg xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="carouselGrid" width="22" height="22" patternUnits="userSpaceOnUse">
-                <path d="M 22 0 L 0 0 0 22" fill="none" stroke="rgba(34,197,94,0.15)" stroke-width="0.6"/>
+                <path d="M 22 0 L 0 0 0 22" fill="none" stroke="rgba(34,197,94,0.16)" stroke-width="0.6"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#carouselGrid)"/>
@@ -864,9 +990,9 @@
         </div>
 
         <div class="carousel-header-inner">
-          <p class="mono-label">Inside the App</p>
-          <h2>Everything You Need to Practise Smarter</h2>
-          <p>Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab &mdash; all in one app.</p>
+          <span class="mono-label" style="display:block; text-shadow:0 1px 6px rgba(0,0,0,0.12);">Inside the App</span>
+          <h2 style="text-shadow:0 2px 8px rgba(0,0,0,0.12);">Everything You Need to Practise Smarter</h2>
+          <p style="text-shadow:0 1px 6px rgba(0,0,0,0.1);">Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab &mdash; all in one app.</p>
         </div>
 
         <div class="carousel-track" id="carousel-track">
@@ -878,7 +1004,7 @@
           </div>
           <div class="carousel-card" data-color="green">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.26;" src="Scrolling Reveal/grok-image-dcf013c2-a297-46a7-a789-d71d93b189c9_nobg.png" alt="Performance Hub with challenges and practice modes" loading="lazy">
+              <img style="--img-scale: 1.26;" src="Scrolling%20Reveal/Performance-hub.png" alt="Performance Hub with challenges and practice modes" loading="lazy">
             </div>
             <div class="carousel-label"><span>Performance Hub</span></div>
           </div>
@@ -909,8 +1035,8 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="mono-label">PLATFORM</span>
-                <h2 class="display-lg">Everything Your Short Game Needs</h2>
-                <p>From beginner chipping drills to elite pressure tests — a complete system for short game mastery.</p>
+                <h2 class="display-lg" style="text-shadow:0 2px 12px rgba(0,0,0,0.3);">Everything Your Short Game Needs</h2>
+                <p style="text-shadow:0 1px 5px rgba(0,0,0,0.2);">From beginner chipping drills to elite pressure tests — a complete system for short game mastery.</p>
             </div>
             <div class="bento-grid">
                 <!-- Chipping — 1 col -->
@@ -1075,11 +1201,41 @@
     </section>
 
     <!-- ========== GAMIFICATION ========== -->
-    <section class="section" style="background:#ffffff;">
-        <div class="container">
+    <section class="section" style="background:#ffffff; position:relative; overflow:hidden;">
+        <!-- Serenity background -->
+        <div class="serenity-bg" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="xpGrid" width="22" height="22" patternUnits="userSpaceOnUse">
+                <path d="M 22 0 L 0 0 0 22" fill="none" stroke="rgba(34,197,94,0.15)" stroke-width="0.6"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#xpGrid)"/>
+            <line x1="0" y1="20%" x2="100%" y2="20%" class="seren-line" style="animation-delay:0.3s"/>
+            <line x1="0" y1="80%" x2="100%" y2="80%" class="seren-line" style="animation-delay:0.5s"/>
+            <line x1="20%" y1="0" x2="20%" y2="100%" class="seren-line" style="animation-delay:0.7s"/>
+            <line x1="80%" y1="0" x2="80%" y2="100%" class="seren-line" style="animation-delay:0.9s"/>
+            <line x1="50%" y1="0" x2="50%" y2="100%" class="seren-line" style="animation-delay:1.1s; opacity:0.2"/>
+            <line x1="0" y1="50%" x2="100%" y2="50%" class="seren-line" style="animation-delay:1.3s; opacity:0.2"/>
+            <circle cx="20%" cy="20%" r="3" class="seren-dot" style="animation-delay:1.5s"/>
+            <circle cx="80%" cy="20%" r="3" class="seren-dot" style="animation-delay:1.6s"/>
+            <circle cx="20%" cy="80%" r="3" class="seren-dot" style="animation-delay:1.7s"/>
+            <circle cx="80%" cy="80%" r="3" class="seren-dot" style="animation-delay:1.8s"/>
+            <circle cx="50%" cy="50%" r="2.5" class="seren-dot" style="animation-delay:2s"/>
+          </svg>
+          <div class="seren-corner" style="top:16px;left:16px;"><div class="seren-corner-dot" style="top:0;left:0;"></div></div>
+          <div class="seren-corner" style="top:16px;right:16px;"><div class="seren-corner-dot" style="top:0;right:0;"></div></div>
+          <div class="seren-corner" style="bottom:16px;left:16px;"><div class="seren-corner-dot" style="bottom:0;left:0;"></div></div>
+          <div class="seren-corner" style="bottom:16px;right:16px;"><div class="seren-corner-dot" style="bottom:0;right:0;"></div></div>
+          <div class="seren-float" style="top:20%;left:8%;animation-delay:0.3s;animation-play-state:running;"></div>
+          <div class="seren-float" style="top:65%;left:92%;animation-delay:0.8s;animation-play-state:running;"></div>
+          <div class="seren-float" style="top:45%;left:5%;animation-delay:1.2s;animation-play-state:running;"></div>
+          <div class="seren-float" style="top:80%;left:88%;animation-delay:0.5s;animation-play-state:running;"></div>
+        </div>
+        <div class="container" style="position:relative; z-index:1;">
             <div class="section-header reveal">
                 <span class="mono-label">GAMIFICATION</span>
-                <h2 class="display-lg hero-sub-words" style="color:#0f172a;">
+                <h2 class="display-lg hero-sub-words" style="color:#0f172a; text-shadow:0 2px 8px rgba(0,0,0,0.12);">
                     <span class="word-animate" data-delay="0">Earn</span>
                     <span class="word-animate" data-delay="150">More</span>
                     <span class="word-animate" data-delay="300">XP.</span>
@@ -1125,11 +1281,11 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="mono-label">Performance Tests</span>
-                <h2 class="display-lg hero-sub-words">
+                <h2 class="display-lg hero-sub-words" style="color:#ffffff; text-shadow:0 2px 12px rgba(0,0,0,0.3);">
                     <span class="word-animate" data-delay="0">Featured</span>
                     <span class="word-animate" data-delay="150">Challenges</span>
                 </h2>
-                <p>Pick your challenge and start building real short game skills — from beginner drills to elite pressure tests.</p>
+                <p style="text-shadow:0 1px 5px rgba(0,0,0,0.2);">Pick your challenge and start building real short game skills — from beginner drills to elite pressure tests.</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 4px;">
                 <!-- Card 1 — Up & Down -->
@@ -1227,9 +1383,71 @@
         </div>
     </section>
 
+    <!-- ========== BLOG → PRICING SERENITY WRAPPER ========== -->
+    <div style="position:relative; overflow:hidden; background:#ffffff;">
+      <!-- Serenity background -->
+      <div class="serenity-bg" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="blogGrid" width="22" height="22" patternUnits="userSpaceOnUse">
+              <path d="M 22 0 L 0 0 0 22" fill="none" stroke="rgba(34,197,94,0.28)" stroke-width="0.8"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#blogGrid)"/>
+          <line x1="0" y1="20%" x2="100%" y2="20%" class="seren-line" style="animation-delay:0.3s"/>
+          <line x1="0" y1="80%" x2="100%" y2="80%" class="seren-line" style="animation-delay:0.5s"/>
+          <line x1="20%" y1="0" x2="20%" y2="100%" class="seren-line" style="animation-delay:0.7s"/>
+          <line x1="80%" y1="0" x2="80%" y2="100%" class="seren-line" style="animation-delay:0.9s"/>
+          <line x1="50%" y1="0" x2="50%" y2="100%" class="seren-line" style="animation-delay:1.1s; opacity:0.2"/>
+          <line x1="0" y1="50%" x2="100%" y2="50%" class="seren-line" style="animation-delay:1.3s; opacity:0.2"/>
+          <line x1="0" y1="60%" x2="100%" y2="60%" class="seren-line" style="animation-delay:1.5s; opacity:0.15"/>
+          <line x1="60%" y1="0" x2="60%" y2="100%" class="seren-line" style="animation-delay:1.6s; opacity:0.15"/>
+          <circle cx="20%" cy="20%" r="3" class="seren-dot" style="animation-delay:1.5s"/>
+          <circle cx="80%" cy="20%" r="3" class="seren-dot" style="animation-delay:1.6s"/>
+          <circle cx="20%" cy="80%" r="3" class="seren-dot" style="animation-delay:1.7s"/>
+          <circle cx="80%" cy="80%" r="3" class="seren-dot" style="animation-delay:1.8s"/>
+          <circle cx="50%" cy="50%" r="2.5" class="seren-dot" style="animation-delay:2s"/>
+          <circle cx="20%" cy="60%" r="2" class="seren-dot" style="animation-delay:2.1s"/>
+          <circle cx="60%" cy="20%" r="2" class="seren-dot" style="animation-delay:2.2s"/>
+        </svg>
+        <div class="seren-corner" style="top:16px;left:16px;"><div class="seren-corner-dot" style="top:0;left:0;"></div></div>
+        <div class="seren-corner" style="top:16px;right:16px;"><div class="seren-corner-dot" style="top:0;right:0;"></div></div>
+        <div class="seren-corner" style="bottom:16px;left:16px;"><div class="seren-corner-dot" style="bottom:0;left:0;"></div></div>
+        <div class="seren-corner" style="bottom:16px;right:16px;"><div class="seren-corner-dot" style="bottom:0;right:0;"></div></div>
+        <div class="seren-float" style="top:15%;left:6%;animation-delay:0.3s;animation-play-state:running;"></div>
+        <div class="seren-float" style="top:45%;left:94%;animation-delay:0.8s;animation-play-state:running;"></div>
+        <div class="seren-float" style="top:70%;left:4%;animation-delay:1.2s;animation-play-state:running;"></div>
+        <div class="seren-float" style="top:85%;left:90%;animation-delay:0.5s;animation-play-state:running;"></div>
+        <div class="seren-float" style="top:30%;left:50%;animation-delay:1.4s;animation-play-state:running;"></div>
+      </div>
+
     <!-- ========== LATEST NEWS ========== -->
-    <section class="section" id="latest-news">
-        <div class="container">
+    <section class="section" id="latest-news" style="position:relative; z-index:1; background:linear-gradient(135deg,#021a0a,#000000,#042d12); color:#f1f5f9; overflow:hidden;">
+      <!-- Dark serenity background -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <pattern id="blogDarkGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(34,197,94,0.06)" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#blogDarkGrid)"/>
+        <line x1="0" y1="20%" x2="100%" y2="20%" class="dsh-grid-line" style="animation-delay:0.25s"/>
+        <line x1="0" y1="80%" x2="100%" y2="80%" class="dsh-grid-line" style="animation-delay:0.5s"/>
+        <line x1="20%" y1="0" x2="20%" y2="100%" class="dsh-grid-line" style="animation-delay:0.75s"/>
+        <line x1="80%" y1="0" x2="80%" y2="100%" class="dsh-grid-line" style="animation-delay:1s"/>
+        <line x1="50%" y1="0" x2="50%" y2="100%" class="dsh-grid-line" style="animation-delay:1.25s;opacity:0.05"/>
+        <line x1="0" y1="50%" x2="100%" y2="50%" class="dsh-grid-line" style="animation-delay:1.5s;opacity:0.05"/>
+        <circle cx="20%" cy="20%" r="2" class="dsh-detail-dot" style="animation-delay:1.5s"/>
+        <circle cx="80%" cy="20%" r="2" class="dsh-detail-dot" style="animation-delay:1.6s"/>
+        <circle cx="20%" cy="80%" r="2" class="dsh-detail-dot" style="animation-delay:1.7s"/>
+        <circle cx="80%" cy="80%" r="2" class="dsh-detail-dot" style="animation-delay:1.8s"/>
+        <circle cx="50%" cy="50%" r="1.5" class="dsh-detail-dot" style="animation-delay:2s"/>
+      </svg>
+      <div class="dsh-corner" style="top:16px;left:16px;animation-delay:0.2s;"></div>
+      <div class="dsh-corner" style="top:16px;right:16px;animation-delay:0.3s;"></div>
+      <div class="dsh-corner" style="bottom:16px;left:16px;animation-delay:0.4s;"></div>
+      <div class="dsh-corner" style="bottom:16px;right:16px;animation-delay:0.5s;"></div>
+        <div class="container" style="position:relative;z-index:1;">
             <div class="section-header reveal">
                 <span class="mono-label">Latest News</span>
                 <h2 class="display-lg">From the Blog</h2>
@@ -1277,13 +1495,13 @@
     </section>
 
     <!-- ========== PRICING ========== -->
-    <section class="section" id="pricing">
+    <section class="section" id="pricing" style="position:relative; z-index:1;">
         <div class="container">
             <div class="section-header reveal">
-                <span class="mono-label">PRICING</span>
-                <h2 class="display-lg">Stop Practicing.<br>Start <span style="color: var(--green);">Competing.</span></h2>
-                <p>Join thousands of golfers who've transformed their short game with structured, pressure-tested practice.</p>
-                <p style="margin-top: 8px;">Try some of the app features without any commitment.</p>
+                <span class="mono-label" style="text-shadow:0 1px 6px rgba(0,0,0,0.12);">PRICING</span>
+                <h2 class="display-lg" style="color:#0f1e10; text-shadow:0 2px 8px rgba(0,0,0,0.12);">Stop Practicing.<br>Start <span style="color: var(--green);">Competing.</span></h2>
+                <p style="color:#374151; text-shadow:0 1px 5px rgba(0,0,0,0.1);">Join thousands of golfers who&rsquo;ve transformed their short game with structured, pressure-tested practice.</p>
+                <p style="margin-top: 8px; color:#374151; text-shadow:0 1px 5px rgba(0,0,0,0.1);">Try some of the app features without any commitment.</p>
             </div>
 
             <!-- Pricing cards -->
@@ -1346,6 +1564,8 @@
 
 
 
+
+    </div><!-- /.blog-footer-serenity-wrap -->
 
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
