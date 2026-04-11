@@ -784,6 +784,12 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.4);
           }
           @media (max-width: 640px) { .lg-wrap { display: none; } }
+          @media (max-width: 768px) {
+            .chipping-hero-wrap { flex-direction: column; gap: 2rem; }
+            .chipping-text-col { padding-right: 0; width: 100%; }
+            .chipping-img-col { width: 100%; position: relative; }
+            .chipping-hero-wrap img { max-height: 340px; object-position: center top; }
+          }
         </style>
         <div class="chipping-hero-wrap">
           <!-- Left text -->
