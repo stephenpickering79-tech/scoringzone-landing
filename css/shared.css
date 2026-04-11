@@ -2266,7 +2266,8 @@ body::after {
 }
 
 @media (max-width: 768px) {
-  .hero-phone-wrap { transform: scale(0.8); transform-origin: top center; }
+  .hero-phone-wrap { transform: scale(0.8); transform-origin: top center; order: 2; }
+  .hero-trust { order: 1; }
 }
 
 @keyframes beamH {
