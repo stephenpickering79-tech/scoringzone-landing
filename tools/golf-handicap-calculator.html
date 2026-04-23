@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08M47VV5NM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-08M47VV5NM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Handicap Calculator — WHS/GHIN Compliant Formula | Scoring Zone</title>
+  <meta name="description" content="Free golf handicap calculator using the official WHS/GHIN formula. Calculate your Handicap Index from 3–20 rounds, or your Course Handicap for any course.">
+  <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-scoring-zone-logo.png">
+  <link rel="canonical" href="https://www.scoringzone.net/tools/golf-handicap-calculator.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Golf Handicap Calculator — WHS/GHIN Compliant | Scoring Zone">
+  <meta property="og:description" content="Free golf handicap calculator using the official WHS formula. Calculate your Handicap Index and Course Handicap in seconds.">
+  <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
+  <meta property="og:url" content="https://www.scoringzone.net/tools/golf-handicap-calculator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Golf Handicap Calculator — WHS/GHIN Compliant | Scoring Zone">
+  <meta name="twitter:description" content="Free golf handicap calculator using the official WHS formula. Calculate your Handicap Index and Course Handicap in seconds.">
+  <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.scoringzone.net/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Golf Handicap Calculator" }
+    ]
+  }
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you calculate a golf handicap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under the World Handicap System, your Handicap Index is calculated in two steps. First, each round's Score Differential = (113 / Slope Rating) × (Adjusted Gross Score − Course Rating). Then your Handicap Index is the average of your best differentials from the last 20 rounds — typically the lowest 8 once you have 20+ rounds recorded. The result is truncated to one decimal place and capped at 54.0."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this calculator GHIN compliant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This calculator uses the official World Handicap System formula — the same formula used by GHIN, England Golf, Golf Canada, and every WHS-affiliated national body. The output is an accurate estimation of your Handicap Index. However, this is not an official GHIN-posted handicap. For a tournament-valid handicap you must submit rounds through your national handicap service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many rounds do I need to calculate a handicap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The minimum is 3 rounds (54 holes). With fewer than 20 rounds, the WHS applies adjustments: 3 rounds uses the lowest differential minus 2.0, 4 rounds uses the lowest minus 1.0, and the calculation becomes fully standard at 20+ rounds where it averages the lowest 8 differentials."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Handicap Index and Course Handicap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Handicap Index is your portable number — the same on any course. Course Handicap is how many strokes you actually receive on a specific course and set of tees, calculated as: Handicap Index × (Slope / 113) + (Course Rating − Par). On harder courses your Course Handicap goes up; on easier courses it goes down."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the maximum golf handicap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under the World Handicap System, the maximum Handicap Index is 54.0 for both men and women. This is higher than the old national maximums (28 for men and 36 for women) — it was raised specifically so beginners and high-handicappers can have an official number from early in their golfing life."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good golf handicap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Single figures (under 10) is generally considered good. The average recreational male golfer plays to around 14, and the average female golfer to around 27. Under 5 is very good. Scratch (0 or better) is exceptional — only 2% of male golfers and under 1% of female golfers achieve it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this calculator if I don't know my Course Rating and Slope?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a rough estimate, use Course Rating ≈ 72 and Slope ≈ 113 (the baseline values). For an accurate calculation, look up the Course and Slope Rating for the specific tees you played — this information is printed on most scorecards and available on every course's website or at the pro shop."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Golf Handicap Calculator",
+    "url": "https://www.scoringzone.net/tools/golf-handicap-calculator.html",
+    "applicationCategory": "SportsApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free calculator that computes a golf Handicap Index using the official WHS/GHIN formula — or a Course Handicap for a specific course.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Scoring Zone",
+      "url": "https://www.scoringzone.net"
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060b08;
+      --bg-card: #0c1410;
+      --bg-card-hover: #111d16;
+      --green: #22c55e;
+      --green-light: #4ade80;
+      --green-dark: #166534;
+      --green-glow: rgba(34, 197, 94, 0.25);
+      --green-subtle: rgba(34, 197, 94, 0.08);
+      --text: #f0fdf4;
+      --text-dim: rgba(240, 253, 244, 0.65);
+      --text-muted: rgba(240, 253, 244, 0.4);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-green: rgba(34, 197, 94, 0.25);
+      --amber: #f5a623;
+      --error: #ef4444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    a { color: var(--green-light); text-decoration: none; }
+    a:hover { color: var(--green); }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6,11,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .nav-logo { width: 32px; height: 32px; }
+    .nav-wordmark { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.16em; text-transform: uppercase; }
+    .nav-wordmark em { color: var(--green); font-style: normal; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { color: var(--text-dim); padding: 8px 14px; border-radius: 8px; font-size: 0.88rem; font-weight: 500; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-cta {
+      padding: 8px 20px; border-radius: 8px; background: var(--green); color: var(--bg);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase; transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--green-glow); color: var(--bg); }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+    }
+
+    /* Page layout */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      padding: 24px 0 0;
+      font-size: 0.82rem;
+    }
+    .breadcrumb ol { list-style: none; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--text-muted); }
+    .breadcrumb .sep { color: var(--text-muted); opacity: 0.4; }
+    .breadcrumb .current { color: var(--green-light); }
+
+    /* Hero */
+    .hero { padding: 48px 0 32px; }
+    .hero-badge {
+      display: inline-block; padding: 6px 14px; border-radius: 999px;
+      background: var(--green-subtle); border: 1px solid var(--border-green);
+      color: var(--green-light); font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--green); }
+    .hero p { font-size: 1.08rem; color: var(--text-dim); max-width: 640px; }
+
+    /* Calculator card */
+    .calc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .calc-card { padding: 20px; border-radius: 16px; }
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: rgba(255,255,255,0.03);
+      padding: 4px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 12px 8px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: var(--text-dim);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      background: var(--green);
+      color: var(--bg);
+    }
+    @media (max-width: 600px) {
+      .tab-btn { font-size: 0.78rem; padding: 10px 4px; }
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Form */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-row.four-col {
+      grid-template-columns: auto 1fr 1fr 1fr auto;
+      align-items: end;
+    }
+    .form-row-label {
+      font-size: 0.78rem; color: var(--text-muted);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      min-width: 56px;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-row.four-col {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .form-row-label { grid-column: 1 / -1; text-align: left; justify-content: flex-start; padding-top: 12px; border-top: 1px solid var(--border); margin-top: 8px; }
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .form-field input {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-field input:focus {
+      outline: none;
+      border-color: var(--green);
+      background: rgba(34,197,94,0.04);
+    }
+    .form-field input.error {
+      border-color: var(--error);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.3s, background 0.2s;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: var(--bg);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--green-glow); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green-light); }
+    .btn-icon {
+      padding: 10px 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-icon:hover { color: var(--error); border-color: var(--error); }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    /* Round list */
+    .rounds-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .rounds-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .rounds-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* Results panel */
+    .results {
+      display: none;
+      margin-top: 32px;
+      padding: 32px;
+      background: linear-gradient(135deg, var(--green-subtle), transparent);
+      border: 1px solid var(--border-green);
+      border-radius: 20px;
+      text-align: center;
+    }
+    .results.visible { display: block; }
+    .result-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 12px;
+    }
+    .result-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3rem, 10vw, 5rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .result-value span { color: var(--green); }
+    .result-sub {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      max-width: 480px;
+      margin: 0 auto 20px;
+    }
+    .result-breakdown {
+      text-align: left;
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 520px;
+      font-size: 0.92rem;
+      color: var(--text-dim);
+    }
+    .result-breakdown .diff-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .result-breakdown .diff-row:last-child { border-bottom: none; }
+    .result-breakdown .diff-row.used { color: var(--green-light); font-weight: 600; }
+    .result-breakdown .diff-row.used::after { content: " ✓"; }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: rgba(245,166,35,0.08);
+      border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    .disclaimer strong { color: var(--amber); }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    h2.section-title {
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    h2.section-title span { color: var(--green); }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .prose p { color: var(--text-dim); margin-bottom: 16px; max-width: 720px; }
+    .prose h3 { margin-top: 28px; margin-bottom: 10px; font-size: 1.25rem; }
+    .prose code {
+      background: rgba(255,255,255,0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.88em;
+      color: var(--green-light);
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-q {
+      width: 100%;
+      background: transparent;
+      border: none;
+      text-align: left;
+      padding: 20px 0;
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-chevron { width: 20px; transition: transform 0.2s; color: var(--green-light); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s;
+    }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner { padding: 0 0 20px; color: var(--text-dim); }
+
+    /* Related */
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .related-card {
+      display: block;
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .related-card:hover { border-color: var(--border-green); transform: translateY(-2px); }
+    .related-card .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      opacity: 0.7;
+    }
+    .related-card h3 {
+      font-size: 1.08rem;
+      margin: 6px 0;
+      color: var(--text);
+    }
+    .related-card p { color: var(--text-dim); font-size: 0.88rem; }
+
+    /* Final CTA */
+    .final-cta {
+      background: linear-gradient(135deg, var(--green-subtle), transparent);
+      border: 1px solid var(--border-green);
+      border-radius: 24px;
+      padding: 48px 32px;
+      text-align: center;
+      margin: 56px 0;
+    }
+    .final-cta h2 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .final-cta h2 span { color: var(--green); }
+    .final-cta p {
+      color: var(--text-dim);
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="https://www.scoringzone.net" class="nav-brand">
+      <img src="../logo/new-scoring-zone-logo.png" alt="Scoring Zone" class="nav-logo" onerror="this.style.display='none'">
+      <span class="nav-wordmark">Scoring <em>Zone</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://www.scoringzone.net">Home</a></li>
+      <li><a href="https://www.scoringzone.net/#features">Features</a></li>
+      <li><a href="https://www.scoringzone.net/blog/">Blog</a></li>
+    </ul>
+    <a href="https://www.scoringzone.net#signup" class="nav-cta" target="_blank" rel="noopener">Get the App</a>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="container breadcrumb">
+    <ol>
+      <li><a href="https://www.scoringzone.net">Home</a></li>
+      <li class="sep">→</li>
+      <li><a href="#">Tools</a></li>
+      <li class="sep">→</li>
+      <li class="current">Golf Handicap Calculator</li>
+    </ol>
+  </div>
+
+  <!-- HERO -->
+  <div class="container">
+    <section class="hero">
+      <div class="hero-badge">WHS / GHIN Compliant Formula</div>
+      <h1>Golf Handicap <span>Calculator</span></h1>
+      <p>Free calculator using the official World Handicap System formula. Enter your rounds to compute your Handicap Index, or convert your existing Index into a Course Handicap for today's round.</p>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="calc-card" aria-label="Golf Handicap Calculator">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="quick" role="tab" aria-selected="true">Quick Estimate</button>
+        <button class="tab-btn" data-tab="full" role="tab" aria-selected="false">Full Handicap Index</button>
+        <button class="tab-btn" data-tab="course" role="tab" aria-selected="false">Course Handicap</button>
+      </div>
+
+      <!-- QUICK ESTIMATE -->
+      <div class="tab-panel active" id="panel-quick" role="tabpanel">
+        <p style="color: var(--text-dim); margin-bottom: 20px;">Enter one round to get a ballpark Handicap Index estimate. Use your last good round for the most realistic number.</p>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="q-score">Adjusted Gross Score</label>
+            <input type="number" id="q-score" min="40" max="200" step="1" placeholder="e.g. 92">
+          </div>
+          <div class="form-field">
+            <label for="q-rating">Course Rating</label>
+            <input type="number" id="q-rating" min="55" max="80" step="0.1" placeholder="e.g. 72.1">
+          </div>
+          <div class="form-field">
+            <label for="q-slope">Slope Rating</label>
+            <input type="number" id="q-slope" min="55" max="155" step="1" placeholder="e.g. 113">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="calcQuick()">Calculate Index</button>
+          <button class="btn btn-ghost" onclick="resetQuick()">Reset</button>
+        </div>
+      </div>
+
+      <!-- FULL HANDICAP -->
+      <div class="tab-panel" id="panel-full" role="tabpanel">
+        <p style="color: var(--text-dim); margin-bottom: 20px;">Enter 3 to 20 rounds. Minimum 3 rounds required. Your Handicap Index will be calculated using the official WHS formula with proper adjustments based on number of rounds.</p>
+        <div class="rounds-header">
+          <h3>Your Rounds</h3>
+          <span class="rounds-count" id="rounds-count">3 of 20</span>
+        </div>
+        <div id="rounds-list"></div>
+        <div class="btn-row">
+          <button class="btn btn-ghost" onclick="addRoundRow()" id="add-round-btn">+ Add Round</button>
+          <button class="btn btn-primary" onclick="calcFull()">Calculate Handicap Index</button>
+          <button class="btn btn-ghost" onclick="resetFull()">Reset All</button>
+        </div>
+      </div>
+
+      <!-- COURSE HANDICAP -->
+      <div class="tab-panel" id="panel-course" role="tabpanel">
+        <p style="color: var(--text-dim); margin-bottom: 20px;">Already have a Handicap Index? Enter it along with today's course data to get your Course Handicap — the number of strokes you receive on the specific tees you're playing.</p>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="c-index">Handicap Index</label>
+            <input type="number" id="c-index" min="-10" max="54" step="0.1" placeholder="e.g. 14.2">
+          </div>
+          <div class="form-field">
+            <label for="c-rating">Course Rating</label>
+            <input type="number" id="c-rating" min="55" max="80" step="0.1" placeholder="e.g. 72.1">
+          </div>
+          <div class="form-field">
+            <label for="c-slope">Slope Rating</label>
+            <input type="number" id="c-slope" min="55" max="155" step="1" placeholder="e.g. 130">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="c-par">Par</label>
+            <input type="number" id="c-par" min="60" max="78" step="1" placeholder="e.g. 72">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="calcCourse()">Calculate Course Handicap</button>
+          <button class="btn btn-ghost" onclick="resetCourse()">Reset</button>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="results" id="results" aria-live="polite">
+        <div class="result-label" id="result-label">Your Handicap Index</div>
+        <div class="result-value"><span id="result-value">—</span></div>
+        <div class="result-sub" id="result-sub"></div>
+        <div class="result-breakdown" id="result-breakdown" style="display:none;"></div>
+        <div class="btn-row" style="justify-content: center;">
+          <button class="btn btn-ghost" onclick="copyResult()">Copy Result</button>
+          <a href="https://www.scoringzone.net#signup" class="btn btn-primary" target="_blank" rel="noopener">Track With Scoring Zone Free</a>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Important:</strong> This calculator estimates your Handicap Index using the official WHS formula. It is not an official GHIN-posted handicap. For a tournament-valid handicap, submit rounds through your national service (GHIN in the US, England Golf in the UK, Golf Canada, etc.).
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section>
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">The <span>WHS Formula</span>, Explained</h2>
+      <div class="prose">
+        <h3>Step 1 — Score Differential</h3>
+        <p>Every round is converted into a Score Differential using this formula: <code>(113 / Slope Rating) × (Adjusted Gross Score − Course Rating)</code>. This normalises every round to a "standard course" so your scores from different courses are comparable.</p>
+        <h3>Step 2 — Handicap Index</h3>
+        <p>With 20 rounds on record, your Handicap Index is the average of your lowest 8 Score Differentials. The system uses your best rounds, not your average — so your index reflects your potential, not your typical day.</p>
+        <p>With fewer than 20 rounds, the WHS applies adjustments. At 3 rounds, it uses the lowest 1 differential minus 2.0. At 5 rounds, the lowest 1 with no adjustment. The table scales up until 20+ rounds, where the standard "best 8" calculation applies.</p>
+        <h3>Step 3 — Course Handicap</h3>
+        <p>Your Handicap Index is portable. Your Course Handicap is what you receive on a specific course: <code>Index × (Slope / 113) + (Course Rating − Par)</code>, rounded to a whole number. On harder courses it goes up, on easier courses it goes down.</p>
+        <p>Full handicap explainer: <a href="https://www.scoringzone.net/blog/what-is-a-handicap-in-golf.html">What Is a Golf Handicap?</a></p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Common <span>Questions</span></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How do you calculate a golf handicap?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Under the World Handicap System, your Handicap Index is calculated in two steps. First, each round's Score Differential = (113 / Slope Rating) × (Adjusted Gross Score − Course Rating). Then your Handicap Index is the average of your best differentials from the last 20 rounds — typically the lowest 8 once you have 20+ rounds recorded. Truncated to one decimal, capped at 54.0.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is this calculator GHIN compliant?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">This calculator uses the official World Handicap System formula — the same formula used by GHIN, England Golf, Golf Canada, and every WHS-affiliated national body. The output is an accurate estimation of your Handicap Index. However, this is not an official GHIN-posted handicap. For tournament play you must submit rounds through your national handicap service.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How many rounds do I need to calculate a handicap?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">The minimum is 3 rounds (54 holes). With fewer than 20 rounds the WHS applies adjustments: 3 rounds uses the lowest differential minus 2.0, 4 rounds uses the lowest minus 1.0. The calculation becomes fully standard at 20+ rounds where it averages the lowest 8 differentials.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the difference between Handicap Index and Course Handicap?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Handicap Index is your portable number — the same on any course. Course Handicap is how many strokes you actually receive on a specific course and set of tees: Index × (Slope / 113) + (Course Rating − Par). On harder courses it goes up, on easier courses it goes down.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the maximum golf handicap?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Under the World Handicap System, the maximum Handicap Index is 54.0 for both men and women. The old national maximums (28 for men, 36 for women) were raised so beginners and high-handicappers can have an official number from early in their golfing life.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is a good golf handicap?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Single figures (under 10) is generally considered good. The average recreational male golfer plays to around 14; the average female around 27. Under 5 is very good. Scratch (0 or better) is exceptional — only 2% of male golfers and under 1% of female golfers achieve it.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I use this calculator if I don't know my Course Rating and Slope?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">For a rough estimate, use Course Rating ≈ 72 and Slope ≈ 113 (the baseline values). For accuracy, look up the Course and Slope Rating for the specific tees you played — usually printed on the scorecard or available on the course website.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section>
+      <div class="section-label">Keep Reading</div>
+      <h2 class="section-title">Related <span>Guides</span></h2>
+      <div class="related-grid">
+        <a href="https://www.scoringzone.net/blog/what-is-a-handicap-in-golf.html" class="related-card">
+          <span class="label">Blog</span>
+          <h3>What Is a Golf Handicap? →</h3>
+          <p>Plain-English guide to the World Handicap System — what the number means, how it's calculated, how to get one.</p>
+        </a>
+        <a href="https://www.scoringzone.net/blog/average-golf-handicap-by-age.html" class="related-card">
+          <span class="label">Blog</span>
+          <h3>Average Golf Handicap by Age →</h3>
+          <p>Real numbers from USGA data — men, women, juniors, seniors. See where you sit in the bracket.</p>
+        </a>
+        <a href="https://www.scoringzone.net/blog/how-to-lower-your-golf-handicap.html" class="related-card">
+          <span class="label">Blog</span>
+          <h3>How to Lower Your Golf Handicap →</h3>
+          <p>Where strokes actually hide and how to attack them. Short game first, full swing last.</p>
+        </a>
+        <a href="https://www.scoringzone.net/blog/average-golf-score.html" class="related-card">
+          <span class="label">Blog</span>
+          <h3>Average Golf Score by Handicap →</h3>
+          <p>The real numbers by handicap bracket — plus what separates each scoring level.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <h2>Track Your <span>Short Game Handicap</span></h2>
+      <p>Your overall handicap hides where you're actually losing shots. Scoring Zone calculates a separate Short Game Handicap from 60 scored shots — and shows you exactly which category is dropping your index the slowest.</p>
+      <a href="https://www.scoringzone.net#signup" class="btn btn-primary" target="_blank" rel="noopener" style="font-size: 1.05rem; padding: 16px 36px;">Start Your Performance Test Free</a>
+    </section>
+  </div>
+
+  <footer>
+    © 2026 Scoring Zone · <a href="https://www.scoringzone.net/privacy.html" style="color: var(--text-muted);">Privacy</a> · <a href="https://www.scoringzone.net/contact.html" style="color: var(--text-muted);">Contact</a>
+  </footer>
+
+  <script>
+    // =====================================================
+    // GOLF HANDICAP CALCULATOR — WHS/GHIN FORMULA
+    // =====================================================
+
+    const MAX_ROUNDS = 20;
+    const MIN_ROUNDS = 3;
+    const MAX_INDEX = 54.0;
+
+    // WHS adjustment table: [differentialsUsed, adjustment]
+    const WHS_TABLE = {
+      3:  [1, -2.0],
+      4:  [1, -1.0],
+      5:  [1,  0.0],
+      6:  [2, -1.0],
+      7:  [2,  0.0],
+      8:  [2,  0.0],
+      9:  [3,  0.0],
+      10: [3,  0.0],
+      11: [3,  0.0],
+      12: [4,  0.0],
+      13: [4,  0.0],
+      14: [4,  0.0],
+      15: [5,  0.0],
+      16: [5,  0.0],
+      17: [6,  0.0],
+      18: [6,  0.0],
+      19: [7,  0.0],
+      20: [8,  0.0]
+    };
+
+    // =====================================================
+    // CORE CALCULATIONS
+    // =====================================================
+
+    function calculateDifferential(adjScore, courseRating, slope) {
+      return (113 / slope) * (adjScore - courseRating);
+    }
+
+    function calculateHandicapIndex(differentials) {
+      const n = Math.min(differentials.length, 20);
+      const [count, adjustment] = WHS_TABLE[n];
+      const sorted = [...differentials].sort((a, b) => a - b);
+      const lowest = sorted.slice(0, count);
+      const avg = lowest.reduce((s, d) => s + d, 0) / lowest.length;
+      let index = avg + adjustment;
+      index = Math.min(index, MAX_INDEX);
+      // Truncate to 1 decimal (don't round)
+      index = Math.floor(index * 10) / 10;
+      return { index, lowest, count, adjustment, n };
+    }
+
+    function calculateCourseHandicap(index, courseRating, slope, par) {
+      const ch = index * (slope / 113) + (courseRating - par);
+      return Math.round(ch);
+    }
+
+    // =====================================================
+    // INPUT VALIDATION
+    // =====================================================
+
+    function validateNumber(val, min, max) {
+      const n = parseFloat(val);
+      if (isNaN(n) || n < min || n > max) return null;
+      return n;
+    }
+
+    function markError(el, hasError) {
+      el.classList.toggle('error', hasError);
+    }
+
+    // =====================================================
+    // TAB SWITCHING
+    // =====================================================
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-selected', b === btn);
+        });
+        document.querySelectorAll('.tab-panel').forEach(p => {
+          p.classList.toggle('active', p.id === `panel-${tab}`);
+        });
+        hideResults();
+      });
+    });
+
+    // =====================================================
+    // QUICK ESTIMATE
+    // =====================================================
+
+    function calcQuick() {
+      const scoreEl = document.getElementById('q-score');
+      const ratingEl = document.getElementById('q-rating');
+      const slopeEl = document.getElementById('q-slope');
+      const score = validateNumber(scoreEl.value, 40, 200);
+      const rating = validateNumber(ratingEl.value, 55, 80);
+      const slope = validateNumber(slopeEl.value, 55, 155);
+      markError(scoreEl, score === null);
+      markError(ratingEl, rating === null);
+      markError(slopeEl, slope === null);
+      if (score === null || rating === null || slope === null) {
+        alert('Please enter valid values. Score 40–200, Course Rating 55–80, Slope 55–155.');
+        return;
+      }
+      const diff = calculateDifferential(score, rating, slope);
+      // With 1 round, WHS table says lowest 1, adjustment -2.0
+      const estimated = Math.max(Math.min(diff - 2.0, MAX_INDEX), -10);
+      const rounded = Math.floor(estimated * 10) / 10;
+      showResults({
+        label: 'Estimated Handicap Index',
+        value: rounded.toFixed(1),
+        sub: `Based on one round with a Score Differential of ${diff.toFixed(1)}. This is a rough estimate — for an accurate Handicap Index, enter 3+ rounds in the Full Calculator tab.`,
+        breakdown: null
+      });
+    }
+
+    function resetQuick() {
+      ['q-score','q-rating','q-slope'].forEach(id => {
+        const el = document.getElementById(id);
+        el.value = '';
+        markError(el, false);
+      });
+      hideResults();
+    }
+
+    // =====================================================
+    // FULL HANDICAP INDEX — dynamic rounds
+    // =====================================================
+
+    let roundsList = [];
+
+    function makeRoundRow(id, data = {}) {
+      const div = document.createElement('div');
+      div.className = 'form-row four-col';
+      div.dataset.id = id;
+      div.innerHTML = `
+        <span class="form-row-label">#${id + 1}</span>
+        <div class="form-field">
+          <label>Score</label>
+          <input type="number" min="40" max="200" step="1" data-field="score" value="${data.score || ''}" placeholder="e.g. 88">
+        </div>
+        <div class="form-field">
+          <label>Course Rating</label>
+          <input type="number" min="55" max="80" step="0.1" data-field="rating" value="${data.rating || ''}" placeholder="e.g. 72.1">
+        </div>
+        <div class="form-field">
+          <label>Slope</label>
+          <input type="number" min="55" max="155" step="1" data-field="slope" value="${data.slope || ''}" placeholder="e.g. 113">
+        </div>
+        <button class="btn-icon" title="Remove round" onclick="removeRoundRow(${id})" aria-label="Remove round ${id + 1}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+        </button>
+      `;
+      // Persist on input change
+      div.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('input', saveRoundsToStorage);
+      });
+      return div;
+    }
+
+    function addRoundRow(data = {}) {
+      const list = document.getElementById('rounds-list');
+      if (list.children.length >= MAX_ROUNDS) return;
+      const id = list.children.length;
+      list.appendChild(makeRoundRow(id, data));
+      updateRoundsCount();
+    }
+
+    function removeRoundRow(id) {
+      const list = document.getElementById('rounds-list');
+      if (list.children.length <= MIN_ROUNDS) {
+        alert(`Minimum ${MIN_ROUNDS} rounds required.`);
+        return;
+      }
+      const row = list.querySelector(`[data-id="${id}"]`);
+      if (row) row.remove();
+      // Re-index remaining rows
+      Array.from(list.children).forEach((row, i) => {
+        row.dataset.id = i;
+        row.querySelector('.form-row-label').textContent = `#${i + 1}`;
+        const btn = row.querySelector('.btn-icon');
+        btn.setAttribute('onclick', `removeRoundRow(${i})`);
+      });
+      updateRoundsCount();
+      saveRoundsToStorage();
+    }
+
+    function updateRoundsCount() {
+      const list = document.getElementById('rounds-list');
+      document.getElementById('rounds-count').textContent = `${list.children.length} of ${MAX_ROUNDS}`;
+      document.getElementById('add-round-btn').disabled = list.children.length >= MAX_ROUNDS;
+    }
+
+    function collectRoundsData() {
+      const list = document.getElementById('rounds-list');
+      const rows = Array.from(list.children);
+      const data = rows.map(row => ({
+        score: row.querySelector('[data-field="score"]').value,
+        rating: row.querySelector('[data-field="rating"]').value,
+        slope: row.querySelector('[data-field="slope"]').value
+      }));
+      return data;
+    }
+
+    function saveRoundsToStorage() {
+      try {
+        localStorage.setItem('sz_handicap_rounds', JSON.stringify(collectRoundsData()));
+      } catch(e) {}
+    }
+
+    function loadRoundsFromStorage() {
+      try {
+        const stored = localStorage.getItem('sz_handicap_rounds');
+        if (!stored) return null;
+        return JSON.parse(stored);
+      } catch(e) { return null; }
+    }
+
+    function calcFull() {
+      const data = collectRoundsData();
+      if (data.length < MIN_ROUNDS) {
+        alert(`You need at least ${MIN_ROUNDS} rounds to calculate a Handicap Index.`);
+        return;
+      }
+      const differentials = [];
+      let hasError = false;
+      const list = document.getElementById('rounds-list');
+      Array.from(list.children).forEach((row, i) => {
+        const scoreInp = row.querySelector('[data-field="score"]');
+        const ratingInp = row.querySelector('[data-field="rating"]');
+        const slopeInp = row.querySelector('[data-field="slope"]');
+        const score = validateNumber(scoreInp.value, 40, 200);
+        const rating = validateNumber(ratingInp.value, 55, 80);
+        const slope = validateNumber(slopeInp.value, 55, 155);
+        markError(scoreInp, score === null);
+        markError(ratingInp, rating === null);
+        markError(slopeInp, slope === null);
+        if (score === null || rating === null || slope === null) { hasError = true; return; }
+        const diff = calculateDifferential(score, rating, slope);
+        differentials.push({ round: i + 1, score, rating, slope, differential: diff });
+      });
+      if (hasError || differentials.length < MIN_ROUNDS) {
+        alert('Please fix the highlighted fields and ensure every round has valid values.');
+        return;
+      }
+      const result = calculateHandicapIndex(differentials.map(d => d.differential));
+      // Build breakdown
+      const sorted = [...differentials].sort((a, b) => a.differential - b.differential);
+      const usedIds = new Set(sorted.slice(0, result.count).map(d => d.round));
+      const breakdownHTML = differentials.map(d =>
+        `<div class="diff-row ${usedIds.has(d.round) ? 'used' : ''}">
+          <span>Round ${d.round} — ${d.score} @ ${d.rating}/${d.slope}</span>
+          <span>${d.differential.toFixed(1)}</span>
+        </div>`
+      ).join('');
+      const adjText = result.adjustment === 0 ? '' : ` (adjustment ${result.adjustment > 0 ? '+' : ''}${result.adjustment.toFixed(1)})`;
+      showResults({
+        label: 'Your Handicap Index',
+        value: result.index.toFixed(1),
+        sub: `Calculated from ${result.n} rounds using the lowest ${result.count} differential${result.count > 1 ? 's' : ''}${adjText}. Differentials used are highlighted below.`,
+        breakdown: `<strong style="color: var(--text); display: block; margin-bottom: 10px;">Score Differentials</strong>${breakdownHTML}`
+      });
+    }
+
+    function resetFull() {
+      if (!confirm('Clear all rounds? This cannot be undone.')) return;
+      const list = document.getElementById('rounds-list');
+      list.innerHTML = '';
+      for (let i = 0; i < MIN_ROUNDS; i++) addRoundRow();
+      try { localStorage.removeItem('sz_handicap_rounds'); } catch(e) {}
+      hideResults();
+    }
+
+    // =====================================================
+    // COURSE HANDICAP
+    // =====================================================
+
+    function calcCourse() {
+      const indexEl = document.getElementById('c-index');
+      const ratingEl = document.getElementById('c-rating');
+      const slopeEl = document.getElementById('c-slope');
+      const parEl = document.getElementById('c-par');
+      const index = validateNumber(indexEl.value, -10, 54);
+      const rating = validateNumber(ratingEl.value, 55, 80);
+      const slope = validateNumber(slopeEl.value, 55, 155);
+      const par = validateNumber(parEl.value, 60, 78);
+      markError(indexEl, index === null);
+      markError(ratingEl, rating === null);
+      markError(slopeEl, slope === null);
+      markError(parEl, par === null);
+      if (index === null || rating === null || slope === null || par === null) {
+        alert('Please enter valid values for all four fields.');
+        return;
+      }
+      const ch = calculateCourseHandicap(index, rating, slope, par);
+      showResults({
+        label: 'Your Course Handicap',
+        value: ch.toString(),
+        sub: `At Course Rating ${rating}, Slope ${slope}, Par ${par}. Formula: ${index.toFixed(1)} × (${slope}/113) + (${rating} − ${par}) = ${ch}.`,
+        breakdown: null
+      });
+    }
+
+    function resetCourse() {
+      ['c-index','c-rating','c-slope','c-par'].forEach(id => {
+        const el = document.getElementById(id);
+        el.value = '';
+        markError(el, false);
+      });
+      hideResults();
+    }
+
+    // =====================================================
+    // RESULTS UI
+    // =====================================================
+
+    function showResults({ label, value, sub, breakdown }) {
+      document.getElementById('result-label').textContent = label;
+      document.getElementById('result-value').textContent = value;
+      document.getElementById('result-sub').textContent = sub;
+      const bd = document.getElementById('result-breakdown');
+      if (breakdown) {
+        bd.innerHTML = breakdown;
+        bd.style.display = 'block';
+      } else {
+        bd.style.display = 'none';
+      }
+      const results = document.getElementById('results');
+      results.classList.add('visible');
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function hideResults() {
+      document.getElementById('results').classList.remove('visible');
+    }
+
+    function copyResult() {
+      const label = document.getElementById('result-label').textContent;
+      const value = document.getElementById('result-value').textContent;
+      const sub = document.getElementById('result-sub').textContent;
+      const text = `${label}: ${value}\n\n${sub}\n\nCalculated at https://www.scoringzone.net/tools/golf-handicap-calculator.html`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = event.target;
+        const original = btn.textContent;
+        btn.textContent = 'Copied ✓';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      }).catch(() => alert(text));
+    }
+
+    // =====================================================
+    // FAQ TOGGLE
+    // =====================================================
+
+    function toggleFaq(btn) {
+      btn.parentElement.classList.toggle('open');
+    }
+
+    // =====================================================
+    // INIT
+    // =====================================================
+
+    function init() {
+      // Seed Full Calculator with saved rounds or 3 empty rows
+      const saved = loadRoundsFromStorage();
+      if (saved && saved.length >= MIN_ROUNDS) {
+        saved.forEach(data => addRoundRow(data));
+      } else {
+        for (let i = 0; i < MIN_ROUNDS; i++) addRoundRow();
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
