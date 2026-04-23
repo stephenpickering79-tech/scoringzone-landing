@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>18Birdies vs Golfshot vs TheGrint — Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #060b08; font-family: 'Barlow Condensed', sans-serif; }
+
+  .canvas {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(160deg, #060b08 0%, #0a1a0f 45%, #0d2818 85%, #060b08 100%);
+    overflow: hidden;
+  }
+
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 55% 50% at 50% 50%, rgba(34,197,94,0.08) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+    z-index: 2;
+  }
+
+  /* Top label */
+  .top-label {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    background: rgba(0,0,0,0.5);
+    padding: 6px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Three-column layout */
+  .brands {
+    position: absolute;
+    top: 95px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr 60px 1fr;
+    align-items: center;
+    gap: 0;
+    width: 1120px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 16px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    height: 340px;
+    justify-content: center;
+  }
+
+  .brand-logo {
+    width: 160px;
+    height: 160px;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.35),
+      0 0 0 2px rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-logo--18b { background: #fff; }
+  .brand-logo--golfshot { background: #fff; }
+  .brand-logo--grint { background: #f3f4f6; }
+
+  .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .brand-logo--golfshot img,
+  .brand-logo--grint img {
+    object-fit: contain;
+    padding: 18px;
+  }
+
+  .brand-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    color: #f0fdf4;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .brand-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* VS dividers */
+  .vs {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 38px;
+    color: rgba(34,197,94,0.65);
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 20px rgba(34,197,94,0.3);
+  }
+
+  /* Bottom Scoring Zone strip */
+  .sz-strip {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 22px;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.22);
+    border-radius: 100px;
+    box-shadow: 0 0 30px rgba(34,197,94,0.1);
+  }
+
+  .sz-strip-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #000;
+    flex-shrink: 0;
+  }
+
+  .sz-strip-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .sz-strip-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #f0fdf4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .sz-strip-text em {
+    color: #22c55e;
+    font-style: normal;
+  }
+
+  .sz-strip-divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .sz-strip-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(34,197,94,0.75);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* Title */
+  .title {
+    position: absolute;
+    top: 460px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    color: #f0fdf4;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.1;
+    width: 1000px;
+  }
+
+  .title em {
+    color: #22c55e;
+    font-style: normal;
+  }
+
+  /* Corner accents */
+  .corner { position: absolute; width: 28px; height: 28px; z-index: 20; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(255,255,255,0.15); border-left: 2px solid rgba(255,255,255,0.15); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(34,197,94,0.3); border-right: 2px solid rgba(34,197,94,0.3); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(255,255,255,0.15); border-left: 2px solid rgba(255,255,255,0.15); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(34,197,94,0.3); border-right: 2px solid rgba(34,197,94,0.3); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="top-label">GPS App Comparison &bull; 2026</div>
+
+  <div class="brands">
+    <!-- 18 Birdies -->
+    <div class="brand">
+      <div class="brand-logo brand-logo--18b">
+        <img src="../../18 birdies brand/18 bridies logo .jpg" alt="18 Birdies logo">
+      </div>
+      <div class="brand-name">18 Birdies</div>
+      <div class="brand-tag">Social &bull; GPS</div>
+    </div>
+
+    <div class="vs">VS</div>
+
+    <!-- Golfshot -->
+    <div class="brand">
+      <div class="brand-logo brand-logo--golfshot">
+        <img src="../../18 birdies brand/golfshot-logo.png" alt="Golfshot logo">
+      </div>
+      <div class="brand-name">Golfshot</div>
+      <div class="brand-tag">Minimalist GPS</div>
+    </div>
+
+    <div class="vs">VS</div>
+
+    <!-- TheGrint -->
+    <div class="brand">
+      <div class="brand-logo brand-logo--grint">
+        <img src="../../18 birdies brand/thegrint-logo.png" alt="TheGrint logo">
+      </div>
+      <div class="brand-name">TheGrint</div>
+      <div class="brand-tag">USGA Handicap</div>
+    </div>
+  </div>
+
+  <div class="title">Which golf app should you <em>actually pick?</em></div>
+
+  <div class="sz-strip">
+    <div class="sz-strip-logo">
+      <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone">
+    </div>
+    <div class="sz-strip-text">Scoring <em>Zone</em></div>
+    <div class="sz-strip-divider"></div>
+    <div class="sz-strip-sub">The practice app all three are missing</div>
+  </div>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+</body>
+</html>
