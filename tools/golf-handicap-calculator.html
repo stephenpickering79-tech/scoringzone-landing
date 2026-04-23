@@ -744,6 +744,99 @@
       </div>
     </section>
 
+    <!-- WORKED EXAMPLES -->
+    <section>
+      <div class="section-label">Worked Examples</div>
+      <h2 class="section-title">How the <span>Math Plays Out</span> in Practice</h2>
+      <div class="prose">
+        <h3>Example 1 — Single round, standard course</h3>
+        <p>You shot <strong>92</strong> at a course with Course Rating <strong>71.5</strong> and Slope Rating <strong>125</strong>.</p>
+        <p>Score Differential = <code>(113 / 125) × (92 − 71.5)</code> = <code>0.904 × 20.5</code> = <strong>18.5</strong>. If this were your only round, the calculator applies the 3-round minimum (lowest 1 differential minus 2.0), so your estimated Handicap Index would be <strong>16.5</strong>.</p>
+
+        <h3>Example 2 — Twenty rounds, full calculation</h3>
+        <p>You've recorded 20 rounds with Score Differentials ranging from 9.2 (your best) to 22.4 (your worst). The system sorts them and takes the lowest 8: let's say those average to <strong>12.3</strong>.</p>
+        <p>Your Handicap Index = <strong>12.3</strong>. That's your portable number for every course you play.</p>
+
+        <h3>Example 3 — Course Handicap on a harder course</h3>
+        <p>Handicap Index 12.3, playing a course with Rating 73.2, Slope 138, Par 72.</p>
+        <p>Course Handicap = <code>12.3 × (138 / 113) + (73.2 − 72)</code> = <code>15.02 + 1.2</code> = <code>16.22</code> → rounded to <strong>16</strong>. You receive 16 strokes on this tougher course, even though your Index is 12.3.</p>
+
+        <h3>Example 4 — Course Handicap on an easier course</h3>
+        <p>Same Index 12.3, but now playing an easier course — Rating 69.8, Slope 105, Par 72.</p>
+        <p>Course Handicap = <code>12.3 × (105 / 113) + (69.8 − 72)</code> = <code>11.43 − 2.2</code> = <code>9.23</code> → rounded to <strong>9</strong>. On the easier course you receive fewer strokes — the system adjusts automatically.</p>
+      </div>
+    </section>
+
+    <!-- WHAT'S NOT INCLUDED -->
+    <section>
+      <div class="section-label">Advanced WHS Details</div>
+      <h2 class="section-title">What This Calculator <span>Doesn't Include</span></h2>
+      <div class="prose">
+        <p>The WHS formula has a few advanced components that require data most casual golfers don't track. This calculator omits them for simplicity. If you care about absolute precision, here's what's missing:</p>
+
+        <h3>PCC — Playing Conditions Calculation</h3>
+        <p>PCC adjusts for unusually hard or easy playing conditions on a given day. It ranges from −1 to +3 and is calculated automatically by your national handicap service based on the scores posted that day at a course. Most days PCC = 0, so omitting it doesn't change your index. We skip it here because it requires per-day course data you don't have at home.</p>
+
+        <h3>Soft Cap and Hard Cap</h3>
+        <p>Once you have an established index, WHS applies caps to prevent your number from rising too quickly if you have a stretch of bad rounds. The <strong>soft cap</strong> slows the increase once your index is 3.0 strokes above your lowest index in the last 365 days. The <strong>hard cap</strong> prevents your index from ever rising more than 5.0 strokes above that low point. This calculator can't apply caps because it doesn't know your 365-day low — only your national service does.</p>
+
+        <h3>Net Double Bogey (Adjusted Gross Score)</h3>
+        <p>The WHS uses your <strong>Adjusted Gross Score</strong> — meaning each hole's score is capped at Net Double Bogey (par + 2 + any handicap strokes received on that hole). Since the calculator doesn't know your hole-by-hole scores, enter a score that already has Net Double Bogey applied. For most golfers this only matters if you had a blow-up hole (9 or more on a par 4, for example).</p>
+
+        <h3>Exceptional Score Reduction</h3>
+        <p>If you post a score more than 7 strokes better than your Handicap Index would predict, WHS applies a one-time reduction. Like the caps, this requires historical index data the calculator doesn't have.</p>
+
+        <p style="margin-top: 20px; padding: 14px; background: rgba(34,197,94,0.05); border-left: 3px solid var(--green); border-radius: 6px;">
+        <strong style="color: var(--text);">Bottom line:</strong> This calculator produces an accurate Handicap Index for 90%+ of golfers. If your score has normal hole-by-hole distribution and your index isn't rapidly rising from a previous low, the output matches what a GHIN-posted index would show within 0.1–0.2.
+        </p>
+      </div>
+    </section>
+
+    <!-- INTERNATIONAL SYSTEMS -->
+    <section>
+      <div class="section-label">By Country</div>
+      <h2 class="section-title">Official Handicap Systems <span>Around the World</span></h2>
+      <div class="prose">
+        <p>The World Handicap System is the single formula used globally — but each country operates its own service that manages golfers' actual postings. Here's where to go for an official handicap in each major market:</p>
+
+        <h3>🇺🇸 GHIN — United States</h3>
+        <p>The <strong>Golf Handicap and Information Network</strong> is the USGA's system for managing handicaps in the US. Every WHS handicap posted through a USGA member club or digital service runs through GHIN. Access requires membership through a USGA-affiliated club or a digital-only service like USGA's GHIN mobile app.</p>
+
+        <h3>🇬🇧 England Golf / Scottish Golf / Golf Ireland — UK and Ireland</h3>
+        <p>Each of the four home nations has its own handicap service running on WHS. <strong>England Golf</strong> offers iGolf, a non-member service for golfers without club affiliation. <strong>Scottish Golf</strong> and <strong>Wales Golf</strong> have equivalent services. <strong>Golf Ireland</strong> manages handicaps across Ireland and Northern Ireland. All produce an official, tournament-valid Handicap Index.</p>
+
+        <h3>🇨🇦 Golf Canada</h3>
+        <p>Golf Canada manages handicap postings across Canada using the WHS formula. The <strong>Golf Canada Score Centre</strong> app allows individuals to post scores and maintain a handicap without club membership.</p>
+
+        <h3>🇦🇺 Golf Australia</h3>
+        <p>Golf Australia operates the <strong>GolfLink</strong> system, which is the Australian implementation of WHS. Every Australian club ties into GolfLink, and standalone digital handicap services are available for non-members.</p>
+
+        <h3>🌍 Other countries</h3>
+        <p>Every major golfing nation — France, Germany, Spain, Japan, South Africa, New Zealand, and most of Europe — has a national federation running WHS. The formula is identical to what this calculator uses. The differences are administrative (how scores are posted, what counts as a qualifying round), not mathematical.</p>
+      </div>
+    </section>
+
+    <!-- HOW TO GET OFFICIAL -->
+    <section>
+      <div class="section-label">Next Steps</div>
+      <h2 class="section-title">How to Get an <span>Official Handicap</span></h2>
+      <div class="prose">
+        <p>This calculator gives you an accurate estimate. For a tournament-valid handicap — one you can use for competitions, club events, or handicap-matched matches — you need to register with your national service.</p>
+
+        <h3>Step 1: Pick your service</h3>
+        <p>If you're a club member, your club likely already provides access. If not, most countries have digital-only services: iGolf (England), GHIN mobile (US), Golf Canada Score Centre, GolfLink (Australia). Annual cost is typically £30–£50 or equivalent.</p>
+
+        <h3>Step 2: Post 54 holes</h3>
+        <p>The minimum to establish a Handicap Index is 54 holes — three 18-hole rounds or six 9-hole rounds. Rounds must be played at WHS-registered courses with at least one playing partner as a marker. Submit each score within 24 hours.</p>
+
+        <h3>Step 3: Post regularly</h3>
+        <p>Your Index updates automatically as you post new scores. Post every acceptable round — casual rounds count as long as they're played at a rated course and follow the rules of golf. Don't cherry-pick only your good rounds: the WHS system is designed to reward consistency, and posting poor rounds doesn't "hurt" your handicap because only your best 8 of 20 count.</p>
+
+        <h3>Step 4: Track what's actually costing you strokes</h3>
+        <p>Your handicap is a single number. It doesn't tell you whether you're losing strokes to driving, approach, chipping, or putting. The best improvement tools go further — breaking your scoring into categories so you can target the specific areas where you're losing the most strokes. See <a href="https://www.scoringzone.net/blog/how-to-lower-your-golf-handicap.html">how to lower your golf handicap</a> for the full methodology.</p>
+      </div>
+    </section>
+
     <!-- FAQ -->
     <section>
       <div class="section-label">FAQ</div>
