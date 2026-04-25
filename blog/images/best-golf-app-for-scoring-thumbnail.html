@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Golf App for Scoring — Thumbnail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    background: #060b08;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .canvas { position: relative; width: 1200px; height: 630px; overflow: hidden; }
+
+  /* LEFT PANEL — Score Recording (GPS apps), neutral dark */
+  .panel-left {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: #14233a;
+    clip-path: polygon(0 0, 56% 0, 44% 100%, 0 100%);
+    z-index: 1;
+  }
+  .panel-left::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 30%, rgba(120,200,255,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 70% 80%, rgba(0,0,0,0.30) 0%, transparent 50%);
+  }
+  .panel-left::after {
+    content: ''; position: absolute; inset: 0; opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.6'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* RIGHT PANEL — Score Improvement (Scoring Zone) */
+  .panel-right {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: #060b08;
+    clip-path: polygon(56% 0, 100% 0, 100% 100%, 44% 100%);
+    z-index: 2;
+  }
+  .panel-right::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 70% 40%, rgba(34,197,94,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 80% 90%, rgba(34,197,94,0.07) 0%, transparent 50%);
+  }
+  .panel-right::after {
+    content: ''; position: absolute; inset: 0; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  /* Diagonal slash */
+  .slash {
+    position: absolute; top: 0; left: 50%;
+    width: 6px; height: 140%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(34,197,94,0.6) 50%, rgba(255,255,255,0.9) 100%);
+    transform: translateX(-50%) rotate(10deg);
+    transform-origin: center 40%;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 60px rgba(34,197,94,0.2);
+  }
+  .slash::before, .slash::after { content: ''; position: absolute; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.15); }
+  .slash::before { left: -8px; } .slash::after { right: -8px; }
+
+  /* Top pill */
+  .top-bar {
+    position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
+    z-index: 15;
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.55); padding: 6px 24px;
+    border-radius: 100px; border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+  }
+
+  /* LEFT SIDE — "Recording" cluster */
+  .left-block {
+    position: absolute; top: 50%; left: 12%;
+    transform: translateY(-50%);
+    z-index: 5;
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: rgba(180,210,255,0.65);
+    letter-spacing: 0.22em; text-transform: uppercase;
+  }
+
+  .logo-row {
+    display: flex; gap: 14px; align-items: center;
+  }
+  .logo-tile {
+    width: 70px; height: 70px;
+    border-radius: 16px; overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-tile--dark { background: #0a2540; }
+  .logo-tile img { width: 100%; height: 100%; object-fit: cover; }
+  .logo-tile.logo-tile--contain img { object-fit: contain; padding: 6px 8px; }
+
+  .left-headline {
+    font-weight: 900; font-size: 38px;
+    color: #fff; letter-spacing: 0.04em;
+    text-transform: uppercase; line-height: 1;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+  .left-headline span {
+    display: block; font-size: 16px;
+    font-family: 'DM Mono', monospace; font-weight: 500;
+    color: rgba(180,210,255,0.7);
+    letter-spacing: 0.2em; margin-top: 8px;
+  }
+
+  /* RIGHT SIDE — Scoring Zone (improvement) */
+  .right-block {
+    position: absolute; top: 50%; right: 8%;
+    transform: translateY(-50%);
+    z-index: 5;
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+  }
+
+  .right-label {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: rgba(34,197,94,0.85);
+    letter-spacing: 0.22em; text-transform: uppercase;
+  }
+
+  .sz-logo {
+    width: 130px; height: 130px;
+    border-radius: 28px; overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.4),
+      0 0 0 2px rgba(34,197,94,0.3),
+      0 0 40px rgba(34,197,94,0.18);
+  }
+  .sz-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .right-headline {
+    font-weight: 900; font-size: 38px;
+    color: #f0fdf4; letter-spacing: 0.04em;
+    text-transform: uppercase; line-height: 1;
+    text-align: center;
+  }
+  .right-headline em {
+    font-style: normal; color: #22c55e;
+    text-shadow: 0 0 24px rgba(34,197,94,0.4);
+    display: block; margin-top: 8px;
+  }
+
+  /* Bottom strip */
+  .bottom-bar {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    z-index: 15;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 18px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    text-align: center; white-space: nowrap;
+  }
+
+  /* Corner accents */
+  .corner { position: absolute; width: 30px; height: 30px; z-index: 15; }
+  .corner--tl { top: 20px; left: 20px; border-top: 2px solid rgba(255,255,255,0.18); border-left: 2px solid rgba(255,255,255,0.18); }
+  .corner--tr { top: 20px; right: 20px; border-top: 2px solid rgba(34,197,94,0.4); border-right: 2px solid rgba(34,197,94,0.4); }
+  .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid rgba(255,255,255,0.18); border-left: 2px solid rgba(255,255,255,0.18); }
+  .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid rgba(34,197,94,0.4); border-right: 2px solid rgba(34,197,94,0.4); }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+
+  <div class="panel-left"></div>
+  <div class="panel-right"></div>
+  <div class="slash"></div>
+
+  <div class="top-bar">Best Golf App for Scoring &bull; 2026</div>
+
+  <!-- Left: GPS / score-recording apps -->
+  <div class="left-block">
+    <div class="label">Score Recording</div>
+    <div class="logo-row">
+      <div class="logo-tile">
+        <img src="../../18 birdies brand/18 bridies logo .jpg" alt="18 Birdies logo">
+      </div>
+      <div class="logo-tile logo-tile--contain">
+        <img src="../../18 birdies brand/golfshot-logo.png" alt="Golfshot logo">
+      </div>
+      <div class="logo-tile logo-tile--dark">
+        <img src="../../18 birdies brand/thegrint-logo.png" alt="TheGrint logo">
+      </div>
+    </div>
+    <div class="left-headline">
+      Track Your<br>Score
+      <span>GPS &bull; Scorecard &bull; Stats</span>
+    </div>
+  </div>
+
+  <!-- Right: Scoring Zone (improvement) -->
+  <div class="right-block">
+    <div class="right-label">Score Improvement</div>
+    <div class="sz-logo">
+      <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone logo">
+    </div>
+    <div class="right-headline">
+      Lower Your<br><em>Score</em>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="bottom-bar">Which one actually lowers it?</div>
+
+  <!-- Corners -->
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+</div>
+
+</body>
+</html>
