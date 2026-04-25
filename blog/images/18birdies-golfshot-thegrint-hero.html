@@ -14,9 +14,9 @@
 
   /* ── PANEL 1: 18 Birdies (left) ── */
   .panel-1 {
-    position: absolute; top: 0; left: 0; width: 42%; height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: #1a6ae0;
-    clip-path: polygon(0 0, 90% 0, 76% 100%, 0 100%);
+    clip-path: polygon(0 0, 45% 0, 31% 100%, 0 100%);
     z-index: 1;
   }
   .panel-1::before {
@@ -34,7 +34,7 @@
   .panel-2 {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: #c0312a;
-    clip-path: polygon(35% 0, 73% 0, 59% 100%, 21% 100%);
+    clip-path: polygon(45% 0, 83% 0, 69% 100%, 31% 100%);
     z-index: 2;
   }
   .panel-2::before {
@@ -50,9 +50,9 @@
 
   /* ── PANEL 3: TheGrint (right, dark + green accent) ── */
   .panel-3 {
-    position: absolute; top: 0; right: 0; width: 42%; height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: #0a2540;
-    clip-path: polygon(24% 0, 100% 0, 100% 100%, 10% 100%);
+    clip-path: polygon(83% 0, 100% 0, 100% 100%, 69% 100%);
     z-index: 3;
   }
   .panel-3::before {
@@ -77,8 +77,8 @@
   }
   .slash::before, .slash::after { content: ''; position: absolute; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.15); }
   .slash::before { left: -8px; } .slash::after { right: -8px; }
-  .slash-1 { left: 41%; transform: translateX(-50%) rotate(10deg); }
-  .slash-2 { left: 65%; transform: translateX(-50%) rotate(10deg); }
+  .slash-1 { left: 51%; transform: translateX(-50%) rotate(10deg); }
+  .slash-2 { left: 75%; transform: translateX(-50%) rotate(10deg); }
 
   /* ── VS BADGES (smaller for 3-way) ── */
   .vs-badge {
@@ -101,8 +101,8 @@
     font-weight: 900; font-size: 32px; letter-spacing: 0.04em;
     color: #fff; text-shadow: 0 0 22px rgba(34,197,94,0.5);
   }
-  .vs-1 { left: 41%; }
-  .vs-2 { left: 65%; }
+  .vs-1 { left: 51%; }
+  .vs-2 { left: 75%; }
 
   /* ── BRAND BLOCKS ── */
   .brand {
@@ -110,9 +110,9 @@
     z-index: 5;
     display: flex; flex-direction: column; align-items: center; gap: 14px;
   }
-  .brand-1 { left: 6%; }
-  .brand-2 { left: 53%; transform: translate(-50%, -50%); }
-  .brand-3 { right: 6%; }
+  .brand-1 { left: 4%; }
+  .brand-2 { left: 63%; transform: translate(-50%, -50%); }
+  .brand-3 { right: 2%; }
 
   .brand-logo {
     width: 110px; height: 110px; border-radius: 24px;
