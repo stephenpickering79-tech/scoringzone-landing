@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-08M47VV5NM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-08M47VV5NM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculating a Golf Handicap: Step-by-Step (With Examples) | Scoring Zone</title>
+    <meta name="description" content="Calculating a golf handicap explained step by step. The WHS/GHIN formula, worked examples for 5, 10 and 20 rounds, and how to do it manually or with a free tool.">
+    <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-scoring-zone-logo.png">
+    <link rel="canonical" href="https://www.scoringzone.net/blog/calculating-a-golf-handicap.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculating a Golf Handicap: Step-by-Step (With Examples) | Scoring Zone">
+    <meta property="og:description" content="Calculating a golf handicap explained step by step. The WHS/GHIN formula, worked examples for 5, 10 and 20 rounds, and how to do it manually or with a free tool.">
+    <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
+    <meta property="og:url" content="https://www.scoringzone.net/blog/calculating-a-golf-handicap.html">
+    <meta property="og:type" content="article">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculating a Golf Handicap: Step-by-Step (With Examples) | Scoring Zone">
+    <meta name="twitter:description" content="Calculating a golf handicap explained step by step. The WHS/GHIN formula, worked examples for 5, 10 and 20 rounds, and how to do it manually or with a free tool.">
+    <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.scoringzone.net/blog" },
+        { "@type": "ListItem", "position": 3, "name": "Calculating a Golf Handicap: Step-by-Step (With Examples)" }
+      ]
+    }
+    </script>
+
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Calculating a Golf Handicap: Step-by-Step Guide With Worked Examples",
+  "author": { "@type": "Person", "name": "Stephen Pickering", "url": "https://www.scoringzone.net/about.html" },
+  "publisher": { "@type": "Organization", "name": "Scoring Zone", "url": "https://www.scoringzone.net", "logo": {"@type": "ImageObject", "url": "https://www.scoringzone.net/logo/new-scoring-zone-logo.png"} },
+  "dateModified": "2026-04-08",
+  "datePublished": "2026-04-25",
+  "description": "A step-by-step guide to calculating a golf handicap manually using the official WHS/GHIN formula, with worked examples for 5, 10, and 20 rounds."
+}
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is a golf handicap calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A golf handicap is calculated by taking your scores from at least 3 rounds, converting each to a Score Differential using the formula (113 / Slope) × (Score − Course Rating − PCC), then averaging your best 8 differentials from the most recent 20 rounds. The result is your Handicap Index — your portable number under the World Handicap System."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the formula for calculating a golf handicap?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Score Differential = (113 / Slope Rating) × (Adjusted Gross Score − Course Rating − PCC). Repeat for every round you've played in the last 20. Average your best 8 differentials. That average — rounded to one decimal place — is your Handicap Index. PCC is almost always zero for casual rounds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Score Differential?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Score Differential is a single round's performance, normalised so it can be compared fairly across different courses. It corrects for course difficulty (course rating) and slope (how much harder the course plays for higher handicaps). Once normalised, every round is on the same scale and can be averaged together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many rounds before you have a handicap?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need a minimum of 3 rounds (54 holes total) to establish a Handicap Index. With 3 rounds your handicap is based on the lowest differential minus 2.0. The number stabilises as you submit more rounds. At 20 rounds it locks into the 'best 8 of last 20' rolling average that the WHS uses long-term."
+      }
+    }
+  ]
+}
+    </script>
+
+    <style>
+      .blog-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      }
+      .blog-tags span {
+        display: inline-block;
+        padding: 4px 12px;
+        background: rgba(34, 197, 94, 0.06);
+        border: 1px solid rgba(34, 197, 94, 0.12);
+        border-radius: 20px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-family: 'DM Mono', monospace;
+        letter-spacing: 0.02em;
+      }
+      .blog-breadcrumb {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+      }
+      .blog-breadcrumb a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .blog-breadcrumb a:hover {
+        color: var(--green);
+      }
+      .blog-breadcrumb span {
+        margin: 0 6px;
+        opacity: 0.4;
+      }
+      .blog-internal-link {
+        display: block;
+        padding: 20px 24px;
+        margin: 2rem 0;
+        background: rgba(34, 197, 94, 0.04);
+        border-left: 3px solid var(--green);
+        border-radius: 0 12px 12px 0;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .blog-internal-link:hover {
+        background: rgba(34, 197, 94, 0.08);
+      }
+      .blog-internal-link p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: 0 0 6px;
+      }
+      .blog-internal-link strong {
+        color: var(--green);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .blog-image-placeholder {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-family: 'DM Mono', monospace;
+        margin: 2rem 0;
+      }
+      .faq-section {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+        padding: 20px 0;
+      }
+      .faq-item h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .faq-item p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+      .drill-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        border-radius: 8px;
+        color: var(--green);
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+      .related-posts {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+      .related-posts h2 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .related-posts a {
+        display: block;
+        padding: 16px 20px;
+        margin-bottom: 8px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: border-color 0.2s, background 0.2s;
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .related-posts a:hover {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.03);
+      }
+      .related-posts a span {
+        color: var(--green);
+        font-size: 0.85rem;
+        margin-left: 4px;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Noise overlay -->
+    <div class="noise"></div>
+
+    <!-- ========== NAV ========== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">
+                <img src="../logo/new-log.webp" width="36" height="36" alt="Scoring Zone logo">
+                SCORING <span>ZONE</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <div class="nav-dropdown" data-dropdown>
+                    <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <div class="nav-mega">
+                        <div class="nav-mega-inner">
+                            <a href="../index.html#features" class="nav-mega-highlight">
+                                <img src="../logo/new-log.webp" alt="" class="nav-mega-highlight-icon">
+                                <div class="nav-mega-highlight-label">Scoring Zone</div>
+                                <div class="nav-mega-highlight-title">Master Your Short Game</div>
+                                <p>Scored drills, pressure tests, and XP-driven practice for every golfer.</p>
+                            </a>
+                            <div class="nav-mega-grid">
+                                <a href="../features/putting-drills.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">Putting Drills</div>
+                                    <p>20+ putting challenges with real-time scoring</p>
+                                </a>
+                                <a href="../features/chipping-drills.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">Chipping &amp; Wedge Drills</div>
+                                    <p>Dial in your short game from 50 yards and in</p>
+                                </a>
+                                <a href="../features/performance-hub.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">Performance Hub</div>
+                                    <p>Full short game test &mdash; get your Short Game Handicap</p>
+                                </a>
+                                <a href="../features/round-stats.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">Round Stats</div>
+                                    <p>Track strokes gained and find scoring patterns</p>
+                                </a>
+                                <a href="../features/sim-lab.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">SIM Lab</div>
+                                    <p>Indoor practice drills for golf simulators</p>
+                                </a>
+                                <a href="../features/elite-mode.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">Elite Mode</div>
+                                    <p>Tour-level pressure tests for serious players</p>
+                                </a>
+                                <a href="../features/practice-assistant.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">Practice Assistant</div>
+                                    <p>Guided sessions tailored to your weaknesses</p>
+                                </a>
+                                <a href="../tools/golf-handicap-calculator.html" class="nav-mega-item">
+                                    <div class="nav-mega-item-title">Handicap Calculator <span style="font-size: 0.65rem; color: var(--green); margin-left: 6px; letter-spacing: 0.08em;">FREE TOOL</span></div>
+                                    <p>WHS/GHIN compliant &mdash; calculate your Handicap Index</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="index.html">Blog</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../index.html#signup">Download</a>
+            </div>
+            <a href="../index.html#signup" class="btn-primary btn-sm">Start Free</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <a href="../index.html">Home</a>
+            <div class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-trigger">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <div class="mobile-dropdown-items">
+                    <a href="../features/putting-drills.html">Putting Drills</a>
+                    <a href="../features/chipping-drills.html">Chipping &amp; Wedge Drills</a>
+                    <a href="../features/performance-hub.html">Performance Hub</a>
+                    <a href="../features/round-stats.html">Round Stats</a>
+                    <a href="../features/sim-lab.html">SIM Lab</a>
+                    <a href="../features/elite-mode.html">Elite Mode</a>
+                    <a href="../features/practice-assistant.html">Practice Assistant</a>
+                    <a href="../tools/golf-handicap-calculator.html">Handicap Calculator</a>
+                </div>
+            </div>
+            <a href="index.html">Blog</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <a href="../index.html#signup">Download</a>
+            <a href="../index.html#signup" class="btn-primary" style="width: 100%; justify-content: center;">Start Free</a>
+        </div>
+    </nav>
+
+    <!-- ========== BREADCRUMB ========== -->
+    <section style="padding: 100px 0 0; position: relative; z-index: 1;">
+        <div class="container" style="max-width: 720px;">
+            <div class="blog-breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>&rsaquo;</span>
+                <a href="index.html">Blog</a>
+                <span>&rsaquo;</span>
+                Calculating a Golf Handicap: Step-by-Step (With Examples)
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ARTICLE HERO ========== -->
+    <section style="padding: 32px 0 40px; position: relative; z-index: 1;">
+        <div class="container" style="text-align: center; max-width: 720px;">
+            <span class="mono-label" style="color: var(--green);">Golf Basics</span>
+            <h1 class="display-lg" style="margin-top: 12px; font-size: clamp(1.8rem, 4vw, 2.8rem);"><span style="color: var(--green);">Calculating a Golf Handicap:</span> Step-by-Step Guide With Worked Examples</h1>
+            <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 16px; line-height: 1.6;">The WHS/GHIN Formula in Plain English &mdash; With Examples for 5, 10, and 20 Rounds</p>
+            <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.1em; text-transform: uppercase;">April 25, 2026 &middot; 9 min read &middot; Stephen Pickering</p>
+            <img src="../golf images/golfer checking scoring zone.webp" alt="Golfer reviewing his round stats and handicap calculation on a phone" style="width: 100%; border-radius: 12px; margin-top: 32px;">
+        </div>
+    </section>
+
+    <!-- ========== ARTICLE CONTENT ========== -->
+    <section class="section" style="padding-top: 0; position: relative; z-index: 1;">
+        <div class="container prose">
+
+            <div class="reveal" style="background: rgba(34,197,94,0.04); border-left: 3px solid var(--green); border-radius: 0 12px 12px 0; padding: 20px 24px; margin-bottom: 2rem;">
+                <p style="color: var(--text); font-size: 0.95rem; line-height: 1.7; margin: 0;"><strong>Key takeaway:</strong> Calculating a golf handicap = one Score Differential per round, then averaging your best 8 of the last 20. The formula: (113 / Slope) &times; (Score &minus; Course Rating &minus; PCC). With 3 rounds you take your single best differential minus 2.0. With 10 rounds, the best 3 averaged. At 20 rounds, the best 8 averaged on a rolling basis &mdash; the responsive-but-stable version of the system that everyone settles into long-term.</p>
+            </div>
+
+            <p class="reveal">Calculating a golf handicap looks intimidating the first time you see the formula. Score Differential, course rating, slope, PCC, best 8 of last 20 &mdash; it sounds like accountancy. It isn&rsquo;t. The whole calculation comes down to one equation per round, applied 20 times, and an average at the end.</p>
+
+            <p class="reveal">This guide walks through it step by step. The WHS/GHIN formula in plain English, what every input means, three worked examples (5 rounds, 10 rounds, 20 rounds), and where the common mistakes hide. By the end you&rsquo;ll be able to calculate a handicap with a calculator and a scorecard. If you&rsquo;d rather skip the maths, our free tool does it instantly &mdash; link near the bottom.</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">The Formula in One Equation</h2>
+
+            <p class="reveal">The official World Handicap System uses one equation per round:</p>
+
+            <p class="reveal">> <strong>Score Differential = (113 / Slope) × (Score − Course Rating − PCC)</strong></p>
+
+            <p class="reveal">Three numbers go in, one number comes out. Once you have a Score Differential for every round, you average the best 8 of your last 20. That average is your <strong>Handicap Index</strong>.</p>
+
+            <p class="reveal">That&rsquo;s the whole thing. Everything else in this guide is just unpacking what those inputs mean and how the average behaves when you have fewer than 20 rounds.</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">What Each Input Means</h2>
+
+            <h3 class="reveal">Score (Adjusted Gross Score)</h3>
+
+            <p class="reveal">Your gross score on the round, with one adjustment: any hole where you scored worse than &ldquo;net double bogey&rdquo; is capped at net double bogey. Net double bogey = par + 2 + handicap strokes received on that hole.</p>
+
+            <p class="reveal">For most casual golfers this adjustment never kicks in until they&rsquo;re a 30+ handicap. If you&rsquo;re shooting in the 80s or 90s you can ignore the adjustment and just use your gross score. If you took a 9 on a par-3 you&rsquo;d cap it.</p>
+
+            <h3 class="reveal">Course Rating</h3>
+
+            <p class="reveal">A number &mdash; usually 65 to 75 &mdash; that tells the formula how hard the course plays for a scratch golfer. A 70.0 rating means a scratch golfer is expected to shoot 70 from those tees on a normal day. You&rsquo;ll find the course rating on the scorecard, on the noticeboard at the pro shop, or on the course&rsquo;s website. Every set of tees has its own rating.</p>
+
+            <h3 class="reveal">Slope Rating</h3>
+
+            <p class="reveal">A number from 55 to 155 (113 is &ldquo;average&rdquo;) that measures how much harder the course plays for a 20-handicap relative to a scratch golfer. High-slope courses (forced carries, fast greens, narrow fairways) punish higher handicaps disproportionately, so the slope number captures that.</p>
+
+            <p class="reveal">The 113 in the formula isn&rsquo;t random &mdash; it&rsquo;s the standard slope. Dividing 113 by the actual slope normalises every round to a &ldquo;standard difficulty&rdquo; course. That&rsquo;s how the WHS allows you to compare a round at Pebble Beach (slope 145) to a round at your local muni (slope 105) on the same scale.</p>
+
+            <h3 class="reveal">PCC (Playing Conditions Calculation)</h3>
+
+            <p class="reveal">A small adjustment for the day&rsquo;s conditions. If the wind was howling and the field shot 3 strokes worse than expected, PCC = +1. If conditions were perfect and everyone shot lower, PCC = −1. The value ranges from −1 to +3.</p>
+
+            <p class="reveal">For a casual round where you don&rsquo;t have field data, PCC = 0. You can effectively ignore PCC unless you&rsquo;re posting from a competition with a full scoreboard.</p>
+
+            <a href="what-is-a-handicap-in-golf.html" class="blog-internal-link reveal">
+                <p>For a deeper plain-English breakdown of the World Handicap System and how it replaced the old systems, see this guide.</p>
+                <strong>What Is a Handicap in Golf? &rarr;</strong>
+            </a>
+
+            <!-- ======================== -->
+            <h2 class="reveal">Worked Example 1: Calculating a Handicap From a Single Round</h2>
+
+            <p class="reveal">Say you shot 92 on a par-72 course with a course rating of 71.0 and a slope rating of 124. PCC is 0 (a normal day, casual round).</p>
+
+            <p class="reveal">Plug into the formula:</p>
+
+            <p class="reveal">> Score Differential = (113 / 124) × (92 − 71.0 − 0) > Score Differential = 0.911 × 21.0 > Score Differential = <strong>19.1</strong></p>
+
+            <p class="reveal">That&rsquo;s your differential for this round. By itself it doesn&rsquo;t give you a handicap &mdash; you need at least 3 rounds for that &mdash; but it&rsquo;s the building block. Every round you submit produces one of these numbers.</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">Worked Example 2: Calculating a Handicap From 5 Rounds</h2>
+
+            <p class="reveal">Once you have between 3 and 20 rounds, the WHS uses a sliding rule for which differentials count and what adjustment is applied. For 5 rounds, only your single best differential counts, with no adjustment.</p>
+
+            <p class="reveal">Imagine these 5 rounds:</p>
+
+            <p class="reveal">| Round | Score | Slope | Course Rating | Differential | |-------|-------|-------|---------------|--------------| | 1     | 92    | 124   | 71.0          | 19.1         | | 2     | 88    | 130   | 72.5          | 13.5         | | 3     | 95    | 118   | 70.0          | 23.9         | | 4     | 89    | 124   | 71.0          | 16.4         | | 5     | 94    | 125   | 71.0          | 20.8         |</p>
+
+            <p class="reveal">Your best (lowest) differential is <strong>13.5</strong> from Round 2.</p>
+
+            <p class="reveal">For 5 rounds, the WHS rule is: take your single best differential. So your initial Handicap Index is <strong>13.5</strong>.</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">Worked Example 3: Calculating a Handicap From 10 Rounds</h2>
+
+            <p class="reveal">At 10 rounds, the rule shifts to &ldquo;best 3 of last 10, minus 0.0&rdquo;. So you take your three lowest differentials and average them.</p>
+
+            <p class="reveal">Imagine your 10 differentials are:</p>
+
+            <p class="reveal">> 19.1, 13.5, 23.9, 16.4, 20.8, 14.2, 18.0, 21.5, 15.3, 17.6</p>
+
+            <p class="reveal">Your three lowest: <strong>13.5, 14.2, 15.3</strong>.</p>
+
+            <p class="reveal">Average: (13.5 + 14.2 + 15.3) / 3 = 14.33</p>
+
+            <p class="reveal">Handicap Index = <strong>14.3</strong> (rounded to one decimal).</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">Worked Example 4: Calculating a Handicap From 20 Rounds (the &ldquo;real&rdquo; formula)</h2>
+
+            <p class="reveal">At 20 rounds the formula becomes the one most golfers know: <strong>best 8 of last 20</strong>.</p>
+
+            <p class="reveal">Order all 20 differentials from low to high. Take the lowest 8. Average them. That&rsquo;s your Handicap Index.</p>
+
+            <p class="reveal">The 20-round window is rolling &mdash; every time you post a new round, the oldest one drops off and the new one is added. Your 8 best differentials get re-evaluated against the new set of 20.</p>
+
+            <p class="reveal">This is what makes the WHS handicap &ldquo;responsive but stable&rdquo;: - A single bad round drops off the bottom of your best-8 list immediately, so it doesn&rsquo;t move your handicap. - A single great round usually replaces a worse differential in your best-8, so your handicap drops slightly. - A *trend* of better scores (8 of your last 10 are improvements) is what really moves your number.</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">The Sliding Scale: 3 Rounds to 20 Rounds</h2>
+
+            <p class="reveal">Here&rsquo;s the full WHS rule for which differentials count based on how many rounds you&rsquo;ve posted:</p>
+
+            <p class="reveal">| Rounds posted | Differentials used | Adjustment | |---------------|--------------------|-----------:| | 3             | Lowest 1           | −2.0       | | 4             | Lowest 1           | −1.0       | | 5             | Lowest 1           | 0          | | 6             | Lowest 2 (avg)     | −1.0       | | 7&ndash;8           | Lowest 2 (avg)     | 0          | | 9&ndash;11          | Lowest 3 (avg)     | 0          | | 12&ndash;14         | Lowest 4 (avg)     | 0          | | 15&ndash;16         | Lowest 5 (avg)     | 0          | | 17&ndash;18         | Lowest 6 (avg)     | 0          | | 19            | Lowest 7 (avg)     | 0          | | 20+           | Lowest 8 (avg)     | 0          |</p>
+
+            <p class="reveal">The adjustments at very low round counts (−2.0, −1.0) are deliberately cautious so a beginner with one good round doesn&rsquo;t get an unrealistically low handicap.</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">Common Mistakes When Calculating a Handicap</h2>
+
+            <h3 class="reveal">Using the wrong slope or course rating</h3>
+
+            <p class="reveal">Every set of tees on every course has its own course rating and slope. If you played from the white tees, use the white tee numbers &mdash; not the blues. The biggest cause of incorrect handicap calculations is people using the championship-tee numbers because they&rsquo;re the most prominent.</p>
+
+            <h3 class="reveal">Forgetting Adjusted Gross Score on disaster holes</h3>
+
+            <p class="reveal">If you took a 10 on a par-4 and your handicap entitles you to 1 stroke on that hole, your net double bogey is 4 + 2 + 1 = 7. So your adjusted score for that hole is 7, not 10. Your gross might be 95 but your *adjusted* gross is 92. Use the adjusted number in the formula.</p>
+
+            <h3 class="reveal">Calculating a handicap from rounds at full tee length only</h3>
+
+            <p class="reveal">9-hole rounds count, but you need to convert them to an 18-hole equivalent before using the formula. The simplest way: combine two 9-hole rounds into one round. Modern handicap services do this automatically; a manual calculation needs you to handle it.</p>
+
+            <p class="reveal">If you played the front 9 only at the local muni, the WHS allows you to post a 9-hole differential &mdash; but the calculation gets fiddlier. For most people, the cleanest approach is to wait until you have a full 18 before submitting.</p>
+
+            <!-- ======================== -->
+            <h2 class="reveal">Manual Calculation vs Using a Tool</h2>
+
+            <p class="reveal">You can absolutely calculate a handicap manually. A scientific calculator and a list of your rounds with course ratings/slopes is enough.</p>
+
+            <p class="reveal">But for most golfers, a tool is faster and removes the risk of arithmetic errors. Our free handicap calculator runs the same formula above &mdash; you enter your rounds, it does the maths, and you get your Handicap Index in seconds. It also shows you your individual Score Differentials and which 8 are being used in the calculation, so you can see exactly which rounds are pulling your handicap up or down.</p>
+
+            <a href="/tools/golf-handicap-calculator.html" class="blog-internal-link reveal">
+                <p>Skip the maths &mdash; get your Handicap Index in under five minutes with the free tool.</p>
+                <strong>Golf Handicap Calculator &rarr;</strong>
+            </a>
+
+            <!-- ======================== -->
+            <h2 class="reveal">What to Do With Your Handicap Once You&rsquo;ve Calculated It</h2>
+
+            <p class="reveal">The handicap is the score. It&rsquo;s a way to track progress. Two things matter once you have it:</p>
+
+            <p class="reveal">1. <strong>Watch the trend.</strong> A handicap that&rsquo;s dropping means you&rsquo;re getting better. A handicap that&rsquo;s stuck means something&rsquo;s leaking strokes &mdash; most often, your short game. 2. <strong>Identify the leak.</strong> The handicap calculator tells you the score, not the cause. To find the cause, track stats round by round: fairways hit, greens in regulation, putts per round, up-and-down percentage. The stat that&rsquo;s furthest from average for your handicap level is where your practice should go.</p>
+
+            <p class="reveal">Most amateurs lose 60% of their strokes inside 100 yards but spend 80% of their practice on full swing. If you&rsquo;re calculating handicaps to track improvement, make sure your practice is also tracking the right things.</p>
+
+            <!-- ======================== -->
+            <!-- FAQ SECTION -->
+            <div class="faq-section reveal">
+                <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px;">Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h3>How is a golf handicap calculated?</h3>
+                    <p>A golf handicap is calculated by taking your scores from at least 3 rounds, converting each to a Score Differential using the formula (113 / Slope) × (Score − Course Rating − PCC), then averaging your best 8 differentials from the most recent 20 rounds. The result is your Handicap Index &mdash; your portable number under the World Handicap System.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What&rsquo;s the formula for calculating a golf handicap?</h3>
+                    <p>Score Differential = (113 / Slope Rating) × (Adjusted Gross Score − Course Rating − PCC). Repeat for every round you&rsquo;ve played in the last 20. Average your best 8 differentials. That average &mdash; rounded to one decimal place &mdash; is your Handicap Index. PCC is almost always zero for casual rounds.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What is a Score Differential?</h3>
+                    <p>A Score Differential is a single round&rsquo;s performance, normalised so it can be compared fairly across different courses. It corrects for course difficulty (course rating) and slope (how much harder the course plays for higher handicaps). Once normalised, every round is on the same scale and can be averaged together.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>How many rounds before you have a handicap?</h3>
+                    <p>You need a minimum of 3 rounds (54 holes total) to establish a Handicap Index. With 3 rounds your handicap is based on the lowest differential minus 2.0. The number stabilises as you submit more rounds. At 20 rounds it locks into the &ldquo;best 8 of last 20&rdquo; rolling average that the WHS uses long-term.</p>
+                </div>
+
+            </div>
+
+
+            <!-- RELATED POSTS -->
+            <div class="related-posts reveal">
+                <h2>Keep Reading</h2>
+                <a href="handicap-calculator.html">
+                    Handicap Calculator: How It Works <span>&rarr;</span>
+                </a>
+                <a href="what-is-a-handicap-in-golf.html">
+                    What Is a Handicap in Golf? <span>&rarr;</span>
+                </a>
+                <a href="average-golf-handicap-by-age.html">
+                    Average Golf Handicap by Age, Gender, and Experience <span>&rarr;</span>
+                </a>
+                <a href="how-to-lower-your-golf-handicap.html">
+                    How to Lower Your Golf Handicap <span>&rarr;</span>
+                </a>
+            </div>
+
+
+            <!-- TAGS -->
+            <div class="blog-tags">
+                <span>calculating a golf handicap</span>
+                <span>how to calculate handicap</span>
+                <span>whs handicap formula</span>
+                <span>score differential</span>
+                <span>handicap index calculation</span>
+            </div>
+
+            <!-- AUTHOR BIO -->
+            <div class="reveal" style="display: flex; gap: 20px; align-items: flex-start; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 24px; margin-top: 2rem;">
+                <div style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; color: #000;">SP</div>
+                <div>
+                    <p style="font-weight: 600; margin: 0; font-size: 0.95rem;">Stephen Pickering</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin: 4px 0 0; line-height: 1.6;">3-handicap golfer with 25 years on the course. Built Scoring Zone to bring structure and pressure to short game practice. Writes about what actually works from the practice green, not the press box.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== BACK LINK ========== -->
+    <div class="container" style="padding: 40px 0; position: relative; z-index: 1;">
+        <a href="index.html" style="color: var(--green); font-size: 0.85rem; text-decoration: none; font-weight: 500;">&larr; Back to all posts</a>
+    </div>
+
+    <!-- ========== CTA ========== -->
+    <section class="section" style="position: relative; z-index: 1; padding-top: 0;">
+        <div class="container" style="max-width: 720px;">
+            <div class="reveal" style="background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.15); border-radius: 14px; padding: 40px 32px; text-align: center;">
+                <h3 class="display-md" style="font-size: 1.4rem;">Skip the Maths. Calculate Your Handicap Now.</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin: 12px 0 24px; line-height: 1.6;">Free, WHS/GHIN-compliant, no signup. Enter 3&ndash;20 rounds and get your Handicap Index in seconds &mdash; then come back and start lowering it with structured practice in Scoring Zone.</p>
+                <a href="../index.html#signup" class="btn-primary">Download Scoring Zone Free &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FINAL CTA ========== -->
+    <section class="section final-cta" style="position: relative; z-index: 1;">
+        <div class="final-cta-bg"></div>
+        <div class="container" style="text-align: center; position: relative;">
+            <div class="reveal">
+                <span class="mono-label">Early Access</span>
+                <h2 class="display-md" style="margin-top: 12px;">Start Training Smarter. <span style="color: var(--green);">It&rsquo;s Free.</span></h2>
+                <p style="color: var(--text-muted); margin-top: 12px;">Full access to all drills, stats, and features. No payment required.</p>
+                <a href="../index.html#signup" class="btn-primary" style="margin-top: 24px;">Get Scoring Zone Free &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" style="position: relative; z-index: 1;">
+        <div class="container">
+            <a href="../index.html" class="nav-logo" style="justify-content: center;">
+                <img src="../logo/new-log.webp" width="36" height="36" alt="Scoring Zone logo">
+                SCORING <span>ZONE</span>
+            </a>
+            <ul class="footer-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../tools/golf-handicap-calculator.html">Handicap Calculator</a></li>
+                <li><a href="index.html">Blog</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../index.html#signup">Download</a></li>
+            </ul>
+            <p class="footer-copy">&copy; 2026 Scoring Zone</p>
+        </div>
+    </footer>
+
+    <script src="../js/shared.js"></script>
+</body>
+</html>
