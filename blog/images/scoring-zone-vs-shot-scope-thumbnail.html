@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>18Birdies vs Golfshot vs TheGrint — Hero</title>
+<title>Scoring Zone vs Shot Scope — Thumbnail</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
@@ -28,7 +28,6 @@
       linear-gradient(180deg, #060b08 0%, #0a1a0f 50%, #060b08 100%);
   }
 
-  /* Subtle grid */
   .canvas::before {
     content: '';
     position: absolute;
@@ -41,7 +40,6 @@
     z-index: 1;
   }
 
-  /* Soft green glow centre */
   .canvas::after {
     content: '';
     position: absolute;
@@ -55,7 +53,7 @@
     pointer-events: none;
   }
 
-  /* ── TOP HEADER ── */
+  /* HEADER */
   .header {
     position: absolute;
     top: 0;
@@ -102,7 +100,7 @@
     color: #22c55e;
   }
 
-  /* ── MAIN HEADLINE ── */
+  /* HEADLINE */
   .headline {
     position: absolute;
     top: 110px;
@@ -110,11 +108,12 @@
     transform: translateX(-50%);
     z-index: 10;
     text-align: center;
+    width: 100%;
   }
 
   .headline h1 {
     font-weight: 900;
-    font-size: 54px;
+    font-size: 50px;
     color: #fff;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -124,8 +123,9 @@
 
   .headline h1 em {
     font-style: normal;
-    color: #22c55e;
-    text-shadow: 0 0 24px rgba(34,197,94,0.4);
+    color: rgba(255,255,255,0.4);
+    font-size: 38px;
+    margin: 0 6px;
   }
 
   .headline-sub {
@@ -137,50 +137,50 @@
     color: rgba(255,255,255,0.55);
   }
 
-  /* ── BRAND TILES ROW ── */
+  /* TILES (2-way) */
   .tiles {
     position: absolute;
-    bottom: 90px;
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     display: flex;
     align-items: stretch;
-    gap: 22px;
+    gap: 36px;
   }
 
   .vs-pill {
     align-self: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
-    font-size: 22px;
-    color: rgba(255,255,255,0.5);
+    font-size: 30px;
+    color: rgba(255,255,255,0.55);
     letter-spacing: 0.1em;
-    width: 36px;
+    width: 56px;
     text-align: center;
+    text-shadow: 0 0 20px rgba(34,197,94,0.25);
   }
 
   .tile {
-    width: 280px;
-    height: 280px;
-    border-radius: 22px;
+    width: 360px;
+    height: 320px;
+    border-radius: 24px;
     background: rgba(255,255,255,0.04);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.08);
-    padding: 24px;
+    padding: 28px;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 18px;
     box-shadow:
       0 12px 36px rgba(0,0,0,0.4),
       inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
-  /* Brand-colored top stripe */
   .tile::before {
     content: '';
     position: absolute;
@@ -191,26 +191,24 @@
     background: var(--brand);
   }
 
-  /* Brand-colored corner glow */
   .tile::after {
     content: '';
     position: absolute;
     top: -50%;
     right: -30%;
-    width: 220px;
-    height: 220px;
+    width: 280px;
+    height: 280px;
     background: radial-gradient(circle, var(--brand-glow) 0%, transparent 70%);
     pointer-events: none;
   }
 
-  .tile--18b { --brand: #1a6ae0; --brand-glow: rgba(26,106,224,0.18); }
-  .tile--gs  { --brand: #d6362a; --brand-glow: rgba(214,54,42,0.18); }
-  .tile--tg  { --brand: #4ade80; --brand-glow: rgba(74,222,128,0.18); }
+  .tile--comp { --brand: #dc2626; --brand-glow: rgba(220,38,38,0.22); }
+  .tile--sz   { --brand: #22c55e; --brand-glow: rgba(34,197,94,0.22); }
 
   .tile-logo {
-    width: 90px;
-    height: 90px;
-    border-radius: 18px;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
     overflow: hidden;
     background: #fff;
     display: flex;
@@ -221,7 +219,14 @@
       0 0 0 2px rgba(255,255,255,0.1);
   }
 
-  .tile-logo--dark { background: #0a2540; }
+  .tile-logo--dark { background: #0a1410; }
+  .tile-logo--sz {
+    background: #000;
+    box-shadow:
+      0 6px 18px rgba(0,0,0,0.4),
+      0 0 0 2px rgba(34,197,94,0.3),
+      0 0 30px rgba(34,197,94,0.18);
+  }
 
   .tile-logo img {
     width: 100%;
@@ -231,12 +236,23 @@
 
   .tile-logo--contain img {
     object-fit: contain;
-    padding: 10px;
+    padding: 12px;
+  }
+
+  .text-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0.06em;
+    text-align: center;
+    line-height: 1.05;
+    text-transform: uppercase;
   }
 
   .tile-name {
     font-weight: 800;
-    font-size: 26px;
+    font-size: 28px;
     color: #fff;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -244,32 +260,37 @@
     text-align: center;
   }
 
+  .tile-name span {
+    color: #22c55e;
+  }
+
   .tile-tag {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 12px;
     color: rgba(255,255,255,0.55);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     text-align: center;
     line-height: 1.5;
+    margin-top: -6px;
   }
 
-  .tile-best {
-    margin-top: 4px;
+  .tile-pill {
+    margin-top: 2px;
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
     color: var(--brand);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     background: rgba(255,255,255,0.04);
-    padding: 4px 10px;
+    padding: 5px 14px;
     border-radius: 100px;
     border: 1px solid rgba(255,255,255,0.08);
     text-align: center;
     line-height: 1.4;
   }
 
-  /* ── BOTTOM BAR ── */
+  /* FOOTER */
   .footer-bar {
     position: absolute;
     bottom: 28px;
@@ -284,7 +305,7 @@
     color: rgba(255,255,255,0.45);
   }
 
-  /* ── CORNER ACCENTS ── */
+  /* CORNER ACCENTS */
   .corner {
     position: absolute;
     width: 26px;
@@ -301,7 +322,6 @@
 
 <div class="canvas">
 
-  <!-- Header -->
   <div class="header">
     <div class="top-label">App Comparison &bull; 2026</div>
     <div class="sz-badge">
@@ -310,53 +330,37 @@
     </div>
   </div>
 
-  <!-- Headline -->
   <div class="headline">
-    <h1>The GPS Apps <em>Showdown</em></h1>
-    <div class="headline-sub">Three apps. One winner. The honest verdict.</div>
+    <h1>Scoring Zone <em>vs</em> Shot Scope</h1>
+    <div class="headline-sub">Practice between rounds vs on-course tracking</div>
   </div>
 
-  <!-- Tiles -->
   <div class="tiles">
-    <!-- 18 Birdies -->
-    <div class="tile tile--18b">
-      <div class="tile-logo">
-        <img src="../../18 birdies brand/18 bridies logo .jpg" alt="18 Birdies logo">
-      </div>
-      <div class="tile-name">18 Birdies</div>
-      <div class="tile-tag">GPS &bull; Social</div>
-      <div class="tile-best">Best for casual play</div>
-    </div>
 
-    <div class="vs-pill">VS</div>
-
-    <!-- Golfshot -->
-    <div class="tile tile--gs">
-      <div class="tile-logo tile-logo--contain">
-        <img src="../../18 birdies brand/golfshot-logo.png" alt="Golfshot logo">
-      </div>
-      <div class="tile-name">Golfshot</div>
-      <div class="tile-tag">GPS &bull; Minimal</div>
-      <div class="tile-best">Best for minimalists</div>
-    </div>
-
-    <div class="vs-pill">VS</div>
-
-    <!-- TheGrint -->
-    <div class="tile tile--tg">
+    <div class="tile tile--comp">
       <div class="tile-logo tile-logo--dark">
-        <img src="../../18 birdies brand/thegrint-logo.png" alt="TheGrint logo">
+        <div class="text-logo">SHOT<br>SCOPE</div>
       </div>
-      <div class="tile-name">TheGrint</div>
-      <div class="tile-tag">USGA Handicap</div>
-      <div class="tile-best">Best for handicap</div>
+      <div class="tile-name">Shot Scope</div>
+      <div class="tile-tag">GPS &bull; Tracking</div>
+      <div class="tile-pill">Best for round data</div>
     </div>
+
+    <div class="vs-pill">VS</div>
+
+    <div class="tile tile--sz">
+      <div class="tile-logo tile-logo--sz">
+        <img src="../../logo/new-scoring-zone-logo.png" alt="Scoring Zone logo">
+      </div>
+      <div class="tile-name">Scoring <span>Zone</span></div>
+      <div class="tile-tag">Short Game &bull; Practice</div>
+      <div class="tile-pill">Best for improvement</div>
+    </div>
+
   </div>
 
-  <!-- Bottom -->
   <div class="footer-bar">Which one should you pick?</div>
 
-  <!-- Corner accents -->
   <div class="corner corner--tl"></div>
   <div class="corner corner--tr"></div>
   <div class="corner corner--bl"></div>
