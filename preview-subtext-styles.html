@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Subtext Style Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: #060b08;
+            color: #f0fdf4;
+            font-family: 'DM Sans', sans-serif;
+            padding: 40px 24px;
+        }
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .preview-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 48px 40px;
+            position: relative;
+        }
+        .preview-label {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            padding: 4px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        .preview-h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 0.92;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .preview-h1 span { color: #22c55e; }
+
+        /* ── Option A: Monospace Terminal ── */
+        .style-a {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.92rem;
+            font-weight: 400;
+            color: rgba(34, 197, 94, 0.7);
+            line-height: 1.8;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+        }
+        .style-a::before {
+            content: '> ';
+            color: #22c55e;
+            opacity: 0.6;
+        }
+        .style-a .blink {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background: rgba(34, 197, 94, 0.6);
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: termBlink 1s step-end infinite;
+        }
+        @keyframes termBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ── Option B: Pixel Arcade ── */
+        .style-b {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            color: rgba(240, 253, 244, 0.6);
+            line-height: 2.4;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+        .style-b .highlight {
+            color: #22c55e;
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.4), 2px 2px 0 rgba(0,0,0,0.5);
+        }
+
+        /* ── Option C: Glitch Cyberpunk ── */
+        .style-c {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(240, 253, 244, 0.75);
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+            text-shadow:
+                0 0 10px rgba(34, 197, 94, 0.3),
+                0 0 40px rgba(34, 197, 94, 0.1);
+            position: relative;
+            animation: glitchText 8s ease-in-out infinite;
+        }
+        .style-c .neon {
+            color: #4ade80;
+            text-shadow:
+                0 0 8px rgba(74, 222, 128, 0.6),
+                0 0 30px rgba(74, 222, 128, 0.2);
+        }
+        @keyframes glitchText {
+            0%, 92%, 100% { transform: translate(0); opacity: 1; }
+            93% { transform: translate(-2px, 1px); opacity: 0.85; }
+            94% { transform: translate(2px, -1px); opacity: 0.9; }
+            95% { transform: translate(-1px, 0); opacity: 0.85; text-shadow: -2px 0 rgba(255, 0, 0, 0.3), 2px 0 rgba(0, 255, 255, 0.3); }
+            96% { transform: translate(0); opacity: 1; text-shadow: 0 0 10px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.1); }
+        }
+        .style-c::before {
+            content: '//';
+            color: rgba(34, 197, 94, 0.35);
+            margin-right: 8px;
+        }
+
+        .desc {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-grid">
+
+        <!-- Option A -->
+        <div class="preview-card">
+            <div class="preview-label">Option A</div>
+            <div class="preview-h1">Pressure Test Your <span>Short Game</span></div>
+            <p class="style-a">Simulate tournament pressure, track every shot, and level up with data-driven short game drills.<span class="blink"></span></p>
+            <p class="desc"><strong>Monospace Terminal</strong> &mdash; DM Mono font, green tint, terminal prompt prefix, blinking block cursor. Clean retro-terminal feel.</p>
+        </div>
+
+        <!-- Option B -->
+        <div class="preview-card">
+            <div class="preview-label">Option B</div>
+            <div class="preview-h1">Pressure Test Your <span>Short Game</span></div>
+            <p class="style-b">Simulate tournament pressure, track every shot, and <span class="highlight">level up</span> with data-driven short game drills.</p>
+            <p class="desc"><strong>Pixel Arcade</strong> &mdash; Press Start 2P pixel font, uppercase, retro shadow. Classic 8-bit arcade vibe.</p>
+        </div>
+
+        <!-- Option C -->
+        <div class="preview-card">
+            <div class="preview-label">Option C</div>
+            <div class="preview-h1">Pressure Test Your <span>Short Game</span></div>
+            <p class="style-c">Simulate tournament pressure, track every shot, and <span class="neon">level up</span> with data-driven short game drills.</p>
+            <p class="desc"><strong>Glitch Cyberpunk</strong> &mdash; DM Mono font, neon green glow, subtle glitch flicker animation. Futuristic/edgy feel.</p>
+        </div>
+
+    </div>
+</body>
+</html>

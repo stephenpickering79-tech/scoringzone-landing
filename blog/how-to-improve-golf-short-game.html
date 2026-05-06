@@ -251,7 +251,42 @@
         font-size: 0.9rem;
         line-height: 1.7;
       }
-    </style>
+          .related-posts {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+      .related-posts h2 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .related-posts a {
+        display: block;
+        padding: 16px 20px;
+        margin-bottom: 8px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: border-color 0.2s, background 0.2s;
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .related-posts a:hover {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.03);
+      }
+      .related-posts a span {
+        color: var(--green);
+        font-size: 0.85rem;
+        margin-left: 4px;
+      }
+</style>
 </head>
 <body>
 
@@ -465,10 +500,22 @@
             </a>
 
             <!-- RELATED POSTS -->
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
-                <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; margin-bottom: 16px;">Keep Reading</h2>
-                <a href="how-to-stop-three-putting.html" style="display: block; padding: 16px 20px; margin-bottom: 8px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; transition: border-color 0.2s;">
-                    How to Stop Three Putting: 7 Drills That Actually Work <span style="color: var(--green); font-size: 0.85rem; margin-left: 4px;">&rarr;</span>
+            <div class="related-posts reveal">
+                <h2>Keep Reading</h2>
+                <a href="short-game-guide.html">
+                    The Complete Short Game Guide <span>&rarr;</span>
+                </a>
+                <a href="how-to-practice-short-game.html">
+                    How to Practice Short Game <span>&rarr;</span>
+                </a>
+                <a href="how-to-pitch-a-ball.html">
+                    How to Pitch a Ball in Golf: Setup + 2 Drills <span>&rarr;</span>
+                </a>
+                <a href="how-to-stop-chunking-chip-shots.html">
+                    How to Stop Chunking Chip Shots: Setup Fixes + 2 Drills <span>&rarr;</span>
+                </a>
+                <a href="how-to-get-up-and-down-in-golf.html">
+                    How to Get Up and Down in Golf <span>&rarr;</span>
                 </a>
             </div>
 

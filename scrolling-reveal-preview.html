@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Scrolling Reveal &mdash; Scoring Zone Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Scoring Zone Variables ── */
+    :root {
+      --bg: #060b08;
+      --green: #22c55e;
+      --green-bright: #4ade80;
+      --green-dim: #166534;
+      --green-glow: rgba(34, 197, 94, 0.35);
+      --amber: #f59e0b;
+      --text: #f0fdf4;
+      --text-muted: #6b7280;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Background atmosphere (match site) ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(34, 197, 94, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(34, 197, 94, 0.03) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40vh 1.5rem 2rem;
+    }
+    .section-header .mono-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    .section-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-transform: uppercase;
+      color: var(--text);
+      line-height: 1.05;
+    }
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-top: 0.75rem;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+
+    /* ── Scrolling Reveal Grid ── */
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 0 1rem 40vh;
+    }
+
+    main ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    main li {
+      aspect-ratio: 3 / 4;
+    }
+
+    main article {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0a0a0a;
+      /* scroll-driven animation */
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+
+    /* Background image via CSS variable */
+    main article::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--bg) center/cover no-repeat;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Green-tinted overlay */
+    main article::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(6, 11, 8, 0.85) 0%,
+        rgba(6, 11, 8, 0.3) 40%,
+        rgba(34, 197, 94, 0.08) 100%
+      );
+      transition: background 0.4s ease;
+    }
+
+    main article:hover::before {
+      transform: scale(1.06);
+    }
+
+    main article:hover::after {
+      background: linear-gradient(
+        to top,
+        rgba(6, 11, 8, 0.9) 0%,
+        rgba(6, 11, 8, 0.15) 50%,
+        rgba(34, 197, 94, 0.12) 100%
+      );
+    }
+
+    main article a {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      text-decoration: none;
+      z-index: 2;
+    }
+
+    main article a > span {
+      display: block;
+    }
+
+    .word {
+      display: block;
+      overflow: hidden;
+    }
+
+    .word > span {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      transform: translateY(100%);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Text slides up when card is in view */
+    main article.in-view .word > span {
+      transform: translateY(0);
+    }
+
+    /* Green accent underline — revealed with text */
+    main article a::after {
+      content: '';
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.5rem;
+      width: 0;
+      height: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      z-index: 3;
+      transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    }
+
+    main article.in-view a::after {
+      width: 40px;
+    }
+
+    /* ── Scroll-driven reveal keyframes ── */
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    /* ── Fallback for browsers without scroll-driven card animations ── */
+    @supports not (animation-timeline: view()) {
+      main article {
+        animation: none;
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      main article.in-view {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      main ul {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+      main li {
+        aspect-ratio: 2 / 3;
+      }
+      main article a {
+        padding: 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      main ul {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section-header">
+    <p class="mono-label">Your Short Game Journey</p>
+    <h2>Built for Every Part of Your Game</h2>
+    <p>Scored drills, pressure tests, and real stats &mdash; all in one app.</p>
+  </div>
+
+  <main>
+    <ul>
+      <li>
+        <article style="--bg: url('golf images/golfer putting at sunset.webp');">
+          <a href="#">
+            <span><span class="word"><span>MASTER</span></span></span>
+          </a>
+        </article>
+      </li>
+      <li>
+        <article style="--bg: url('golf images/college kid lining up a putt.webp');">
+          <a href="#">
+            <span><span class="word"><span>YOUR</span></span></span>
+          </a>
+        </article>
+      </li>
+      <li>
+        <article style="--bg: url('scrolling-reveal/Placeholder images /Golfer chipping agusta perfect.png');">
+          <a href="#">
+            <span><span class="word"><span>SHORT</span></span></span>
+          </a>
+        </article>
+      </li>
+      <li>
+        <article style="--bg: url('golf images/golfer celebrating.webp');">
+          <a href="#">
+            <span><span class="word"><span>GAME</span></span></span>
+          </a>
+        </article>
+      </li>
+    </ul>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('main article').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

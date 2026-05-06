@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Homepage Redesign — Scoring Zone</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green: #22c55e;
+  --green-bright: #4ade80;
+  --green-dim: #166534;
+  --dark: #060b08;
+  --dark-2: #0a0f0c;
+  --white: #ffffff;
+  --cream: #fafaf8;
+  --ink: #0a0a0a;
+  --ink-2: #1a1a1a;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --border-dark: rgba(34,197,94,0.12);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark);
+  width: 1440px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* ── HELPERS ── */
+.mono { font-family: 'DM Mono', monospace; }
+.condensed { font-family: 'Barlow Condensed', sans-serif; }
+.green { color: var(--green); }
+
+/* ─────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes cursorFadeOut {
+  to { opacity: 0; }
+}
+
+@keyframes hero-word-appear {
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+}
+
+.float-anim {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Typewriter */
+.typewriter { position: relative; display: inline; flex-wrap: wrap; }
+.typewriter .typewriter-word { display: inline-block; }
+.typewriter .typewriter-char { display: inline-block; opacity: 0; }
+.typewriter.typing .typewriter-char { opacity: 0; }
+.typewriter.typing .typewriter-char.revealed { opacity: 1; }
+.typewriter-cursor {
+  display: inline-block;
+  width: 4px;
+  height: 0.85em;
+  background: var(--green);
+  margin-left: 4px;
+  vertical-align: middle;
+  border-radius: 1px;
+  animation: cursorBlink 1s ease-in-out infinite;
+}
+.typewriter-cursor.done {
+  animation: cursorFadeOut 0.6s 1.5s ease forwards;
+}
+
+/* Word-by-word (dark card version) */
+.hero-sub-words .word-animate {
+  display: inline-block;
+  opacity: 0;
+  cursor: default;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.hero-sub-words .word-animate.visible {
+  animation: hero-word-appear 0.7s ease-out forwards;
+}
+/* Override colour for white-card context */
+.hero-card .hero-sub-words .word-animate { color: #4b5563; }
+.hero-card .hero-sub-words .word-animate.neon { color: var(--ink); }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal delays */
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+.nav {
+  position: relative;
+  z-index: 100;
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  height: 72px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+.nav.scrolled {
+  background: rgba(6,11,8,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+}
+
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f0fdf4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo em { color: var(--green); font-style: normal; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(240,253,244,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #f0fdf4; }
+
+.nav-cta {
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--green);
+  color: var(--dark);
+  padding: 9px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--green-bright); }
+
+/* ─────────────────────────────────────────
+   HERO — WHITE CARD ON DARK
+───────────────────────────────────────── */
+.hero {
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  min-height: 760px;
+}
+
+/* SVG animated grid */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-grid-reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Radial glow bottom-right */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: 100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 60px 64px;
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.05),
+    0 8px 16px rgba(0,0,0,0.06),
+    0 32px 64px rgba(0,0,0,0.3),
+    0 80px 120px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Green left accent bar */
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 120px;
+  background: linear-gradient(180deg, var(--green), transparent);
+  border-radius: 28px 0 0 0;
+}
+
+/* Subtle dot pattern top-right */
+.hero-card::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 200px;
+  height: 200px;
+  background-image: radial-gradient(circle, rgba(34,197,94,0.07) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  border-radius: 50%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  padding: 5px 14px 5px 9px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  animation: badge-pulse 2.5s ease-in-out infinite;
+}
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+  flex-shrink: 0;
+}
+
+.hero-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 92px;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 28px;
+  display: block;
+}
+.hero-h1 .accent { color: var(--green); }
+
+.hero-sub {
+  font-size: 17px;
+  font-weight: 400;
+  color: #4b5563;
+  line-height: 1.65;
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+.hero-sub strong { color: var(--ink); font-weight: 600; }
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-primary {
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--green);
+  color: var(--dark);
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--green-bright); transform: translateY(-1px); }
+
+.btn-outline {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  padding: 13px 22px;
+  border-radius: 8px;
+  border: 1.5px solid #d1d5db;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: #9ca3af; color: var(--ink); }
+
+/* Hero right: real app image */
+.hero-right {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-app-img {
+  width: 520px;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.6)) drop-shadow(0 0 60px rgba(34,197,94,0.12));
+}
+
+/* ─────────────────────────────────────────
+   STATS STRIP
+───────────────────────────────────────── */
+.stats-strip {
+  background: var(--dark);
+  padding: 0 64px 60px;
+}
+
+.stats-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 28px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+}
+.stat-card:hover { border-color: rgba(34,197,94,0.2); background: rgba(34,197,94,0.03); }
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), transparent);
+  opacity: 0.4;
+}
+
+.stat-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stat-value em { color: var(--green); font-style: normal; }
+
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240,253,244,0.35);
+  margin-top: 8px;
+  display: block;
+}
+
+/* ─────────────────────────────────────────
+   DEFINITION SECTION — Light
+───────────────────────────────────────── */
+.definition {
+  background: var(--cream);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.definition::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.definition-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mono-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.definition-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 56px;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 32px;
+}
+.definition-h2 em { color: var(--green); font-style: normal; }
+
+.definition-body {
+  font-size: 18px;
+  color: #4b5563;
+  line-height: 1.75;
+  max-width: 720px;
+  margin: 0 auto 20px;
+}
+.definition-body strong { color: var(--ink); font-weight: 600; }
+
+.definition-tagline {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-top: 36px;
+}
+
+/* ─────────────────────────────────────────
+   HOW IT WORKS — Dark with white cards
+───────────────────────────────────────── */
+.how-it-works {
+  background: var(--dark);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.how-it-works::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34,197,94,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  text-transform: uppercase;
+  color: #f0fdf4;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-top: 12px;
+}
+
+.section-sub {
+  font-size: 16px;
+  color: rgba(240,253,244,0.4);
+  margin-top: 10px;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.step-card:hover { transform: translateY(-4px); }
+
+.step-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  display: block;
+}
+.step-num.yellow { color: #fbbf24; }
+.step-num.orange { color: #f97316; }
+.step-num.red { color: #ef4444; }
+.step-num.green { color: var(--green); }
+
+.step-h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+
+.step-p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.65;
+}
+
+/* ─────────────────────────────────────────
+   GOLF IMAGE REVEAL — Dark, full-bleed row
+───────────────────────────────────────── */
+.image-reveal {
+  background: var(--dark);
+  padding: 0 64px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-reveal-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.img-reveal-card {
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+.img-reveal-card.tall { aspect-ratio: 3 / 4; grid-row: span 2; }
+.img-reveal-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.img-reveal-card:hover img { transform: scale(1.04); }
+.img-reveal-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6,11,8,0.5) 0%, transparent 60%);
+}
+
+/* ─────────────────────────────────────────
+   APP SHOWCASE — Light bg, phone row
+───────────────────────────────────────── */
+.app-showcase {
+  background: var(--cream);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.app-showcase .section-h2 { color: var(--ink); }
+.app-showcase .mono-label { color: var(--green-dim); }
+.app-showcase .section-sub { color: var(--muted); }
+
+.phones-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.phone-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.3s ease;
+}
+.phone-item:hover { transform: translateY(-6px); }
+
+.phone-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.phone-label::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+}
+.phone-item:nth-child(1) .phone-label::before { background: #facc15; }
+.phone-item:nth-child(2) .phone-label::before { background: var(--green); }
+.phone-item:nth-child(3) .phone-label::before { background: #a855f7; }
+.phone-item:nth-child(4) .phone-label::before { background: #f97316; }
+.phone-item:nth-child(5) .phone-label::before { background: #60a5fa; }
+
+/* Phone screen images */
+.phone-screen {
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06);
+  background: #f1f1f1;
+}
+.phone-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top;
+}
+
+/* ─────────────────────────────────────────
+   FEATURES — Dark with bento grid
+───────────────────────────────────────── */
+.features {
+  background: var(--dark);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34,197,94,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.bento-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.bento-card:hover {
+  border-color: rgba(34,197,94,0.15);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-3px);
+}
+
+.bento-card.featured {
+  background: rgba(34,197,94,0.05);
+  border-color: rgba(34,197,94,0.2);
+}
+
+.bento-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.bento-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bento-icon svg { width: 22px; height: 22px; stroke-width: 1.5; }
+
+.bento-status {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240,253,244,0.35);
+  background: rgba(255,255,255,0.05);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.bento-h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #f0fdf4;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.bento-cat {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(240,253,244,0.25);
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  display: block;
+}
+.bento-p {
+  font-size: 13.5px;
+  color: rgba(240,253,244,0.5);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.bento-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bento-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.bento-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: rgba(240,253,244,0.3);
+  background: rgba(255,255,255,0.04);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.bento-cta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────
+   XP / GAMIFICATION — Light section
+───────────────────────────────────────── */
+.gamification {
+  background: var(--cream);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gamification::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.gamification .section-h2 { color: var(--ink); }
+.gamification .mono-label { color: var(--green-dim); }
+
+.xp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.xp-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.xp-card:hover { transform: translateY(-4px); box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08); }
+
+.xp-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+}
+.xp-card.base .xp-top-bar { background: var(--green); }
+.xp-card.bonus .xp-top-bar { background: #fbbf24; }
+.xp-card.super .xp-top-bar { background: #ef4444; }
+
+.xp-multiplier {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  display: block;
+}
+.xp-card.base .xp-multiplier { color: var(--green); }
+.xp-card.bonus .xp-multiplier { color: #fbbf24; }
+.xp-card.super .xp-multiplier { color: #ef4444; }
+
+.xp-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.xp-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.xp-reward {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  background: #f9fafb;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+
+/* ─────────────────────────────────────────
+   FEATURED DRILLS — Dark
+───────────────────────────────────────── */
+.featured-drills {
+  background: var(--dark);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.featured-drills::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34,197,94,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.drills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.drill-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.drill-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+
+.drill-img {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.drill-body {
+  padding: 28px 28px 32px;
+}
+
+.drill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.drill-h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+}
+.drill-p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.drill-meta {
+  display: flex;
+  gap: 12px;
+}
+.drill-meta-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  background: #f3f4f6;
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+.drill-cta {
+  display: block;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--green);
+  color: var(--dark);
+  padding: 11px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition: background 0.2s;
+}
+.drill-cta:hover { background: var(--green-bright); }
+
+/* ─────────────────────────────────────────
+   VIDEO SECTION — Light
+───────────────────────────────────────── */
+.video-section {
+  background: var(--cream);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.video-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.video-section .section-h2 { color: var(--ink); }
+.video-section .mono-label { color: var(--green-dim); }
+.video-section .section-sub { color: var(--muted); }
+
+.video-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  aspect-ratio: 16/9;
+  background: var(--dark);
+}
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─────────────────────────────────────────
+   SIGNUP / CTA — Light
+───────────────────────────────────────── */
+.signup-section {
+  background: var(--cream);
+  padding: 100px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.signup-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.signup-card {
+  background: var(--dark);
+  border-radius: 28px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 960px;
+  margin: 0 auto;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--border-dark);
+}
+
+.signup-left {
+  background: linear-gradient(135deg, #0a1a0c, var(--dark));
+  padding: 60px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.signup-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(34,197,94,0.08) 0%, transparent 70%);
+}
+
+.signup-logo-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f0fdf4;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+.signup-brand em { color: var(--green); font-style: normal; }
+
+.signup-brand-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(34,197,94,0.45);
+  margin-top: 6px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-tagline {
+  font-size: 13px;
+  color: rgba(240,253,244,0.35);
+  line-height: 1.65;
+  max-width: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-right {
+  padding: 60px 56px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signup-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+
+.signup-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.55;
+}
+
+.form-field {
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 12px;
+  width: 100%;
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.2s;
+}
+.form-field:focus { outline: none; border-color: var(--green); }
+
+.form-submit {
+  background: var(--green);
+  color: var(--dark);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  margin-top: 4px;
+  transition: background 0.2s;
+}
+.form-submit:hover { background: var(--green-bright); }
+
+/* ─────────────────────────────────────────
+   FOOTER — Dark
+───────────────────────────────────────── */
+.footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 64px 64px 40px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  color: rgba(240,253,244,0.3);
+  line-height: 1.65;
+  max-width: 240px;
+  margin-top: 14px;
+}
+
+.footer-col-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240,253,244,0.3);
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-links a {
+  font-size: 14px;
+  color: rgba(240,253,244,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: #f0fdf4; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: rgba(240,253,244,0.2);
+}
+
+.footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f0fdf4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.footer-logo img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+.footer-logo em { color: var(--green); font-style: normal; }
+
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <a class="nav-logo" href="#">
+    <img src="logo/new-log.webp" alt="Scoring Zone" width="32" height="32">
+    Scoring <em>&nbsp;Zone</em>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Download</a></li>
+  </ul>
+  <a href="#signup" class="nav-cta">Start Free</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+
+  <!-- Animated SVG grid -->
+  <svg class="hero-grid" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="hero-grid-pat" width="40" height="40" patternUnits="userSpaceOnUse" x="0" y="0">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(34,197,94,0.06)" stroke-width="0.5"/>
+      </pattern>
+      <pattern id="hero-grid-pat-bright" width="40" height="40" patternUnits="userSpaceOnUse" x="0" y="0">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(34,197,94,0.16)" stroke-width="0.75"/>
+      </pattern>
+      <mask id="grid-mask">
+        <rect width="100%" height="100%" fill="white"/>
+      </mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hero-grid-pat)"/>
+    <div class="hero-grid-reveal">
+      <rect width="100%" height="100%" fill="url(#hero-grid-pat-bright)" class="hero-grid-reveal"/>
+    </div>
+  </svg>
+
+  <!-- Green radial glow -->
+  <div style="position:absolute;top:50%;right:5%;transform:translateY(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(34,197,94,0.07) 0%,transparent 65%);pointer-events:none;z-index:1;"></div>
+
+  <div class="hero-card">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Early Access &mdash; Now Live
+    </div>
+    <h1 class="hero-h1 typewriter">Pressure Test Your <span class="accent">SHORT GAME</span><span class="typewriter-cursor"></span></h1>
+    <p class="hero-sub hero-sub-words">
+      <span class="word-animate" data-delay="600">Simulate</span>
+      <span class="word-animate" data-delay="720">tournament</span>
+      <span class="word-animate" data-delay="840">pressure,</span>
+      <span class="word-animate" data-delay="960">track</span>
+      <span class="word-animate" data-delay="1080">every</span>
+      <span class="word-animate" data-delay="1200">shot,</span>
+      <span class="word-animate" data-delay="1380">and</span>
+      <span class="word-animate neon" data-delay="1500">level</span>
+      <span class="word-animate neon" data-delay="1620">up</span>
+      <span class="word-animate" data-delay="1740">with</span>
+      <span class="word-animate neon" data-delay="1860">data-driven</span>
+      <span class="word-animate" data-delay="1980">short</span>
+      <span class="word-animate" data-delay="2100">game</span>
+      <span class="word-animate" data-delay="2220">drills.</span>
+    </p>
+    <div class="hero-ctas">
+      <a href="#signup" class="btn-primary">Free Early Access &rarr;</a>
+      <a href="#process" class="btn-outline">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img
+      src="Scrolling Reveal/ipad and iphone-nobg-cropped.png"
+      alt="Scoring Zone app on iPhone and iPad"
+      class="hero-app-img float-anim"
+      width="520"
+    >
+  </div>
+</section>
+
+<!-- ══ STATS STRIP ══ -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="stat-card reveal">
+      <span class="stat-value">50<em>+</em></span>
+      <span class="stat-label">Practice Drills</span>
+    </div>
+    <div class="stat-card reveal reveal-d1">
+      <span class="stat-value">4</span>
+      <span class="stat-label">Short Game Categories</span>
+    </div>
+    <div class="stat-card reveal reveal-d2">
+      <span class="stat-value">3.2</span>
+      <span class="stat-label">Avg Stroke Improvement</span>
+    </div>
+    <div class="stat-card reveal reveal-d3">
+      <span class="stat-value"><em>∞</em></span>
+      <span class="stat-label">Pressure Simulations</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DEFINITION / ABOUT ══ -->
+<section class="definition">
+  <div class="definition-inner">
+    <span class="mono-label reveal">Short Game. Scored.</span>
+    <h2 class="definition-h2 reveal">Golf&rsquo;s Most Complete<br><em>Short Game Practice System</em></h2>
+    <p class="definition-body reveal">
+      Scoring Zone is a golf short game practice app that turns chipping, putting, and bunker practice into <strong>scored challenges.</strong>
+      The app tracks every drill with <strong>XP</strong>, calculates a dedicated <strong>Short Game Handicap</strong> and <strong>Putting Handicap</strong>, and uses <strong>pressure simulations</strong> to close the gap between practice and on-course performance.
+    </p>
+    <p class="definition-body reveal" style="margin-top: 0;">
+      Currently free during early access with 50+ drills, an AI practice assistant, and strokes gained analysis.
+    </p>
+    <div class="definition-tagline reveal">Practise. Score. Improve.</div>
+  </div>
+</section>
+
+<!-- ══ GOLF IMAGE REVEAL ══ -->
+<div class="image-reveal">
+  <div class="image-reveal-inner">
+    <div class="img-reveal-card tall reveal">
+      <img src="golf images/golfer putting at sunset.webp" alt="Golfer putting at sunset" loading="lazy">
+    </div>
+    <div class="img-reveal-card reveal reveal-d1">
+      <img src="golf images/college kid lining up a putt.webp" alt="College golfer lining up putt" loading="lazy">
+    </div>
+    <div class="img-reveal-card reveal reveal-d2">
+      <img src="golf images/golfer celebrating.webp" alt="Golfer celebrating" loading="lazy">
+    </div>
+    <div class="img-reveal-card reveal reveal-d1" style="grid-column:2;">
+      <img src="golf images/golfer lining up putt.webp" alt="Golfer lining up putt" loading="lazy">
+    </div>
+    <div class="img-reveal-card reveal reveal-d2" style="grid-column:3;">
+      <img src="golf images/golfer lines up putt.webp" alt="Golfers lining up putt" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-it-works" id="process">
+  <div class="section-header reveal">
+    <span class="mono-label" style="color: rgba(34,197,94,0.5);">How It Works</span>
+    <h2 class="section-h2">Get Started in Minutes</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card reveal">
+      <span class="step-num yellow">01</span>
+      <h3 class="step-h3">Create Account</h3>
+      <p class="step-p">Sign up free &mdash; no credit card required. Your stats and progress are saved from the first drill.</p>
+    </div>
+    <div class="step-card reveal reveal-d1">
+      <span class="step-num orange">02</span>
+      <h3 class="step-h3">Choose a Drill</h3>
+      <p class="step-p">Browse chipping, putting, bunker, and pressure categories. Start easy or jump straight to a challenge.</p>
+    </div>
+    <div class="step-card reveal reveal-d2">
+      <span class="step-num red">03</span>
+      <h3 class="step-h3">Practise &amp; Track</h3>
+      <p class="step-p">Log results in real time. HCP scores and XP calculated automatically after every session.</p>
+    </div>
+    <div class="step-card reveal reveal-d3">
+      <span class="step-num green">04</span>
+      <h3 class="step-h3">Level Up</h3>
+      <p class="step-p">Earn achievements, climb the level ladder, unlock harder challenges as your short game improves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APP SHOWCASE ══ -->
+<section class="app-showcase">
+  <div class="section-header reveal" style="position: relative; z-index: 1;">
+    <span class="mono-label">Inside the App</span>
+    <h2 class="section-h2">Everything You Need to Practise Smarter</h2>
+    <p class="section-sub">Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab &mdash; all in one app.</p>
+  </div>
+  <div class="phones-row">
+    <div class="phone-item reveal">
+      <div class="phone-screen" style="width:200px;height:380px;">
+        <img src="Scrolling Reveal/grok-image-c7cb18b2-f39f-40ae-92ea-4cbde4883519_nobg.png" alt="Home Dashboard" loading="lazy">
+      </div>
+      <span class="phone-label">Home Dashboard</span>
+    </div>
+    <div class="phone-item reveal reveal-d1">
+      <div class="phone-screen" style="width:220px;height:440px;box-shadow:0 28px 70px rgba(34,197,94,0.18),0 0 0 1px rgba(34,197,94,0.1);">
+        <img src="Scrolling Reveal/grok-image-dcf013c2-a297-46a7-a789-d71d93b189c9_nobg.png" alt="Performance Hub" loading="lazy">
+      </div>
+      <span class="phone-label">Performance Hub</span>
+    </div>
+    <div class="phone-item reveal reveal-d2">
+      <div class="phone-screen" style="width:220px;height:440px;">
+        <img src="Scrolling Reveal/grok-image-8f9dcaed-16a8-47a6-b6fe-fb5eba02f756_nobg.png" alt="Scored Drills" loading="lazy">
+      </div>
+      <span class="phone-label">Scored Drills</span>
+    </div>
+    <div class="phone-item reveal reveal-d3">
+      <div class="phone-screen" style="width:200px;height:380px;">
+        <img src="Scrolling Reveal/grok-image-701af59f-ea40-4b52-96bb-535411f984b4_nobg.png" alt="Strokes Gained Stats" loading="lazy">
+      </div>
+      <span class="phone-label">Strokes Gained Stats</span>
+    </div>
+    <div class="phone-item reveal reveal-d4">
+      <div class="phone-screen" style="width:180px;height:340px;">
+        <img src="Scrolling Reveal/grok-image-6d58264b-0246-477c-9949-dfc3b6db4735_nobg.png" alt="Chipping Drills" loading="lazy">
+      </div>
+      <span class="phone-label">Chipping Drills</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES BENTO GRID ══ -->
+<section class="features" id="features">
+  <div class="section-header reveal">
+    <span class="mono-label" style="color: rgba(34,197,94,0.5);">Platform</span>
+    <h2 class="section-h2">Everything Your Short Game Needs</h2>
+    <p class="section-sub">From beginner chipping drills to elite pressure tests &mdash; a complete system.</p>
+  </div>
+  <div class="bento-grid">
+    <div class="bento-card featured reveal">
+      <div class="bento-card-top">
+        <div class="bento-icon" style="color: #f97316;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M4 20c2-4 5-8 8-10"/><path d="M12 10c2 3 5 4 8 2"/></svg>
+        </div>
+        <span class="bento-status">10 drills</span>
+      </div>
+      <h3 class="bento-h3">Chipping Drills</h3>
+      <span class="bento-cat">Category 01</span>
+      <p class="bento-p">Master distance control, trajectory, and landing zones with structured sequences designed to simulate real on-course situations.</p>
+      <div class="bento-bottom">
+        <div class="bento-tags"><span class="bento-tag">#Distance</span><span class="bento-tag">#Trajectory</span></div>
+        <span class="bento-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+
+    <div class="bento-card reveal reveal-d1">
+      <div class="bento-card-top">
+        <div class="bento-icon" style="color: #60a5fa;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M4 3v18"/><path d="M4 3l8 4v6l-8-4"/></svg>
+        </div>
+        <span class="bento-status">10 drills</span>
+      </div>
+      <h3 class="bento-h3">Putting System</h3>
+      <span class="bento-cat">Category 02</span>
+      <p class="bento-p">Ladder drills, pressure putts, and gate challenges that build consistency and confidence under competition conditions.</p>
+      <div class="bento-bottom">
+        <div class="bento-tags"><span class="bento-tag">#Ladder</span><span class="bento-tag">#Pressure</span></div>
+        <span class="bento-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+
+    <div class="bento-card reveal reveal-d2">
+      <div class="bento-card-top">
+        <div class="bento-icon" style="color: #ef4444;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <span class="bento-status">Pro</span>
+      </div>
+      <h3 class="bento-h3">Elite Mode</h3>
+      <span class="bento-cat">Category 03</span>
+      <p class="bento-p">An extra level of difficulty for low handicap players and professionals &mdash; with tour-level stats and scoring.</p>
+      <div class="bento-bottom">
+        <div class="bento-tags"><span class="bento-tag">#Tour</span><span class="bento-tag">#Analytics</span></div>
+        <span class="bento-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+
+    <div class="bento-card reveal">
+      <div class="bento-card-top">
+        <div class="bento-icon" style="color: var(--green);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><polyline points="3 18 8 12 13 15 21 6"/><polyline points="17 6 21 6 21 10"/></svg>
+        </div>
+        <span class="bento-status">Live</span>
+      </div>
+      <h3 class="bento-h3">Stats Tracking</h3>
+      <span class="bento-cat">Category 04</span>
+      <p class="bento-p">Your Short Game HCP, Putting HCP, and drill completion stats are tracked automatically &mdash; giving you an objective improvement view.</p>
+      <div class="bento-bottom">
+        <div class="bento-tags"><span class="bento-tag">#Handicap</span><span class="bento-tag">#Progress</span></div>
+        <span class="bento-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+
+    <div class="bento-card reveal reveal-d1">
+      <div class="bento-card-top">
+        <div class="bento-icon" style="color: #a78bfa;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M9 3h6"/><path d="M10 3v6l-4 8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4-8V3"/></svg>
+        </div>
+        <span class="bento-status">Beta</span>
+      </div>
+      <h3 class="bento-h3">Sim Lab</h3>
+      <span class="bento-cat">Category 05</span>
+      <p class="bento-p">Recreate specific course situations, test different shot types, and prepare for the scenarios costing you strokes.</p>
+      <div class="bento-bottom">
+        <div class="bento-tags"><span class="bento-tag">#Scenarios</span><span class="bento-tag">#Practice</span></div>
+        <span class="bento-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+
+    <div class="bento-card reveal reveal-d2">
+      <div class="bento-card-top">
+        <div class="bento-icon" style="color: #fbbf24;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z"/></svg>
+        </div>
+        <span class="bento-status">AI</span>
+      </div>
+      <h3 class="bento-h3">AI Assistant</h3>
+      <span class="bento-cat">Category 06</span>
+      <p class="bento-p">Personalised drill recommendations, technique tips, and practice plans from AI trained on short game coaching principles.</p>
+      <div class="bento-bottom">
+        <div class="bento-tags"><span class="bento-tag">#Coaching</span><span class="bento-tag">#Plans</span></div>
+        <span class="bento-cta">Learn More &rarr;</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GAMIFICATION ══ -->
+<section class="gamification">
+  <div class="section-header reveal" style="position: relative; z-index: 1;">
+    <span class="mono-label">Gamification</span>
+    <h2 class="section-h2 hero-sub-words" style="color: var(--ink);">
+      <span class="word-animate" data-delay="0">Earn</span>
+      <span class="word-animate" data-delay="150">More</span>
+      <span class="word-animate" data-delay="300">XP.</span>
+      <span class="word-animate" data-delay="500">Beat</span>
+      <span class="word-animate" data-delay="650">Your</span>
+      <span class="word-animate" data-delay="800">Benchmark.</span>
+    </h2>
+  </div>
+  <div class="xp-grid">
+    <div class="xp-card base reveal">
+      <div class="xp-top-bar"></div>
+      <span class="xp-multiplier">1&times;</span>
+      <div class="xp-title">Base XP</div>
+      <p class="xp-desc">Complete any drill to earn XP</p>
+      <span class="xp-reward">Reward: 40&ndash;150 XP</span>
+    </div>
+    <div class="xp-card bonus reveal reveal-d1">
+      <div class="xp-top-bar"></div>
+      <span class="xp-multiplier">2&times;</span>
+      <div class="xp-title">Benchmark Bonus</div>
+      <p class="xp-desc">Beat your handicap benchmark, double your XP</p>
+      <span class="xp-reward">Reward: 80&ndash;300 XP</span>
+    </div>
+    <div class="xp-card super reveal reveal-d2">
+      <div class="xp-top-bar"></div>
+      <span class="xp-multiplier">3&times;</span>
+      <div class="xp-title">Super Bonus</div>
+      <p class="xp-desc">Exceed benchmark by 2+ levels, triple XP</p>
+      <span class="xp-reward">Reward: 120&ndash;450 XP</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURED DRILLS ══ -->
+<section class="featured-drills">
+  <div class="section-header reveal" style="position: relative; z-index: 1;">
+    <span class="mono-label" style="color: rgba(34,197,94,0.5);">Performance Skills</span>
+    <h2 class="section-h2">Featured Drills</h2>
+    <p class="section-sub">Put your chipping and putting skills to the test &mdash; begin improving today.</p>
+  </div>
+  <div class="drills-grid">
+    <div class="drill-card reveal">
+      <img class="drill-img" src="golf images/college kid lining up a putt.webp" alt="Up and Down Challenge" loading="lazy">
+      <div class="drill-body">
+        <div class="drill-tag" style="color: #f97316;">
+          <span style="width:6px;height:6px;background:#f97316;border-radius:50%;display:inline-block;"></span>
+          28 Drills
+        </div>
+        <h3 class="drill-h3">Up &amp; Down Challenge</h3>
+        <p class="drill-p">Test your scrambling ability under pressure. Chip and putt your way through 9 holes of simulated course play.</p>
+        <div class="drill-meta">
+          <span class="drill-meta-item">100 XP</span>
+          <span class="drill-meta-item">Chipping</span>
+        </div>
+        <a href="#signup" class="drill-cta">Start Drill</a>
+      </div>
+    </div>
+    <div class="drill-card reveal reveal-d1">
+      <img class="drill-img" src="golf images/golfer putting at sunset.webp" alt="Ladder Putting Drill" loading="lazy">
+      <div class="drill-body">
+        <div class="drill-tag" style="color: #60a5fa;">
+          <span style="width:6px;height:6px;background:#60a5fa;border-radius:50%;display:inline-block;"></span>
+          255 Putts
+        </div>
+        <h3 class="drill-h3">Ladder Putting</h3>
+        <p class="drill-p">Build distance control from 3 to 30 feet. Each rung earned brings you closer to tour-level lag putting.</p>
+        <div class="drill-meta">
+          <span class="drill-meta-item">100 XP</span>
+          <span class="drill-meta-item">Putting</span>
+        </div>
+        <a href="#signup" class="drill-cta">Start Drill</a>
+      </div>
+    </div>
+    <div class="drill-card reveal reveal-d2">
+      <img class="drill-img" src="golf images/golfer celebrating.webp" alt="Chipping Pressure Test" loading="lazy">
+      <div class="drill-body">
+        <div class="drill-tag" style="color: #ef4444;">
+          <span style="width:6px;height:6px;background:#ef4444;border-radius:50%;display:inline-block;"></span>
+          Pressure
+        </div>
+        <h3 class="drill-h3">Chipping Pressure Test</h3>
+        <p class="drill-p">Simulate the final hole scramble. One chip, one putt &mdash; perform or drop a shot. Progress tracking included.</p>
+        <div class="drill-meta">
+          <span class="drill-meta-item">150 XP</span>
+          <span class="drill-meta-item">Pressure</span>
+        </div>
+        <a href="#signup" class="drill-cta">Start Drill</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VIDEO SECTION ══ -->
+<section class="video-section">
+  <div class="section-header reveal" style="position: relative; z-index: 1;">
+    <span class="mono-label">See It In Action</span>
+    <h2 class="section-h2">Watch Scoring Zone Work</h2>
+    <p class="section-sub">See how scored drills, XP, and pressure tests transform your practice sessions.</p>
+  </div>
+  <div class="video-wrapper reveal">
+    <video
+      src="video/ScoringZonePromo-16x9.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="golf images/golfer putting at sunset.webp"
+    ></video>
+  </div>
+</section>
+
+<!-- ══ SIGNUP CTA ══ -->
+<section class="signup-section" id="signup">
+  <div class="signup-card reveal">
+    <div class="signup-left">
+      <img src="logo/new-log.webp" alt="Scoring Zone Logo" class="signup-logo-img">
+      <div class="signup-brand">SCORING <em>ZONE</em></div>
+      <div class="signup-brand-sub">Short Game Practice</div>
+      <p class="signup-tagline">Scored drills, XP, pressure tests &mdash; and real stats to back it up.</p>
+    </div>
+    <div class="signup-right">
+      <div style="display:inline-flex;align-items:center;gap:7px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#166534;background:#dcfce7;border:1px solid #bbf7d0;padding:5px 14px 5px 9px;border-radius:100px;margin-bottom:0;">
+        <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;flex-shrink:0;"></span>
+        Early Access
+      </div>
+      <h2 class="signup-h2">Join the Early Access</h2>
+      <p class="signup-sub">Sign up now and get premium features free. No credit card required.</p>
+      <input class="form-field" type="text" name="name" placeholder="Your name">
+      <input class="form-field" type="email" placeholder="Your email">
+      <button class="form-submit" onclick="this.textContent='Welcome! Check your email ✓'">Get Early Access</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="footer-logo" href="#">
+        <img src="logo/new-log.webp" alt="Scoring Zone">
+        Scoring <em>&nbsp;Zone</em>
+      </a>
+      <p>The one-of-a-kind golf app that gamifies short game practice.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Product</div>
+      <ul class="footer-links">
+        <li><a href="#">Putting Drills</a></li>
+        <li><a href="#">Chipping Drills</a></li>
+        <li><a href="#">Elite Mode</a></li>
+        <li><a href="#">Stats Tracking</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">For Coaches</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Social</div>
+      <ul class="footer-links">
+        <li><a href="https://x.com/ScoringZone1">X / Twitter</a></li>
+        <li><a href="https://www.instagram.com/scoring.zone1/">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@ScoringZone1">YouTube</a></li>
+        <li><a href="https://www.facebook.com/yourgolfjourney/">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Scoring Zone. All rights reserved.</span>
+    <span class="footer-copy">Privacy &middot; Terms</span>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+// ── Ensure reveal animation runs immediately for on-screen elements ──
+(function() {
+  setTimeout(function() {
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+    });
+  }, 100);
+})();
+</script>
+
+</body>
+</html>
