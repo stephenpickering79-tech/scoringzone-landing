@@ -66,7 +66,7 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "GBP",
-        "description": "Free during early access — all features included, no credit card required"
+        "description": "Free during early access. All features included, no credit card required."
       },
       "screenshot": [
         "https://www.scoringzone.net/golf%20images/scoring-zone-3-screens.webp",
@@ -92,6 +92,9 @@
     <link rel="stylesheet" href="css/shared.css">
 </head>
 <body>
+
+    <!-- Skip-to-main link for keyboard users -->
+    <a href="#main" class="skip-link">Skip to main content</a>
 
     <!-- Noise overlay -->
     <div class="noise"></div>
@@ -126,7 +129,7 @@
                                 </a>
                                 <a href="features/performance-hub.html" class="nav-mega-item">
                                     <div class="nav-mega-item-title">Performance Hub</div>
-                                    <p>Full short game test &mdash; get your Short Game Handicap</p>
+                                    <p>Full short game test. Get your Short Game Handicap.</p>
                                 </a>
                                 <a href="features/round-stats.html" class="nav-mega-item">
                                     <div class="nav-mega-item-title">Round Stats</div>
@@ -146,7 +149,7 @@
                                 </a>
                                 <a href="tools/golf-handicap-calculator.html" class="nav-mega-item">
                                     <div class="nav-mega-item-title">Handicap Calculator <span style="font-size: 0.65rem; color: var(--green); margin-left: 6px; letter-spacing: 0.08em;">FREE TOOL</span></div>
-                                    <p>WHS/GHIN compliant &mdash; calculate your Handicap Index</p>
+                                    <p>WHS/GHIN compliant. Calculate your Handicap Index.</p>
                                 </a>
                             </div>
                         </div>
@@ -185,6 +188,8 @@
         </div>
     </nav>
 
+    <main id="main">
+
     <!-- ========== HERO ========== -->
     <section class="hero">
         <div class="hero-bg">
@@ -205,7 +210,7 @@
             <div class="hero-content">
             <div>
                 <div class="hero-badge reveal">
-                    Early Access — Now Live
+                    Early Access · Now Live
                 </div>
                 <h1 class="display-xl reveal typewriter" style="margin-top: 16px;">Pressure Test Your <span class="hero-accent">Short Game</span><span class="typewriter-cursor"></span></h1>
                 <p class="hero-sub reveal hero-sub-words">
@@ -231,7 +236,7 @@
 
                 <!-- QR Download Card -->
                 <div class="hero-qr-card reveal">
-                    <img src="logo/qr-code.png" alt="Scan to download Scoring Zone" class="hero-qr-img">
+                    <img src="logo/qr-code.png" alt="Scan to download Scoring Zone" class="hero-qr-img" width="684" height="672" loading="lazy" decoding="async">
                     <div class="hero-qr-text">
                         <p class="hero-qr-heading">Download the Scoring Zone App</p>
                         <p class="hero-qr-sub">Scan the QR code with your phone to go directly to the app!</p>
@@ -254,7 +259,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     </div>
-                    <p style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff; margin:0; text-shadow:0 1px 4px rgba(0,0,0,0.6); line-height:1.35;">Trusted &amp; Reviewed by<br>Professional Golf Coaches</p>
+                    <p style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text); margin:0; text-shadow:0 1px 4px rgba(0,0,0,0.6); line-height:1.35;">Trusted &amp; Reviewed by<br>Professional Golf Coaches</p>
                 </div>
             </div>
             </div>
@@ -341,7 +346,7 @@
             <!-- Centre Copy -->
             <div style="text-align:center; max-width:900px; margin:0 auto; position:relative;">
                 <!-- Main headline -->
-                <div style="font-size:clamp(0.9rem,2vw,1.25rem); font-weight:300; line-height:1.6; letter-spacing:0.01em; color:#ffffff; margin-bottom:24px;">
+                <div style="font-size:clamp(0.9rem,2vw,1.25rem); font-weight:300; line-height:1.6; letter-spacing:0.01em; color:var(--text); margin-bottom:24px;">
                     <span class="dsh-word" data-delay="150">Scoring</span>
                     <span class="dsh-word" data-delay="188">Zone</span>
                     <span class="dsh-word" data-delay="225">is</span>
@@ -364,7 +369,7 @@
                 </div>
 
                 <!-- Secondary copy -->
-                <div style="font-size:clamp(0.9rem,2vw,1.15rem); font-weight:300; color:#ffffff; line-height:1.7; letter-spacing:0.02em;">
+                <div style="font-size:clamp(0.9rem,2vw,1.15rem); font-weight:300; color:var(--text); line-height:1.7; letter-spacing:0.02em;">
                     <span class="dsh-word" data-delay="725">The</span>
                     <span class="dsh-word dsh-accent" data-delay="750">Scoring</span>
                     <span class="dsh-word dsh-accent" data-delay="775">Zone</span>
@@ -434,28 +439,21 @@
                 </div>
             </div>
 
-            <!-- Stats Row -->
-            <div style="width:100%; max-width:860px; margin:0 auto; opacity:0; animation:dsh-word-appear 0.4s ease-out forwards; animation-delay:2.3s;">
-                <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(34,197,94,0.25),transparent); margin-bottom:40px;"></div>
-                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0; text-align:center;">
-                    <div style="padding:0 24px; border-right:1px solid rgba(34,197,94,0.12);">
-                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#ffffff; line-height:1; text-shadow:0 0 20px rgba(34,197,94,0.2);">50<span style="color:#22c55e;">+</span></div>
-                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Practice Drills</div>
-                    </div>
-                    <div style="padding:0 24px; border-right:1px solid rgba(34,197,94,0.12);">
-                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#ffffff; line-height:1; text-shadow:0 0 20px rgba(34,197,94,0.2);">4</div>
-                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Short Game Categories</div>
-                    </div>
-                    <div style="padding:0 24px; border-right:1px solid rgba(34,197,94,0.12);">
-                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#22c55e; line-height:1; text-shadow:0 0 24px rgba(34,197,94,0.4);">3.2</div>
-                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Avg Stroke Improvement</div>
-                    </div>
-                    <div style="padding:0 24px;">
-                        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); color:#ffffff; line-height:1; text-shadow:0 0 20px rgba(34,197,94,0.2);">&#8734;</div>
-                        <div style="font-family:'DM Mono',monospace; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.12em; margin-top:8px;">Pressure Simulations</div>
-                    </div>
-                </div>
-                <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(34,197,94,0.25),transparent); margin-top:40px;"></div>
+            <!-- Headline metric + metadata strip (single committed number, not a 4-card grid) -->
+            <div style="width:100%; max-width:860px; margin:0 auto; opacity:0; animation:dsh-word-appear 0.4s ease-out forwards; animation-delay:2.3s; text-align:center;">
+                <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(34,197,94,0.25),transparent); margin-bottom:48px;"></div>
+
+                <p style="font-family:'DM Mono',monospace; font-size:0.75rem; font-weight:600; color:rgba(34,197,94,0.85); text-transform:uppercase; letter-spacing:0.18em; margin:0 0 20px;">Average stroke improvement</p>
+
+                <p style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(5rem,14vw,11rem); color:#22c55e; line-height:1; letter-spacing:-0.02em; margin:0 0 20px; text-shadow:0 0 36px rgba(34,197,94,0.35);">3.2</p>
+
+                <p style="font-family:'DM Sans',sans-serif; font-size:1rem; line-height:1.55; color:rgba(255,255,255,0.7); max-width:480px; margin:0 auto 48px;">strokes saved by early-access users practising the Scoring Zone way.</p>
+
+                <p style="font-family:'DM Mono',monospace; font-size:0.72rem; font-weight:500; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.15em; margin:0; line-height:2;">
+                    50<span style="color:#22c55e;">+</span> Practice Drills <span style="color:rgba(34,197,94,0.4); margin:0 14px;">·</span> 4 Short-Game Categories <span style="color:rgba(34,197,94,0.4); margin:0 14px;">·</span> &#8734; Pressure Simulations
+                </p>
+
+                <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(34,197,94,0.25),transparent); margin-top:48px;"></div>
             </div>
         </div>
 
@@ -608,7 +606,7 @@
                         <img src="logo/new-log.webp" alt="Scoring Zone" width="56" height="56" style="width:56px;height:56px;border-radius:50%;margin-bottom:20px;box-shadow:0 0 30px rgba(34,197,94,0.3);" loading="lazy">
                         <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#f0fdf4;margin-bottom:4px;line-height:1;">SCORING <span style="color:#22c55e;">ZONE</span></h2>
                         <p style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(34,197,94,0.55);margin-bottom:28px;">Short Game Practice</p>
-                        <p style="font-size:0.875rem;color:rgba(240,253,244,0.45);line-height:1.65;max-width:210px;">Scored drills, XP, pressure tests&mdash;and real stats to back it up.</p>
+                        <p style="font-size:0.875rem;color:rgba(240,253,244,0.45);line-height:1.65;max-width:210px;">Scored drills, XP, pressure tests, and real stats to back it up.</p>
                     </div>
                 </div>
 
@@ -619,8 +617,10 @@
                     <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;">Sign up now and get premium features free. No credit card required.</p>
                     <div class="form-wrapper">
                         <form class="signup-form" onsubmit="handleSignup(event)">
-                            <input type="text" name="name" placeholder="Your name" required>
-                            <input type="email" name="email" placeholder="Your email" required>
+                            <label for="signup-hero-name" class="sr-only">Full name</label>
+                            <input id="signup-hero-name" type="text" name="name" autocomplete="name" placeholder="Your name" required>
+                            <label for="signup-hero-email" class="sr-only">Email address</label>
+                            <input id="signup-hero-email" type="email" name="email" autocomplete="email" placeholder="Your email" required>
                             <div class="btn-border-anim" style="width:100%;"><button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Get Early Access</button></div>
                         </form>
                     </div>
@@ -720,9 +720,22 @@
                     ctx.fillStyle = '#86efac';
                     ctx.fill();
                 });
-                requestAnimationFrame(draw);
+                rafId = requestAnimationFrame(draw);
             }
-            draw();
+
+            // Pause rAF when canvas is offscreen
+            var rafId = null;
+            var io = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) {
+                        if (!rafId) draw();
+                    } else if (rafId) {
+                        cancelAnimationFrame(rafId);
+                        rafId = null;
+                    }
+                });
+            }, { threshold: 0 });
+            io.observe(canvas);
         })();
         </script>
     </section>
@@ -735,7 +748,7 @@
           .chipping-hero-wrap { display: flex; align-items: flex-start; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
           .chipping-text-col { flex: 1; padding-right: 185px; }
           .chipping-text-col .mono-label { display: block; margin-bottom: 0.75rem; }
-          .chipping-text-col h2 { margin-bottom: 1rem; color: #fff; }
+          .chipping-text-col h2 { margin-bottom: 1rem; color: var(--text); }
           .chipping-text-col p { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.6; }
           .chipping-img-col { position: relative; width: 40%; flex-shrink: 0; }
           .chipping-hero-wrap img { width: 100%; border-radius: 20px; display: block; object-fit: cover; max-height: 560px; object-position: center center; }
@@ -775,7 +788,7 @@
           .lg-content {
             position: relative; z-index: 1;
             padding: 1rem 1.25rem;
-            color: #fff;
+            color: var(--text);
             text-shadow: 0 1px 4px rgba(0,0,0,0.4);
           }
           @media (max-width: 640px) { .lg-wrap { display: none; } }
@@ -791,36 +804,36 @@
           <div class="chipping-text-col reveal">
             <span class="mono-label">Your Short Game Journey</span>
             <h2 class="display-lg">Built for Every Part of Your Game</h2>
-            <p>Scored drills, pressure tests, and real stats &mdash; all in one app.</p>
+            <p>Scored drills, pressure tests, and real stats. All in one app.</p>
             <ul style="list-style:none; padding:0; margin:1.5rem 0 0; display:flex; flex-direction:column; gap:0.9rem;">
               <li style="display:flex; align-items:flex-start; gap:0.65rem;">
                 <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
-                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </span>
-                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Scored chipping and putting drills &mdash; every session generates a benchmark you can beat next time</span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Scored chipping and putting drills. Every session generates a benchmark you can beat next time.</span>
               </li>
               <li style="display:flex; align-items:flex-start; gap:0.65rem;">
                 <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
-                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </span>
-                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Pressure challenges that reset on a miss &mdash; so practice actually feels like the course</span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Pressure challenges that reset on a miss. So practice actually feels like the course.</span>
               </li>
               <li style="display:flex; align-items:flex-start; gap:0.65rem;">
                 <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
-                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </span>
-                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Full round stats with strokes gained &mdash; know exactly where you&rsquo;re losing shots before you practise</span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">Full round stats with strokes gained. Know exactly where you&rsquo;re losing shots before you practise.</span>
               </li>
               <li style="display:flex; align-items:flex-start; gap:0.65rem;">
                 <span style="flex-shrink:0; width:20px; height:20px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:0.1rem;">
-                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </span>
-                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">XP progression that unlocks harder drills &mdash; structure that keeps you improving, not just repeating</span>
+                <span style="font-size:0.95rem; line-height:1.55; color:rgba(255,255,255,0.7);">XP progression that unlocks harder drills. Structure that keeps you improving, not just repeating.</span>
               </li>
             </ul>
           </div>
           <div class="chipping-img-col">
-            <img src="Images%20for%20n8n/Chipping-image-1.png" alt="Golfer hitting a chip shot on the course" loading="lazy">
+            <img src="Images%20for%20n8n/Chipping-image-1.png" alt="Golfer hitting a chip shot on the course" width="768" height="1376" loading="lazy" decoding="async">
 
             <!-- Top-left glass card -->
             <div class="lg-wrap lg-wrap--top-left">
@@ -831,7 +844,7 @@
                 <div class="lg-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:0.6rem;">
                   <span style="font-family:'DM Mono',monospace; font-size:0.85rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; opacity:0.85; display:block; text-align:center;">Short Game HCP</span>
                   <div style="width:100px; height:100px; flex-shrink:0; background:transparent; border:3px solid #22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 24px rgba(34,197,94,0.45);">
-                    <span style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:3.2rem; color:#fff; line-height:1;">5</span>
+                    <span style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:3.2rem; color:var(--text); line-height:1;">5</span>
                   </div>
                 </div>
               </div>
@@ -854,11 +867,11 @@
                 <!-- XP Level -->
                 <div style="display:flex; align-items:center; gap:0.5rem;">
                   <div style="width:44px; height:44px; background:#f97316; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 16px rgba(249,115,22,0.55);">
-                    <svg viewBox="0 0 24 24" width="23" height="23" fill="#fff"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                   </div>
                   <div>
                     <span style="font-family:'DM Mono',monospace; font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; opacity:0.7; display:block;">XP Level</span>
-                    <span style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.1rem; color:#fff; line-height:1;">5</span>
+                    <span style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.1rem; color:var(--text); line-height:1;">5</span>
                   </div>
                 </div>
               </div>
@@ -879,7 +892,7 @@
                 <div class="process-step reveal">
                     <span class="process-num process-num--yellow">01</span>
                     <h3>Create Account</h3>
-                    <p>Sign up free &mdash; no credit card required. Your stats and progress are saved from the first drill.</p>
+                    <p>Sign up free. No credit card required. Your stats and progress are saved from the first drill.</p>
                 </div>
                 <div class="process-step reveal">
                     <span class="process-num process-num--orange">02</span>
@@ -995,37 +1008,37 @@
         <div class="carousel-header-inner">
           <span class="mono-label" style="display:block; text-shadow:0 1px 6px rgba(0,0,0,0.12);">Inside the App</span>
           <h2 style="text-shadow:0 2px 8px rgba(0,0,0,0.12);">Everything You Need to Practise Smarter</h2>
-          <p style="text-shadow:0 1px 6px rgba(0,0,0,0.1);">Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab &mdash; all in one app.</p>
+          <p style="text-shadow:0 1px 6px rgba(0,0,0,0.1);">Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab. All in one app.</p>
         </div>
 
         <div class="carousel-track" id="carousel-track">
           <div class="carousel-card" data-color="yellow">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1;" src="Scrolling Reveal/grok-image-c7cb18b2-f39f-40ae-92ea-4cbde4883519_nobg.png" alt="Scoring Zone home screen showing practice streak and skill breakdown" loading="lazy">
+              <img style="--img-scale: 1;" src="Scrolling Reveal/grok-image-c7cb18b2-f39f-40ae-92ea-4cbde4883519_nobg.png" alt="Scoring Zone home screen showing practice streak and skill breakdown" width="736" height="1408" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Home Dashboard</span></div>
           </div>
           <div class="carousel-card" data-color="green">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.26;" src="Scrolling%20Reveal/Performance-hub.png" alt="Performance Hub with challenges and practice modes" loading="lazy">
+              <img style="--img-scale: 1.26;" src="Scrolling%20Reveal/Performance-hub.png" alt="Performance Hub with challenges and practice modes" width="800" height="1280" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Performance Hub</span></div>
           </div>
           <div class="carousel-card" data-color="purple">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.22;" src="Scrolling Reveal/grok-image-8f9dcaed-16a8-47a6-b6fe-fb5eba02f756_nobg.png" alt="Putting drills list with scores and progress" loading="lazy">
+              <img style="--img-scale: 1.22;" src="Scrolling Reveal/grok-image-8f9dcaed-16a8-47a6-b6fe-fb5eba02f756_nobg.png" alt="Putting drills list with scores and progress" width="720" height="1440" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Scored Drills</span></div>
           </div>
           <div class="carousel-card" data-color="purple">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.02;" src="Scrolling Reveal/grok-image-701af59f-ea40-4b52-96bb-535411f984b4_nobg.png" alt="Stats dashboard with strokes gained and weakness radar" loading="lazy">
+              <img style="--img-scale: 1.02;" src="Scrolling Reveal/grok-image-701af59f-ea40-4b52-96bb-535411f984b4_nobg.png" alt="Stats dashboard with strokes gained and weakness radar" width="720" height="1440" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Strokes Gained Stats</span></div>
           </div>
           <div class="carousel-card" data-color="orange">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.15;" src="Scrolling Reveal/grok-image-6d58264b-0246-477c-9949-dfc3b6db4735_nobg.png" alt="The 10-Yarder chipping drill" loading="lazy">
+              <img style="--img-scale: 1.15;" src="Scrolling Reveal/grok-image-6d58264b-0246-477c-9949-dfc3b6db4735_nobg.png" alt="The 10-Yarder chipping drill" width="720" height="1440" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Chipping Drills</span></div>
           </div>
@@ -1039,7 +1052,7 @@
             <div class="section-header reveal">
                 <span class="mono-label">PLATFORM</span>
                 <h2 class="display-lg" style="text-shadow:0 2px 12px rgba(0,0,0,0.3);">Everything Your Short Game Needs</h2>
-                <p style="text-shadow:0 1px 5px rgba(0,0,0,0.2);">From beginner chipping drills to elite pressure tests — a complete system for short game mastery.</p>
+                <p style="text-shadow:0 1px 5px rgba(0,0,0,0.2);">From beginner chipping drills to elite pressure tests. A complete system for short game mastery.</p>
             </div>
             <div class="bento-grid">
                 <!-- Chipping — 1 col -->
@@ -1108,7 +1121,7 @@
                         <div class="bento-body">
                             <h3>Elite Mode</h3>
                             <span class="bento-meta">Category 03</span>
-                            <p>An extra level of difficulty for low handicap players and professionals &mdash; with tour-level stats and scoring.</p>
+                            <p>An extra level of difficulty for low handicap players and professionals. Tour-level stats and scoring.</p>
                         </div>
                         <div class="bento-bottom">
                             <div class="bento-tags">
@@ -1134,7 +1147,7 @@
                         <div class="bento-body">
                             <h3>Stats Tracking</h3>
                             <span class="bento-meta">Category 04</span>
-                            <p>Your Short Game HCP, Putting HCP, and drill completion stats are tracked automatically &mdash; giving you an objective improvement view.</p>
+                            <p>Your Short Game HCP, Putting HCP, and drill completion stats are tracked automatically, giving you an objective improvement view.</p>
                         </div>
                         <div class="bento-bottom">
                             <div class="bento-tags">
@@ -1284,11 +1297,11 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="mono-label">Performance Tests</span>
-                <h2 class="display-lg hero-sub-words" style="color:#ffffff; text-shadow:0 2px 12px rgba(0,0,0,0.3);">
+                <h2 class="display-lg hero-sub-words" style="color:var(--text); text-shadow:0 2px 12px rgba(0,0,0,0.3);">
                     <span class="word-animate" data-delay="0">Featured</span>
                     <span class="word-animate" data-delay="150">Challenges</span>
                 </h2>
-                <p style="text-shadow:0 1px 5px rgba(0,0,0,0.2);">Pick your challenge and start building real short game skills — from beginner drills to elite pressure tests.</p>
+                <p style="text-shadow:0 1px 5px rgba(0,0,0,0.2);">Pick your challenge and start building real short game skills, from beginner drills to elite pressure tests.</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 4px;">
                 <!-- Card 1 — Up & Down -->
@@ -1343,7 +1356,7 @@
                     <div class="bento-glow"></div>
                     <span class="challenge-pill" style="background: rgba(239, 68, 68, 0.15); color: var(--pressure); border: 1px solid rgba(239, 68, 68, 0.3);">Advanced</span>
                     <h3 style="margin-top: 16px;">Chipping Pressure Test</h3>
-                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">10 chips under tournament conditions — timer running, consecutive requirements active, penalties for missed targets.</p>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">10 chips under tournament conditions. Timer running, consecutive requirements active, penalties for missed targets.</p>
                     <div class="challenge-meta" style="margin-top: 20px;">
                         <div>
                             <span class="challenge-meta-label">Format</span>
@@ -1461,15 +1474,15 @@
                     <div class="news-card-badge">Guide</div>
                     <div class="news-card-content">
                         <span class="news-card-tag">Putting</span>
-                        <h3>The Complete Putting Guide — Drills, Reads & Distance Control</h3>
-                        <p>Everything you need to putt better — grip, reads, lag putting, and the drills that actually move the needle.</p>
+                        <h3>The Complete Putting Guide: Drills, Reads & Distance Control</h3>
+                        <p>Everything you need to putt better. Grip, reads, lag putting, and the drills that actually move the needle.</p>
                         <span class="news-card-link">Read guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
                     </div>
                 </a>
                 <a href="blog/short-game-guide.html" class="news-card reveal">
                     <div class="news-card-content">
                         <span class="news-card-tag">Short Game</span>
-                        <h3>The Complete Short Game Guide — Chipping, Pitching & Scoring</h3>
+                        <h3>The Complete Short Game Guide: Chipping, Pitching & Scoring</h3>
                         <p>Master every shot inside 100 yards with structured drills and a practice plan that works.</p>
                         <span class="news-card-link">Read guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
                     </div>
@@ -1477,16 +1490,16 @@
                 <a href="blog/best-golf-apps-guide.html" class="news-card reveal">
                     <div class="news-card-content">
                         <span class="news-card-tag">Apps</span>
-                        <h3>Best Golf Apps Guide — Every Practice App Compared</h3>
-                        <p>An honest comparison of every golf practice app on the market — features, pricing, and who each one suits.</p>
+                        <h3>Best Golf Apps Guide: Every Practice App Compared</h3>
+                        <p>An honest comparison of every golf practice app on the market. Features, pricing, and who each one suits.</p>
                         <span class="news-card-link">Read guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
                     </div>
                 </a>
                 <a href="blog/how-to-break-90.html" class="news-card reveal">
                     <div class="news-card-content">
                         <span class="news-card-tag">Strategy</span>
-                        <h3>How to Break 90 — A Short Game Plan</h3>
-                        <p>The fastest path to breaking 90 isn't more range time — it's a structured short game plan.</p>
+                        <h3>How to Break 90: A Short Game Plan</h3>
+                        <p>The fastest path to breaking 90 isn't more range time. It's a structured short game plan.</p>
                         <span class="news-card-link">Read article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
                     </div>
                 </a>
@@ -1535,7 +1548,7 @@
                         <ul class="pricing-features">
                             <li>Progressive Challenges (chipping, putting, bunker)</li>
                             <li>Performance Hub Tests &amp; Pressure Mode</li>
-                            <li>Sim Lab &mdash; unlimited simulations</li>
+                            <li>Sim Lab, unlimited simulations</li>
                             <li>Progress Tracking &amp; HCP Scoring</li>
                             <li>XP &amp; Level System with Achievements</li>
                         </ul>
@@ -1569,6 +1582,8 @@
 
 
     </div><!-- /.blog-footer-serenity-wrap -->
+
+    </main>
 
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
