@@ -711,7 +711,7 @@ body::after {
   overflow: hidden;
   padding-top: calc(72px + 1.5rem);
   padding-bottom: 5.5rem;
-  background: #000000;
+  background: var(--bg);
 }
 
 .hero-bg {
@@ -1020,7 +1020,7 @@ body::after {
   border-radius: 10px;
   flex-shrink: 0;
   object-fit: cover;
-  background: #fff;
+  background: var(--text);
 }
 
 .hero-qr-text {
@@ -1106,7 +1106,7 @@ body::after {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 800;
   font-size: 2.2rem;
-  color: #ffffff;
+  color: var(--text);
   line-height: 1;
 }
 
@@ -1137,7 +1137,7 @@ body::after {
   border-radius: 36px;
   border: none;
   overflow: hidden;
-  background: #000;
+  background: var(--bg);
   box-shadow: 0 0 40px rgba(34, 197, 94, 0.1), 0 20px 60px rgba(0,0,0,0.6);
   transition: box-shadow 0.4s;
 }
@@ -1158,7 +1158,7 @@ body::after {
   transform: translateX(-50%);
   width: 100px;
   height: 28px;
-  background: #000;
+  background: var(--bg);
   border-radius: 20px;
   z-index: 3;
 }
@@ -1463,12 +1463,23 @@ body::after {
   color: var(--text-2);
 }
 
-/* ── XP Multiplier Cards ── */
+/* ── XP Multiplier Ladder ──
+   Three tiers with progressive visual weight: 1× small intro, 2× medium,
+   3× hero with tinted background + accent-colour border. Replaces the
+   prior identical-card grid + side-stripe accents. */
+.xp-ladder {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.35fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  align-items: stretch;
+}
+
 .xp-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 24px;
+  padding: 22px 24px;
   position: relative;
   transition: all 0.3s;
   display: flex;
@@ -1489,36 +1500,52 @@ body::after {
 
 .xp-card:hover .bento-dots { opacity: 1; }
 
-.xp-card-accent {
-  position: absolute;
-  top: 12px;
-  left: 0;
-  bottom: 12px;
-  width: 3px;
-  border-radius: 0 2px 2px 0;
-  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+/* Hero tier (3×) — bigger padding, accent-tinted surface, accent border */
+.xp-card--peak {
+  padding: 28px 30px;
+  background: linear-gradient(160deg, rgba(239, 68, 68, 0.08), var(--bg-card) 70%);
+  border-color: rgba(239, 68, 68, 0.32);
+  box-shadow: 0 0 32px rgba(239, 68, 68, 0.08);
+}
+
+.xp-card--peak:hover {
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 40px rgba(239, 68, 68, 0.14);
 }
 
 .xp-value {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 1.8rem;
+  font-weight: 900;
+  font-size: 2.2rem;
   line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.xp-card--peak .xp-value {
+  font-size: 3.2rem;
 }
 
 .xp-label {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  margin-top: 4px;
+  margin-top: 8px;
+}
+
+.xp-card--peak .xp-label {
+  font-size: 0.95rem;
 }
 
 .xp-desc {
   font-size: 0.82rem;
   color: var(--text-muted);
-  margin-top: 8px;
-  line-height: 1.5;
+  margin-top: 10px;
+  line-height: 1.55;
+}
+
+.xp-card--peak .xp-desc {
+  font-size: 0.9rem;
+  color: var(--text-2);
 }
 
 .xp-reward {
@@ -1526,7 +1553,19 @@ body::after {
   font-size: 0.7rem;
   color: var(--text-muted);
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 14px;
+  letter-spacing: 0.06em;
+}
+
+.xp-card--peak .xp-reward {
+  font-size: 0.78rem;
+  color: rgba(239, 68, 68, 0.85);
+}
+
+@media (max-width: 768px) {
+  .xp-ladder {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── Badge Grid ── */
