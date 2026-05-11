@@ -5,6 +5,16 @@
       "has": [{ "type": "host", "value": "scoringzone.net" }],
       "destination": "https://www.scoringzone.net/:path*",
       "permanent": true
+    },
+    {
+      "source": "/Scoring Zone for Professional Coaches/:path*",
+      "destination": "/professionals/",
+      "permanent": true
+    },
+    {
+      "source": "/Scoring%20Zone%20for%20Professional%20Coaches/:path*",
+      "destination": "/professionals/",
+      "permanent": true
     }
   ]
 }
