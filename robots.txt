@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /blog/images/
 
 # AI Search Bots — explicitly allowed for citation
 User-agent: GPTBot
