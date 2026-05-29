@@ -215,6 +215,45 @@
         margin-right: 8px;
         vertical-align: middle;
       }
+      .blog-table-wrap {
+        margin: 2rem 0;
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+      .blog-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        min-width: 320px;
+      }
+      .blog-table thead th {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        text-align: left;
+        color: var(--text);
+        background: rgba(34, 197, 94, 0.08);
+        padding: 12px 16px;
+        border-bottom: 2px solid rgba(34, 197, 94, 0.25);
+      }
+      .blog-table tbody td {
+        padding: 11px 16px;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border);
+        line-height: 1.5;
+      }
+      .blog-table tbody tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .blog-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .blog-table td:first-child, .blog-table th:first-child {
+        font-weight: 600;
+        color: var(--text);
+      }
       .related-posts {
         margin-top: 3rem;
         padding-top: 2rem;
@@ -387,13 +426,23 @@
 
             <p class="reveal">These are average carry distances for a mid-handicap amateur. Your own numbers will vary based on swing speed, strike quality, and equipment &mdash; but this gives you a baseline to measure against.</p>
 
-            <p class="reveal">| Wedge | Loft | Full Swing | 3/4 Swing | 1/2 Swing | |-------|------|------------|-----------|-----------| | Pitching Wedge (PW) | 46° | 100&ndash;115 yds | 85&ndash;95 yds | 65&ndash;75 yds | | Gap Wedge (GW) | 50&ndash;52° | 85&ndash;100 yds | 70&ndash;85 yds | 55&ndash;65 yds | | Sand Wedge (SW) | 54&ndash;56° | 70&ndash;85 yds | 55&ndash;70 yds | 40&ndash;50 yds | | Lob Wedge (LW) | 58&ndash;60° | 50&ndash;70 yds | 40&ndash;55 yds | 30&ndash;40 yds |</p>
+            <div class="blog-table-wrap reveal">
+                <table class="blog-table">
+                    <thead><tr><th>Wedge</th><th>Loft</th><th>Full Swing</th><th>3/4 Swing</th><th>1/2 Swing</th></tr></thead>
+                    <tbody><tr><td>Pitching Wedge (PW)</td><td>46°</td><td>100&ndash;115 yds</td><td>85&ndash;95 yds</td><td>65&ndash;75 yds</td></tr><tr><td>Gap Wedge (GW)</td><td>50&ndash;52°</td><td>85&ndash;100 yds</td><td>70&ndash;85 yds</td><td>55&ndash;65 yds</td></tr><tr><td>Sand Wedge (SW)</td><td>54&ndash;56°</td><td>70&ndash;85 yds</td><td>55&ndash;70 yds</td><td>40&ndash;50 yds</td></tr><tr><td>Lob Wedge (LW)</td><td>58&ndash;60°</td><td>50&ndash;70 yds</td><td>40&ndash;55 yds</td><td>30&ndash;40 yds</td></tr></tbody>
+                </table>
+            </div>
 
             <h3 class="reveal">Typical Tour-level yardages</h3>
 
             <p class="reveal">For reference, here&rsquo;s what a PGA Tour player hits the same clubs. The gap is less about full-swing distance and more about consistency &mdash; tour pros hit each yardage within a 3&ndash;5 yard dispersion, amateurs hit the same shot within a 15&ndash;20 yard range.</p>
 
-            <p class="reveal">| Wedge | Loft | Full Swing | |-------|------|------------| | Pitching Wedge (PW) | 46° | 125&ndash;140 yds | | Gap Wedge (GW) | 50° | 110&ndash;125 yds | | Sand Wedge (SW) | 56° | 95&ndash;110 yds | | Lob Wedge (LW) | 60° | 75&ndash;90 yds |</p>
+            <div class="blog-table-wrap reveal">
+                <table class="blog-table">
+                    <thead><tr><th>Wedge</th><th>Loft</th><th>Full Swing</th></tr></thead>
+                    <tbody><tr><td>Pitching Wedge (PW)</td><td>46°</td><td>125&ndash;140 yds</td></tr><tr><td>Gap Wedge (GW)</td><td>50°</td><td>110&ndash;125 yds</td></tr><tr><td>Sand Wedge (SW)</td><td>56°</td><td>95&ndash;110 yds</td></tr><tr><td>Lob Wedge (LW)</td><td>60°</td><td>75&ndash;90 yds</td></tr></tbody>
+                </table>
+            </div>
 
             <p class="reveal">The usable lesson: your goal isn&rsquo;t more distance. It&rsquo;s tighter dispersion.</p>
 
@@ -493,14 +542,20 @@
             <!-- RELATED POSTS -->
             <div class="related-posts reveal">
                 <h2>Keep Reading</h2>
-                <a href="how-to-improve-putting-distance-control.html">
-                    How to Improve Putting Distance Control <span>&rarr;</span>
+                <a href="how-to-pitch-a-ball.html">
+                    How to Pitch a Ball in Golf: Setup + 2 Drills <span>&rarr;</span>
                 </a>
                 <a href="golf-pitch-shot-vs-chip-shot.html">
-                    Golf Pitch Shot vs Chip Shot <span>&rarr;</span>
+                    Golf Pitch Shot vs Chip Shot — When to Use Each <span>&rarr;</span>
                 </a>
-                <a href="how-to-improve-golf-scores-without-changing-your-swing.html">
-                    How to Improve Golf Scores Without Changing Your Swing <span>&rarr;</span>
+                <a href="short-game-guide.html">
+                    The Complete Short Game Guide <span>&rarr;</span>
+                </a>
+                <a href="how-to-practice-short-game.html">
+                    How to Practice Short Game <span>&rarr;</span>
+                </a>
+                <a href="how-to-get-up-and-down-in-golf.html">
+                    How to Get Up and Down in Golf <span>&rarr;</span>
                 </a>
             </div>
 

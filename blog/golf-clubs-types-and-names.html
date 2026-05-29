@@ -215,6 +215,45 @@
         margin-right: 8px;
         vertical-align: middle;
       }
+      .blog-table-wrap {
+        margin: 2rem 0;
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+      .blog-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        min-width: 320px;
+      }
+      .blog-table thead th {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        text-align: left;
+        color: var(--text);
+        background: rgba(34, 197, 94, 0.08);
+        padding: 12px 16px;
+        border-bottom: 2px solid rgba(34, 197, 94, 0.25);
+      }
+      .blog-table tbody td {
+        padding: 11px 16px;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border);
+        line-height: 1.5;
+      }
+      .blog-table tbody tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .blog-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .blog-table td:first-child, .blog-table th:first-child {
+        font-weight: 600;
+        color: var(--text);
+      }
       .related-posts {
         margin-top: 3rem;
         padding-top: 2rem;
@@ -443,7 +482,12 @@
 
             <p class="reveal">Here&rsquo;s how the numbering works and typical amateur carry distances:</p>
 
-            <p class="reveal">| Iron | Loft | Typical Distance (Amateur) | |------|------|----------------------------| | 4-iron | 24° | 170&ndash;180 yds | | 5-iron | 27° | 160&ndash;170 yds | | 6-iron | 30° | 150&ndash;160 yds | | 7-iron | 34° | 140&ndash;150 yds | | 8-iron | 38° | 130&ndash;140 yds | | 9-iron | 42° | 120&ndash;130 yds |</p>
+            <div class="blog-table-wrap reveal">
+                <table class="blog-table">
+                    <thead><tr><th>Iron</th><th>Loft</th><th>Typical Distance (Amateur)</th></tr></thead>
+                    <tbody><tr><td>4-iron</td><td>24°</td><td>170&ndash;180 yds</td></tr><tr><td>5-iron</td><td>27°</td><td>160&ndash;170 yds</td></tr><tr><td>6-iron</td><td>30°</td><td>150&ndash;160 yds</td></tr><tr><td>7-iron</td><td>34°</td><td>140&ndash;150 yds</td></tr><tr><td>8-iron</td><td>38°</td><td>130&ndash;140 yds</td></tr><tr><td>9-iron</td><td>42°</td><td>120&ndash;130 yds</td></tr></tbody>
+                </table>
+            </div>
 
             <p class="reveal">The 7-iron is often considered the &ldquo;reference club&rdquo; &mdash; the one most golfers know best. Use it to benchmark your own distances and calibrate the rest of your bag.</p>
 
@@ -472,7 +516,12 @@
 
             <p class="reveal">Wedges are the most specialised clubs in the bag and the most important ones for scoring. Each has a specific loft and purpose:</p>
 
-            <p class="reveal">| Wedge | Abbreviation | Loft | Typical Use | |-------|--------------|------|-------------| | Pitching Wedge | PW | 46&ndash;48° | Full swings 100&ndash;120 yards, long chips | | Gap Wedge | GW / AW | 50&ndash;52° | The &ldquo;gap&rdquo; between PW and SW, 80&ndash;100 yds | | Sand Wedge | SW | 54&ndash;56° | Bunker shots, 70&ndash;90 yard full swings | | Lob Wedge | LW | 58&ndash;62° | High-flying soft-landing shots, flop shots |</p>
+            <div class="blog-table-wrap reveal">
+                <table class="blog-table">
+                    <thead><tr><th>Wedge</th><th>Abbreviation</th><th>Loft</th><th>Typical Use</th></tr></thead>
+                    <tbody><tr><td>Pitching Wedge</td><td>PW</td><td>46&ndash;48°</td><td>Full swings 100&ndash;120 yards, long chips</td></tr><tr><td>Gap Wedge</td><td>GW / AW</td><td>50&ndash;52°</td><td>The &ldquo;gap&rdquo; between PW and SW, 80&ndash;100 yds</td></tr><tr><td>Sand Wedge</td><td>SW</td><td>54&ndash;56°</td><td>Bunker shots, 70&ndash;90 yard full swings</td></tr><tr><td>Lob Wedge</td><td>LW</td><td>58&ndash;62°</td><td>High-flying soft-landing shots, flop shots</td></tr></tbody>
+                </table>
+            </div>
 
             <p class="reveal">Most golfers carry all four. The pitching wedge traditionally comes matched with your iron set. The other three are usually bought separately to get the specific lofts and bounce angles you need.</p>
 
@@ -590,17 +639,20 @@
             <!-- RELATED POSTS -->
             <div class="related-posts reveal">
                 <h2>Keep Reading</h2>
+                <a href="how-to-play-golf.html">
+                    How to Play Golf: A Beginner’s Guide to the Basics <span>&rarr;</span>
+                </a>
+                <a href="golf-grip-for-beginners.html">
+                    Golf Grip for Beginners: The Three Main Grips Explained <span>&rarr;</span>
+                </a>
                 <a href="golf-wedge-distances-chart.html">
-                    Golf Wedge Distances Chart <span>&rarr;</span>
+                    Golf Wedge Distances Chart: Dial In Your Yardages <span>&rarr;</span>
                 </a>
                 <a href="golf-practice-tips-for-beginners.html">
                     Golf Practice Tips for Beginners <span>&rarr;</span>
                 </a>
-                <a href="golf-chipping-technique-for-beginners.html">
-                    Golf Chipping Technique for Beginners <span>&rarr;</span>
-                </a>
-                <a href="/tools/golf-handicap-calculator.html">
-                    Golf Handicap Calculator (Free Tool) <span>&rarr;</span>
+                <a href="golf-warm-up-routine-before-round.html">
+                    Golf Warm Up Routine Before Round: A 15-Minute Plan That Saves Shots <span>&rarr;</span>
                 </a>
             </div>
 
