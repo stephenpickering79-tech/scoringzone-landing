@@ -15,6 +15,16 @@
       "source": "/Scoring%20Zone%20for%20Professional%20Coaches/:path*",
       "destination": "/professionals/",
       "permanent": true
+    },
+    {
+      "source": "/short-game-practice",
+      "destination": "/features/performance-hub.html",
+      "permanent": true
+    },
+    {
+      "source": "/short-game-practice/",
+      "destination": "/features/performance-hub.html",
+      "permanent": true
     }
   ]
 }
