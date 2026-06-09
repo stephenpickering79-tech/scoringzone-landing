@@ -102,18 +102,18 @@
     <!-- ========== NAVIGATION ========== -->
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo">
+            <a href="/" class="nav-logo">
                 <img src="logo/new-log.webp" alt="Scoring Zone" width="36" height="36" style="width: 36px; height: 36px; border-radius: 50%;">
                 SCORING <span>ZONE</span>
             </a>
             <div class="nav-links">
-                <a href="index.html">Home</a>
+                <a href="/">Home</a>
                 <div class="nav-dropdown" data-dropdown>
                     <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                     <div class="nav-mega">
                         <div class="nav-mega-inner">
                             <a href="#features" class="nav-mega-highlight">
-                                <img src="logo/new-log.webp" alt="" class="nav-mega-highlight-icon">
+                                <img src="logo/new-log.webp" alt="Scoring Zone logo" class="nav-mega-highlight-icon">
                                 <div class="nav-mega-highlight-label">Scoring Zone</div>
                                 <div class="nav-mega-highlight-title">Master Your Short Game</div>
                                 <p>Scored drills, pressure tests, and XP-driven practice for every golfer.</p>
@@ -167,7 +167,7 @@
             </button>
         </div>
         <div class="mobile-menu">
-            <a href="index.html">Home</a>
+            <a href="/">Home</a>
             <div class="mobile-dropdown">
                 <a href="#" class="mobile-dropdown-trigger">Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 <div class="mobile-dropdown-items">
@@ -194,7 +194,7 @@
     <section class="hero">
         <div class="hero-bg">
             <!-- Background video (plays once, then slideshow begins) -->
-            <video class="hero-bg-video" id="hero-video" autoplay muted playsinline>
+            <video class="hero-bg-video" id="hero-video" autoplay muted playsinline poster="video/pebble-beach-poster.webp">
                 <source src="video/pebble-beach.mp4" type="video/mp4">
             </video>
             <!-- Image slideshow (activates after video ends) -->
@@ -833,7 +833,7 @@
             </ul>
           </div>
           <div class="chipping-img-col">
-            <img src="Images%20for%20n8n/Chipping-image-1.png" alt="Golfer hitting a chip shot on the course" width="768" height="1376" loading="lazy" decoding="async">
+            <img src="Images%20for%20n8n/golf-chip-shot-course.webp" alt="Golfer hitting a chip shot on the course" width="768" height="1376" loading="lazy" decoding="async">
 
             <!-- Top-left glass card -->
             <div class="lg-wrap lg-wrap--top-left">
@@ -1014,7 +1014,7 @@
         <div class="carousel-track" id="carousel-track">
           <div class="carousel-card" data-color="yellow">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1;" src="Scrolling Reveal/grok-image-c7cb18b2-f39f-40ae-92ea-4cbde4883519_nobg.png" alt="Scoring Zone home screen showing practice streak and skill breakdown" width="736" height="1408" loading="lazy" decoding="async">
+              <img style="--img-scale: 1;" src="Scrolling Reveal/scoring-zone-home-screen.webp" alt="Scoring Zone home screen showing practice streak and skill breakdown" width="736" height="1408" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Home Dashboard</span></div>
           </div>
@@ -1026,13 +1026,13 @@
           </div>
           <div class="carousel-card" data-color="purple">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.22;" src="Scrolling Reveal/grok-image-8f9dcaed-16a8-47a6-b6fe-fb5eba02f756_nobg.png" alt="Putting drills list with scores and progress" width="720" height="1440" loading="lazy" decoding="async">
+              <img style="--img-scale: 1.22;" src="Scrolling Reveal/putting-drills-scores.webp" alt="Putting drills list with scores and progress" width="720" height="1440" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Scored Drills</span></div>
           </div>
           <div class="carousel-card" data-color="purple">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.02;" src="Scrolling Reveal/grok-image-701af59f-ea40-4b52-96bb-535411f984b4_nobg.png" alt="Stats dashboard with strokes gained and weakness radar" width="720" height="1440" loading="lazy" decoding="async">
+              <img style="--img-scale: 1.02;" src="Scrolling Reveal/stats-strokes-gained-radar.webp" alt="Stats dashboard with strokes gained and weakness radar" width="720" height="1440" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Strokes Gained Stats</span></div>
           </div>
@@ -1384,13 +1384,9 @@
             </div>
             <div class="reveal" style="margin-top: 3rem;">
                 <div style="max-width: 720px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(34,197,94,0.2); box-shadow: 0 0 40px rgba(34,197,94,0.08);">
-                    <video controls playsinline preload="auto" style="width:100%; display:block;" id="promo-video">
+                    <video controls playsinline preload="none" poster="video/promo-poster.webp" style="width:100%; display:block;" id="promo-video">
                         <source src="video/ScoringZonePromo-16x9.mp4" type="video/mp4">
                     </video>
-                    <script>
-                      const v = document.getElementById('promo-video');
-                      v.addEventListener('loadeddata', function() { v.currentTime = 0.5; });
-                    </script>
                 </div>
             </div>
         </div>
@@ -1587,7 +1583,7 @@
         <div class="footer-glow"></div>
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="index.html" class="nav-logo">
+                <a href="/" class="nav-logo">
                     <img src="logo/new-log.webp" alt="Scoring Zone" width="36" height="36" style="width: 36px; height: 36px; border-radius: 50%;">
                     SCORING <span>ZONE</span>
                 </a>
