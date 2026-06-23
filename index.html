@@ -62,12 +62,29 @@
         "name": "Stephen Pickering",
         "url": "https://www.scoringzone.net/about.html"
       },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "GBP",
-        "description": "Free during early access. All features included, no credit card required."
-      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "GBP",
+          "description": "Free forever. Core practice drills, XP, and progress tracking. No credit card required."
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "{{PRO_MONTHLY_NUMERIC}}",
+          "priceCurrency": "GBP",
+          "description": "Pro subscription: progressive challenges, Performance Hub, Sim Lab, HCP scoring, and full XP system."
+        },
+        {
+          "@type": "Offer",
+          "name": "Elite",
+          "price": "{{ELITE_MONTHLY_NUMERIC}}",
+          "priceCurrency": "GBP",
+          "description": "Elite subscription: everything in Pro plus advanced stats, Elite challenge tiers, and priority access to new features."
+        }
+      ],
       "screenshot": [
         "https://www.scoringzone.net/golf%20images/scoring-zone-3-screens.webp",
         "https://www.scoringzone.net/golf%20images/scoring-zone-homescreen.webp"
@@ -159,7 +176,7 @@
                 <a href="#pricing">Pricing</a>
                 <a href="#signup">Download</a>
             </div>
-            <a href="#signup" class="btn-primary btn-sm">Free Early Access</a>
+            <a href="#signup" class="btn-primary btn-sm">Get the App</a>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -184,7 +201,7 @@
             <a href="blog/">Blog</a>
             <a href="#pricing">Pricing</a>
             <a href="#signup">Download</a>
-            <a href="#signup" class="btn-primary" style="width: 100%; justify-content: center;">Free Early Access</a>
+            <a href="#signup" class="btn-primary" style="width: 100%; justify-content: center;">Get the App</a>
         </div>
     </nav>
 
@@ -210,7 +227,7 @@
             <div class="hero-content">
             <div>
                 <div class="hero-badge reveal">
-                    Early Access · Now Live
+                    Now on iPhone · Free to Start
                 </div>
                 <h1 class="display-xl reveal typewriter" style="margin-top: 16px;">Pressure Test Your <span class="hero-accent">Short Game</span><span class="typewriter-cursor"></span></h1>
                 <p class="hero-sub reveal hero-sub-words">
@@ -230,16 +247,19 @@
                     <span class="word-animate" data-delay="2220">drills.</span>
                 </p>
                 <div class="hero-ctas reveal" style="margin-bottom: 1rem;">
-                    <div class="btn-border-anim"><a href="#signup" class="btn-primary">Free Early Access</a></div>
+                    <a href="{{APP_STORE_URL}}" class="store-badge" aria-label="Download Scoring Zone on the App Store">
+                        <img src="golf images/download-on-app-store.svg" alt="Download on the App Store" width="160" height="54" loading="eager">
+                    </a>
+                    <a href="https://scoringzone.app" target="_blank" rel="noopener" class="btn-outline">Open Web App</a>
                 </div>
                 <a href="#process" class="hero-text-link reveal" style="display:inline-flex; align-items:center; gap:6px; margin-bottom:1.6rem; font-family:'DM Sans',sans-serif; font-size:0.875rem; font-weight:500; color:rgba(240,253,244,0.75); text-decoration:none; text-shadow:0 1px 3px rgba(0,0,0,0.5); transition:color 0.2s;">See how it works →</a>
 
                 <!-- QR Download Card -->
                 <div class="hero-qr-card reveal">
-                    <img src="logo/qr-code.png" alt="Scan to download Scoring Zone" class="hero-qr-img" width="684" height="672" loading="lazy" decoding="async">
+                    <img src="logo/qr-code.webp" alt="Scan to download Scoring Zone" class="hero-qr-img" width="684" height="672" loading="lazy" decoding="async">
                     <div class="hero-qr-text">
                         <p class="hero-qr-heading">Download the Scoring Zone App</p>
-                        <p class="hero-qr-sub">Scan the QR code with your phone to go directly to the app!</p>
+                        <p class="hero-qr-sub">Scan with your phone to download on the App Store.</p>
                     </div>
                 </div>
             </div>
@@ -248,7 +268,7 @@
                 <div class="hero-phone-wrap" style="position:relative;">
                     <!-- Green glow behind phone -->
                     <div aria-hidden="true" style="position:absolute; inset:-60px; border-radius:50%; background:radial-gradient(circle,rgba(34,197,94,0.1),transparent 70%); z-index:0; pointer-events:none;"></div>
-                    <img src="hero%20images/iphone-home.png" alt="Scoring Zone app home screen" width="411" height="788" loading="eager" fetchpriority="high" style="position:relative; z-index:1; display:block; width:204px; height:auto; filter:drop-shadow(0 18px 36px rgba(0,0,0,0.45));">
+                    <img src="hero%20images/iphone-home.webp" alt="Scoring Zone app home screen" width="411" height="788" loading="eager" fetchpriority="high" style="position:relative; z-index:1; display:block; width:204px; height:auto; filter:drop-shadow(0 18px 36px rgba(0,0,0,0.45));">
                 </div>
                 <!-- Stars + trust text -->
                 <div class="hero-trust" style="text-align:center;">
@@ -401,11 +421,11 @@
                     <span class="dsh-word" data-delay="1420">and</span>
                     <span class="dsh-word dsh-accent" data-delay="1440">on-course</span>
                     <span class="dsh-word dsh-accent" data-delay="1465">performance.</span>
-                    <span class="dsh-word" data-delay="1525">Currently</span>
+                    <span class="dsh-word" data-delay="1525">Always</span>
                     <span class="dsh-word dsh-accent" data-delay="1550">free</span>
-                    <span class="dsh-word" data-delay="1575">during</span>
-                    <span class="dsh-word" data-delay="1600">early</span>
-                    <span class="dsh-word" data-delay="1625">access</span>
+                    <span class="dsh-word" data-delay="1575">to</span>
+                    <span class="dsh-word" data-delay="1600">start,</span>
+                    <span class="dsh-word" data-delay="1625">loaded</span>
                     <span class="dsh-word" data-delay="1650">with</span>
                     <span class="dsh-word dsh-accent" data-delay="1675">50+</span>
                     <span class="dsh-word dsh-accent" data-delay="1700">drills,</span>
@@ -447,7 +467,7 @@
 
                 <p style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(5rem,14vw,11rem); color:var(--green); line-height:1; letter-spacing:-0.02em; margin:0 0 20px; text-shadow:0 0 36px rgba(34,197,94,0.35);">3.2</p>
 
-                <p style="font-family:'DM Sans',sans-serif; font-size:1rem; line-height:1.55; color:rgba(255,255,255,0.7); max-width:480px; margin:0 auto 48px;">strokes saved by early-access users practising the Scoring Zone way.</p>
+                <p style="font-family:'DM Sans',sans-serif; font-size:1rem; line-height:1.55; color:rgba(255,255,255,0.7); max-width:480px; margin:0 auto 48px;">strokes saved by golfers practising the Scoring Zone way.</p>
 
                 <p style="font-family:'DM Mono',monospace; font-size:0.72rem; font-weight:500; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.15em; margin:0; line-height:2;">
                     50<span style="color:var(--green);">+</span> Practice Drills <span style="color:rgba(34,197,94,0.4); margin:0 14px;">·</span> 4 Short-Game Categories <span style="color:rgba(34,197,94,0.4); margin:0 14px;">·</span> &#8734; Pressure Simulations
@@ -594,7 +614,7 @@
         </div>
         <div class="container" style="max-width: 900px; position: relative; z-index: 1;">
             <div style="text-align:center; margin-bottom:24px; position:relative; z-index:10;">
-                <span style="font-family:'DM Mono',monospace; font-size:1.375rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green);">Sign up now for instant free access</span>
+                <span style="font-family:'DM Mono',monospace; font-size:1.375rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green);">Download Scoring Zone</span>
             </div>
             <div class="signup-split-card reveal">
 
@@ -610,25 +630,16 @@
                     </div>
                 </div>
 
-                <!-- Right Panel: Form -->
+                <!-- Right Panel: Download -->
                 <div class="signup-right-panel">
-                    <div class="hero-badge" style="display:inline-flex;margin-bottom:18px;">Early Access</div>
-                    <h2 class="display-md" style="margin-bottom:8px;">Join the Early Access</h2>
-                    <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;">Sign up now and get premium features free. No credit card required.</p>
-                    <div class="form-wrapper">
-                        <form class="signup-form" onsubmit="handleSignup(event)">
-                            <label for="signup-hero-name" class="sr-only">Full name</label>
-                            <input id="signup-hero-name" type="text" name="name" autocomplete="name" placeholder="Your name" required>
-                            <label for="signup-hero-email" class="sr-only">Email address</label>
-                            <input id="signup-hero-email" type="email" name="email" autocomplete="email" placeholder="Your email" required>
-                            <div class="btn-border-anim" style="width:100%;"><button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Free Early Access</button></div>
-                        </form>
-                    </div>
-                    <div class="success-state" id="signup-success-hero">
-                        <div class="success-check">&#10003;</div>
-                        <h2 class="display-md" style="margin-top:8px;">You&rsquo;re In</h2>
-                        <p style="color:var(--text-muted);font-size:0.9rem;">Welcome to the early access list.</p>
-                        <a href="https://scoringzone.app" target="_blank" class="btn-primary">Launch the App &rarr;</a>
+                    <div class="hero-badge" style="display:inline-flex;margin-bottom:18px;">Free to Start</div>
+                    <h2 class="display-md" style="margin-bottom:8px;">Get the App</h2>
+                    <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;">Free to download. Start with the core drills, upgrade to Pro or Elite any time. No credit card to get started.</p>
+                    <div class="signup-download-ctas" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;">
+                        <a href="{{APP_STORE_URL}}" class="store-badge" aria-label="Download Scoring Zone on the App Store">
+                            <img src="golf images/download-on-app-store.svg" alt="Download on the App Store" width="180" height="60">
+                        </a>
+                        <a href="https://scoringzone.app" target="_blank" rel="noopener" class="btn-outline" style="width:100%;justify-content:center;">Open Web App (PWA)</a>
                     </div>
                 </div>
 
@@ -1020,7 +1031,7 @@
           </div>
           <div class="carousel-card" data-color="green">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.26;" src="Scrolling%20Reveal/Performance-hub.png" alt="Performance Hub with challenges and practice modes" width="800" height="1280" loading="lazy" decoding="async">
+              <img style="--img-scale: 1.26;" src="Scrolling%20Reveal/Performance-hub.webp" alt="Performance Hub with challenges and practice modes" width="800" height="1280" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Performance Hub</span></div>
           </div>
@@ -1038,7 +1049,7 @@
           </div>
           <div class="carousel-card" data-color="orange">
             <div class="carousel-img-wrap">
-              <img style="--img-scale: 1.15;" src="Scrolling Reveal/grok-image-6d58264b-0246-477c-9949-dfc3b6db4735_nobg.png" alt="The 10-Yarder chipping drill" width="720" height="1440" loading="lazy" decoding="async">
+              <img style="--img-scale: 1.15;" src="Scrolling Reveal/grok-image-6d58264b-0246-477c-9949-dfc3b6db4735_nobg.webp" alt="The 10-Yarder chipping drill" width="720" height="1440" loading="lazy" decoding="async">
             </div>
             <div class="carousel-label"><span>Chipping Drills</span></div>
           </div>
@@ -1510,7 +1521,15 @@
                 <span class="mono-label" style="text-shadow:0 1px 6px rgba(0,0,0,0.12);">PRICING</span>
                 <h2 class="display-lg" style="color:#0f1e10; text-shadow:0 2px 8px rgba(0,0,0,0.12);">Stop Practising.<br>Start <span style="color: var(--green);">Competing.</span></h2>
                 <p style="color:#374151; text-shadow:0 1px 5px rgba(0,0,0,0.1);">Join thousands of golfers who&rsquo;ve transformed their short game with structured, pressure-tested practice.</p>
-                <p style="margin-top: 8px; color:#374151; text-shadow:0 1px 5px rgba(0,0,0,0.1);">Try some of the app features without any commitment.</p>
+                <p style="margin-top: 8px; color:#374151; text-shadow:0 1px 5px rgba(0,0,0,0.1);">Start free, forever. Upgrade to Pro or Elite when you&rsquo;re ready to compete.</p>
+            </div>
+
+            <!-- Monthly / annual toggle -->
+            <div class="pricing-toggle-wrap reveal">
+                <span class="pricing-toggle-label active">Monthly</span>
+                <div class="pricing-toggle-track"><span class="pricing-toggle-thumb"></span></div>
+                <span class="pricing-toggle-label">Annual</span>
+                <span class="save-pill">{{ANNUAL_SAVE_PCT}}</span>
             </div>
 
             <!-- Pricing cards -->
@@ -1520,14 +1539,20 @@
                     <div class="pricing-card-bar" style="background: linear-gradient(135deg, #374151, #1f2937);"></div>
                     <div class="pricing-card-body">
                         <span class="pricing-card-name">Free</span>
-                        <div class="pricing-card-price" style="font-size: 1.4rem; color: var(--green); margin: 12px 0 4px;">Free During Early Access</div>
+                        <div class="pricing-card-price" style="color: var(--green);">&pound;0</div>
+                        <span class="pricing-card-period">Free forever</span>
                         <span class="pricing-card-note">No credit card required</span>
                         <ul class="pricing-features">
                             <li>3 practice drills</li>
                             <li>Basic XP &amp; progress tracking</li>
                             <li>First Steps badge unlockable</li>
                         </ul>
-                        <a href="#signup" class="btn-gray" style="width: 100%; justify-content: center;">Free Early Access</a>
+                        <div class="pricing-card-cta">
+                            <a href="{{APP_STORE_URL}}" class="store-badge store-badge--card" aria-label="Download Scoring Zone on the App Store">
+                                <img src="golf images/download-on-app-store.svg" alt="Download on the App Store" width="150" height="50">
+                            </a>
+                            <a href="https://scoringzone.app" target="_blank" rel="noopener" class="btn-gray" style="width: 100%; justify-content: center;">Open Web App</a>
+                        </div>
                     </div>
                 </div>
 
@@ -1536,8 +1561,8 @@
                     <div class="pricing-card-bar" style="background: linear-gradient(135deg, #22c55e, #16a34a);"></div>
                     <div class="pricing-card-body">
                         <span class="pricing-card-name">Pro</span>
-                        <div class="pricing-card-price" style="font-size: 1.4rem; color: var(--green); margin: 12px 0 4px;">Free During Early Access</div>
-                        <span class="pricing-card-note">No credit card required</span>
+                        <div class="pricing-card-price" style="color: var(--green);"><span data-monthly="{{PRO_MONTHLY}}" data-annual="{{PRO_ANNUAL}}">{{PRO_MONTHLY}}</span><span class="pricing-card-period" data-period>/month</span></div>
+                        <span class="pricing-card-note" data-note-monthly="Billed monthly" data-note-annual="Billed annually">Billed monthly</span>
                         <ul class="pricing-features">
                             <li>Progressive Challenges (chipping, putting, bunker)</li>
                             <li>Performance Hub Tests &amp; Pressure Mode</li>
@@ -1545,7 +1570,12 @@
                             <li>Progress Tracking &amp; HCP Scoring</li>
                             <li>XP &amp; Level System with Achievements</li>
                         </ul>
-                        <div class="btn-border-anim" style="width: 100%;"><a href="#signup" class="btn-primary" style="width: 100%; justify-content: center;">Free Early Access</a></div>
+                        <div class="pricing-card-cta">
+                            <a href="{{APP_STORE_URL}}" class="store-badge store-badge--card" aria-label="Get Scoring Zone Pro on the App Store">
+                                <img src="golf images/download-on-app-store.svg" alt="Download on the App Store" width="150" height="50">
+                            </a>
+                            <a href="https://scoringzone.app" target="_blank" rel="noopener" class="btn-primary" style="width: 100%; justify-content: center;">Get Pro on Web</a>
+                        </div>
                     </div>
                 </div>
 
@@ -1555,8 +1585,8 @@
                     <div class="pricing-card-body">
                         <span class="pricing-card-badge" style="background: rgba(245,158,11,0.1); color: var(--amber); border: 1px solid rgba(245,158,11,0.2);">Best Value</span>
                         <span class="pricing-card-name">Elite</span>
-                        <div class="pricing-card-price" style="font-size: 1.4rem; color: var(--green); margin: 12px 0 4px;">Free During Early Access</div>
-                        <span class="pricing-card-note">No credit card required</span>
+                        <div class="pricing-card-price" style="color: var(--amber);"><span data-monthly="{{ELITE_MONTHLY}}" data-annual="{{ELITE_ANNUAL}}">{{ELITE_MONTHLY}}</span><span class="pricing-card-period" data-period>/month</span></div>
+                        <span class="pricing-card-note" data-note-monthly="Billed monthly" data-note-annual="Billed annually">Billed monthly</span>
                         <ul class="pricing-features">
                             <li>Everything in Pro, plus:</li>
                             <li>Advanced Stats Dashboard</li>
@@ -1564,7 +1594,12 @@
                             <li>Elite Badge &amp; Status on Leaderboards</li>
                             <li>Priority Access to New Features</li>
                         </ul>
-                        <div class="btn-border-anim btn-border-anim--amber" style="width: 100%;"><a href="#signup" class="btn-amber" style="width: 100%; justify-content: center;">Free Early Access</a></div>
+                        <div class="pricing-card-cta">
+                            <a href="{{APP_STORE_URL}}" class="store-badge store-badge--card" aria-label="Get Scoring Zone Elite on the App Store">
+                                <img src="golf images/download-on-app-store.svg" alt="Download on the App Store" width="150" height="50">
+                            </a>
+                            <a href="https://scoringzone.app" target="_blank" rel="noopener" class="btn-amber" style="width: 100%; justify-content: center;">Get Elite on Web</a>
+                        </div>
                     </div>
                 </div>
             </div>
