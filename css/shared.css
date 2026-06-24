@@ -698,6 +698,14 @@ body::after {
 
 .btn-sm { padding: 8px 20px; font-size: 0.82rem; }
 
+/* ── App Store / PWA download CTA ── */
+.store-badge { display: inline-flex; line-height: 0; text-decoration: none; transition: transform 0.2s, opacity 0.2s; }
+.store-badge:hover { transform: translateY(-1px); opacity: 0.9; }
+.store-badge img { display: block; height: auto; }
+.store-badge--card { width: 100%; justify-content: center; }
+.store-badge--card img { margin: 0 auto; }
+.pricing-card-cta { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+
 /* ── Hero ── */
 .hero {
   min-height: 0;
