@@ -1,10 +1,10 @@
 # Scoring Zone
 
-> Golf short game practice app that turns putting, chipping, and pitching into scored challenges benchmarked against your handicap. Free during early access.
+> Golf short game practice app that turns putting, chipping, and pitching into scored challenges benchmarked against your handicap. 14-day free trial; free tier available.
 
 ## What Is Scoring Zone?
 
-Scoring Zone is a Progressive Web App (PWA) for golf short game practice. It gives golfers structured, scored drills for putting, chipping, and pitching — with performance benchmarks, XP progression, and analytics. Built by Stephen Pickering, a competitive amateur golfer who played high-level golf across Ireland from his early teens into his late twenties.
+Scoring Zone is a golf short game practice app, available on the iOS App Store (https://apps.apple.com/app/id6769477447) and as a Progressive Web App (PWA) at https://scoringzone.app. It gives golfers structured, scored drills for putting, chipping, and pitching — with performance benchmarks, XP progression, and analytics. Built by Stephen Pickering, a competitive amateur golfer who played high-level golf across Ireland from his early teens into his late twenties.
 
 ## Core Features
 
@@ -36,12 +36,15 @@ Scoring Zone is a Progressive Web App (PWA) for golf short game practice. It giv
 
 ## Pricing
 
-Free during early access — all features unlocked, no credit card required. App Store launch planned for 2026.
+- 14-day free trial on every plan — full access, no credit card required, cancel anytime
+- Free tier — starter set of scored drills, Performance Hub access, XP and progress tracking
+- Pro — $7.99/month or $49.99/year: full drill library, all benchmark tests, Practice Assistant, SIM Lab
+- Elite — $9.99/month or $59.99/year: everything in Pro plus round logging, full stats suite, and Strokes Gained tracking
 
 ## Technical
 
-- PWA — save to phone, works like a native app on iOS and Android
-- No app store download required during early access
+- Native iOS app on the App Store: https://apps.apple.com/app/id6769477447
+- Also available as a PWA at https://scoringzone.app — works on iOS and Android
 - Works offline after initial load
 
 ## Founder

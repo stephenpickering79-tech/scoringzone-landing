@@ -261,9 +261,10 @@ const toggleLabels = document.querySelectorAll('.pricing-toggle-label');
 const savePill = document.querySelector('.save-pill');
 
 if (toggleTrack) {
-  toggleTrack.addEventListener('click', () => {
-    const isAnnual = toggleTrack.classList.toggle('annual');
-    toggleLabels.forEach(l => l.classList.toggle('active'));
+  const applyBilling = (isAnnual) => {
+    toggleTrack.classList.toggle('annual', isAnnual);
+    toggleTrack.setAttribute('aria-checked', String(isAnnual));
+    toggleLabels.forEach((l, i) => l.classList.toggle('active', isAnnual ? i === 1 : i === 0));
     if (savePill) savePill.classList.toggle('visible', isAnnual);
 
     document.querySelectorAll('[data-monthly]').forEach(el => {
@@ -275,27 +276,15 @@ if (toggleTrack) {
     document.querySelectorAll('[data-note-monthly]').forEach(el => {
       el.textContent = isAnnual ? el.dataset.noteAnnual : el.dataset.noteMonthly;
     });
+  };
+  toggleTrack.addEventListener('click', () => {
+    applyBilling(!toggleTrack.classList.contains('annual'));
   });
-}
-
-// ── Signup form handler ──
-function handleSignup(e) {
-  e.preventDefault();
-  const form = e.target;
-  const email = form.querySelector('input[type="email"]').value;
-  const nameInput = form.querySelector('input[name="name"]');
-  const data = nameInput ? { name: nameInput.value, email } : { email };
-
-  fetch('https://scoringzone.app/api/signup', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  }).finally(() => {
-    const wrapper = form.closest('.form-wrapper') || form;
-    const success = wrapper.parentElement.querySelector('.success-state') ||
-                    document.getElementById('signup-success');
-    wrapper.style.display = 'none';
-    if (success) success.classList.add('visible');
+  toggleTrack.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      applyBilling(!toggleTrack.classList.contains('annual'));
+    }
   });
 }
 
