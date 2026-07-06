@@ -594,13 +594,13 @@
     <!-- ========== FULL-BLEED PHOTO CHAPTER ========== -->
     <section class="hp-photo">
         <div class="hp-photo-media">
-            <img src="hero%20images/hero-royal-county-down.webp" alt="Golfer playing a links course at Royal County Down" width="1600" height="900" loading="lazy" decoding="async">
+            <img src="golf%20images/teen%20looking%20as%20his%20golf%20stats.webp" alt="Golfer checking his short game stats on his phone at sunset" width="1200" height="903" loading="lazy" decoding="async">
         </div>
         <div class="hp-photo-inner">
             <div class="hp-photo-text reveal">
                 <span class="hp-eyebrow">Your Short Game Journey</span>
-                <h2 class="hp-billboard">Built for every<br>part of <span class="hp-accent">your game</span></h2>
-                <p>Scored drills, pressure tests, and real stats. All in one app.</p>
+                <h2 class="hp-billboard">Built for every part<br>of your <span class="hp-accent">short game</span></h2>
+                <p class="hp-photo-kicker">Earn more XP. <span>Beat your benchmark.</span></p>
                 <ul class="hp-checklist">
                     <li><span class="hp-tick">&#10003;</span><span>Scored chipping and putting drills. Every session generates a benchmark you can beat next time.</span></li>
                     <li><span class="hp-tick">&#10003;</span><span>Pressure challenges that reset on a miss. So practice actually feels like the course.</span></li>
@@ -609,55 +609,28 @@
                 </ul>
             </div>
         </div>
-        <div class="hp-chips" aria-hidden="false">
-            <div class="hp-chip hp-chip--1">
+        <div class="hp-chips" data-hud aria-hidden="false">
+            <div class="hp-chip hp-chip--hcp">
                 <span class="hp-chip-label">Short Game HCP</span>
-                <span class="hp-chip-value">5</span>
+                <span class="hp-chip-value"><span data-count="5">5</span></span>
             </div>
-            <div class="hp-chip hp-chip--2">
+            <div class="hp-chip hp-chip--challenges">
                 <span class="hp-chip-label">Challenges Completed</span>
-                <span class="hp-chip-value">13<span class="hp-chip-dim">/40</span></span>
+                <span class="hp-chip-value"><span data-count="15">15</span><span class="hp-chip-dim">/40</span></span>
             </div>
-            <div class="hp-chip hp-chip--3">
-                <span class="hp-chip-label">XP Level</span>
-                <span class="hp-chip-value">5</span>
+            <div class="hp-chip hp-chip--x3">
+                <span class="hp-chip-label">XP Multiplier &middot; beat your benchmark</span>
+                <span class="hp-chip-value"><span data-count="3">3</span>&times;</span>
+                <span class="hp-chip-reward">Reward: up to 450 XP</span>
             </div>
-        </div>
-    </section>
-
-    <!-- ========== GAMIFICATION ========== -->
-    <section class="section hp-studio" id="xp-section" style="position:relative; overflow:hidden;">
-        <div class="container" style="position:relative; z-index:1;">
-            <div class="section-header reveal">
-                <span class="mono-label">GAMIFICATION</span>
-                <h2 class="display-lg" style="color:var(--ink); text-shadow:none;">Earn More XP. Beat Your Benchmark.</h2>
-            </div>
-
-            <!-- XP Multiplier Ladder (asymmetric grid; 3× tier is the hero) -->
-            <div class="xp-ladder">
-                <div class="xp-card reveal">
-                    <div class="bento-dots"></div>
-                    <span class="xp-value" style="color: var(--green);">1&times;</span>
-                    <span class="xp-label">Base XP</span>
-                    <p class="xp-desc">Complete any drill to earn XP.</p>
-                    <span class="xp-reward">Reward: 40&ndash;150 XP</span>
-                </div>
-                <div class="xp-card reveal">
-                    <div class="bento-dots"></div>
-                    <span class="xp-value" style="color: var(--text);">2&times;</span>
-                    <span class="xp-label">Benchmark Bonus</span>
-                    <p class="xp-desc">Beat your handicap benchmark. Double your XP.</p>
-                    <span class="xp-reward">Reward: 80&ndash;300 XP</span>
-                </div>
-                <div class="xp-card xp-card--peak hp-xp-peak reveal">
-                    <div class="bento-dots"></div>
-                    <span class="xp-value" style="color: var(--green-bright);">3&times;</span>
-                    <span class="xp-label">Super Bonus</span>
-                    <p class="xp-desc">Exceed your benchmark by 2+ levels. Triple XP, only when you really earn it.</p>
-                    <span class="xp-reward">Reward: 120&ndash;450 XP</span>
+            <div class="hp-chip hp-chip--round">
+                <span class="hp-chip-label">Round Stats</span>
+                <div class="hp-chip-row">
+                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="29">29</span></span><span class="hp-chip-mini-label">Putts</span></div>
+                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="13">13</span></span><span class="hp-chip-mini-label">GIR</span></div>
+                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="18">18</span>ft</span><span class="hp-chip-mini-label">Proximity</span></div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -1023,6 +996,72 @@
     </footer>
 
     <script src="js/shared.js"></script>
+
+    <!-- HUD scoreboard boot (photo chapter chips) -->
+    <script>
+    (function () {
+      document.documentElement.classList.add('hp-js');
+      var hud = document.querySelector('.hp-chips[data-hud]');
+      if (!hud) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        hud.classList.add('hud-live');
+        return;
+      }
+      var chips = Array.prototype.slice.call(hud.querySelectorAll('.hp-chip'));
+      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+      function countUp(el) {
+        var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+        var dur = 620, t0 = null;
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          el.textContent = String(Math.round(easeOut(p) * target));
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      function typeLabel(el, done) {
+        var full = el.getAttribute('data-label');
+        var i = 0;
+        (function tick() {
+          if (i <= full.length) {
+            el.textContent = full.slice(0, i);
+            i++;
+            setTimeout(tick, 20);
+          } else if (done) { done(); }
+        })();
+      }
+      function prep(chip) {
+        var label = chip.querySelector('.hp-chip-label');
+        if (label) { label.setAttribute('data-label', label.textContent); label.textContent = '\u00a0'; }
+        Array.prototype.forEach.call(chip.querySelectorAll('[data-count]'), function (c) { c.textContent = '0'; });
+      }
+      function boot(chip) {
+        var label = chip.querySelector('.hp-chip-label');
+        var counts = chip.querySelectorAll('[data-count]');
+        var reward = chip.querySelector('.hp-chip-reward');
+        function values() {
+          Array.prototype.forEach.call(counts, countUp);
+          if (reward) setTimeout(function () { reward.classList.add('visible'); }, 480);
+        }
+        if (label) typeLabel(label, values); else values();
+      }
+      var fired = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting || fired) return;
+          fired = true;
+          io.disconnect();
+          chips.forEach(prep);
+          hud.classList.add('hud-live');
+          chips.forEach(function (chip, i) {
+            setTimeout(function () { boot(chip); }, i * 220 + 140);
+          });
+        });
+      }, { threshold: 0.35 });
+      io.observe(hud);
+    })();
+    </script>
 
     <!-- Deck scrolling reveal -->
     <script>

@@ -257,7 +257,7 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, var(--bg) 0%, rgba(6, 11, 8, 0.72) 22%, rgba(6, 11, 8, 0.08) 55%, rgba(6, 11, 8, 0.38) 100%),
+    linear-gradient(90deg, var(--bg) 0%, rgba(6, 11, 8, 0.66) 20%, rgba(6, 11, 8, 0.06) 52%, rgba(6, 11, 8, 0.2) 100%),
     linear-gradient(0deg, var(--bg) 0%, transparent 22%),
     linear-gradient(180deg, var(--bg) 0%, transparent 20%);
 }
@@ -348,9 +348,88 @@
   text-shadow: 0 0 22px rgba(34, 197, 94, 0.35);
 }
 .hp-chip-value .hp-chip-dim { opacity: 0.45; font-size: 1.4rem; }
-.hp-chip--1 { top: 16%; right: 40%; }
-.hp-chip--2 { top: 46%; right: 7%; }
-.hp-chip--3 { bottom: 14%; right: 30%; }
+.hp-chip-reward {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  opacity: 0.85;
+  margin-top: 7px;
+  white-space: nowrap;
+}
+/* HUD layout: four chips, four stories — loose constellation over the bokeh */
+.hp-chip--hcp { top: 32%; right: 40%; }
+.hp-chip--x3 { top: 44%; right: 17%; }
+.hp-chip--challenges { bottom: 27%; right: 36%; }
+.hp-chip--round { bottom: 8%; right: 17%; }
+.hp-chip--x3 {
+  background: rgba(16, 44, 26, 0.66);
+  border-color: rgba(34, 197, 94, 0.55);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.4), 0 0 34px rgba(34, 197, 94, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.hp-chip--x3::before, .hp-chip--x3::after { opacity: 1; }
+
+/* Scoreboard boot: chips hidden only when JS is running, staggered entrance */
+html.hp-js .hp-chips[data-hud] .hp-chip {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+}
+html.hp-js .hp-chips[data-hud].hud-live .hp-chip {
+  opacity: 1;
+  transform: none;
+}
+.hp-chips[data-hud].hud-live .hp-chip:nth-child(1) { transition-delay: 0.1s; }
+.hp-chips[data-hud].hud-live .hp-chip:nth-child(2) { transition-delay: 0.32s; }
+.hp-chips[data-hud].hud-live .hp-chip:nth-child(3) { transition-delay: 0.54s; }
+.hp-chips[data-hud].hud-live .hp-chip:nth-child(4) { transition-delay: 0.76s; }
+html.hp-js .hp-chips[data-hud] .hp-chip-reward {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  html.hp-js .hp-chips[data-hud] .hp-chip {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html.hp-js .hp-chips[data-hud] .hp-chip-reward { opacity: 1; }
+}
+
+/* Round-stats chip: three mini spec cells in a row */
+.hp-chip-row { display: flex; gap: 20px; }
+.hp-chip-mini-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--green-bright);
+  text-shadow: 0 0 18px rgba(34, 197, 94, 0.3);
+}
+.hp-chip-mini-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240, 253, 244, 0.65);
+  margin-top: 5px;
+}
+
+/* Kicker line — the folded-in gamification headline */
+.hp-photo-kicker {
+  font-size: 1.18rem !important;
+  font-weight: 600;
+  color: var(--text) !important;
+  margin-top: 18px;
+}
+.hp-photo-kicker span { color: var(--green-bright); }
 
 @media (max-width: 860px) {
   .hp-photo-media {
@@ -388,19 +467,6 @@
 #features .bento-status,
 #features .bento-tag { border-radius: 4px; }
 #features .bento-item:hover .bento-cta { color: var(--green-bright); }
-
-/* ── XP ladder — locked green (overrides shared red peak) ─ */
-.hp-xp-peak.xp-card--peak {
-  background: linear-gradient(160deg, rgba(34, 197, 94, 0.14), rgba(34, 197, 94, 0) 70%), var(--bg-card);
-  border-color: rgba(34, 197, 94, 0.35);
-  box-shadow: 0 0 32px rgba(34, 197, 94, 0.1);
-}
-.hp-xp-peak.xp-card--peak:hover {
-  border-color: rgba(34, 197, 94, 0.55);
-  box-shadow: 0 0 40px rgba(34, 197, 94, 0.16);
-}
-.hp-xp-peak.xp-card--peak .xp-reward { color: var(--green-bright); }
-#xp-section .xp-card { border-radius: var(--r-card); }
 
 /* ── Challenge cards sharpened ──────────────────────────── */
 #drills .challenge-card {
