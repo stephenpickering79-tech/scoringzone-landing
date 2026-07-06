@@ -332,9 +332,52 @@
         </div>
     </section>
 
+    <!-- ========== FULL-BLEED PHOTO CHAPTER ========== -->
+    <section class="hp-photo">
+        <div class="hp-photo-media">
+            <img src="golf%20images/teen%20looking%20as%20his%20golf%20stats.webp" alt="Golfer checking his short game stats on his phone at sunset" width="1200" height="903" loading="lazy" decoding="async">
+        </div>
+        <div class="hp-photo-inner">
+            <div class="hp-photo-text reveal">
+                <span class="hp-eyebrow">Your Short Game Journey</span>
+                <h2 class="hp-billboard">Built for every part<br>of your <span class="hp-accent">short game</span></h2>
+                <p class="hp-photo-kicker">Earn more XP. <span>Beat your benchmark.</span></p>
+                <ul class="hp-checklist">
+                    <li><span class="hp-tick">&#10003;</span><span>Scored chipping and putting drills. Every session generates a benchmark you can beat next time.</span></li>
+                    <li><span class="hp-tick">&#10003;</span><span>Pressure challenges that reset on a miss. So practice actually feels like the course.</span></li>
+                    <li><span class="hp-tick">&#10003;</span><span>Full round stats with strokes gained. Know exactly where you&rsquo;re losing shots before you practise.</span></li>
+                    <li><span class="hp-tick">&#10003;</span><span>XP progression that unlocks harder drills. Structure that keeps you improving, not just repeating.</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="hp-chips" data-hud aria-hidden="false">
+            <div class="hp-chip hp-chip--hcp">
+                <span class="hp-chip-label">Short Game HCP</span>
+                <span class="hp-chip-value"><span data-count="5">5</span></span>
+            </div>
+            <div class="hp-chip hp-chip--challenges">
+                <span class="hp-chip-label">Challenges Completed</span>
+                <span class="hp-chip-value"><span data-count="15">15</span><span class="hp-chip-dim">/40</span></span>
+            </div>
+            <div class="hp-chip hp-chip--x3">
+                <span class="hp-chip-label">XP Multiplier &middot; beat your benchmark</span>
+                <span class="hp-chip-value"><span data-count="3">3</span>&times;</span>
+                <span class="hp-chip-reward">Reward: up to 450 XP</span>
+            </div>
+            <div class="hp-chip hp-chip--round">
+                <span class="hp-chip-label">Round Stats</span>
+                <div class="hp-chip-row">
+                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="29">29</span></span><span class="hp-chip-mini-label">Putts</span></div>
+                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="13">13</span></span><span class="hp-chip-mini-label">GIR</span></div>
+                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="18">18</span>ft</span><span class="hp-chip-mini-label">Proximity</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== THE DECK (Inside the App scrolling reveal) ========== -->
     <style>
-      .deck-outer { position: relative; z-index: 1; height: 560vh; }
+      .deck-outer { position: relative; z-index: 1; height: 420vh; }
       .deck-sticky {
         position: sticky; top: 0; height: 100vh; overflow: hidden;
         display: flex; align-items: center;
@@ -394,27 +437,23 @@
             <p>Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab. All in one app.</p>
             <ul class="deck-tracklist" id="deck-tracklist">
               <li>Short Game Handicap</li>
-              <li>Home</li>
               <li>Practice Hub</li>
               <li>Challenges</li>
               <li>Stats</li>
               <li>Rounds</li>
-              <li>Assistant</li>
               <li>Sim Lab</li>
             </ul>
             <div class="deck-progress">
-              <span class="deck-counter"><span id="deck-num">01</span> <span class="deck-total">/ 08</span></span>
+              <span class="deck-counter"><span id="deck-num">01</span> <span class="deck-total">/ 06</span></span>
               <div class="deck-bar"><div class="deck-bar-fill" id="deck-bar-fill"></div></div>
             </div>
           </div>
           <div class="deck-stage" id="deck-stage">
             <div class="deck-card"><img src="app-screens/appstore-lower-short-game-handicap.webp" alt="Scoring Zone practice hub showing short game handicap dial" width="860" height="1864" loading="lazy" decoding="async"></div>
-            <div class="deck-card"><img src="app-screens/appstore-home-screen.webp" alt="Scoring Zone home screen with short game handicap" width="860" height="1864" loading="lazy" decoding="async"></div>
             <div class="deck-card"><img src="app-screens/appstore-practice-hub-handicap.webp" alt="Calculate and improve your short game handicap in the practice hub" width="860" height="1864" loading="lazy" decoding="async"></div>
             <div class="deck-card"><img src="app-screens/appstore-chipping-challenges.webp" alt="Over 35 performance based chipping and putting challenges" width="860" height="1864" loading="lazy" decoding="async"></div>
             <div class="deck-card"><img src="app-screens/appstore-stats-strokes-gained.webp" alt="Track short game and round stats with strokes gained" width="860" height="1864" loading="lazy" decoding="async"></div>
             <div class="deck-card"><img src="app-screens/appstore-record-rounds.webp" alt="Record your rounds on any golf course" width="860" height="1864" loading="lazy" decoding="async"></div>
-            <div class="deck-card"><img src="app-screens/appstore-practice-assistant.webp" alt="Structured practice sessions with the Scoring Zone assistant" width="860" height="1864" loading="lazy" decoding="async"></div>
             <div class="deck-card"><img src="app-screens/appstore-sim-lab.webp" alt="Practice indoors with Sim Lab drills" width="860" height="1864" loading="lazy" decoding="async"></div>
           </div>
         </div>
@@ -591,49 +630,6 @@
         </div>
     </section>
 
-    <!-- ========== FULL-BLEED PHOTO CHAPTER ========== -->
-    <section class="hp-photo">
-        <div class="hp-photo-media">
-            <img src="golf%20images/teen%20looking%20as%20his%20golf%20stats.webp" alt="Golfer checking his short game stats on his phone at sunset" width="1200" height="903" loading="lazy" decoding="async">
-        </div>
-        <div class="hp-photo-inner">
-            <div class="hp-photo-text reveal">
-                <span class="hp-eyebrow">Your Short Game Journey</span>
-                <h2 class="hp-billboard">Built for every part<br>of your <span class="hp-accent">short game</span></h2>
-                <p class="hp-photo-kicker">Earn more XP. <span>Beat your benchmark.</span></p>
-                <ul class="hp-checklist">
-                    <li><span class="hp-tick">&#10003;</span><span>Scored chipping and putting drills. Every session generates a benchmark you can beat next time.</span></li>
-                    <li><span class="hp-tick">&#10003;</span><span>Pressure challenges that reset on a miss. So practice actually feels like the course.</span></li>
-                    <li><span class="hp-tick">&#10003;</span><span>Full round stats with strokes gained. Know exactly where you&rsquo;re losing shots before you practise.</span></li>
-                    <li><span class="hp-tick">&#10003;</span><span>XP progression that unlocks harder drills. Structure that keeps you improving, not just repeating.</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="hp-chips" data-hud aria-hidden="false">
-            <div class="hp-chip hp-chip--hcp">
-                <span class="hp-chip-label">Short Game HCP</span>
-                <span class="hp-chip-value"><span data-count="5">5</span></span>
-            </div>
-            <div class="hp-chip hp-chip--challenges">
-                <span class="hp-chip-label">Challenges Completed</span>
-                <span class="hp-chip-value"><span data-count="15">15</span><span class="hp-chip-dim">/40</span></span>
-            </div>
-            <div class="hp-chip hp-chip--x3">
-                <span class="hp-chip-label">XP Multiplier &middot; beat your benchmark</span>
-                <span class="hp-chip-value"><span data-count="3">3</span>&times;</span>
-                <span class="hp-chip-reward">Reward: up to 450 XP</span>
-            </div>
-            <div class="hp-chip hp-chip--round">
-                <span class="hp-chip-label">Round Stats</span>
-                <div class="hp-chip-row">
-                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="29">29</span></span><span class="hp-chip-mini-label">Putts</span></div>
-                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="13">13</span></span><span class="hp-chip-mini-label">GIR</span></div>
-                    <div class="hp-chip-mini"><span class="hp-chip-mini-value"><span data-count="18">18</span>ft</span><span class="hp-chip-mini-label">Proximity</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ========== DRILLS ========== -->
     <section class="section" id="drills">
         <div class="container">
@@ -770,6 +766,141 @@
             </div>
         </div>
     </section>
+
+    <!-- ========== SOCIAL PROOF / TESTIMONIALS ========== -->
+    <section class="section" id="testimonials-b" style="background:#060b08; position:relative; z-index:1;">
+        <div class="container">
+            <div class="tb-wrap">
+                <!-- Left rail (sticky) -->
+                <div class="tb-rail reveal">
+                    <span class="tb-pill"><span class="tb-dot"></span>Real Golfers, Real Results</span>
+                    <h2 class="display-lg" style="color:var(--text);">Loved by Golfers &amp; Coaches</h2>
+                    <p class="tb-desc">From single-figure players to first-season beginners &mdash; and the coaches who train them.</p>
+                    <div class="tb-stats">
+                        <div class="tb-stat">
+                            <span class="tb-stat-value">3.2</span>
+                            <span class="tb-stat-label">Avg strokes saved</span>
+                        </div>
+                        <div class="tb-stat">
+                            <span class="tb-stat-value">50<span class="tb-plus">+</span></span>
+                            <span class="tb-stat-label">Scored drills</span>
+                        </div>
+                        <div class="tb-stat">
+                            <span class="tb-stat-value">4</span>
+                            <span class="tb-stat-label">Skill areas</span>
+                        </div>
+                    </div>
+                    <div class="tb-ctas">
+                        <a href="https://scoringzone.app" class="btn-primary">Start Free Trial</a>
+                        <a href="#features" class="btn-outline">See Features</a>
+                    </div>
+                </div>
+                <!-- Right column: fan-out reveal — cards start stacked, slide down to reveal all on scroll -->
+                <div class="tb-scroller">
+                  <div class="tb-pin">
+                    <div class="tb-stack">
+                    <!-- Card 1 — Matt Wilson -->
+                    <div class="tb-card">
+                        <div class="tb-card-head">
+                            <span class="tb-avatar"><img src="social-proof/matt-wilson.jpg" alt="Matt Wilson" loading="lazy"></span>
+                            <span>
+                                <span class="tb-name">Matt Wilson</span>
+                                <span class="tb-title">HCP 8 &middot; Dubai, UAE</span>
+                            </span>
+                        </div>
+                        <div class="tb-rating">
+                            <span class="tb-score">5.0</span>
+                            <span class="tb-stars" aria-label="5 out of 5 stars">
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                        </div>
+                        <p class="tb-quote">&ldquo;Best short game app out there by far. Using the app, I now have purpose to practise my chipping and putting &mdash; and even better, I can see if I&rsquo;m improving.&rdquo;</p>
+                    </div>
+                    <!-- Card 2 — Aisling Jennings -->
+                    <div class="tb-card">
+                        <div class="tb-card-head">
+                            <span class="tb-avatar"><img src="social-proof/aisling-jennings.jpg" alt="Aisling Jennings" loading="lazy"></span>
+                            <span>
+                                <span class="tb-name">Aisling Jennings</span>
+                                <span class="tb-title">HCP 28 &middot; Beginner &middot; Dubai, UAE</span>
+                            </span>
+                        </div>
+                        <div class="tb-rating">
+                            <span class="tb-score">5.0</span>
+                            <span class="tb-stars" aria-label="5 out of 5 stars">
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                        </div>
+                        <p class="tb-quote">&ldquo;I&rsquo;ve been using Scoring Zone for six weeks and my short game has come on so much. The drills are challenging but genuinely fun.&rdquo;</p>
+                    </div>
+                    <!-- Card 3 — Max Newton -->
+                    <div class="tb-card">
+                        <div class="tb-card-head">
+                            <span class="tb-avatar"><img src="social-proof/max-newton.jpg" alt="Max Newton" loading="lazy"></span>
+                            <span>
+                                <span class="tb-name">Max Newton</span>
+                                <span class="tb-title">HCP 18 &middot; Atlanta, USA</span>
+                            </span>
+                        </div>
+                        <div class="tb-rating">
+                            <span class="tb-score">5.0</span>
+                            <span class="tb-stars" aria-label="5 out of 5 stars">
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                        </div>
+                        <p class="tb-quote">&ldquo;I always found chipping and putting really boring, I&rsquo;d rather just play. But this app is great!! It&rsquo;s like a game and makes me want to practise.&rdquo;</p>
+                    </div>
+                    </div><!-- /.tb-stack -->
+                  </div><!-- /.tb-pin -->
+                </div><!-- /.tb-scroller -->
+            </div>
+        </div>
+    </section>
+    <script>
+    (function () {
+      var scroller = document.querySelector('#testimonials-b .tb-scroller');
+      if (!scroller) return;
+      var stack = scroller.querySelector('.tb-stack');
+      var cards = [].slice.call(stack.querySelectorAll('.tb-card'));
+      if (!cards.length) return;
+      var mq = window.matchMedia('(max-width: 900px)');
+      var PEEK = 16;               // px of each card's edge visible in the initial pile
+      var offsets = [];
+      function measure() {
+        var base = cards[0].offsetTop;
+        offsets = cards.map(function (c) { return c.offsetTop - base; });
+      }
+      cards.forEach(function (c, i) { c.style.zIndex = String(cards.length - i); }); // top card on top
+      function update() {
+        if (mq.matches) { cards.forEach(function (c) { c.style.transform = ''; }); return; }
+        var rect = scroller.getBoundingClientRect();
+        var total = scroller.offsetHeight - window.innerHeight;
+        var scrolled = Math.min(Math.max(-rect.top, 0), total);
+        var p = total > 0 ? scrolled / total : 1;   // 0 = stacked pile, 1 = fully fanned out
+        cards.forEach(function (c, i) {
+          var stackedY = i * PEEK - offsets[i];      // translateY that pulls the card up into the pile
+          c.style.transform = 'translateY(' + (stackedY * (1 - p)) + 'px)';
+        });
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', function () { measure(); update(); });
+      window.addEventListener('load', function () { measure(); update(); });
+      measure();
+      update();
+    })();
+    </script>
 
     <!-- ========== BLOG → PRICING WRAPPER ========== -->
     <div class="hp-studio" style="position:relative; overflow:hidden;">
