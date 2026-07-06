@@ -262,6 +262,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  /* Nudge the composite down so its base lines up with the CTA buttons.
+     Transform (not margin) so the QR block stays aligned to the stat band. */
+  transform: translateY(44px);
 }
 .hp-hero-a .hero-product-glow {
   position: absolute;
@@ -335,6 +338,7 @@
   .hp-hero-a .hero-stat-band { justify-content: center; }
   .hp-hero-a .hero-trust-row { justify-content: center; }
   .hp-hero-a .hero-right { order: -1; padding-bottom: 0; }
+  .hp-hero-a .hero-product { transform: none; }
   .hp-hero-a .hero-product-img { max-width: 480px; }
 }
 @media (max-width: 640px) {
