@@ -12,13 +12,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Average Golf Score in 2026: Only 25% Break 90 (Real Data)</title>
-    <meta name="description" content="Only 25% of golfers ever break 90. See the real 2026 average golf score by age, gender, and handicap — plus what separates each bracket.">
+    <meta name="description" content="Only 25% of golfers ever break 90. Use the free finder to see where your score ranks by age, gender and handicap — and what separates each bracket.">
     <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/new-scoring-zone-logo.png">
     <link rel="canonical" href="https://www.scoringzone.net/blog/average-golf-score.html">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Average Golf Score in 2026: Only 25% Break 90 (Real Data)">
-    <meta property="og:description" content="Only 25% of golfers ever break 90. See the real 2026 average golf score by age, gender, and handicap — plus what separates each bracket.">
+    <meta property="og:description" content="Only 25% of golfers ever break 90. Use the free finder to see where your score ranks by age, gender and handicap — and what separates each bracket.">
     <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
     <meta property="og:url" content="https://www.scoringzone.net/blog/average-golf-score.html">
     <meta property="og:type" content="article">
@@ -26,7 +26,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Average Golf Score in 2026: Only 25% Break 90 (Real Data)">
-    <meta name="twitter:description" content="Only 25% of golfers ever break 90. See the real 2026 average golf score by age, gender, and handicap — plus what separates each bracket.">
+    <meta name="twitter:description" content="Only 25% of golfers ever break 90. Use the free finder to see where your score ranks by age, gender and handicap — and what separates each bracket.">
     <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +56,7 @@
   "author": { "@type": "Person", "name": "Stephen Pickering", "url": "https://www.scoringzone.net/about.html" },
   "publisher": { "@type": "Organization", "name": "Scoring Zone", "url": "https://www.scoringzone.net", "logo": {"@type": "ImageObject", "url": "https://www.scoringzone.net/logo/new-scoring-zone-logo.png"} },
   "datePublished": "2026-04-09",
-  "dateModified": "2026-06-09",
+  "dateModified": "2026-07-15",
   "description": "A data-driven breakdown of average golf scores by age, gender, handicap level, and experience — including what separates each scoring bracket and how to actually improve."
 }
     </script>
@@ -313,6 +313,70 @@
         font-size: 0.85rem;
         margin-left: 4px;
       }
+      /* ===== Score Percentile Finder (interactive) ===== */
+      .hcp-finder {
+        background: linear-gradient(180deg, rgba(34,197,94,0.06), rgba(34,197,94,0.02));
+        border: 1px solid rgba(34,197,94,0.2);
+        border-radius: 16px;
+        padding: 28px 24px;
+        margin: 2.5rem 0;
+      }
+      .hcp-finder h3 {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        margin: 0 0 4px;
+        color: var(--text);
+      }
+      .hcp-sub { color: var(--text-muted); font-size: 0.88rem; margin: 0 0 20px; line-height: 1.6; }
+      .hcp-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+      .hcp-field { display: flex; flex-direction: column; gap: 6px; }
+      .hcp-field.full { margin-bottom: 16px; }
+      .hcp-field label {
+        font-family: 'DM Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
+        letter-spacing: 0.08em; color: var(--text-muted);
+      }
+      .hcp-field select, .hcp-field input {
+        background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px;
+        padding: 12px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+        width: 100%; -webkit-appearance: none; appearance: none;
+      }
+      .hcp-field select:focus, .hcp-field input:focus { outline: none; border-color: var(--green); }
+      .hcp-seg { display: flex; gap: 8px; }
+      .hcp-seg button {
+        flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px;
+        padding: 12px; color: var(--text-muted); font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.02em;
+        cursor: pointer; transition: all 0.15s;
+      }
+      .hcp-seg button.active { background: rgba(34,197,94,0.14); border-color: var(--green); color: var(--green); }
+      .hcp-btn {
+        width: 100%; margin-top: 4px; background: var(--green); color: #000; border: none; border-radius: 10px;
+        padding: 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem;
+        text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer;
+      }
+      .hcp-btn:hover { filter: brightness(1.05); }
+      .hcp-result {
+        margin-top: 20px; padding: 22px; background: rgba(0,0,0,0.25);
+        border: 1px solid rgba(34,197,94,0.25); border-radius: 12px; display: none;
+      }
+      .hcp-result.show { display: block; }
+      .hcp-big { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--green); line-height: 1.05; }
+      .hcp-big span { font-size: 0.95rem; color: var(--text-muted); font-weight: 600; }
+      .hcp-bracket {
+        font-family: 'DM Mono', monospace; font-size: 0.72rem; text-transform: uppercase;
+        letter-spacing: 0.08em; color: var(--text-muted); margin-top: 8px;
+      }
+      .hcp-bar { height: 10px; border-radius: 6px; background: rgba(255,255,255,0.08); margin: 16px 0 6px; overflow: hidden; }
+      .hcp-bar span { display: block; height: 100%; background: var(--green); border-radius: 6px; width: 0; transition: width 0.6s ease; }
+      .hcp-scale { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-muted); }
+      .hcp-note { color: var(--text); font-size: 0.92rem; line-height: 1.7; margin: 16px 0 0; }
+      .hcp-cta { font-size: 0.9rem; line-height: 1.8; margin: 16px 0 0; }
+      .hcp-cta a { color: var(--green); font-weight: 600; text-decoration: none; }
+      .hcp-cta a:hover { text-decoration: underline; }
+      @media (max-width: 520px) { .hcp-controls { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -378,9 +442,9 @@
                 </div>
                 <a href="/blog/">Blog</a>
                 <a href="/#pricing">Pricing</a>
-                <a href="https://scoringzone.app">Download</a>
+                <a href="/#signup">Download</a>
             </div>
-            <a href="https://scoringzone.app" class="btn-primary btn-sm">Start Free Trial</a>
+            <a href="/#signup" class="btn-primary btn-sm">Start Free</a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -404,8 +468,8 @@
             </div>
             <a href="/blog/">Blog</a>
             <a href="/#pricing">Pricing</a>
-            <a href="https://scoringzone.app">Download</a>
-            <a href="https://scoringzone.app" class="btn-primary" style="width: 100%; justify-content: center;">Start Free Trial</a>
+            <a href="/#signup">Download</a>
+            <a href="/#signup" class="btn-primary" style="width: 100%; justify-content: center;">Start Free</a>
         </div>
     </nav>
 
@@ -428,7 +492,7 @@
             <span class="mono-label" style="color: var(--green);">Golf Basics</span>
             <h1 class="display-lg" style="margin-top: 12px; font-size: clamp(1.8rem, 4vw, 2.8rem);"><span style="color: var(--green);">Average Golf Score:</span> What&rsquo;s Normal at Every Level</h1>
             <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 16px; line-height: 1.6;">Data by Handicap, Age, Gender, and Experience</p>
-            <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.1em; text-transform: uppercase;">April 9, 2026 &middot; 7 min read &middot; Stephen Pickering</p>
+            <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.1em; text-transform: uppercase;">April 9, 2026 &middot; Updated July 2026 &middot; 7 min read &middot; Stephen Pickering</p>
             <img src="../golf images/walking down scenic golf hole.webp" alt="Golfer walking down a scenic golf fairway at sunset" style="width: 100%; border-radius: 12px; margin-top: 32px;">
         </div>
     </section>
@@ -444,6 +508,44 @@
             <p class="reveal">The average golf score is <strong>90&ndash;92 on a par-72 course</strong> for amateurs with an official handicap, based on USGA data. Casual golfers who don&rsquo;t track a handicap typically shoot 95&ndash;110. Only around <strong>25% of golfers consistently break 90</strong>, and fewer than 5% break 80. PGA Tour pros average 69&ndash;70 &mdash; about 20 shots better than the typical amateur.</p>
 
             <p class="reveal">This post breaks the real numbers down by handicap, age, gender, and experience level, using USGA handicap data and Tour statistics. More importantly, it covers what actually separates each scoring bracket. Spoiler: it&rsquo;s almost never what most golfers think.</p>
+
+            <!-- ======================== -->
+            <!-- INTERACTIVE: SCORE PERCENTILE FINDER -->
+            <div class="hcp-finder reveal" id="rank-finder">
+                <h3>What Does Your Score Say?</h3>
+                <p class="hcp-sub">Enter your typical 18-hole score to see where you rank, your rough handicap equivalent, and how you compare to golfers your age. Figures use the USGA scoring data in this guide.</p>
+                <div class="hcp-field full">
+                    <label>I am a&hellip;</label>
+                    <div class="hcp-seg" id="hcp-gender">
+                        <button type="button" data-g="men" class="active">Male golfer</button>
+                        <button type="button" data-g="women">Female golfer</button>
+                    </div>
+                </div>
+                <div class="hcp-controls">
+                    <div class="hcp-field">
+                        <label for="hcp-age">Age group</label>
+                        <select id="hcp-age">
+                            <option value="U30">Under 30</option>
+                            <option value="30-50" selected>30&ndash;50</option>
+                            <option value="50-65">50&ndash;65</option>
+                            <option value="65+">65+</option>
+                        </select>
+                    </div>
+                    <div class="hcp-field">
+                        <label for="hcp-value">Typical 18-hole score</label>
+                        <input id="hcp-value" type="number" inputmode="numeric" min="59" max="150" step="1" placeholder="e.g. 92">
+                    </div>
+                </div>
+                <button type="button" class="hcp-btn" id="hcp-go">See where I rank &rarr;</button>
+                <div class="hcp-result" id="hcp-result" aria-live="polite">
+                    <div class="hcp-big" id="hcp-pct"></div>
+                    <div class="hcp-bracket" id="hcp-bracket"></div>
+                    <div class="hcp-bar"><span id="hcp-bar-fill"></span></div>
+                    <div class="hcp-scale"><span>Lower scores</span><span>Higher scores</span></div>
+                    <p class="hcp-note" id="hcp-note"></p>
+                    <p class="hcp-cta" id="hcp-cta"></p>
+                </div>
+            </div>
 
             <!-- ======================== -->
             <h2 class="reveal">Average Golf Score by Handicap Level</h2>
@@ -621,19 +723,16 @@
             <div class="related-posts reveal">
                 <h2>Keep Reading</h2>
                 <a href="what-is-a-good-golf-score.html">
-                    What Is a Good Golf Score? Explained by Handicap Level <span>&rarr;</span>
+                    What Is a Good Golf Score? <span>&rarr;</span>
                 </a>
-                <a href="average-golf-handicap-by-age.html">
-                    Average Golf Handicap by Age, Gender, and Experience <span>&rarr;</span>
-                </a>
-                <a href="what-percentage-of-golfers-break-90.html">
-                    What Percentage of Golfers Break 90? The Real Numbers <span>&rarr;</span>
+                <a href="what-is-a-handicap-in-golf.html">
+                    What Is a Handicap in Golf? <span>&rarr;</span>
                 </a>
                 <a href="how-to-break-90.html">
-                    How to Break 90 in Golf: A Short Game Plan That Works <span>&rarr;</span>
+                    How to Break 90 in Golf <span>&rarr;</span>
                 </a>
-                <a href="how-to-lower-your-golf-handicap.html">
-                    How to Lower Your Golf Handicap: 5 Tactics That Actually Work <span>&rarr;</span>
+                <a href="golf-scoring-terms-explained.html">
+                    Golf Scoring Terms Explained <span>&rarr;</span>
                 </a>
             </div>
 
@@ -669,8 +768,8 @@
         <div class="container" style="max-width: 720px;">
             <div class="reveal" style="background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.15); border-radius: 14px; padding: 40px 32px; text-align: center;">
                 <h3 class="display-md" style="font-size: 1.4rem;">Your Average Won&rsquo;t Change Until Your Practice Does.</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin: 12px 0 24px; line-height: 1.6;">Scored short game drills, automatic stat tracking, and benchmarks against your handicap. Try Scoring Zone free for 14 days &mdash; one session shows you exactly where the strokes are hiding.</p>
-                <a href="https://scoringzone.app" class="btn-primary">Start Free Trial &rarr;</a>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin: 12px 0 24px; line-height: 1.6;">Scored short game drills, automatic stat tracking, and benchmarks against your handicap. Scoring Zone is free during early access &mdash; one session shows you exactly where the strokes are hiding.</p>
+                <a href="/#signup" class="btn-primary">Download Scoring Zone Free &rarr;</a>
             </div>
         </div>
     </section>
@@ -680,10 +779,10 @@
         <div class="final-cta-bg"></div>
         <div class="container" style="text-align: center; position: relative;">
             <div class="reveal">
-                <span class="mono-label">Free Trial</span>
-                <h2 class="display-md" style="margin-top: 12px;">Start Training Smarter. <span style="color: var(--green);">Try It Free.</span></h2>
-                <p style="color: var(--text-muted); margin-top: 12px;">14-day free trial. No credit card required. Cancel anytime.</p>
-                <a href="https://scoringzone.app" class="btn-primary" style="margin-top: 24px;">Start Free Trial &rarr;</a>
+                <span class="mono-label">Early Access</span>
+                <h2 class="display-md" style="margin-top: 12px;">Start Training Smarter. <span style="color: var(--green);">It&rsquo;s Free.</span></h2>
+                <p style="color: var(--text-muted); margin-top: 12px;">Full access to all drills, stats, and features. No payment required.</p>
+                <a href="/#signup" class="btn-primary" style="margin-top: 24px;">Get Scoring Zone Free &rarr;</a>
             </div>
         </div>
     </section>
@@ -701,11 +800,83 @@
                 <li><a href="../tools/golf-handicap-calculator.html">Handicap Calculator</a></li>
                 <li><a href="/blog/">Blog</a></li>
                 <li><a href="/#pricing">Pricing</a></li>
-                <li><a href="https://scoringzone.app">Download</a></li>
+                <li><a href="/#signup">Download</a></li>
             </ul>
             <p class="footer-copy">&copy; 2026 Scoring Zone</p>
         </div>
     </footer>
+
+    <!-- Score Percentile Finder logic -->
+    <script>
+    (function(){
+      // score -> % of golfers you shoot lower than (better than), from the USGA scoring data above
+      var scoreAnchors = [[72,99],[80,95],[90,75],[95,55],[100,35],[110,12],[120,3]];
+      // Expected average 18-hole score by gender + age group (par 72), from the tables in this guide
+      var ageAvg = {
+        men:   {'U30':91,'30-50':92,'50-65':92.5,'65+':95},
+        women: {'U30':95,'30-50':96,'50-65':96.5,'65+':99}
+      };
+      var gender = 'men';
+
+      function interp(anchors, x){
+        if (x <= anchors[0][0]) return anchors[0][1];
+        var last = anchors[anchors.length - 1];
+        if (x >= last[0]) return last[1];
+        for (var i=1; i<anchors.length; i++){
+          if (x <= anchors[i][0]){
+            var a = anchors[i-1], b = anchors[i];
+            return a[1] + (b[1]-a[1]) * ((x-a[0])/(b[0]-a[0]));
+          }
+        }
+        return last[1];
+      }
+      function bracket(s){
+        if (s < 72)  return 'Better than scratch — elite';
+        if (s < 80)  return 'Breaking 80 — top ~5% of golfers';
+        if (s < 90)  return 'Breaking 90 — top ~25% of golfers';
+        if (s < 100) return 'Around the amateur average (90–92)';
+        if (s < 110) return 'Bogey-plus — big gains available';
+        return 'Beginner range — fastest improvement ahead';
+      }
+
+      var gEl = document.getElementById('hcp-gender');
+      gEl.addEventListener('click', function(e){
+        var b = e.target.closest('button');
+        if (!b) return;
+        gender = b.getAttribute('data-g');
+        [].forEach.call(gEl.children, function(c){ c.classList.toggle('active', c === b); });
+      });
+
+      document.getElementById('hcp-go').addEventListener('click', function(){
+        var valEl = document.getElementById('hcp-value');
+        var s = parseFloat(valEl.value);
+        if (isNaN(s)) { valEl.focus(); return; }
+        var age = document.getElementById('hcp-age').value;
+        var youBeat = Math.max(1, Math.min(99, Math.round(interp(scoreAnchors, s))));
+        var lbl = gender === 'men' ? 'man' : 'woman';
+
+        document.getElementById('hcp-pct').innerHTML = 'Better than ~' + youBeat + '% <span>of golfers</span>';
+        document.getElementById('hcp-bracket').textContent = bracket(s);
+        document.getElementById('hcp-bar-fill').style.width = youBeat + '%';
+
+        var hcp = Math.max(0, Math.round(s - 72));
+        var hcpTxt = s <= 72 ? 'On a par-72 course that is a <strong>scratch-or-better</strong> game.'
+                             : 'On a par-72 course, ' + s + ' is roughly a <strong>' + hcp + '-handicap</strong> game.';
+        var avg = ageAvg[gender][age];
+        var diff = Math.round((s - avg) * 10) / 10;
+        var ageTxt;
+        if (diff <= -0.5)      ageTxt = ' The average ' + lbl + ' in your age group shoots <strong>' + avg + '</strong> — you’re <strong>' + Math.abs(diff) + ' shots better</strong>.';
+        else if (diff < 0.5)   ageTxt = ' That’s right around your age-group average of <strong>' + avg + '</strong>.';
+        else                   ageTxt = ' The average ' + lbl + ' in your age group shoots <strong>' + avg + '</strong>. Trimming <strong>' + diff + ' shots</strong> gets you there — and it’s almost all hiding inside 100 yards.';
+        document.getElementById('hcp-note').innerHTML = hcpTxt + ageTxt;
+
+        document.getElementById('hcp-cta').innerHTML =
+          'Turn your scores into an official Handicap Index with the <a href="/tools/golf-handicap-calculator.html">free calculator &rarr;</a><br>' +
+          'See which shots are costing you most with the <a href="/#signup">Scoring Zone Performance Hub &rarr;</a>';
+        document.getElementById('hcp-result').classList.add('show');
+      });
+    })();
+    </script>
 
     <script src="../js/shared.js"></script>
 </body>
