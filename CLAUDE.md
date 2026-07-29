@@ -90,7 +90,7 @@ Use the `golf-blog-copywriting` skill for writing blog content. Key rules:
 ## Professionals Page (`professionals/index.html`)
 - Live at `scoringzone.net/professionals/` — fully rebuilt and actively maintained
 - Target audience: PGA Teaching Professionals
-- Founders Commission: 50% from student #1 (first 60 days), then tiers: 1–10 → 30%, 11–20 → 40%, 21+ → 50%
+- Founders Commission: flat 50% recurring on every student subscription (the old 60-day window and 30/40/50 tiers are retired)
 - All CTAs link to `https://scoring-zone-referral.vercel.app/coaches` (sign up) or `https://scoring-zone-referral.vercel.app` (home)
 - Final signup CTA links to `https://scoring-zone-referral.vercel.app/coaches#signup`
 - "Back to Home" button links to `https://scoring-zone-referral.vercel.app`
