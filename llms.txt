@@ -1,6 +1,6 @@
 # Scoring Zone
 
-> Golf short game practice app that turns putting, chipping, and pitching into scored challenges benchmarked against your handicap. 14-day free trial; free tier available.
+> Golf short game practice app that turns putting, chipping, and pitching into scored challenges benchmarked against your handicap. 7-day free trial, then a paid plan.
 
 ## What Is Scoring Zone?
 
@@ -36,10 +36,9 @@ Scoring Zone is a golf short game practice app, available on the iOS App Store (
 
 ## Pricing
 
-- 14-day free trial on every plan — full access, no credit card required, cancel anytime
-- Free tier — starter set of scored drills, Performance Hub access, XP and progress tracking
-- Pro — $7.99/month or $49.99/year: full drill library, all benchmark tests, Practice Assistant, SIM Lab
-- Elite — $9.99/month or $59.99/year: everything in Pro plus round logging, full stats suite, and Strokes Gained tracking
+- 7-day free trial on every plan — full access, no credit card required, cancel anytime
+- Pro — $4.99/month or $23.99/year: full drill library, all benchmark tests, Practice Assistant, SIM Lab
+- Elite — $9.99/month or $39.99/year: everything in Pro plus round logging, full stats suite, and Strokes Gained tracking
 
 ## Technical
 

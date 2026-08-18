@@ -227,6 +227,17 @@
   color: rgba(240, 253, 244, 0.6);
 }
 
+/* Qualifier under a stat label — quieter than the label so the attribution
+   reads as a footnote to the number, not as a second heading. */
+.hp-hero-a .hero-stat-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(240, 253, 244, 0.38);
+}
+
 /* Trust row */
 .hp-hero-a .hero-trust-row {
   display: flex;
