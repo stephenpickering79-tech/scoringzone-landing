@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Blog Advert Preview | Scoring Zone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/blog-ad.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #060b08;
+    color: #f0fdf4;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    line-height: 1.7;
+    padding-bottom: 100px;
+  }
+
+  /* Preview chrome */
+  .pv-bar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 11px 20px;
+    background: #040705;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pv-bar h1 {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #7d9086;
+  }
+  .pv-bar button {
+    min-height: 32px; padding: 6px 13px; border-radius: 8px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04);
+    color: #d1fae5; font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.09em; text-transform: uppercase;
+  }
+  .pv-bar button:hover { background: rgba(255,255,255,0.09); }
+  .pv-bar button[aria-pressed="true"] { background: #22c55e; border-color: #22c55e; color: #05170c; font-weight: 700; }
+  .pv-note { font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.07em; color: #5b6f64; margin-left: auto; }
+
+  /* A stand-in for the blog prose column: same 720px width and the same
+     bare-element margins that caused the cascade collision, so the preview
+     stresses the advert the way a real post does. */
+  .pv-wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  .pv-section { padding-top: 54px; }
+  .pv-tag {
+    display: inline-block; margin-bottom: 10px;
+    font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #7d9086;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 5px; padding: 3px 8px;
+  }
+  .blog-prose h2 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 1.85rem; text-transform: uppercase; letter-spacing: 0.01em;
+    margin: 40px 0 16px; line-height: 1.1;
+  }
+  .blog-prose h3 { font-size: 1.06rem; font-weight: 700; margin: 26px 0 8px; }
+  .blog-prose p { color: #b8c9bf; margin: 0 0 20px; font-size: 1.0rem; }
+
+  .pv-rule { border: 0; border-top: 1px solid rgba(255,255,255,0.08); margin: 64px 0 0; }
+</style>
+</head>
+<body>
+
+<div class="pv-bar">
+  <h1>Blog advert &mdash; all variants</h1>
+  <button type="button" data-w="720" aria-pressed="true">Desktop 720</button>
+  <button type="button" data-w="560">Tablet 560</button>
+  <button type="button" data-w="390">Mobile 390</button>
+  <span class="pv-note">Rendered from the live component &middot; js/blog-ad.js</span>
+</div>
+
+<div class="pv-wrap blog-prose">
+
+  <div class="pv-section">
+    <span class="pv-tag">Variant 0 &middot; Handicap</span>
+    <h2>What a short game handicap actually tells you</h2>
+    <p>Your full handicap index tells you how you score. It doesn&rsquo;t tell you which part of your game is costing the shots &mdash; and for most golfers breaking 90, the answer is inside 50 yards.</p>
+    <p>A short game handicap benchmarks the same shots every time, so the number moves only when your short game genuinely does.</p>
+    <div data-slot="handicap"></div>
+    <h2>How to bring it down</h2>
+    <p>Pick one distance, score yourself against a benchmark, and repeat it weekly. Progress you can see is progress you keep doing.</p>
+  </div>
+
+  <hr class="pv-rule">
+
+  <div class="pv-section">
+    <span class="pv-tag">Variant 1 &middot; Putting</span>
+    <h2>Why your putts miss left</h2>
+    <p>An open or closed face at impact almost always comes from the hands and wrists taking over &mdash; a little flick, a little steer, a squeeze of grip pressure at the last second. The putter face reacts instantly to any of it.</p>
+    <p>Quiet the hands and the face stays square. That&rsquo;s why the fixes below start with your setup and grip, not your stroke.</p>
+    <div data-slot="putting"></div>
+    <h2>Aim the face, then the body</h2>
+    <p>Set the putter face behind the ball and aim it at your target first &mdash; most golfers aim their feet and shoulders and let the face fall wherever.</p>
+  </div>
+
+  <hr class="pv-rule">
+
+  <div class="pv-section">
+    <span class="pv-tag">Variant 2 &middot; Chipping</span>
+    <h2>The chipping motion</h2>
+    <p>The chipping motion is a pendulum from the shoulders, not a swing from the wrists. Your hands stay quiet, the arms and shoulders swing as one piece, and the ball gets in the way of a downward-moving club face.</p>
+    <p>If you can stroke a 30-foot putt with a putter, you can chip a golf ball with a 9-iron. The motion is almost identical &mdash; the only difference is loft on the club face.</p>
+    <div data-slot="chipping"></div>
+    <h2>The setup &mdash; 5 checkpoints</h2>
+    <p>Feet about 6&ndash;8 inches apart. A narrow stance keeps the swing compact and stops you making a full body turn.</p>
+  </div>
+
+  <hr class="pv-rule">
+
+  <div class="pv-section">
+    <span class="pv-tag">Variant 3 &middot; Stats / handicap</span>
+    <h2>What strokes gained actually measures</h2>
+    <p>If a tour pro averages 70 and you shoot 90, your total strokes gained against the tour benchmark is &minus;20. The interesting question isn&rsquo;t <em>that</em> you&rsquo;re 20 strokes worse &mdash; it&rsquo;s <em>where</em> those 20 strokes are going.</p>
+    <p>Strokes gained breaks the answer down to the shot level, which is what makes it more useful than putts per round or greens in regulation.</p>
+    <div data-slot="stats"></div>
+    <h2>Where the numbers come from</h2>
+    <p>Strokes gained didn&rsquo;t exist as a usable metric until 2011, when Columbia Business School professor Mark Broadie published the foundational research.</p>
+  </div>
+
+</div>
+
+<script src="js/blog-ad.js" data-asset-base=""></script>
+<script>
+  // Render each variant from the real component into its slot.
+  (function () {
+    var kit = window.szBlogAdKit;
+    if (!kit) return;
+    document.querySelectorAll('[data-slot]').forEach(function (slot) {
+      var el = kit.build(slot.getAttribute('data-slot'));
+      el.setAttribute('data-shown', 'true');   // no scroll-reveal wait in preview
+      // Production keeps loading="lazy" (the advert sits below the fold).
+      // The preview forces eager so all three panels are visible at once.
+      el.querySelectorAll('img').forEach(function (i) { i.loading = 'eager'; });
+      slot.parentNode.replaceChild(el, slot);
+    });
+
+    var wrap = document.querySelector('.pv-wrap');
+    document.querySelectorAll('.pv-bar button[data-w]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('.pv-bar button[data-w]').forEach(function (o) {
+          o.setAttribute('aria-pressed', String(o === b));
+        });
+        wrap.style.maxWidth = b.dataset.w + 'px';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

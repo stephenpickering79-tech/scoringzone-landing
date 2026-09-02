@@ -1,0 +1,457 @@
+/* ============================================================
+   Scoring Zone — In-content blog advert
+   ------------------------------------------------------------
+   Three topical variants that sit inside the 720px prose
+   column: putting, chipping and stats. Self-contained tokens so
+   the unit renders the same wherever it is dropped.
+
+   The per-variant accent mirrors the category colour the app
+   itself uses — purple for putting, amber for chipping, green
+   for stats — so the panel and the frame agree. The CTA stays
+   brand green in every variant.
+   ============================================================ */
+
+.szad {
+  /* Surface */
+  --szad-ground: #0a1310;
+  --szad-raise: #101c17;
+  --szad-line: rgba(255, 255, 255, 0.10);
+
+  /* Ink */
+  --szad-ink: #f0fdf4;
+  --szad-ink-2: #b8c9bf;
+  --szad-ink-3: #7d9086;
+
+  --szad-green: #22c55e;
+  --szad-green-bright: #4ade80;
+  --szad-star: #f5a524;
+  --szad-amber: #f59e0b;
+
+  /* Variant accent — overridden per variant below */
+  --szad-accent: #22c55e;
+
+  --szad-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  display: block;
+  position: relative;
+  margin: 2.75rem 0;
+  border: 1px solid var(--szad-line);
+  border-radius: 14px;
+  background: var(--szad-ground);
+  overflow: hidden;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--szad-ink);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .55s var(--szad-ease), transform .55s var(--szad-ease);
+}
+
+.szad[data-shown='true'] { opacity: 1; transform: none; }
+
+/* Hairline of the variant colour across the top edge */
+.szad::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--szad-accent), transparent 78%);
+  z-index: 2;
+}
+
+.szad--putting  { --szad-accent: #a78bfa; }
+.szad--chipping { --szad-accent: #f59e0b; }
+.szad--stats    { --szad-accent: #22c55e; }
+.szad--handicap { --szad-accent: #22c55e; }
+
+/* ── Layout ──────────────────────────────────────────── */
+
+.szad-grid {
+  display: grid;
+  grid-template-columns: 34% 1fr;
+  align-items: stretch;
+}
+
+.szad-shot {
+  position: relative;
+  background: var(--szad-raise);
+  border-right: 1px solid var(--szad-line);
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.szad-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Fade the panel into the card so the crop edge is not a hard line */
+.szad-shot::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38%;
+  background: linear-gradient(to top, var(--szad-ground), transparent);
+  pointer-events: none;
+}
+
+.szad-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* ── Eyebrow ─────────────────────────────────────────── */
+
+.szad-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--szad-accent);
+  margin: 0;
+}
+
+.szad-label i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+/* ── Type ────────────────────────────────────────────── */
+
+.szad-h {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.6vw, 1.72rem);
+  line-height: 1.06;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--szad-ink);
+}
+
+.szad-h em {
+  font-style: normal;
+  color: var(--szad-green-bright);
+  display: block;
+}
+
+.szad-sub {
+  font-size: 0.895rem;
+  line-height: 1.55;
+  color: var(--szad-ink-2);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.szad-sub b { color: var(--szad-ink); font-weight: 700; }
+
+/* ── Rating ──────────────────────────────────────────── */
+
+.szad-rating {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 2px;
+}
+
+.szad-stars { display: inline-flex; gap: 2px; }
+
+.szad-stars svg {
+  width: 13px;
+  height: 13px;
+  fill: var(--szad-star);
+  display: block;
+}
+
+.szad-rating span {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--szad-ink-3);
+}
+
+/* ── Actions ─────────────────────────────────────────── */
+
+.szad-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 6px;
+}
+
+.szad-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 20px;
+  border-radius: 9px;
+  background: var(--szad-green);
+  color: #04140a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  line-height: 1;
+  transition: background .18s var(--szad-ease), transform .18s var(--szad-ease);
+}
+
+.szad-cta svg { width: 15px; height: 15px; fill: currentColor; flex: none; }
+.szad-cta:hover { background: var(--szad-green-bright); transform: translateY(-1px); }
+.szad-cta:focus-visible { outline: 2px solid var(--szad-green-bright); outline-offset: 3px; }
+
+.szad-alt {
+  font-size: 0.8rem;
+  color: var(--szad-ink-3);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .18s, border-color .18s;
+}
+
+.szad-alt:hover { color: var(--szad-ink-2); border-bottom-color: var(--szad-ink-3); }
+.szad-alt:focus-visible { outline: 2px solid var(--szad-green-bright); outline-offset: 2px; border-radius: 2px; }
+
+.szad-foot {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--szad-ink-3);
+  margin: 4px 0 0;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+
+@media (max-width: 620px) {
+  .szad { margin: 2.25rem 0; }
+  .szad-grid { grid-template-columns: 1fr; }
+  .szad-shot {
+    border-right: 0;
+    border-bottom: 1px solid var(--szad-line);
+    height: 168px;
+    min-height: 0;
+  }
+  .szad-shot img { object-position: top center; }
+  .szad-shot::after { height: 52%; }
+  .szad-body { padding: 18px 18px 20px; }
+  .szad-sub { font-size: 0.87rem; }
+  .szad-cta { width: 100%; justify-content: center; }
+  /* Keep the trial line on one row at 390px */
+  .szad .szad-foot { font-size: 0.58rem; letter-spacing: 0.055em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .szad { transition: none; opacity: 1; transform: none; }
+  .szad-cta:hover { transform: none; }
+}
+
+/* ── Cascade guard ───────────────────────────────────────
+   Blog posts style bare `p` and `h2` inside the prose column
+   with selectors like `.blog-prose p` (0,1,1), which outrank a
+   single class. These duplicates are scoped to `.szad` (0,2,0)
+   so the unit wins on specificity rather than !important.
+   Without this the advert inherits article margins and grows
+   roughly 200px taller than designed.
+   ------------------------------------------------------ */
+
+.szad .szad-label,
+.szad .szad-h,
+.szad .szad-sub,
+.szad .szad-foot { margin: 0; }
+
+.szad .szad-h {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-size: clamp(1.4rem, 2.6vw, 1.72rem);
+  line-height: 1.06;
+  text-transform: uppercase;
+  color: var(--szad-ink);
+  padding: 0;
+  border: 0;
+}
+
+.szad .szad-h::after,
+.szad .szad-h::before { content: none; }
+
+.szad .szad-sub {
+  font-size: 0.895rem;
+  line-height: 1.55;
+  color: var(--szad-ink-2);
+}
+
+.szad .szad-foot { margin-top: 4px; }
+
+.szad .szad-cta,
+.szad .szad-alt { text-decoration: none; }
+
+/* ── Light device panel ──────────────────────────────────
+   Variants built from a real device screenshot sit on the
+   popup's light ground and use `contain`, so the phone is
+   never cropped. UI-crop variants keep `cover` on dark.
+   ------------------------------------------------------ */
+
+.szad-shot--light {
+  background: #fafaf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.szad-shot--light img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.szad-shot--light::after { content: none; }
+
+/* ── Supporting points ───────────────────────────────── */
+
+.szad .szad-points {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.szad .szad-points li {
+  position: relative;
+  padding-left: 18px;
+  margin: 0;
+  font-size: 0.855rem;
+  line-height: 1.4;
+  color: var(--szad-ink-2);
+}
+
+.szad .szad-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.48em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--szad-green);
+}
+
+/* ── Store badges + orange trial line ────────────────── */
+
+.szad-actions--badges {
+  display: block;
+  margin-top: 10px;
+}
+
+.szad-stores {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.szad-store {
+  display: block;
+  border-radius: 8px;
+  transition: opacity .2s ease-out, transform .2s var(--szad-ease);
+}
+
+.szad-store img {
+  display: block;
+  width: auto;
+  height: 44px;
+}
+
+.szad-store:hover { opacity: 0.86; transform: translateY(-1px); }
+.szad-store:focus-visible { outline: 2px solid var(--szad-green-bright); outline-offset: 3px; }
+
+.szad .szad-trial {
+  margin: 10px 0 0;
+  text-align: center;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--szad-amber);
+}
+
+@media (max-width: 620px) {
+  .szad-stores { gap: 10px; }
+  .szad-store { flex: 1 1 auto; }
+  .szad-store img { height: 40px; margin: 0 auto; }
+  .szad-shot--light { height: auto; padding: 14px 0; }
+  .szad-shot--light img { max-height: 260px; }
+}
+
+/* ── Brand lockup, bottom right ──────────────────────── */
+
+.szad-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.szad-brand img {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex: none;
+  display: block;
+}
+
+.szad-brand span {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--szad-ink-3);
+  line-height: 1;
+}
+
+/* ── Process strip: TEST → IDENTIFY → PRACTISE → IMPROVE ─
+   A sequence, so it is set as one, with the arrows carrying
+   the accent rather than the words.
+   ------------------------------------------------------ */
+
+.szad .szad-flow {
+  margin: 2px 0 0;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--szad-ink);
+  line-height: 1.5;
+}
+
+.szad .szad-flow i {
+  font-style: normal;
+  color: var(--szad-green);
+  margin: 0 7px;
+}
+
+@media (max-width: 620px) {
+  .szad .szad-flow { font-size: 0.63rem; letter-spacing: 0.07em; }
+  .szad .szad-flow i { margin: 0 5px; }
+}
