@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Popup Variants Preview | Scoring Zone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/popup.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: #060b08;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #f0fdf4;
+    overflow: hidden;
+  }
+  .pv-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    background: #040705;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pv-bar h1 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #7d9086;
+    margin-right: 4px;
+  }
+  .pv-bar a, .pv-bar button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: #d1fae5;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .pv-bar a:hover, .pv-bar button:hover { background: rgba(255,255,255,0.09); color: #f0fdf4; }
+  .pv-bar a[aria-current="true"] {
+    background: #22c55e;
+    border-color: #22c55e;
+    color: #05170c;
+    font-weight: 700;
+  }
+  .pv-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: #5b6f64; margin-left: auto; }
+  iframe {
+    position: fixed;
+    top: 53px; left: 0;
+    width: 100%;
+    height: calc(100% - 53px);
+    border: 0;
+  }
+  @media (max-width: 760px) { iframe { top: 92px; height: calc(100% - 92px); } }
+</style>
+</head>
+<body>
+
+<div class="pv-bar">
+  <h1>Popup preview</h1>
+  <button type="button" id="pv-replay">Replay</button>
+  <span class="pv-note">A2 &middot; Live page behind &middot; real triggers bypassed for preview</span>
+</div>
+
+<iframe src="index.html" title="Scoring Zone homepage" scrolling="yes"></iframe>
+
+<script>
+  var v = 'a2';
+  document.getElementById('pv-replay').addEventListener('click', function () {
+    if (window.szPopup) { window.szPopup.close('preview'); localStorage.removeItem('sz_popup_v1'); sessionStorage.removeItem('sz_popup_seen'); setTimeout(function(){ location.reload(); }, 400); }
+    else location.reload();
+  });
+  // Load the real popup script with the chosen variant and no delay.
+  var s = document.createElement('script');
+  s.src = 'js/popup.js';
+  s.dataset.variant = v;
+  s.dataset.delay = '600';
+  localStorage.removeItem('sz_popup_v1');
+  sessionStorage.removeItem('sz_popup_seen');
+  document.head.appendChild(s);
+</script>
+
+</body>
+</html>

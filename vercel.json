@@ -1,8 +1,28 @@
 {
   "redirects": [
     {
+      "source": "/go/ios",
+      "destination": "https://apps.apple.com/app/apple-store/id6769477447?pt=128906825&ct=Scoring%20Zone%20Website&mt=8",
+      "permanent": false
+    },
+    {
+      "source": "/go/android",
+      "destination": "https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=popup&utm_campaign=app_download&utm_content=android",
+      "permanent": false
+    },
+    {
+      "source": "/go/web",
+      "destination": "https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=popup&utm_campaign=app_download&utm_content=web",
+      "permanent": false
+    },
+    {
       "source": "/:path(.*)",
-      "has": [{ "type": "host", "value": "scoringzone.net" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "scoringzone.net"
+        }
+      ],
       "destination": "https://www.scoringzone.net/:path*",
       "permanent": true
     },
