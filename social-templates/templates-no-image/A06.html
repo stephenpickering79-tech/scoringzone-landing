@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>A06 — Target Lock Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,900;1,900&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #111; font-family: 'DM Sans', sans-serif; }
+
+  .top-banner {
+    position: absolute; top: 0; left: 0; width: 1080px; height: 72px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    display: flex; align-items: center; justify-content: center; gap: 14px; z-index: 100;
+  }
+  .top-banner svg { width: 42px; height: 42px; flex-shrink: 0; }
+  .top-banner span {
+    font-family: 'DM Sans', sans-serif; font-size: 36px; font-weight: 700;
+    letter-spacing: 0.14em; color: #000; text-transform: lowercase;
+  }
+
+  .bottom-banner {
+    position: absolute; bottom: 0; left: 0; width: 1080px; height: 200px;
+    background: #000; z-index: 100;
+  }
+
+  /* Overlay: Large target ring centered behind phone */
+  .target-ring-large {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px; z-index: 5;
+  }
+
+  /* Crosshair lines extending from center */
+  .crosshair-h {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 900px; height: 3px;
+    background: rgba(34,197,94,0.4); z-index: 6;
+  }
+  .crosshair-v {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 3px; height: 900px;
+    background: rgba(34,197,94,0.4); z-index: 6;
+  }
+
+  /* Corner brackets */
+  .bracket { position: absolute; width: 60px; height: 60px; z-index: 9; }
+  .bracket::before, .bracket::after {
+    content: ''; position: absolute; background: rgba(34,197,94,0.6);
+  }
+  .bracket-tl { top: 100px; left: 40px; }
+  .bracket-tl::before { top: 0; left: 0; width: 60px; height: 4px; }
+  .bracket-tl::after { top: 0; left: 0; width: 4px; height: 60px; }
+
+  .bracket-tr { top: 100px; right: 40px; }
+  .bracket-tr::before { top: 0; right: 0; width: 60px; height: 4px; }
+  .bracket-tr::after { top: 0; right: 0; width: 4px; height: 60px; }
+
+  .bracket-bl { bottom: 230px; left: 40px; }
+  .bracket-bl::before { bottom: 0; left: 0; width: 60px; height: 4px; }
+  .bracket-bl::after { bottom: 0; left: 0; width: 4px; height: 60px; }
+
+  .bracket-br { bottom: 230px; right: 40px; }
+  .bracket-br::before { bottom: 0; right: 0; width: 60px; height: 4px; }
+  .bracket-br::after { bottom: 0; right: 0; width: 4px; height: 60px; }
+
+  .content {
+    position: absolute; top: 72px; left: 0; width: 1080px;
+    height: calc(1920px - 72px - 200px);
+    padding-top: 150px; padding-left: 80px; padding-right: 60px;
+    z-index: 20;
+  }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
+    color: #22c55e; border: 1px solid #22c55e; border-radius: 100px;
+    padding: 8px 18px; margin-bottom: 28px; text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .tag::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: #22c55e; flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 82px; line-height: 0.95; color: #fff;
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .headline em { font-style: italic; color: #22c55e; }
+
+  .subline {
+    font-family: 'DM Sans', sans-serif; font-size: 26px; font-weight: 400;
+    color: rgba(255,255,255,0.6); line-height: 1.45; max-width: 620px;
+  }
+
+  .phone-wrap {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    top: 580px; z-index: 30;
+  }
+  .phone {
+    width: 440px; height: 900px; background: #1a1a1a;
+    border-radius: 40px; border: 3px solid #333;
+    overflow: hidden; position: relative;
+  }
+  .phone::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 140px; height: 32px; background: #1a1a1a;
+    border-radius: 0 0 20px 20px; z-index: 5;
+  }
+  .phone img { width: 100%; height: 100%; object-fit: cover; }
+
+  .stat-card {
+    position: absolute; z-index: 40;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid #22c55e; border-radius: 16px;
+    padding: 20px 26px; min-width: 190px;
+  }
+  .stat-card .value {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 48px; line-height: 1; margin-bottom: 6px;
+  }
+  .stat-card .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: rgba(255,255,255,0.5); letter-spacing: 0.02em;
+  }
+
+  .stat-left { left: 60px; top: 55%; }
+  .stat-left .value { color: #22c55e; }
+  .stat-left::after {
+    content: ''; position: absolute; top: 50%; right: -60px;
+    width: 60px; height: 2px; background: rgba(34,197,94,0.4);
+  }
+
+  .stat-right { right: 60px; top: 68%; }
+  .stat-right .value { color: #f5c518; }
+  .stat-right::after {
+    content: ''; position: absolute; top: 50%; left: -60px;
+    width: 60px; height: 2px; background: rgba(245,197,24,0.4);
+  }
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="42" stroke="#000" stroke-width="7"/><circle cx="50" cy="50" r="27" stroke="#000" stroke-width="5"/><circle cx="50" cy="50" r="12" stroke="#000" stroke-width="4"/><circle cx="50" cy="50" r="4" fill="#000"/></svg>
+  <span>scoringzone.net</span>
+</div>
+
+<div class="bottom-banner"></div>
+
+<!-- Target ring centered behind phone -->
+<svg class="target-ring-large" viewBox="0 0 400 400" fill="none">
+  <circle cx="200" cy="200" r="190" stroke="#22c55e" stroke-width="4" opacity="0.25"/>
+  <circle cx="200" cy="200" r="140" stroke="#22c55e" stroke-width="3" opacity="0.2"/>
+  <circle cx="200" cy="200" r="90" stroke="#22c55e" stroke-width="3" opacity="0.15"/>
+  <circle cx="200" cy="200" r="40" stroke="#22c55e" stroke-width="2" opacity="0.12"/>
+  <circle cx="200" cy="200" r="8" fill="#22c55e" opacity="0.25"/>
+</svg>
+
+<!-- Crosshair lines -->
+<div class="crosshair-h"></div>
+<div class="crosshair-v"></div>
+
+<!-- Corner brackets -->
+<div class="bracket bracket-tl"></div>
+<div class="bracket bracket-tr"></div>
+<div class="bracket bracket-bl"></div>
+<div class="bracket bracket-br"></div>
+
+<div class="content">
+  <div class="tag">Challenge Complete</div>
+  <h1 class="headline">Every drill.<br><em>Every score. Tracked.</em></h1>
+  <p class="subline">Complete challenges, earn XP, and watch your short game HCP drop over time.</p>
+</div>
+
+<div class="phone-wrap">
+  <div class="phone">
+    <img src="/Users/stephenpickering/Documents/Claude Code/Landing Page/features/images/challenge-complete.jpg" alt="Challenge Complete">
+  </div>
+</div>
+
+<div class="stat-card stat-left">
+  <div class="value">15 ft</div>
+  <div class="label">avg proximity result</div>
+</div>
+<div class="stat-card stat-right">
+  <div class="value">280 XP</div>
+  <div class="label">earned this session</div>
+</div>
+
+</body>
+</html>

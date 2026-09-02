@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=2560">
+<title>YT Banner 02 — Full Bleed Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:2560px;height:1440px;overflow:hidden;font-family:'DM Sans',sans-serif;background:#000;position:relative}
+
+/* Full-bleed background */
+.bg-photo{position:absolute;inset:0}
+.bg-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5)}
+.bg-photo::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.7) 100%)}
+
+/* Green glow behind center */
+.center-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,0.08) 0%,transparent 70%);z-index:2}
+
+/* Target rings — centered, bold */
+.target-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;z-index:3}
+.target-center svg{width:100%;height:100%}
+
+/* Crosshair lines */
+.cross-h{position:absolute;top:50%;left:0;width:100%;height:2px;background:linear-gradient(to right,transparent 15%,rgba(34,197,94,0.15) 30%,rgba(34,197,94,0.15) 70%,transparent 85%);z-index:3}
+.cross-v{position:absolute;top:0;left:50%;width:2px;height:100%;background:linear-gradient(to bottom,transparent 15%,rgba(34,197,94,0.15) 30%,rgba(34,197,94,0.15) 70%,transparent 85%);z-index:3}
+
+/* Center brand */
+.safe-zone{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1546px;height:423px;display:flex;align-items:center;justify-content:center;z-index:10}
+
+.brand-center{text-align:center}
+.brand-logo{width:90px;height:90px;margin:0 auto 20px}
+.brand-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:96px;color:#fff;text-transform:uppercase;letter-spacing:0.06em;line-height:0.9}
+.brand-name em{font-style:normal;color:#22c55e}
+.brand-tagline{font-family:'DM Sans',sans-serif;font-size:24px;color:rgba(255,255,255,0.5);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-top:16px}
+
+/* Top green bar */
+.bar-top{position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(to right,transparent,#22c55e 15%,#22c55e 85%,transparent);z-index:10}
+.bar-bottom{position:absolute;bottom:0;left:0;right:0;height:6px;background:linear-gradient(to right,transparent,#22c55e 15%,#22c55e 85%,transparent);z-index:10}
+</style></head>
+<body>
+
+<div class="bg-photo"><img src="../../golf images/man sunset on putting green.png" alt=""></div>
+<div class="center-glow"></div>
+
+<div class="target-center">
+  <svg viewBox="0 0 700 700" fill="none"><circle cx="350" cy="350" r="320" stroke="#22c55e" stroke-width="14" opacity="0.12"/><circle cx="350" cy="350" r="210" stroke="#22c55e" stroke-width="10" opacity="0.10"/><circle cx="350" cy="350" r="100" stroke="#22c55e" stroke-width="7" opacity="0.08"/><circle cx="350" cy="350" r="20" fill="#22c55e" opacity="0.12"/></svg>
+</div>
+
+<div class="cross-h"></div>
+<div class="cross-v"></div>
+
+<div class="safe-zone">
+  <div class="brand-center">
+    <svg class="brand-logo" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="42" stroke="#22c55e" stroke-width="6"/><circle cx="50" cy="50" r="27" stroke="#22c55e" stroke-width="4"/><circle cx="50" cy="50" r="12" stroke="#22c55e" stroke-width="3"/><circle cx="50" cy="50" r="4" fill="#22c55e"/></svg>
+    <div class="brand-name">Scoring <em>Zone</em></div>
+    <div class="brand-tagline">Pressure Test Your Short Game</div>
+  </div>
+</div>
+
+<div class="bar-top"></div>
+<div class="bar-bottom"></div>
+
+</body></html>

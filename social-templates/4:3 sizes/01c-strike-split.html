@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoring Zone — Strike: Split</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #111;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .template {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* ── Background image ── */
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    background: url('../Images for n8n/CTA-image-1.png') center/cover no-repeat;
+    filter: brightness(0.9);
+    transform: scale(1.05);
+    animation: kenBurns 6s ease-out forwards;
+  }
+
+  @keyframes kenBurns {
+    to { transform: scale(1); }
+  }
+
+  /* ── BLACK PANELS — split reveal ── */
+  .panel-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #000;
+    z-index: 6;
+    animation: panelOpenLeft 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.6s forwards;
+  }
+
+  .panel-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #000;
+    z-index: 6;
+    animation: panelOpenRight 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.6s forwards;
+  }
+
+  @keyframes panelOpenLeft {
+    to { transform: translateX(-102%); }
+  }
+
+  @keyframes panelOpenRight {
+    to { transform: translateX(102%); }
+  }
+
+  /* ── PERMANENT bold green center stripe ── */
+  .center-stripe {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, #22c55e 0%, rgba(34,197,94,0.5) 100%);
+    z-index: 7;
+    opacity: 0;
+    animation: stripeIn 0.3s ease 0.4s forwards;
+  }
+
+  @keyframes stripeIn {
+    to { opacity: 1; }
+  }
+
+  /* Stripe glow */
+  .center-stripe::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 30px;
+    left: -12px;
+    background: radial-gradient(closest-side, rgba(34,197,94,0.15), transparent);
+  }
+
+  /* ── Bold green side edges — permanent ── */
+  .edge-left {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 5px;
+    height: 0;
+    background: linear-gradient(to bottom, #22c55e, rgba(34,197,94,0.3));
+    z-index: 8;
+    animation: edgeGrow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.6s forwards;
+  }
+
+  .edge-right {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    width: 5px;
+    height: 0;
+    background: linear-gradient(to bottom, #22c55e, rgba(34,197,94,0.3));
+    z-index: 8;
+    animation: edgeGrow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.6s forwards;
+  }
+
+  @keyframes edgeGrow {
+    to { height: calc(100% - 56px - 48px); }
+  }
+
+  /* ── Target ring halves — split by the center stripe ── */
+  .target-half-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    z-index: 3;
+    clip-path: inset(0 50% 0 0);
+    opacity: 0;
+    animation: halfRevealLeft 0.5s ease 1.8s forwards;
+  }
+
+  .target-half-right {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    z-index: 3;
+    clip-path: inset(0 0 0 50%);
+    opacity: 0;
+    animation: halfRevealRight 0.5s ease 1.8s forwards;
+  }
+
+  @keyframes halfRevealLeft {
+    to { opacity: 0.2; }
+  }
+
+  @keyframes halfRevealRight {
+    to { opacity: 0.2; }
+  }
+
+  .target-half-left svg, .target-half-right svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Top banner ── */
+  .top-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 10;
+    transform: translateY(-100%);
+    animation: slideDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+  }
+
+  .top-banner .logo-mark { width: 28px; height: 28px; opacity: 0.7; }
+
+  .top-banner span {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  @keyframes slideDown {
+    to { transform: translateY(0); }
+  }
+
+  /* ── Bottom banner ── */
+  .bottom-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+    transform: translateY(100%);
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+  }
+
+  .bottom-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #22c55e 20%, #22c55e 80%, transparent);
+  }
+
+  .bottom-banner .logo-mark-sm { width: 18px; height: 18px; opacity: 0.6; }
+
+  .bottom-banner span {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: #22c55e;
+    text-transform: lowercase;
+  }
+
+  @keyframes slideUp {
+    to { transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="template">
+  <div class="bg-image"></div>
+
+  <!-- Split panels -->
+  <div class="panel-left"></div>
+  <div class="panel-right"></div>
+
+  <!-- Permanent bold center stripe -->
+  <div class="center-stripe"></div>
+
+  <!-- Bold side edges -->
+  <div class="edge-left"></div>
+  <div class="edge-right"></div>
+
+  <!-- Split target ring halves -->
+  <div class="target-half-left">
+    <svg viewBox="0 0 400 400" fill="none">
+      <circle cx="200" cy="200" r="175" stroke="#22c55e" stroke-width="16"/>
+      <circle cx="200" cy="200" r="115" stroke="#22c55e" stroke-width="10"/>
+      <circle cx="200" cy="200" r="55" stroke="#22c55e" stroke-width="7"/>
+    </svg>
+  </div>
+  <div class="target-half-right">
+    <svg viewBox="0 0 400 400" fill="none">
+      <circle cx="200" cy="200" r="175" stroke="#22c55e" stroke-width="16"/>
+      <circle cx="200" cy="200" r="115" stroke="#22c55e" stroke-width="10"/>
+      <circle cx="200" cy="200" r="55" stroke="#22c55e" stroke-width="7"/>
+    </svg>
+  </div>
+
+  <!-- Banners -->
+  <div class="top-banner">
+    <svg class="logo-mark" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="42" stroke="#000" stroke-width="7"/>
+      <circle cx="50" cy="50" r="27" stroke="#000" stroke-width="5"/>
+      <circle cx="50" cy="50" r="12" stroke="#000" stroke-width="4"/>
+      <circle cx="50" cy="50" r="4" fill="#000"/>
+    </svg>
+    <span>Scoring Zone</span>
+  </div>
+  <div class="bottom-banner">
+    <svg class="logo-mark-sm" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="42" stroke="#22c55e" stroke-width="7"/>
+      <circle cx="50" cy="50" r="27" stroke="#22c55e" stroke-width="5"/>
+      <circle cx="50" cy="50" r="4" fill="#22c55e"/>
+    </svg>
+    <span>scoringzone.net</span>
+  </div>
+</div>
+
+</body>
+</html>

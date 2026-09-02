@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=2560">
+<title>YT Banner 05 — Letterbox Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:2560px;height:1440px;overflow:hidden;font-family:'DM Sans',sans-serif;background:#000;position:relative}
+
+/* Full scenic photo */
+.bg{position:absolute;inset:0;overflow:hidden}
+.bg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5)}
+.bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 20%,rgba(0,0,0,0.4) 100%)}
+
+/* Letterbox bars — decorative, outside safe zone */
+.lb-top{position:absolute;top:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,rgba(0,0,0,0.9),transparent);z-index:3}
+.lb-bottom{position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);z-index:3}
+
+/* Green accent lines at letterbox edges */
+.accent-top{position:absolute;top:200px;left:0;right:0;height:3px;background:linear-gradient(to right,transparent 10%,rgba(34,197,94,0.4) 25%,#22c55e 50%,rgba(34,197,94,0.4) 75%,transparent 90%);z-index:4}
+.accent-bottom{position:absolute;bottom:200px;left:0;right:0;height:3px;background:linear-gradient(to right,transparent 10%,rgba(34,197,94,0.4) 25%,#22c55e 50%,rgba(34,197,94,0.4) 75%,transparent 90%);z-index:4}
+
+/* Green inset frame */
+.photo-frame{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1600px;height:480px;border:3px solid rgba(34,197,94,0.2);z-index:4}
+.photo-frame::before{content:'';position:absolute;top:-3px;left:-3px;width:50px;height:50px;border-top:4px solid #22c55e;border-left:4px solid #22c55e}
+.photo-frame::after{content:'';position:absolute;bottom:-3px;right:-3px;width:50px;height:50px;border-bottom:4px solid #22c55e;border-right:4px solid #22c55e}
+
+/* Precision line */
+.h-line{position:absolute;top:50%;left:0;right:0;height:2px;background:linear-gradient(to right,transparent 5%,rgba(34,197,94,0.15) 20%,rgba(34,197,94,0.15) 80%,transparent 95%);z-index:3}
+
+/* Safe zone — all critical content here */
+.safe-zone{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1546px;height:423px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10}
+
+.brand-row{display:flex;align-items:center;gap:24px;margin-bottom:20px}
+.brand-row svg{width:70px;height:70px}
+.brand-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:80px;color:#fff;text-transform:uppercase;letter-spacing:0.04em}
+.brand-name em{font-style:normal;color:#22c55e}
+
+.stats-row{display:flex;align-items:center;gap:40px;margin-top:8px}
+.stat{text-align:center}
+.stat .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:#22c55e;line-height:1}
+.stat .lbl{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px}
+.stat-div{width:1px;height:40px;background:rgba(34,197,94,0.2)}
+</style></head>
+<body>
+
+<div class="bg"><img src="../../golf images/walking down scenic golf hole.png" alt=""></div>
+
+<div class="lb-top"></div>
+<div class="lb-bottom"></div>
+<div class="accent-top"></div>
+<div class="accent-bottom"></div>
+
+<div class="photo-frame"></div>
+<div class="h-line"></div>
+
+<div class="safe-zone">
+  <div class="brand-row">
+    <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="42" stroke="#22c55e" stroke-width="6"/><circle cx="50" cy="50" r="27" stroke="#22c55e" stroke-width="4"/><circle cx="50" cy="50" r="12" stroke="#22c55e" stroke-width="3"/><circle cx="50" cy="50" r="4" fill="#22c55e"/></svg>
+    <div class="brand-name">Scoring <em>Zone</em></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="val">40+</div><div class="lbl">Challenges</div></div>
+    <div class="stat-div"></div>
+    <div class="stat"><div class="val">7</div><div class="lbl">Drill Types</div></div>
+    <div class="stat-div"></div>
+    <div class="stat"><div class="val">Elite</div><div class="lbl">Difficulty</div></div>
+    <div class="stat-div"></div>
+    <div class="stat"><div class="val">7 Days</div><div class="lbl">Free Trial</div></div>
+  </div>
+</div>
+
+</body></html>

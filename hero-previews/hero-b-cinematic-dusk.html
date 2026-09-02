@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Preview B — Cinematic Dusk</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <style>
+        /* ============================================================
+           HERO PREVIEW B — "CINEMATIC DUSK"
+           Full-bleed video, oversized editorial type, one product
+           moment bleeding off-edge, a base trust bar. Minimal.
+           Scoped under .hp-hero-b.
+           ============================================================ */
+
+        .hp-hero-b {
+            min-height: 100vh;
+            padding-top: calc(72px + 3rem);
+            padding-bottom: 0;
+            align-items: stretch;
+        }
+
+        /* Bottom-weighted cinematic scrim (not a flat wash) */
+        .hp-hero-b .hero-bg-video-overlay {
+            background:
+                linear-gradient(180deg,
+                    rgba(6, 11, 8, 0.55) 0%,
+                    rgba(6, 11, 8, 0.15) 32%,
+                    rgba(6, 11, 8, 0.55) 72%,
+                    rgba(6, 11, 8, 0.96) 100%),
+                linear-gradient(90deg,
+                    rgba(6, 11, 8, 0.6) 0%,
+                    rgba(6, 11, 8, 0.1) 55%,
+                    transparent 100%);
+        }
+
+        .hp-hero-b .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            min-width: 0;
+        }
+
+        .hp-hero-b .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            min-width: 0;
+            padding-bottom: 2.2rem;
+        }
+
+        .hp-hero-b .hero-eyebrow {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 22px;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .hp-hero-b .display-xl {
+            font-size: clamp(3.2rem, 10vw, 7rem);
+            line-height: 0.9;
+            margin: 0 0 24px;
+            max-width: 12ch;
+        }
+
+        .hp-hero-b .hp-hero-sub {
+            font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+            max-width: 540px;
+            margin: 0 0 30px;
+            color: rgba(240, 253, 244, 0.92);
+        }
+
+        .hp-hero-b .hero-cta-row {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex-wrap: wrap;
+            min-width: 0;
+        }
+        .hp-hero-b .hero-proof-line { min-width: 0; }
+        .hp-hero-b .hero-proof-line {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(240, 253, 244, 0.82);
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+        }
+        .hp-hero-b .hero-proof-line strong {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--green);
+            letter-spacing: -0.01em;
+            margin-right: 4px;
+            vertical-align: -1px;
+        }
+
+        /* One product moment: an app screen bleeding off the bottom-right */
+        .hp-hero-b .hero-phone-bleed {
+            position: absolute;
+            right: max(3vw, 24px);
+            bottom: -2px;
+            width: clamp(200px, 22vw, 320px);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hp-hero-b .hero-phone-bleed::before {
+            content: '';
+            position: absolute;
+            inset: -18% -22% -30% -22%;
+            background: radial-gradient(circle at 50% 35%,
+                rgba(34, 197, 94, 0.15), transparent 68%);
+            z-index: 0;
+        }
+        .hp-hero-b .hero-phone-bleed img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 24px 46px rgba(0, 0, 0, 0.6));
+        }
+
+        /* Base trust bar spanning the hero */
+        .hp-hero-b .hero-base-bar {
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid var(--hairline, rgba(255, 255, 255, 0.09));
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 0 22px;
+            min-width: 0;
+            /* Reserve room on the right so the bar content clears the bleeding phone */
+            padding-right: clamp(220px, 24vw, 360px);
+        }
+        .hp-hero-b .hero-base-bar .stars { display: inline-flex; gap: 2px; }
+        .hp-hero-b .hero-base-bar .copy {
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(240, 253, 244, 0.78);
+        }
+        .hp-hero-b .hero-scroll-cue {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(240, 253, 244, 0.55);
+        }
+        .hp-hero-b .hero-scroll-cue svg { animation: heroScrollBob 1.8s ease-in-out infinite; }
+        @keyframes heroScrollBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(4px); }
+        }
+
+        @media (max-width: 768px) {
+            .hp-hero-b { min-height: auto; padding-bottom: 0; }
+            .hp-hero-b .hero-phone-bleed { display: none; }
+            .hp-hero-b .hero-base-bar { padding-right: 0; }
+            .hp-hero-b .display-xl { font-size: clamp(2.8rem, 13vw, 4rem); }
+            .hp-hero-b .hero-inner { padding-bottom: 1.4rem; }
+            .hp-hero-b .hero-scroll-cue { display: none; }
+            .hp-hero-b .hero-cta-row { gap: 16px; }
+        }
+        @media (max-width: 640px) {
+            .hp-hero-b .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.16em; }
+            .hp-hero-b .hp-hero-sub { max-width: 100%; }
+            .hp-hero-b .hero-base-bar { flex-wrap: wrap; gap: 10px; }
+            .hp-hero-b .hero-base-bar .copy { min-width: 0; }
+            .hp-hero-b .hero-cta-row .btn-border-anim,
+            .hp-hero-b .hero-cta-row .btn-primary { width: 100%; justify-content: center; }
+            .hp-hero-b .hero-proof-line { text-align: center; width: 100%; }
+        }
+
+        .preview-tag {
+            position: fixed; bottom: 14px; left: 14px; z-index: 9999;
+            font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--green);
+            background: rgba(6, 11, 8, 0.85); border: 1px solid var(--hairline-green, #22c55e33);
+            padding: 7px 12px; border-radius: 100px; text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== NAVIGATION (copied from live site for context) ========== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">
+                <img src="../logo/new-log.webp" alt="Scoring Zone" width="36" height="36" style="width: 36px; height: 36px; border-radius: 50%;">
+                SCORING <span>ZONE</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../blog/">Blog</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../index.html#signup">Download</a>
+            </div>
+            <a href="https://scoringzone.app" class="btn-primary btn-sm">Start Free Trial</a>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <a href="../index.html">Home</a>
+            <a href="../blog/">Blog</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <a href="../index.html#signup">Download</a>
+            <a href="https://scoringzone.app" class="btn-primary" style="width: 100%; justify-content: center;">Start Free Trial</a>
+        </div>
+    </nav>
+
+    <main id="main">
+        <!-- ========== HERO — PREVIEW B: CINEMATIC DUSK ========== -->
+        <section class="hero hp-hero hp-hero-b">
+            <div class="hero-bg">
+                <video class="hero-bg-video" id="hero-video" autoplay muted loop playsinline poster="../video/pebble-beach-poster.webp">
+                    <source src="../video/pebble-beach.mp4" type="video/mp4">
+                </video>
+                <div class="hero-bg-video-overlay"></div>
+            </div>
+
+            <img class="hero-phone-bleed" src="../Hero Images/iphone-home.png" alt="Scoring Zone app home screen" width="411" height="788" loading="eager" fetchpriority="high">
+
+            <div class="container">
+                <div class="hero-inner">
+                    <span class="hero-eyebrow reveal">// Scored short-game practice</span>
+                    <h1 class="display-xl reveal typewriter">Pressure Test Your <span class="hero-accent">Short Game</span><span class="typewriter-cursor"></span></h1>
+                    <p class="hp-hero-sub reveal">The practice app that scores every drill, simulates tournament pressure, and shows you exactly where the strokes are hiding.</p>
+                    <div class="hero-cta-row reveal">
+                        <div class="btn-border-anim"><a href="https://scoringzone.app" class="btn-primary">Start Free Trial</a></div>
+                        <span class="hero-proof-line"><strong>3.2</strong> strokes gained by early-access players.</span>
+                    </div>
+                </div>
+
+                <div class="hero-base-bar reveal">
+                    <span class="stars">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </span>
+                    <span class="copy">Trusted &amp; reviewed by Professional Golf Coaches</span>
+                    <span class="hero-scroll-cue">Scroll
+                        <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M6 1v11M2 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <div style="height: 40vh; background: var(--bg);"></div>
+    </main>
+
+    <a class="preview-tag" href="index.html">◂ Preview B · Cinematic Dusk</a>
+    <script src="../js/shared.js"></script>
+</body>
+</html>

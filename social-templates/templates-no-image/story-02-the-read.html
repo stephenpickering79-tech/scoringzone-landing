@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>The Read — No Image</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:'DM Sans',sans-serif;}
+
+.top-banner{
+  position:absolute;top:0;left:0;width:1080px;height:72px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  display:flex;align-items:center;justify-content:center;gap:14px;z-index:10;
+}
+.top-banner svg{width:42px;height:42px;flex-shrink:0;}
+.top-banner span{font-size:36px;font-weight:700;letter-spacing:0.14em;color:#000;text-transform:lowercase;}
+
+.bottom-banner{
+  position:absolute;bottom:0;left:0;width:1080px;height:200px;
+  background:#000;z-index:10;
+}
+
+.photo-zone{
+  position:absolute;top:72px;left:0;right:0;bottom:200px;
+  background:#1a1a1a;overflow:hidden;
+}
+
+/* Diagonal dark overlay — upper-left triangle ~35% */
+.diagonal-overlay{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(to bottom right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 35%, transparent 35.5%);
+}
+
+/* Bold green diagonal line on split edge */
+.diagonal-line{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(to bottom right, transparent 34.8%, #22c55e 34.8%, #22c55e 35.2%, transparent 35.2%);
+}
+
+/* Target ring upper-left, partially cropped */
+.target-ring{
+  position:absolute;top:-100px;left:-100px;width:400px;height:400px;
+}
+
+/* Vertical tick line on left side */
+.tick-line{
+  position:absolute;top:10%;left:60px;width:2px;height:80%;
+  background:rgba(34,197,94,0.3);
+}
+.tick-line::before,.tick-line::after{
+  content:'';position:absolute;left:-4px;width:10px;height:2px;
+  background:#22c55e;
+}
+.tick-line::before{top:0;}
+.tick-line::after{bottom:0;}
+.tick-mark-1,.tick-mark-2,.tick-mark-3{
+  position:absolute;left:56px;width:10px;height:2px;background:#22c55e;
+}
+.tick-mark-1{top:calc(10% + (80% * 0.25));}
+.tick-mark-2{top:calc(10% + (80% * 0.5));}
+.tick-mark-3{top:calc(10% + (80% * 0.75));}
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="42" stroke="#000" stroke-width="7"/><circle cx="50" cy="50" r="27" stroke="#000" stroke-width="5"/><circle cx="50" cy="50" r="12" stroke="#000" stroke-width="4"/><circle cx="50" cy="50" r="4" fill="#000"/></svg>
+  <span>scoringzone.net</span>
+</div>
+
+<div class="photo-zone">
+  <div class="diagonal-overlay"></div>
+  <div class="diagonal-line"></div>
+  <svg class="target-ring" viewBox="0 0 400 400" fill="none"><circle cx="200" cy="200" r="175" stroke="#22c55e" stroke-width="16" opacity="0.18"/><circle cx="200" cy="200" r="115" stroke="#22c55e" stroke-width="10" opacity="0.14"/><circle cx="200" cy="200" r="55" stroke="#22c55e" stroke-width="7" opacity="0.10"/><circle cx="200" cy="200" r="14" fill="#22c55e" opacity="0.18"/></svg>
+  <div class="tick-line"></div>
+  <div class="tick-mark-1"></div>
+  <div class="tick-mark-2"></div>
+  <div class="tick-mark-3"></div>
+</div>
+
+<div class="bottom-banner"></div>
+
+</body>
+</html>

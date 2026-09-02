@@ -266,6 +266,7 @@ if (toggleTrack) {
     toggleTrack.setAttribute('aria-checked', String(isAnnual));
     toggleLabels.forEach((l, i) => l.classList.toggle('active', isAnnual ? i === 1 : i === 0));
     if (savePill) savePill.classList.toggle('visible', isAnnual);
+    document.querySelectorAll('.pricing-grid').forEach(g => g.classList.toggle('annual', isAnnual));
 
     document.querySelectorAll('[data-monthly]').forEach(el => {
       el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;

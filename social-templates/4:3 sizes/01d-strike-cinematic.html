@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoring Zone — Strike: Cinematic</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #111;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .template {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* ── Background image ── */
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    background: url('../Images for n8n/CTA-image-1.png') center/cover no-repeat;
+    filter: brightness(0.88);
+    transform: scale(1.06);
+    animation: kenBurns 6s ease-out forwards;
+  }
+
+  @keyframes kenBurns {
+    to { transform: scale(1); }
+  }
+
+  /* ── THICK LETTERBOX BARS — solid, bold ── */
+  .letterbox-top {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    height: 110px;
+    background: #000;
+    z-index: 5;
+    transform: translateY(-180px);
+    animation: lbSlideDown 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+  }
+
+  .letterbox-bottom {
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+    height: 110px;
+    background: #000;
+    z-index: 5;
+    transform: translateY(180px);
+    animation: lbSlideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+  }
+
+  @keyframes lbSlideDown {
+    to { transform: translateY(0); }
+  }
+
+  @keyframes lbSlideUp {
+    to { transform: translateY(0); }
+  }
+
+  /* Green accent lines on letterbox edges */
+  .letterbox-top::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent 5%, rgba(34,197,94,0.6) 20%, #22c55e 50%, rgba(34,197,94,0.6) 80%, transparent 95%);
+  }
+
+  .letterbox-bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent 5%, rgba(34,197,94,0.6) 20%, #22c55e 50%, rgba(34,197,94,0.6) 80%, transparent 95%);
+  }
+
+  /* ── Logo mark centered in top letterbox ── */
+  .letterbox-logo {
+    position: absolute;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    z-index: 6;
+    opacity: 0;
+    animation: logoFade 0.4s ease 1.2s forwards;
+    /* Vertically center in 110px bar */
+    margin-top: 25px;
+  }
+
+  @keyframes logoFade {
+    to { opacity: 0.25; }
+  }
+
+  .letterbox-logo svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Bold frame — visible between letterbox bars ── */
+  .visible-frame {
+    position: absolute;
+    top: 170px;
+    left: 40px;
+    right: 40px;
+    bottom: 162px;
+    border: 3px solid rgba(34,197,94,0.3);
+    z-index: 4;
+    opacity: 0;
+    animation: framePop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.0s forwards;
+  }
+
+  @keyframes framePop {
+    to { opacity: 1; }
+  }
+
+  /* ── Diagonal energy line — single, bold ── */
+  .energy-line {
+    position: absolute;
+    top: 50%;
+    left: -20%;
+    width: 140%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, rgba(34,197,94,0.4) 20%, rgba(34,197,94,0.5) 50%, rgba(34,197,94,0.4) 80%, transparent);
+    transform: rotate(22deg) translateY(-50%);
+    z-index: 3;
+    opacity: 0;
+    animation: energySweep 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.4s forwards;
+  }
+
+  @keyframes energySweep {
+    0% { opacity: 0; transform: rotate(22deg) translateX(-10%) translateY(-50%); }
+    100% { opacity: 1; transform: rotate(22deg) translateX(0) translateY(-50%); }
+  }
+
+  /* Second energy line — thinner, offset */
+  .energy-line-2 {
+    position: absolute;
+    top: 53%;
+    left: -20%;
+    width: 140%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(34,197,94,0.2) 30%, rgba(34,197,94,0.3) 50%, rgba(34,197,94,0.2) 70%, transparent);
+    transform: rotate(22deg) translateY(-50%);
+    z-index: 3;
+    opacity: 0;
+    animation: energySweep 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.55s forwards;
+  }
+
+  /* ── Top banner ── */
+  .top-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 10;
+    transform: translateY(-100%);
+    animation: slideDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s forwards;
+  }
+
+  .top-banner .logo-mark { width: 28px; height: 28px; opacity: 0.7; }
+
+  .top-banner span {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  @keyframes slideDown {
+    to { transform: translateY(0); }
+  }
+
+  /* ── Bottom banner ── */
+  .bottom-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+    transform: translateY(100%);
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s forwards;
+  }
+
+  .bottom-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #22c55e 20%, #22c55e 80%, transparent);
+  }
+
+  .bottom-banner .logo-mark-sm { width: 18px; height: 18px; opacity: 0.6; }
+
+  .bottom-banner span {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: #22c55e;
+    text-transform: lowercase;
+  }
+
+  @keyframes slideUp {
+    to { transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="template">
+  <div class="bg-image"></div>
+
+  <!-- Thick letterbox bars -->
+  <div class="letterbox-top"></div>
+  <div class="letterbox-bottom"></div>
+
+  <!-- Logo mark in top letterbox -->
+  <div class="letterbox-logo">
+    <svg viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="42" stroke="#22c55e" stroke-width="7"/>
+      <circle cx="50" cy="50" r="27" stroke="#22c55e" stroke-width="5"/>
+      <circle cx="50" cy="50" r="12" stroke="#22c55e" stroke-width="4"/>
+      <circle cx="50" cy="50" r="4" fill="#22c55e"/>
+    </svg>
+  </div>
+
+  <!-- Visible frame between bars -->
+  <div class="visible-frame"></div>
+
+  <!-- Energy lines -->
+  <div class="energy-line"></div>
+  <div class="energy-line-2"></div>
+
+  <!-- Banners -->
+  <div class="top-banner">
+    <svg class="logo-mark" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="42" stroke="#000" stroke-width="7"/>
+      <circle cx="50" cy="50" r="27" stroke="#000" stroke-width="5"/>
+      <circle cx="50" cy="50" r="12" stroke="#000" stroke-width="4"/>
+      <circle cx="50" cy="50" r="4" fill="#000"/>
+    </svg>
+    <span>Scoring Zone</span>
+  </div>
+  <div class="bottom-banner">
+    <svg class="logo-mark-sm" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="42" stroke="#22c55e" stroke-width="7"/>
+      <circle cx="50" cy="50" r="27" stroke="#22c55e" stroke-width="5"/>
+      <circle cx="50" cy="50" r="4" fill="#22c55e"/>
+    </svg>
+    <span>scoringzone.net</span>
+  </div>
+</div>
+
+</body>
+</html>

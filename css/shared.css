@@ -2013,6 +2013,21 @@ body::after {
   color: var(--text-muted);
 }
 
+.pricing-was {
+  display: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--amber, #f59e0b);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  margin-left: 10px;
+  vertical-align: baseline;
+}
+
+.pricing-grid.annual .pricing-was { display: inline; }
+
 .pricing-card-note {
   font-size: 0.75rem;
   color: var(--text-muted);
