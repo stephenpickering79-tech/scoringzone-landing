@@ -1,5 +1,24 @@
 # Scoring Zone Marketing Website
 
+## ⚠️ BUILD NUMBER — CHECK BEFORE EDITING ANYTHING
+
+This repo is cloned into several directories. **Older clones are dead.** A previous
+build is never relevant; the highest build number always takes priority.
+
+**Build number = `git rev-list --count HEAD`. Highest wins.**
+
+Run this first, every time, and edit only the tree it names:
+
+```
+~/dev/scoringzone-landing/scripts/which-build.sh
+```
+
+Current as of 3 Sep 2026 — build 427 = `~/dev/scoringzone-landing` (this tree).
+`~/dev/scoring-zone-landing` (424) and `~/Documents/Claude Code/Landing Page` (416)
+are dead. The Documents copy is often the default session cwd — that is the trap.
+Never edit it; if a change lands there by mistake, revert it there before redoing
+it here, because a concurrent process can commit and auto-deploy that tree.
+
 ## Project
 Static HTML marketing site for **Scoring Zone** — a golf short game practice app with scored drills, XP system, pressure tests, and stats tracking.
 
