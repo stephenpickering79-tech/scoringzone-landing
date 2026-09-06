@@ -78,15 +78,24 @@
       altText: ''
     },
     putting: {
-      label: 'Putting &middot; Scored practice',
+      label: 'Short Game App',
       shot: 'app-screens/blog-ad-putting.webp',
-      alt: 'The Scoring Zone putting drill list showing the Clock Drill, Lag King and Knockout Ladder with scores and handicap benchmarks',
+      panelLight: true,
+      alt: 'The Scoring Zone putting drill list on an iPhone \u2014 a 0.7 Putting Handicap, six of ten challenges done, and the Clock Drill lifted out and enlarged, scored 10 putts against the under-3 handicap benchmark',
       head: 'Practise putting with<em>a score to beat.</em>',
-      sub: 'Gate, clock and ladder drills that are <b>scored against your handicap</b>, so you can see your start line and distance control improving instead of guessing.',
-      cta: 'Get the putting drills',
+      sub: '',
+      flow: ['Test', 'Identify', 'Practise', 'Improve'],
+      points: [
+        'Drills, challenges &amp; performance tests',
+        'Hole more putts',
+        'Eliminate three-putts',
+        'Build confidence under pressure',
+        'Know exactly what to practise'
+      ],
+      ctaStyle: 'badges',
       campaign: 'Blog Ad Putting',
       altHref: 'features/putting-drills.html',
-      altText: 'or see how putting drills work'
+      altText: ''
     },
     chipping: {
       label: 'Chipping &middot; Scored practice',
@@ -203,7 +212,7 @@
 
   function brand() {
     return '<div class="szad-brand">' +
-      '<img src="' + asset('logo/new-log.webp') + '" width="18" height="18" alt="" decoding="async">' +
+      '<img src="' + asset('logo/new-log.webp') + '" width="28" height="28" alt="" decoding="async">' +
       '<span>Scoring Zone Golf</span>' +
     '</div>';
   }
