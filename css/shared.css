@@ -93,7 +93,8 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: url('../images/hero-golf-green.jpg') center/cover no-repeat;
+  /* texture image removed — the path 404'd on every page; restore by pointing at an
+     existing file if the effect is wanted back (see short-game-practice/hero-golf-green.jpg) */
   opacity: 0.04;
   z-index: 0;
   pointer-events: none;
@@ -719,7 +720,8 @@ body::after {
 .hero-bg-img {
   position: absolute;
   inset: 0;
-  background: url('../images/hero-golf-green.jpg') center/cover no-repeat;
+  /* texture image removed — the path 404'd on every page; restore by pointing at an
+     existing file if the effect is wanted back (see short-game-practice/hero-golf-green.jpg) */
   opacity: 0;
 }
 

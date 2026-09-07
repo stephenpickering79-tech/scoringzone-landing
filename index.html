@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
 
     <link rel="canonical" href="https://www.scoringzone.net/">
-    <link rel="icon" type="image/png" href="logo/new-scoring-zone-logo.png">
+    <link rel="icon" type="image/png" href="logo/favicon-32.png">
 
     <!-- Organization Schema -->
     <script type="application/ld+json">
@@ -94,6 +94,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/home.css">
+    <!-- LCP candidates: the hero product shot and the video poster that sits behind it.
+         Both paint above the fold, so give them priority over everything else. -->
+    <link rel="preload" as="image" href="app-screens/new-ipad-iphone-mockup-nobg.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="video/pebble-beach-poster.webp">
     <!-- iOS Safari smart app banner — native "open in App Store" strip -->
     <meta name="apple-itunes-app" content="app-id=6769477447">
 </head>
@@ -199,16 +203,20 @@
     <!-- ========== HERO ========== -->
     <section class="hero hp-hero hp-hero-a">
         <div class="hero-bg">
-            <!-- Background video (plays once, then slideshow begins) -->
-            <video class="hero-bg-video" id="hero-video" autoplay muted playsinline poster="video/pebble-beach-poster.webp">
-                <source src="video/pebble-beach.mp4" type="video/mp4">
-            </video>
-            <!-- Image slideshow (activates after video ends) -->
+            <!-- Background video (plays once, then slideshow begins).
+                 No autoplay/preload attribute: the 1.9MB file used to be fetched during parse and
+                 starved the LCP image on mobile. The poster paints immediately and the script
+                 below starts playback after load. Keep it that way. -->
+            <video class="hero-bg-video" id="hero-video" muted playsinline preload="none" poster="video/pebble-beach-poster.webp"
+                   data-src="video/pebble-beach.mp4"></video>
+            <!-- Image slideshow (activates after video ends).
+                 URLs live in data-bg, not in a style attribute, so the browser does not fetch
+                 787KB of backgrounds before the hero has painted. The script hydrates them. -->
             <div class="hero-slideshow" id="hero-slideshow">
-                <div class="hero-slide" style="background-image:url('hero images/hero-australia.webp')"></div>
-                <div class="hero-slide" style="background-image:url('hero images/hero-royal-county-down.webp')"></div>
-                <div class="hero-slide" style="background-image:url('hero images/hero-portugal.webp')"></div>
-                <div class="hero-slide" style="background-image:url('hero images/hero-dubai.webp')"></div>
+                <div class="hero-slide" data-bg="hero images/hero-australia.webp"></div>
+                <div class="hero-slide" data-bg="hero images/hero-royal-county-down.webp"></div>
+                <div class="hero-slide" data-bg="hero images/hero-portugal.webp"></div>
+                <div class="hero-slide" data-bg="hero images/hero-dubai.webp"></div>
             </div>
             <div class="hero-bg-video-overlay"></div>
         </div>
@@ -268,11 +276,11 @@
                         <span class="hero-qr-heading">Scan to download</span>
                         <div class="hero-qr-codes">
                             <div class="hero-qr-item">
-                                <img src="logo/qr-code-appstore.png" alt="Scan to download Scoring Zone on the App Store" width="684" height="672" loading="lazy" decoding="async">
+                                <img src="logo/qr-code-appstore.webp" alt="Scan to download Scoring Zone on the App Store" width="684" height="672" loading="lazy" decoding="async">
                                 <span>App Store</span>
                             </div>
                             <div class="hero-qr-item">
-                                <img src="logo/qr-code.png" alt="Scan to open the Scoring Zone web app" width="684" height="672" loading="lazy" decoding="async">
+                                <img src="logo/qr-code.webp" alt="Scan to open the Scoring Zone web app" width="684" height="672" loading="lazy" decoding="async">
                                 <span>Android / Web</span>
                             </div>
                         </div>
@@ -647,7 +655,7 @@
                     <!-- Card 1 — Matt Wilson -->
                     <div class="tb-card">
                         <div class="tb-card-head">
-                            <span class="tb-avatar"><img src="social-proof/matt-wilson.jpg" alt="Matt Wilson" loading="lazy"></span>
+                            <span class="tb-avatar"><img src="social-proof/matt-wilson.webp" alt="Matt Wilson" loading="lazy"></span>
                             <span>
                                 <span class="tb-name">Matt Wilson</span>
                                 <span class="tb-title">HCP 8 &middot; Dubai, UAE</span>
@@ -655,7 +663,7 @@
                         </div>
                         <div class="tb-rating">
                             <span class="tb-score">5.0</span>
-                            <span class="tb-stars" aria-label="5 out of 5 stars">
+                            <span class="tb-stars" role="img" aria-label="5 out of 5 stars">
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -668,7 +676,7 @@
                     <!-- Card 2 — Aisling Jennings -->
                     <div class="tb-card">
                         <div class="tb-card-head">
-                            <span class="tb-avatar"><img src="social-proof/aisling-jennings.jpg" alt="Aisling Jennings" loading="lazy"></span>
+                            <span class="tb-avatar"><img src="social-proof/aisling-jennings.webp" alt="Aisling Jennings" loading="lazy"></span>
                             <span>
                                 <span class="tb-name">Aisling Jennings</span>
                                 <span class="tb-title">HCP 28 &middot; Beginner &middot; Dubai, UAE</span>
@@ -676,7 +684,7 @@
                         </div>
                         <div class="tb-rating">
                             <span class="tb-score">5.0</span>
-                            <span class="tb-stars" aria-label="5 out of 5 stars">
+                            <span class="tb-stars" role="img" aria-label="5 out of 5 stars">
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -689,7 +697,7 @@
                     <!-- Card 3 — Max Newton -->
                     <div class="tb-card">
                         <div class="tb-card-head">
-                            <span class="tb-avatar"><img src="social-proof/max-newton.jpg" alt="Max Newton" loading="lazy"></span>
+                            <span class="tb-avatar"><img src="social-proof/max-newton.webp" alt="Max Newton" loading="lazy"></span>
                             <span>
                                 <span class="tb-name">Max Newton</span>
                                 <span class="tb-title">HCP 18 &middot; Atlanta, USA</span>
@@ -697,7 +705,7 @@
                         </div>
                         <div class="tb-rating">
                             <span class="tb-score">5.0</span>
-                            <span class="tb-stars" aria-label="5 out of 5 stars">
+                            <span class="tb-stars" role="img" aria-label="5 out of 5 stars">
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 <svg viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -785,7 +793,7 @@
                         </div>
                         <div class="fc-stage">
                             <div class="fc-glow"></div>
-                            <img class="fc-phone" src="Featured images/Featured - Clock Drill.png" alt="Clock Drill challenge in the Scoring Zone app — make putts from all around the hole">
+                            <img class="fc-phone" src="Featured images/Featured - Clock Drill.webp" alt="Clock Drill challenge in the Scoring Zone app — make putts from all around the hole">
                         </div>
                     </article>
 
@@ -816,7 +824,7 @@
                         </div>
                         <div class="fc-stage">
                             <div class="fc-glow"></div>
-                            <img class="fc-phone" src="Featured images/Featured - Par in 2.png" alt="Par in 2 challenge in the Scoring Zone app — nine chip shots, hole out in two or less">
+                            <img class="fc-phone" src="Featured images/Featured - Par in 2.webp" alt="Par in 2 challenge in the Scoring Zone app — nine chip shots, hole out in two or less">
                         </div>
                     </article>
 
@@ -847,14 +855,14 @@
                         </div>
                         <div class="fc-stage">
                             <div class="fc-glow"></div>
-                            <img class="fc-phone" src="Featured images/Featured - short wedge test.png" alt="Short Wedge Test challenge in the Scoring Zone app — ten wedge shots scored by proximity">
+                            <img class="fc-phone" src="Featured images/Featured - short wedge test.webp" alt="Short Wedge Test challenge in the Scoring Zone app — ten wedge shots scored by proximity">
                         </div>
                     </article>
 
                 </div>
 
                 <div class="fc-nav">
-                    <div class="fc-dots" role="tablist" aria-label="Choose a featured challenge">
+                    <div class="fc-dots" role="group" aria-label="Choose a featured challenge">
                         <button class="fc-dot is-active" data-goto="0" aria-label="Clock Drill"></button>
                         <button class="fc-dot" data-goto="1" aria-label="Par in 2"></button>
                         <button class="fc-dot" data-goto="2" aria-label="Short Wedge Test"></button>
@@ -894,11 +902,11 @@
                     </div>
                     <div style="display:flex;align-items:center;gap:28px;padding-top:20px;border-top:1px solid rgba(34,197,94,0.12);">
                         <div class="hero-qr-item">
-                            <img src="logo/qr-code-appstore.png" alt="Scan to download Scoring Zone on the App Store" class="hero-qr-img" width="684" height="672" loading="lazy" decoding="async">
+                            <img src="logo/qr-code-appstore.webp" alt="Scan to download Scoring Zone on the App Store" class="hero-qr-img" width="684" height="672" loading="lazy" decoding="async">
                             <span class="hero-qr-label">App Store</span>
                         </div>
                         <div class="hero-qr-item">
-                            <img src="logo/qr-code.png" alt="Scan to open the Scoring Zone web app" class="hero-qr-img" width="684" height="672" loading="lazy" decoding="async">
+                            <img src="logo/qr-code.webp" alt="Scan to open the Scoring Zone web app" class="hero-qr-img" width="684" height="672" loading="lazy" decoding="async">
                             <span class="hero-qr-label">Android / Web</span>
                         </div>
                         <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.5;margin:0;">Scan with your phone &mdash; iPhone on the App Store, or the web app for Android.</p>
@@ -1299,16 +1307,38 @@
 
       var current = 0;
       var started = false;
+      var hydrated = false;
 
-      // Preload images
-      slides.forEach(function(s) {
-        var m = s.style.backgroundImage.match(/url\(['"]?([^'"]+)['"]?\)/);
-        if (m) { var i = new Image(); i.src = m[1]; }
-      });
+      // Move the slide URLs from data-bg onto the elements. Deferred until after load so the
+      // backgrounds never compete with the LCP paint; idempotent, because startSlideshow also
+      // calls it in case the video ends before the load event fires.
+      function hydrateSlides() {
+        if (hydrated) return;
+        hydrated = true;
+        slides.forEach(function(s) {
+          var url = s.getAttribute('data-bg');
+          if (!url) return;
+          s.style.backgroundImage = "url('" + url + "')";
+          var i = new Image(); i.src = url;   // warm the cache before the slide transitions in
+        });
+      }
+
+      // Start the background video only once the page has loaded, for the same reason.
+      function startVideo() {
+        if (video.src || video.currentSrc) return;
+        var src = video.getAttribute('data-src');
+        if (!src) return;
+        video.src = src;
+        var p = video.play();
+        // Autoplay can still be refused (low power mode, data saver). Fall straight through to
+        // the slideshow rather than leaving a frozen poster on screen.
+        if (p && p.catch) p.catch(startSlideshow);
+      }
 
       function startSlideshow() {
         if (started) return;
         started = true;
+        hydrateSlides();
 
         // Fade video out
         video.style.transition = 'opacity 1.5s ease';
@@ -1343,6 +1373,16 @@
       }
 
       video.addEventListener('ended', startSlideshow);
+      video.addEventListener('error', startSlideshow);
+
+      // Once the video is actually rolling, fetch the slide backgrounds in the gap before it
+      // ends. Doing it at load instead would have them competing with the video's own buffering.
+      video.addEventListener('playing', hydrateSlides);
+
+      // Kick everything off after load, so the hero paints against the poster first.
+      function onReady() { startVideo(); }
+      if (document.readyState === 'complete') onReady();
+      else window.addEventListener('load', onReady);
     })();
     </script>
 
