@@ -184,6 +184,44 @@
   font-size: 1.1rem;
 }
 
+/* Hero bullets (replaces the hero sub paragraph) */
+.hero-bullets {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  max-width: 460px;
+  display: grid;
+  gap: 10px;
+}
+.hero-bullets li {
+  position: relative;
+  padding-left: 26px;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #4ade80;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+}
+.hero-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.55em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e0b53c;
+  box-shadow: 0 0 10px rgba(224, 181, 60, 0.55);
+}
+@media (max-width: 1024px) {
+  .hp-hero-a .hero-bullets { margin-left: auto; margin-right: auto; text-align: left; }
+}
+@media (max-width: 640px) {
+  .hp-hero-a .hero-bullets { max-width: 100%; }
+  .hero-bullets li { font-size: 1rem; }
+}
+
 .hp-hero-a .hero-ctas {
   gap: 16px;
   align-items: center;
@@ -818,14 +856,12 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 .tb-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 4rem;
   align-items: start;
   max-width: 1200px;
   margin: 0 auto;
 }
 .tb-rail {
-  position: sticky;
-  top: 96px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -860,35 +896,6 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   max-width: 34ch;
   margin: 0;
 }
-.tb-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 0.25rem;
-}
-.tb-stat {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 14px;
-  text-align: center;
-}
-.tb-stat-value {
-  display: block;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.9rem;
-  line-height: 1;
-  color: var(--text);
-}
-.tb-stat-value .tb-plus { color: var(--green); }
-.tb-stat-label {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  line-height: 1.3;
-}
 .tb-ctas {
   display: flex;
   flex-wrap: wrap;
@@ -896,55 +903,100 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   margin-top: 0.5rem;
 }
 
-/* Fan-out reveal: cards start stacked in a pile, then slide DOWN to reveal all as you scroll */
-.tb-scroller {
+/* Card deck: the front card folds under the stack, right to left */
+.tb-deck {
   position: relative;
-  height: 200vh; /* scroll span over which the cards fan out */
+  right: 48px;                    /* nudged left of centre in its column */
+  width: max-content;
+  margin: 0 auto;
+  padding: 24px 24px 44px 88px;   /* room for the cards that have folded under to the left */
 }
-.tb-pin {
-  position: sticky;
-  top: 96px;
-}
-.tb-stack {
-  position: relative;
+/* Baseline (no JS, small screens, reduced motion): a plain readable list */
+.tb-deck-inner {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
+/* Deck mode: every card shares one cell so they stack and fold */
+.tb-deck.is-deck .tb-deck-inner {
+  display: grid;
+  justify-items: start;
+}
+.tb-deck.is-deck .tb-deck-inner > .tb-card { grid-area: 1 / 1; }
+
+/* Decorative blocks behind the deck */
+.tb-deck::before,
+.tb-deck::after {
+  content: "";
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.05);
+  pointer-events: none;
+}
+.tb-deck::before { left: 18px; bottom: 4px; }
+.tb-deck::after { right: 0; top: 0; }
+
 .tb-card {
   position: relative;
+  width: 336px;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 26px;
-  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.8);
-  transition: border-color 0.3s ease;
-  will-change: transform;
+  padding: 22px;
+  box-shadow: 0 20px 44px -22px rgba(0, 0, 0, 0.9);
 }
-.tb-card:hover { border-color: var(--card-border-hover); }
-.tb-card-head {
+/* Scroll drives the transform directly, so no CSS transition to lag behind it */
+.tb-deck.is-deck .tb-card { will-change: transform, opacity; }
+.tb-deck.is-deck .tb-card:nth-child(1) { z-index: 1; }
+.tb-deck.is-deck .tb-card:nth-child(2) { z-index: 2; }
+.tb-deck.is-deck .tb-card:nth-child(3) { z-index: 3; }
+.tb-deck.is-deck .tb-card:nth-child(4) { z-index: 4; }
+
+.tb-stars { display: flex; gap: 4px; margin-bottom: 14px; }
+.tb-stars svg { width: 16px; height: 16px; display: block; }
+.tb-quote {
+  position: relative;
+  flex: 1;
+  margin: 0;
+  padding-left: 24px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(240, 253, 244, 0.86);
+}
+.tb-quote-mark {
+  position: absolute;
+  left: -2px;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  color: rgba(34, 197, 94, 0.3);
+  pointer-events: none;
+}
+.tb-sep {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin: 19px 0 16px;
+}
+.tb-card-foot {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 .tb-avatar {
   flex: 0 0 auto;
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.03em;
-  color: var(--green-bright);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
   background: rgba(34, 197, 94, 0.12);
   border: 1px solid rgba(34, 197, 94, 0.28);
 }
-/* Photo avatars — image fills the avatar shape (square source, no crop) */
-.tb-avatar { overflow: hidden; }
 .tb-avatar img {
   width: 100%;
   height: 100%;
@@ -954,65 +1006,54 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 }
 .tb-name {
   display: block;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text);
 }
 .tb-title {
   display: block;
   margin-top: 2px;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
 }
-.tb-rating {
+
+/* Dot indicators in the left rail */
+.tb-dots {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 18px 0 14px;
+  gap: 10px;
+  margin-top: 0.25rem;
 }
-.tb-score {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--text);
-}
-.tb-stars { display: flex; gap: 2px; }
-.tb-stars svg { width: 15px; height: 15px; display: block; }
-.tb-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  align-self: flex-start;
-  margin: 18px 0 14px;
-  padding: 5px 11px 5px 9px;
+.tb-dots button {
+  height: 8px;
+  width: 8px;
+  padding: 0;
+  border: 0;
   border-radius: 999px;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.28);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--green-bright);
+  background: rgba(240, 253, 244, 0.25);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
 }
-.tb-badge svg { width: 13px; height: 13px; flex: 0 0 auto; }
-.tb-quote {
-  font-size: 0.98rem;
-  line-height: 1.65;
-  color: rgba(240, 253, 244, 0.72);
-  margin: 0;
+.tb-dots button[aria-current="true"] { width: 30px; background: var(--green); }
+.tb-dots button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+/* Pinned span: the deck holds still while this scrolls past, folding a card per screen */
+.tb-scroll-span.is-pinned { height: 260vh; }
+.tb-scroll-span.is-pinned .tb-wrap {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;      /* fill the viewport so nothing sits in dead space below */
+  align-content: center;
+  align-items: center;
 }
 
 @media (max-width: 900px) {
   .tb-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-  .tb-rail { position: static; top: auto; }
-  .tb-card { position: static; transform: none !important; }
-  .tb-stack { gap: 1.25rem; }
-  .tb-scroller { height: auto; }
-  .tb-pin { position: static; }
-}
-@media (max-width: 420px) {
-  .tb-stat { padding: 14px 8px; }
-  .tb-stat-value { font-size: 1.5rem; }
+  .tb-deck { padding: 0; margin: 0; width: auto; right: 0; }
+  .tb-deck::before, .tb-deck::after { display: none; }
+  .tb-card { width: 100%; max-width: 380px; }
+  .tb-dots { display: none; }   /* the list shows every card, so there is nothing to page through */
+  .tb-card { width: 265px; }
 }
 
 /* ── Slimmed signup card ────────────────────────────────── */
