@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Preview D — The Scorecard</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <style>
+        /* ============================================================
+           HERO PREVIEW D — "THE SCORECARD"
+
+           THESIS: golf already has an artifact for turning a round into
+           a number — the scorecard. Use it as the layout grammar. The
+           product's promise is that PRACTICE gets a card too, so show
+           the card, not the phone. Refuses the device-mockup default.
+
+           Every drill name, score format and category below is taken
+           from real app screens in /Scrolling Reveal/ — nothing invented.
+           Scoped under .hp-hero-d.
+           ============================================================ */
+
+        .hp-hero-d {
+            position: relative;
+            padding-bottom: 4.5rem;
+            overflow: hidden;
+        }
+        .hd-bg { position: absolute; inset: 0; z-index: 0; }
+        .hd-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .hd-scrim {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(6,11,8,0.72) 0%, rgba(6,11,8,0.80) 45%, rgba(6,11,8,0.96) 100%),
+                radial-gradient(ellipse 60% 50% at 50% 42%, rgba(34,197,94,0.10), transparent 70%);
+        }
+        .hp-hero-d .container { position: relative; z-index: 1; }
+
+        .hd-inner {
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
+            max-width: 940px; margin: 0 auto;
+        }
+
+        .hd-eyebrow {
+            display: inline-flex; align-items: center; gap: 11px;
+            font-family: var(--font-mono);
+            font-size: 0.74rem; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 20px;
+        }
+        .hd-eyebrow::before, .hd-eyebrow::after {
+            content: ""; width: 26px; height: 1px; background: var(--green); opacity: 0.55;
+        }
+
+        .hp-hero-d h1 {
+            font-size: clamp(2.9rem, 7vw, 5rem);
+            margin: 0 0 18px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+        }
+
+        .hd-sub {
+            font-family: var(--font-body);
+            font-size: 1.12rem; line-height: 1.6;
+            color: rgba(240,253,244,0.8);
+            max-width: 54ch; margin: 0 0 40px;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.6);
+        }
+
+        /* ---------------- The scorecard ---------------- */
+        .hd-card {
+            width: 100%;
+            border: 1px solid var(--border-bright);
+            border-radius: 14px;
+            background: rgba(6,11,8,0.72);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 26px 60px -26px rgba(0,0,0,0.9);
+            overflow: hidden;
+            margin-bottom: 34px;
+        }
+        .hd-card-head {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px;
+            padding: 11px 18px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+        }
+        .hd-card-title {
+            font-family: var(--font-mono);
+            font-size: 0.66rem; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(240,253,244,0.62);
+        }
+        .hd-card-title b { color: var(--green); font-weight: 700; }
+
+        .hd-row { display: grid; grid-template-columns: repeat(5, 1fr) 1.25fr; }
+        .hd-cell {
+            padding: 20px 12px 18px;
+            border-right: 1px solid var(--border);
+            display: flex; flex-direction: column; align-items: center; gap: 9px;
+            transition: opacity .5s ease, transform .5s ease;
+        }
+        /* Cells are visible by default so the card still reads with no JS.
+           JS adds .is-armed to hide them, then fills them back in. */
+        .hd-card.is-armed .hd-cell { opacity: 0; transform: translateY(10px); }
+        .hd-card.is-armed .hd-cell.is-in { opacity: 1; transform: none; }
+        .hd-cell:last-child { border-right: 0; }
+
+        .hd-cell-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem; font-weight: 500;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: rgba(240,253,244,0.5);
+            white-space: nowrap;
+        }
+        .hd-cell-score {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+            line-height: 0.9;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+        .hd-cell-unit {
+            font-family: var(--font-mono);
+            font-size: 0.58rem; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--green-bright);
+        }
+
+        /* The result cell — where the whole card resolves to one number */
+        .hd-cell--result {
+            background: linear-gradient(180deg, rgba(34,197,94,0.14), rgba(34,197,94,0.05));
+            border-left: 1px solid rgba(34,197,94,0.32);
+        }
+        .hd-cell--result .hd-cell-label { color: var(--green); font-weight: 700; }
+        .hd-cell--result .hd-cell-score { color: var(--green-bright); font-size: clamp(1.9rem, 3vw, 2.6rem); }
+        .hd-cell--result .hd-cell-unit { color: rgba(240,253,244,0.55); }
+
+        .hd-caption {
+            font-family: var(--font-mono);
+            font-size: 0.62rem; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: rgba(240,253,244,0.34);
+            margin-top: -22px; margin-bottom: 30px;
+        }
+
+        /* ---------------- Actions ---------------- */
+        .hd-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+        .hd-actions-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; }
+
+        .hd-btn-ios {
+            display: inline-flex; align-items: center; gap: 11px;
+            padding: 16px 34px; min-height: 56px;
+            border-radius: 11px;
+            background: var(--green); color: var(--bg);
+            font-family: var(--font-heading); font-weight: 700;
+            font-size: 1.08rem; letter-spacing: 0.04em; text-transform: uppercase;
+            text-decoration: none;
+            transition: background .2s, transform .2s, box-shadow .2s;
+        }
+        .hd-btn-ios:hover {
+            background: var(--green-bright);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 32px rgba(34,197,94,0.34);
+        }
+        .hd-btn-web {
+            font-family: var(--font-body);
+            font-size: 0.95rem; font-weight: 500;
+            color: rgba(240,253,244,0.74);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(240,253,244,0.24);
+            padding-bottom: 2px;
+            transition: color .2s, border-color .2s;
+        }
+        .hd-btn-web:hover { color: var(--green-bright); border-bottom-color: var(--green-bright); }
+
+        .hd-offer {
+            font-family: var(--font-mono);
+            font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+            color: rgba(240,253,244,0.46);
+        }
+
+        /* ---------------- Proof band ---------------- */
+        .hd-proof {
+            display: flex; align-items: center; justify-content: center;
+            gap: 26px; flex-wrap: wrap;
+            margin-top: 38px; padding-top: 22px;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+        .hd-proof-item {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(240,253,244,0.58);
+        }
+        .hd-proof-item b { color: var(--text); font-weight: 700; }
+        .hd-proof-stars { display: inline-flex; gap: 2px; }
+        .hd-proof-stars svg { width: 13px; height: 13px; display: block; }
+        .hd-proof-sep { width: 1px; height: 15px; background: var(--border-bright); }
+
+        /* ---------------- Responsive ---------------- */
+        @media (max-width: 900px) {
+            /* Six across is unreadable on a phone. Two columns keeps the drill
+               names legible; the fifth cell spans so no empty cell is left,
+               and the result becomes a full-width payoff row. */
+            .hd-row { grid-template-columns: repeat(2, 1fr); }
+            .hd-cell { border-bottom: 1px solid var(--border); padding: 15px 10px 13px; }
+            .hd-cell:nth-child(2n) { border-right: 0; }
+            .hd-cell:nth-child(5) { grid-column: 1 / -1; border-right: 0; }
+            .hd-cell--result {
+                grid-column: 1 / -1;
+                border-left: 0; border-bottom: 0;
+                border-top: 1px solid rgba(34,197,94,0.32);
+                flex-direction: row; justify-content: center; gap: 12px;
+            }
+            .hd-proof-sep { display: none; }
+        }
+        @media (max-width: 640px) {
+            .hd-sub { font-size: 1rem; margin-bottom: 24px; }
+            .hp-hero-d h1 { margin-bottom: 14px; }
+            /* one label is enough on a narrow card */
+            .hd-card-head .hd-card-title:last-child { display: none; }
+            .hd-actions-row { flex-direction: column; align-items: stretch; width: 100%; gap: 14px; }
+            .hd-btn-ios { justify-content: center; width: 100%; }
+            .hd-btn-web { align-self: center; }
+            .hd-card { margin-bottom: 28px; }
+            /* The download button must clear the fold, so on a phone the CTA
+               comes before the card; the card is still the first thing you
+               scroll to. Desktop keeps card-then-CTA. */
+            .hd-eyebrow   { order: 1; }
+            .hp-hero-d h1 { order: 2; }
+            .hd-sub       { order: 3; }
+            .hd-actions   { order: 4; margin-bottom: 30px; }
+            .hd-card      { order: 5; }
+            .hd-caption   { order: 6; margin-top: -20px; }
+            .hd-proof     { order: 7; }
+            .hd-caption { margin-top: -18px; margin-bottom: 24px; font-size: 0.58rem; }
+            .hd-cell-label { font-size: 0.55rem; letter-spacing: 0.1em; }
+            .hd-proof { gap: 16px; margin-top: 30px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hd-card.is-armed .hd-cell { transition: none; opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION (copied from index.html for context) ========== -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">
+                <img src="../logo/new-log.webp" alt="Scoring Zone" width="36" height="36">
+                <span>SCORING <span style="color:var(--green);">ZONE</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#features">Features</a>
+                <a href="../blog/index.html">Blog</a>
+                <a href="../index.html#pricing">Pricing</a>
+            </div>
+            <a href="/go/ios" class="btn-primary btn-sm">Get the App</a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO — VARIANT D ========== -->
+    <section class="hero hp-hero hp-hero-d">
+        <div class="hd-bg" aria-hidden="true">
+            <img src="../hero%20images/hero-royal-county-down.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+            <div class="hd-scrim"></div>
+        </div>
+
+        <div class="container">
+            <div class="hd-inner">
+
+                <span class="hd-eyebrow reveal">Practice, Scored</span>
+
+                <h1 class="display-xl reveal"><span class="hero-accent">#1</span> Short Game Practice App</h1>
+
+                <p class="hd-sub reveal">Your round gets a scorecard. Your practice doesn&rsquo;t &mdash; until now. Every chip and putt is scored, and it all adds up to one number you can actually move.</p>
+
+                <!-- Illustrative card. Drill names, score formats and categories
+                     are the app's own; the values are an example session. -->
+                <div class="hd-card reveal" id="hd-card">
+                    <div class="hd-card-head">
+                        <span class="hd-card-title">Practice Card &mdash; <b>Session 14</b></span>
+                        <span class="hd-card-title">Scoring Zone</span>
+                    </div>
+                    <div class="hd-row">
+                        <div class="hd-cell">
+                            <span class="hd-cell-label">The 10-Yarder</span>
+                            <span class="hd-cell-score">7<span style="font-size:0.55em;">/10</span></span>
+                            <span class="hd-cell-unit">Chipping</span>
+                        </div>
+                        <div class="hd-cell">
+                            <span class="hd-cell-label">Clock Drill</span>
+                            <span class="hd-cell-score">11</span>
+                            <span class="hd-cell-unit">Putts</span>
+                        </div>
+                        <div class="hd-cell">
+                            <span class="hd-cell-label">Lag King</span>
+                            <span class="hd-cell-score">9<span style="font-size:0.55em;">ft</span></span>
+                            <span class="hd-cell-unit">Distance</span>
+                        </div>
+                        <div class="hd-cell">
+                            <span class="hd-cell-label">Half-Circle Tee</span>
+                            <span class="hd-cell-score">6<span style="font-size:0.55em;">/10</span></span>
+                            <span class="hd-cell-unit">Lag Putting</span>
+                        </div>
+                        <div class="hd-cell">
+                            <span class="hd-cell-label">Streak Survivor</span>
+                            <span class="hd-cell-score">14</span>
+                            <span class="hd-cell-unit">Pressure</span>
+                        </div>
+                        <div class="hd-cell hd-cell--result">
+                            <span class="hd-cell-label">Short Game HCP</span>
+                            <span class="hd-cell-score">5.5</span>
+                            <span class="hd-cell-unit">&darr; 2.1 this month</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="hd-caption reveal">Example session &middot; real drills from the app</span>
+
+                <div class="hd-actions reveal">
+                    <div class="hd-actions-row">
+                        <a href="/go/ios" class="hd-btn-ios" data-cta="hero_ios" data-cta-variant="d">
+                            <svg viewBox="0 0 384 512" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                            Download on iPhone
+                        </a>
+                        <a href="https://scoringzone.app" class="hd-btn-web" data-cta="hero_web" data-cta-variant="d">Or play in your browser &rarr;</a>
+                    </div>
+                    <span class="hd-offer">7-day free trial &middot; then from $4.99/month &middot; cancel anytime</span>
+                </div>
+
+                <div class="hd-proof reveal">
+                    <span class="hd-proof-item">
+                        <span class="hd-proof-stars" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </span>
+                        <b>5.0</b> on the App Store
+                    </span>
+                    <span class="hd-proof-sep"></span>
+                    <span class="hd-proof-item"><b>35+</b> Drills &amp; performance tests</span>
+                    <span class="hd-proof-sep"></span>
+                    <span class="hd-proof-item"><b>6</b> Skill areas scored</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Context: what sits directly below the hero on the live page -->
+    <section class="section" style="background:#060b08;">
+        <div class="container" style="text-align:center;">
+            <span class="mono-label">&darr; Below this on the live page</span>
+            <h2 class="display-lg" style="color:var(--text);margin-top:12px;">Loved by Golfers &amp; Coaches</h2>
+        </div>
+    </section>
+
+    <script src="../js/shared.js"></script>
+    <script>
+    /* The card fills in cell by cell — the act of scoring, made visible. */
+    (function () {
+        var card = document.getElementById('hd-card');
+        if (!card) return;
+        var cells = [].slice.call(card.querySelectorAll('.hd-cell'));
+        if (!cells.length) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        card.classList.add('is-armed');   // only now is it safe to hide the cells
+        function fill() {
+            cells.forEach(function (c, i) {
+                setTimeout(function () { c.classList.add('is-in'); }, 90 + i * 110);
+            });
+        }
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) { fill(); io.disconnect(); }
+            }, { threshold: 0.3 });
+            io.observe(card);
+        } else { fill(); }
+    })();
+
+    /* CTA instrumentation — the live site has none, so no hero change is measurable today. */
+    (function () {
+        document.addEventListener('click', function (e) {
+            var el = e.target.closest('[data-cta]');
+            if (!el) return;
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'cta_click', {
+                    cta: el.getAttribute('data-cta'),
+                    hero_variant: el.getAttribute('data-cta-variant') || '',
+                    link_url: el.getAttribute('href') || ''
+                });
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

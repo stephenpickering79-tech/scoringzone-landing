@@ -1314,3 +1314,259 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   #drills .fc-slide { transition: none; }
 }
+
+/* ===== HERO — "STORE SHELF" (.hp-hero-c) =====================
+/* ============================================================
+           HERO PREVIEW C — "STORE SHELF"
+
+           THESIS: the app is the argument. Stop describing it and show
+           a real screen at a size you can actually read. Refuses the
+           category default of a stock golf photo behind a slogan.
+
+           Everything scoped under .hp-hero-c. Tokens from shared.css.
+           No background video: the product is the only image.
+           ============================================================ */
+
+        .hp-hero-c {
+            position: relative;
+            padding-bottom: 4.5rem;
+            overflow: hidden;
+        }
+        /* Course photograph as ground, not subject — a single static image,
+           no video, no slideshow. Carried over from variant D. */
+        .hc-bg { position: absolute; inset: 0; z-index: 0; }
+        .hc-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .hc-scrim {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(6,11,8,0.74) 0%, rgba(6,11,8,0.82) 45%, rgba(6,11,8,0.96) 100%),
+                radial-gradient(ellipse 62% 58% at 74% 46%, rgba(34,197,94,0.13), transparent 68%);
+        }
+        .hp-hero-c .container { position: relative; z-index: 1; }
+
+        .hp-hero-c .hero-content {
+            grid-template-columns: 1fr 0.86fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .hp-hero-c .hero-content > div { min-width: 0; }
+
+        /* ---- Rating chip: real, verified 5.0 App Store average ---- */
+        .hc-rating {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 7px 15px 7px 12px;
+            border: 1px solid var(--border-bright);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.03);
+            margin-bottom: 22px;
+        }
+        .hc-rating-stars { display: inline-flex; gap: 2px; }
+        .hc-rating-stars svg { width: 14px; height: 14px; display: block; }
+        .hc-rating-copy {
+            font-family: var(--font-mono);
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(240,253,244,0.82);
+        }
+        .hc-rating-copy b { color: var(--text); font-weight: 700; }
+
+        .hp-hero-c h1 {
+            font-size: clamp(2.8rem, 5.6vw, 4.1rem);
+            max-width: 13ch;          /* holds the break at "#1 SHORT GAME / PRACTICE APP" */
+            margin: 0 0 18px;
+            text-shadow: 0 2px 18px rgba(0,0,0,0.55);
+        }
+
+        .hc-sub {
+            font-family: var(--font-body);
+            font-size: 1.1rem; line-height: 1.6; font-weight: 400;
+            color: rgba(240,253,244,0.76);
+            max-width: 46ch;
+            margin: 0 0 26px;
+        }
+
+        /* ---- Benefit bullets (carried over from the live hero) ---- */
+        .hp-hero-c .hero-bullets { margin: 0 0 30px; max-width: 460px; }
+
+        /* ---- Actions: one dominant, one clearly subordinate ---- */
+        .hc-actions { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+        .hc-actions-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+        .hc-btn-ios {
+            display: inline-flex; align-items: center; gap: 11px;
+            padding: 15px 30px; min-height: 54px;
+            border-radius: 11px;
+            background: var(--green); color: var(--bg);
+            font-family: var(--font-heading); font-weight: 700;
+            font-size: 1.05rem; letter-spacing: 0.04em; text-transform: uppercase;
+            text-decoration: none;
+            transition: background .2s, transform .2s, box-shadow .2s;
+        }
+        .hc-btn-ios:hover {
+            background: var(--green-bright);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(34,197,94,0.32);
+        }
+        .hc-btn-ios svg { flex: none; }
+        .hc-btn-ios:focus-visible,
+        .hc-btn-web:focus-visible {
+            outline: 2px solid var(--green-bright);
+            outline-offset: 3px;
+        }
+
+        /* Secondary button: same shape as the primary so it reads as a real
+           choice, but outlined so the iPhone download still leads. */
+        .hc-btn-web {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 26px; min-height: 54px;
+            border-radius: 11px;
+            border: 1px solid var(--border-bright);
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            font-family: var(--font-heading); font-weight: 700;
+            font-size: 1.05rem; letter-spacing: 0.04em; text-transform: uppercase;
+            text-decoration: none;
+            transition: background .2s, border-color .2s, transform .2s, color .2s;
+        }
+        .hc-btn-web:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(34,197,94,0.55);
+            color: var(--green-bright);
+            transform: translateY(-1px);
+        }
+        .hc-btn-web svg { flex: none; }
+
+        .hc-offer {
+            font-family: var(--font-mono);
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.08em;
+            color: rgba(240,253,244,0.62);
+        }
+
+        /* ---- Footer line: only substantiated numbers ---- */
+        .hc-meta {
+            display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+            margin-top: 30px; padding-top: 22px;
+            border-top: 1px solid var(--border);
+            max-width: 500px;
+        }
+        .hc-meta-item {
+            font-family: var(--font-mono);
+            font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(240,253,244,0.55);
+        }
+        .hc-meta-item b { color: var(--text); font-weight: 700; font-size: 0.82rem; }
+        .hc-meta-qr { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+        .hc-meta-qr img {
+            width: 58px; height: 58px; border-radius: 8px;
+            background: var(--text); padding: 4px; display: block;
+        }
+        .hc-meta-qr span {
+            font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: rgba(240,253,244,0.5); max-width: 8ch; line-height: 1.4;
+        }
+
+        /* ---- The product: one real screen, large ---- */
+        .hc-stage {
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            min-height: 470px;
+        }
+
+        .hc-phone {
+            position: relative;
+            width: 100%; max-width: 239px;
+            filter: drop-shadow(0 34px 60px rgba(0,0,0,0.62));
+        }
+        .hc-screen {
+            position: absolute; inset: 0;
+            display: block;            /* kills the inline baseline gap under the in-flow frame */
+            width: 100%; height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            /* Sequential swap, not a true cross-fade: the outgoing screen clears
+               first, then the incoming one arrives. Overlapping them ghosts one
+               dark screen through the other. */
+            transition: opacity .32s ease;
+        }
+        .hc-screen.is-active { opacity: 1; transition: opacity .45s ease .3s; }
+        /* First frame holds layout height; the rest stack on top of it */
+        .hc-screen:first-child { position: relative; }
+
+        /* Callout chips pinned to the screen */
+        .hc-callout {
+            position: absolute;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 14px;
+            border-radius: 10px;
+            background: rgba(8,12,9,0.94);
+            backdrop-filter: blur(8px);
+            font-family: var(--font-mono);
+            font-size: 0.68rem; font-weight: 500;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--text);
+            white-space: nowrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity .3s ease, transform .3s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .hc-callout.is-shown { opacity: 1; transform: none; }
+        .hc-callout::before {
+            content: ""; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--green); box-shadow: 0 0 8px var(--green-glow); flex: none;
+        }
+        .hc-callout[data-place="tl"] { top: 13%;  left: 0; }
+        .hc-callout[data-place="br"] { bottom: 17%; right: 0; }
+
+        /* ============================ Responsive ============================ */
+        @media (max-width: 1024px) {
+            .hp-hero-c .hero-content {
+                grid-template-columns: 1fr;
+                gap: 34px;
+                justify-items: center;
+                text-align: center;
+            }
+            .hp-hero-c .hero-bullets { margin-left: auto; margin-right: auto; text-align: left; }
+            .hc-sub { margin-left: auto; margin-right: auto; }
+            .hc-actions { align-items: center; }
+            .hc-meta { justify-content: center; }
+            .hc-meta-qr { margin-left: 0; }
+            .hc-stage { min-height: 0; order: 2; }
+            .hc-callout[data-place="tl"] { left: 2%; }
+            .hc-callout[data-place="br"] { right: 2%; }
+        }
+
+        @media (max-width: 640px) {
+            /* Order is the whole point on mobile: get the download button
+               above the fold, product underneath, bullets last. */
+            /* shared.css styles `.hero-content > div:first-child` at <=1024, which
+               outranks a bare class — so these all carry the parent selector. */
+            .hp-hero-c .hero-content { display: flex; flex-direction: column; gap: 26px; }
+            .hp-hero-c .hero-content > .hc-col-copy { display: contents; }
+            .hp-hero-c .hc-rating  { order: 1; margin-bottom: 0; }
+            .hp-hero-c h1          { order: 2; margin: 0; max-width: none; }
+            .hp-hero-c .hc-sub     { order: 3; margin: 0; font-size: 1rem; }
+            .hp-hero-c .hc-actions { order: 4; width: 100%; }
+            /* beats shared.css `.hero-content > div:last-child {order:2}` at <=640 */
+            .hp-hero-c .hero-content > .hc-stage { order: 5; }
+            .hp-hero-c .hero-bullets { order: 6; margin: 0; }
+            .hp-hero-c .hc-meta    { order: 7; margin-top: 0; }
+
+            .hc-actions-row { width: 100%; flex-direction: column; align-items: stretch; gap: 14px; }
+            .hc-btn-ios { justify-content: center; width: 100%; }
+            .hc-btn-web { justify-content: center; width: 100%; }
+            .hc-phone { max-width: 177px; }
+            .hc-callout { display: none; }   /* too cramped to read beside a 260px phone */
+            .hc-meta-qr { display: none; }   /* you cannot scan the phone you are holding */
+            .hc-meta { justify-content: center; gap: 14px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hc-screen { transition: none; }
+            .hc-callout { transition: none; opacity: 1; transform: none; }
+        }

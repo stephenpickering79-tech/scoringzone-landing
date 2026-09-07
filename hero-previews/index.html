@@ -53,6 +53,13 @@
             display: inline-block; margin-top: 18px; font-weight: 600;
             font-size: 0.9rem; color: var(--green);
         }
+        .round-label {
+            font-family: 'DM Mono', monospace; font-size: 0.74rem; font-weight: 700;
+            letter-spacing: 0.18em; text-transform: uppercase; color: var(--text);
+            margin: 8px 0 12px; display: flex; align-items: center; gap: 12px;
+        }
+        .round-label span { color: var(--muted); font-weight: 500; letter-spacing: 0.12em; }
+        .round-label::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
         .note {
             margin-top: 40px; max-width: 900px; padding: 16px 20px;
             border: 1px solid var(--hairline); border-radius: 12px;
@@ -64,8 +71,28 @@
 </head>
 <body>
     <p class="eyebrow">Scoring Zone · Hero redesign</p>
-    <h1>Main Hero — Two Alternatives</h1>
-    <p class="lede">Both stay inside the brand system (bunker-black surface, one load-bearing green, Barlow Condensed display, typewriter H1). The live homepage is unchanged. Open each below, then decide replace or keep.</p>
+    <h1>Main Hero — Alternatives</h1>
+    <p class="lede">All stay inside the brand system (bunker-black surface, one load-bearing green, Barlow Condensed display). The live homepage is unchanged. Open each below, then decide replace or keep.</p>
+
+    <p class="round-label">Round 2 &mdash; conversion rebuild <span>Sept 2026</span></p>
+    <p class="lede" style="margin-bottom:28px;">Built for one job: turn a visitor into a download. Both drop the unsupported claims, kill the 1.8&nbsp;MB background video and the 2.9-second typewriter, show the real 5.0 App&nbsp;Store rating, and make the iPhone download the one dominant action with the web app clearly second. Both are instrumented so the choice can be measured.</p>
+
+    <div class="grid" style="margin-bottom:44px;">
+        <a class="card" href="hero-c-store-shelf.html">
+            <span class="tag">Alternative C &middot; Recommended</span>
+            <h2>Store Shelf</h2>
+            <p>The app is the argument. A real app screen at readable size, cross-fading through drill &rarr; score &rarr; diagnosis, with callouts pinned to actual UI. Proven App-Store-landing pattern: safe, and it will convert.</p>
+            <span class="go">Open Preview C &rarr;</span>
+        </a>
+        <a class="card" href="hero-d-scorecard.html">
+            <span class="tag">Alternative D</span>
+            <h2>The Scorecard</h2>
+            <p>Golf&rsquo;s own artifact as the layout. A practice card of real drills that fills in cell by cell and resolves to one handicap number. No device mockup at all &mdash; the product is its output. Distinctive, higher risk.</p>
+            <span class="go">Open Preview D &rarr;</span>
+        </a>
+    </div>
+
+    <p class="round-label">Round 1 &mdash; earlier explorations</p>
 
     <div class="grid">
         <a class="card" href="hero-a-proof-instrument.html">
