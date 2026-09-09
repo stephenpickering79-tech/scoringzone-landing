@@ -203,6 +203,7 @@
   color: #4ade80;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
 }
+.hero-bullets li b { font-weight: 800; }
 .hero-bullets li::before {
   content: "";
   position: absolute;
@@ -211,8 +212,8 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #e0b53c;
-  box-shadow: 0 0 10px rgba(224, 181, 60, 0.55);
+  background: var(--text);
+  box-shadow: 0 0 10px rgba(240, 253, 244, 0.45);
 }
 @media (max-width: 1024px) {
   .hp-hero-a .hero-bullets { margin-left: auto; margin-right: auto; text-align: left; }
@@ -1336,16 +1337,38 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
            no video, no slideshow. Carried over from variant D. */
         .hc-bg { position: absolute; inset: 0; z-index: 0; }
         .hc-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        /* Directional scrim: heavy behind the copy, light over the footage on the
+           right, with a bottom fade into the next section. The old flat 0.74-0.96
+           wash buried the video. No green radial here: DESIGN.md forbids stacking a
+           brand wash on top of the Pebble Beach footage. */
+        /* Directional scrim. The horizontal ramp is the one you see: dark behind the
+           copy, near-clear over the footage on the right. The two vertical passes are
+           deliberately confined to the top 16% (nav legibility) and the bottom 24%
+           (the seam into the next section, which is solid #060b08), so they never
+           flatten the left-to-right read across the middle of the frame.
+           No green radial here: DESIGN.md forbids stacking a brand wash on the video. */
         .hc-scrim {
-            position: absolute; inset: 0;
+            position: absolute; inset: 0; z-index: 2;
             background:
-                linear-gradient(180deg, rgba(6,11,8,0.74) 0%, rgba(6,11,8,0.82) 45%, rgba(6,11,8,0.96) 100%),
-                radial-gradient(ellipse 62% 58% at 74% 46%, rgba(34,197,94,0.13), transparent 68%);
+                linear-gradient(180deg,
+                    rgba(6,11,8,0.62) 0%,
+                    rgba(6,11,8,0.20) 9%,
+                    rgba(6,11,8,0) 16%),
+                linear-gradient(180deg,
+                    rgba(6,11,8,0) 76%,
+                    rgba(6,11,8,0.80) 93%,
+                    rgba(6,11,8,1) 100%),
+                linear-gradient(100deg,
+                    rgba(6,11,8,0.93) 0%,
+                    rgba(6,11,8,0.86) 24%,
+                    rgba(6,11,8,0.60) 48%,
+                    rgba(6,11,8,0.22) 72%,
+                    rgba(6,11,8,0.10) 100%);
         }
         .hp-hero-c .container { position: relative; z-index: 1; }
 
         .hp-hero-c .hero-content {
-            grid-template-columns: 1fr 0.86fr;
+            grid-template-columns: 1fr 0.8fr;
             gap: 48px;
             align-items: center;
         }
@@ -1371,18 +1394,35 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
         .hc-rating-copy b { color: var(--text); font-weight: 700; }
 
         .hp-hero-c h1 {
-            font-size: clamp(2.8rem, 5.6vw, 4.1rem);
-            max-width: 13ch;          /* holds the break at "#1 SHORT GAME / PRACTICE APP" */
+            font-size: clamp(2.6rem, 4vw, 3.25rem);
+            text-wrap: balance;
             margin: 0 0 18px;
             text-shadow: 0 2px 18px rgba(0,0,0,0.55);
         }
+        /* "PRESSURE TEST YOUR / SHORT GAME" — the green half always owns a line
+           of its own; below ~1100px the first half balances onto two. */
+        .hp-hero-c h1 .hero-accent { display: block; }
 
-        .hc-sub {
-            font-family: var(--font-body);
-            font-size: 1.1rem; line-height: 1.6; font-weight: 400;
-            color: rgba(240,253,244,0.76);
-            max-width: 46ch;
-            margin: 0 0 26px;
+        /* ---- Process rail: the five steps, read as one instrument line ---- */
+        .hc-steps {
+            list-style: none;
+            display: flex; flex-wrap: wrap; align-items: center;
+            gap: 9px 13px;
+            margin: 0 0 26px; padding: 0;
+            max-width: 38rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem; font-weight: 500;
+            letter-spacing: 0.11em; text-transform: uppercase;
+            color: rgba(240,253,244,0.9);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.55);
+        }
+        .hc-steps li { display: inline-flex; align-items: center; gap: 13px; }
+        .hc-steps li:not(:last-child)::after {
+            content: ""; flex: none;
+            width: 14px; height: 10px;
+            background: var(--green);
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 18' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 9h19M14.5 2.5 21 9l-6.5 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
+                    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 18' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 9h19M14.5 2.5 21 9l-6.5 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
         }
 
         /* ---- Benefit bullets (carried over from the live hero) ---- */
@@ -1394,7 +1434,7 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 
         .hc-btn-ios {
             display: inline-flex; align-items: center; gap: 11px;
-            padding: 15px 30px; min-height: 54px;
+            padding: 15px 26px; min-height: 54px;
             border-radius: 11px;
             background: var(--green); color: var(--bg);
             font-family: var(--font-heading); font-weight: 700;
@@ -1418,7 +1458,7 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
            choice, but outlined so the iPhone download still leads. */
         .hc-btn-web {
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 15px 26px; min-height: 54px;
+            padding: 15px 23px; min-height: 54px;
             border-radius: 11px;
             border: 1px solid var(--border-bright);
             background: rgba(255,255,255,0.04);
@@ -1437,35 +1477,71 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
         .hc-btn-web svg { flex: none; }
 
         .hc-offer {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 8px 17px 8px 13px;
+            border: 1px solid rgba(34,197,94,0.34);
+            border-radius: 999px;
+            background: rgba(34,197,94,0.10);
             font-family: var(--font-mono);
-            font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 0.08em;
-            color: rgba(240,253,244,0.62);
+            font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 0.11em; text-transform: uppercase;
+            color: var(--green-bright);
+        }
+        .hc-offer::before {
+            content: ""; flex: none;
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--green-bright);
+            box-shadow: 0 0 9px rgba(74,222,128,0.65);
         }
 
         /* ---- Footer line: only substantiated numbers ---- */
+        /* ---- Proof strip: hairline, then two numbers and the scan target ---- */
         .hc-meta {
-            display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-            margin-top: 30px; padding-top: 22px;
+            display: flex; align-items: flex-start; gap: 38px; flex-wrap: wrap;
+            margin-top: 32px; padding-top: 24px;
             border-top: 1px solid var(--border);
-            max-width: 500px;
         }
-        .hc-meta-item {
+        .hc-stat { display: flex; flex-direction: column; gap: 5px; }
+        /* Numbers carry the page: weight and size, no decoration. */
+        .hc-stat-num {
+            font-family: var(--font-heading);
+            font-size: 2.15rem; font-weight: 800; line-height: 0.9;
+            letter-spacing: 0.01em;
+            color: var(--text);
+        }
+        .hc-stat-num.is-green { color: var(--green); }
+        .hc-stat-label {
             font-family: var(--font-mono);
-            font-size: 0.7rem; font-weight: 500;
+            font-size: 0.66rem; font-weight: 500;
             letter-spacing: 0.12em; text-transform: uppercase;
-            color: rgba(240,253,244,0.55);
+            color: rgba(240,253,244,0.72);
         }
-        .hc-meta-item b { color: var(--text); font-weight: 700; font-size: 0.82rem; }
-        .hc-meta-qr { display: flex; align-items: center; gap: 10px; margin-left: auto; }
-        .hc-meta-qr img {
-            width: 58px; height: 58px; border-radius: 8px;
-            background: var(--text); padding: 4px; display: block;
+        .hc-stat-sub {
+            font-family: var(--font-mono);
+            font-size: 0.62rem; font-weight: 500;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(240,253,244,0.5);
         }
-        .hc-meta-qr span {
-            font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
+        /* Two scan targets: App Store for iOS, scoringzone.app for Android. One
+           shared caption, so the pair reads as a single "scan to download" object. */
+        .hc-stat--qr {
+            flex-direction: row; align-items: center; gap: 16px;
+            margin-left: auto; align-self: center;
+        }
+        .hc-qr-caption { max-width: 9ch; line-height: 1.45; }
+        /* The pair carries its own gap so the two codes read as two targets,
+           not one block. */
+        .hc-qr-pair { display: flex; gap: 22px; }
+        .hc-qr { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+        .hc-qr img {
+            width: 88px; height: 88px; border-radius: 9px;
+            background: var(--text); padding: 6px; display: block;
+        }
+        .hc-qr-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem; font-weight: 500;
             letter-spacing: 0.1em; text-transform: uppercase;
-            color: rgba(240,253,244,0.5); max-width: 8ch; line-height: 1.4;
+            color: rgba(240,253,244,0.6);
         }
 
         /* ---- The product: one real screen, large ---- */
@@ -1531,11 +1607,20 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
                 justify-items: center;
                 text-align: center;
             }
+            .hc-scrim {
+                background:
+                    linear-gradient(180deg,
+                        rgba(6,11,8,0.62) 0%,
+                        rgba(6,11,8,0.74) 34%,
+                        rgba(6,11,8,0.80) 58%,
+                        rgba(6,11,8,0.90) 84%,
+                        rgba(6,11,8,1) 100%);
+            }
             .hp-hero-c .hero-bullets { margin-left: auto; margin-right: auto; text-align: left; }
-            .hc-sub { margin-left: auto; margin-right: auto; }
+            .hc-steps { justify-content: center; margin-left: auto; margin-right: auto; }
             .hc-actions { align-items: center; }
             .hc-meta { justify-content: center; }
-            .hc-meta-qr { margin-left: 0; }
+            .hc-stat--qr { margin-left: 0; }
             .hc-stage { min-height: 0; order: 2; }
             .hc-callout[data-place="tl"] { left: 2%; }
             .hc-callout[data-place="br"] { right: 2%; }
@@ -1550,7 +1635,7 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
             .hp-hero-c .hero-content > .hc-col-copy { display: contents; }
             .hp-hero-c .hc-rating  { order: 1; margin-bottom: 0; }
             .hp-hero-c h1          { order: 2; margin: 0; max-width: none; }
-            .hp-hero-c .hc-sub     { order: 3; margin: 0; font-size: 1rem; }
+            .hp-hero-c .hc-steps   { order: 3; margin: 0; font-size: 0.74rem; gap: 8px 11px; }
             .hp-hero-c .hc-actions { order: 4; width: 100%; }
             /* beats shared.css `.hero-content > div:last-child {order:2}` at <=640 */
             .hp-hero-c .hero-content > .hc-stage { order: 5; }
@@ -1562,8 +1647,9 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
             .hc-btn-web { justify-content: center; width: 100%; }
             .hc-phone { max-width: 177px; }
             .hc-callout { display: none; }   /* too cramped to read beside a 260px phone */
-            .hc-meta-qr { display: none; }   /* you cannot scan the phone you are holding */
-            .hc-meta { justify-content: center; gap: 14px; }
+            .hc-stat--qr { display: none; }  /* you cannot scan the phone you are holding */
+            .hc-meta { justify-content: center; gap: 30px; padding-top: 22px; }
+            .hc-stat { align-items: center; text-align: center; }
         }
 
         @media (prefers-reduced-motion: reduce) {
