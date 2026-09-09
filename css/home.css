@@ -1857,8 +1857,8 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 
 /* Centred on the row each one enlarges, ~1.16x, bleeding left past the bezel
    and stopping at the opposite edge so neither runs into the other phone. */
-.nx-zoom--home { left: -8%; top: 76.4%; width: 108%; }
-.nx-zoom--chal { left: -8%; top: 26.9%; width: 108%; }
+.nx-zoom--home { left: -8%; top: 76.6%; width: 108%; }
+.nx-zoom--chal { left: -8%; top: 24.4%; width: 108%; }
 
 .nx-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 0 0 16px; }
 .nx-btn-alt {
