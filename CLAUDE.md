@@ -19,6 +19,38 @@ are dead. The Documents copy is often the default session cwd — that is the tr
 Never edit it; if a change lands there by mistake, revert it there before redoing
 it here, because a concurrent process can commit and auto-deploy that tree.
 
+## ⚠️ BRANCH FOR EVERY CHANGE — DO NOT WORK DIRECTLY ON `main`
+
+**Several Claude sessions run against this repo at the same time.** Working on
+`main` means two sessions editing the same files, and each one sweeping the
+other's half-finished work into its own commit.
+
+**Every change starts on its own branch:**
+
+```
+git fetch origin && git checkout -b <short-topic-name> origin/main
+```
+
+Rules:
+
+- **Branch off `origin/main`, not local `main`** — local `main` may already carry
+  another session's unpushed commit.
+- **Stage your own files by name.** Never `git add -A` or `git add .` — that is
+  exactly how another session's in-progress edits get committed under your
+  message. Check `git status` and list the paths you actually touched.
+- **Never commit or push `main` unless Stephen asks to ship.** "Proceed" and
+  "looks good" are not ship instructions; "push live", "ship it", "go live" and
+  "deploy" are.
+- **When shipping, fast-forward only.** Re-fetch first, confirm `origin/main`
+  has not moved, then `git merge --ff-only <branch>` and push. If it will not
+  fast-forward, stop and say so rather than merging over someone else.
+- **If files you did not touch show up in `git status`, stop.** Another session
+  is mid-edit. Say so; do not commit around it or revert it.
+
+This was added on 9 Sep 2026 after two sessions collided on the homepage: one
+committed the other's in-progress section, and the same commit deleted the whole
+`id="signup"` section that ~370 links point at.
+
 ## Project
 Static HTML marketing site for **Scoring Zone** — a golf short game practice app with scored drills, XP system, pressure tests, and stats tracking.
 
