@@ -1847,16 +1847,18 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 
 /* No photo band above this one, so the stack sits on the grid line rather
    than being pulled up under a band. */
-.nx-stack { position: relative; margin-top: 0; padding-bottom: 20%; }
-.nx-device--a { width: 47%; margin-top: 10%; z-index: 1; }
-.nx-device--b { position: absolute; top: 20%; left: 41%; width: 48%; z-index: 3; }
+.nx-stack { position: relative; margin-top: 0; padding-bottom: 12%; }
+/* Staggered, not overlapped. The magnified rows are the point of this
+   treatment and both are multi-cell, so a phone sitting on top of one cuts a
+   column out of it and the callout reads as a loose black slab. The pair is
+   offset vertically instead, which leaves each row whole. */
+.nx-device--a { width: 46%; margin-top: 2%; z-index: 1; }
+.nx-device--b { position: absolute; top: 16%; left: 55%; width: 45%; z-index: 3; }
 
-/* Centred on the row each one enlarges, bleeding past the bezels. Percentages
-   are of the device, so they track any rendered phone size. The back phone's
-   zoom bleeds left rather than right: its row is three cells wide and the
-   front phone would otherwise sit on top of the third one. */
-.nx-zoom--home { left: -22%; top: 76.4%; width: 108%; }
-.nx-zoom--chal { left: -6.5%; top: 26.9%; width: 113%; }
+/* Centred on the row each one enlarges, ~1.16x, bleeding left past the bezel
+   and stopping at the opposite edge so neither runs into the other phone. */
+.nx-zoom--home { left: -8%; top: 76.4%; width: 108%; }
+.nx-zoom--chal { left: -8%; top: 26.9%; width: 108%; }
 
 .nx-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 0 0 16px; }
 .nx-btn-alt {
@@ -1874,27 +1876,51 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 }
 .nx-btn-alt:hover { background: rgba(13, 26, 16, 0.05); border-color: rgba(13, 26, 16, 0.4); }
 .nx-btn-alt svg { flex: none; }
-.nx-note {
+.nx-title { margin-bottom: 14px; }
+/* The offer is the number on this block, so it carries by weight and size. */
+.nx-offer {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+  font-weight: 800; line-height: 1;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--green-ink);
+  margin: 0 0 8px;
+}
+.nx-terms {
+  font-family: var(--font-body);
+  font-size: 1rem; line-height: 1.6;
+  color: #46554a;
+  margin: 0 0 26px;
+}
+.nx-lead {
   display: flex; align-items: center; gap: 9px;
   font-family: var(--font-mono);
   font-size: 0.78rem; font-weight: 700;
   letter-spacing: 0.11em; text-transform: uppercase;
-  color: var(--green-ink);
-  margin: 0;
+  color: var(--ink);
+  margin: 0 0 14px;
 }
-.nx-note::before {
+.nx-lead::before {
   content: ""; flex: none;
   width: 7px; height: 7px; border-radius: 50%;
-  background: currentColor;
+  background: var(--green-ink);
+}
+.nx-features {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #5b6b60;
+  line-height: 1.7;
+  margin: 0;
 }
 
 @media (max-width: 900px) {
   .nx-stack { margin-top: 8px; padding-bottom: 14%; }
   .nx-device--a { width: 60%; max-width: 300px; }
   .nx-zoom--home { left: -5%; }
-  /* Pulled up and in, so the pair still reads as one overlapping group rather
-     than two phones at opposite corners of a tall empty column. */
-  .nx-device--b { position: relative; top: auto; left: auto; width: 54%; max-width: 275px; margin: -26% 7% 0 auto; }
+  /* Offset up and in so the pair still reads as one group, but never far
+     enough to sit on the first phone's magnified row. */
+  .nx-device--b { position: relative; top: auto; left: auto; width: 54%; max-width: 275px; margin: -8% 6% 0 auto; }
   .nx-copy { padding-top: 0; padding-bottom: 30px; }
 }
 
