@@ -1676,14 +1676,37 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 }
 .pf-chapter .container { padding-top: clamp(28px, 4vw, 52px); }
 
-.pf-band { border-radius: 20px; overflow: hidden; }
-.pf-band img {
-  display: block;
-  width: 100%;
+/* Three shots cut apart by diagonal white lines. Each panel owns its own
+   third plus the slant overrun, so every image is cropped to its own wedge
+   rather than to a slice of one wide picture.
+   s = horizontal slant (26px), g = the white gap between wedges (7px). */
+.pf-band {
+  position: relative;
   height: clamp(200px, 24vw, 340px);
-  object-fit: cover;
-  object-position: center 46%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
 }
+.pf-shot { position: absolute; top: 0; bottom: 0; }
+.pf-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.pf-shot--1 {
+  left: 0; width: calc(33.333% + 26px);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 52px) 100%, 0 100%);
+}
+.pf-shot--1 img { object-position: 55% 45%; }
+
+.pf-shot--2 {
+  left: calc(33.333% - 26px); width: calc(33.333% + 52px);
+  clip-path: polygon(59px 0, 100% 0, calc(100% - 52px) 100%, 7px 100%);
+}
+.pf-shot--2 img { object-position: 50% 55%; }
+
+.pf-shot--3 {
+  left: calc(66.667% - 26px); width: calc(33.333% + 26px);
+  clip-path: polygon(59px 0, 100% 0, 100% 100%, 7px 100%);
+}
+.pf-shot--3 img { object-position: 42% 50%; }
 
 .pf-grid {
   display: grid;
@@ -1754,8 +1777,10 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   line-height: 1.7;
   color: #46554a;
   max-width: 46ch;
-  margin: 0 0 26px;
+  margin: 0 0 16px;
 }
+.pf-body:last-of-type { margin-bottom: 26px; }
+.pf-body strong { color: var(--ink); font-weight: 700; }
 .pf-link {
   display: inline-flex; align-items: center;
   min-height: 44px;
@@ -1785,4 +1810,21 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 @media (max-width: 560px) {
   .pf-device--a { width: 74%; }
   .pf-device--b { width: 66%; margin-top: -12%; }
+}
+
+
+/* Narrow band: the 26px slant becomes ~half a panel, so ease it to 14px. */
+@media (max-width: 700px) {
+  .pf-shot--1 {
+    width: calc(33.333% + 14px);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%);
+  }
+  .pf-shot--2 {
+    left: calc(33.333% - 14px); width: calc(33.333% + 28px);
+    clip-path: polygon(33px 0, 100% 0, calc(100% - 28px) 100%, 5px 100%);
+  }
+  .pf-shot--3 {
+    left: calc(66.667% - 14px); width: calc(33.333% + 14px);
+    clip-path: polygon(33px 0, 100% 0, 100% 100%, 5px 100%);
+  }
 }
