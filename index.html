@@ -1032,76 +1032,43 @@
     <!-- ========== BLOG → PRICING WRAPPER ========== -->
     <div class="hp-studio" style="position:relative; overflow:hidden;">
 
-    <!-- ========== LATEST NEWS ========== -->
-    <section class="section" id="latest-news" style="position:relative; z-index:1; background:linear-gradient(135deg,#021a0a,#000000,#042d12); color:#f1f5f9; overflow:hidden;">
-      <!-- Dark serenity background -->
-      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <pattern id="blogDarkGrid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(34,197,94,0.06)" stroke-width="0.5"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#blogDarkGrid)"/>
-        <line x1="0" y1="20%" x2="100%" y2="20%" class="dsh-grid-line" style="animation-delay:0.25s"/>
-        <line x1="0" y1="80%" x2="100%" y2="80%" class="dsh-grid-line" style="animation-delay:0.5s"/>
-        <line x1="20%" y1="0" x2="20%" y2="100%" class="dsh-grid-line" style="animation-delay:0.75s"/>
-        <line x1="80%" y1="0" x2="80%" y2="100%" class="dsh-grid-line" style="animation-delay:1s"/>
-        <line x1="50%" y1="0" x2="50%" y2="100%" class="dsh-grid-line" style="animation-delay:1.25s;opacity:0.05"/>
-        <line x1="0" y1="50%" x2="100%" y2="50%" class="dsh-grid-line" style="animation-delay:1.5s;opacity:0.05"/>
-        <circle cx="20%" cy="20%" r="2" class="dsh-detail-dot" style="animation-delay:1.5s"/>
-        <circle cx="80%" cy="20%" r="2" class="dsh-detail-dot" style="animation-delay:1.6s"/>
-        <circle cx="20%" cy="80%" r="2" class="dsh-detail-dot" style="animation-delay:1.7s"/>
-        <circle cx="80%" cy="80%" r="2" class="dsh-detail-dot" style="animation-delay:1.8s"/>
-        <circle cx="50%" cy="50%" r="1.5" class="dsh-detail-dot" style="animation-delay:2s"/>
-      </svg>
-      <div class="dsh-corner" style="top:16px;left:16px;animation-delay:0.2s;"></div>
-      <div class="dsh-corner" style="top:16px;right:16px;animation-delay:0.3s;"></div>
-      <div class="dsh-corner" style="bottom:16px;left:16px;animation-delay:0.4s;"></div>
-      <div class="dsh-corner" style="bottom:16px;right:16px;animation-delay:0.5s;"></div>
-        <div class="container" style="position:relative;z-index:1;">
-            <div class="section-header reveal">
-                <span class="mono-label">Latest News</span>
-                <h2 class="display-lg">From the Blog</h2>
-                <p>Tips, drills, and insights to help you score better around the greens.</p>
+    <!-- ========== LATEST NEWS (compact index) ========== -->
+    <section class="section blog-index" id="latest-news">
+        <div class="container">
+            <div class="blog-index-head reveal">
+                <h2>From the Blog</h2>
+                <a href="blog/" class="blog-index-all">All articles <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
             </div>
-            <div class="news-grid">
-                <a href="blog/putting-guide.html" class="news-card news-card--featured reveal">
-                    <div class="news-card-badge">Guide</div>
-                    <div class="news-card-content">
-                        <span class="news-card-tag">Putting</span>
-                        <h3>The Complete Putting Guide: Drills, Reads & Distance Control</h3>
-                        <p>Everything you need to putt better. Grip, reads, lag putting, and the drills that actually move the needle.</p>
-                        <span class="news-card-link">Read guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
-                    </div>
-                </a>
-                <a href="blog/short-game-guide.html" class="news-card reveal">
-                    <div class="news-card-content">
-                        <span class="news-card-tag">Short Game</span>
-                        <h3>The Complete Short Game Guide: Chipping, Pitching & Scoring</h3>
-                        <p>Master every shot inside 100 yards with structured drills and a practice plan that works.</p>
-                        <span class="news-card-link">Read guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
-                    </div>
-                </a>
-                <a href="blog/best-golf-apps-guide.html" class="news-card reveal">
-                    <div class="news-card-content">
-                        <span class="news-card-tag">Apps</span>
-                        <h3>Best Golf Apps Guide: Every Practice App Compared</h3>
-                        <p>An honest comparison of every golf practice app on the market. Features, pricing, and who each one suits.</p>
-                        <span class="news-card-link">Read guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
-                    </div>
-                </a>
-                <a href="blog/how-to-break-90.html" class="news-card reveal">
-                    <div class="news-card-content">
-                        <span class="news-card-tag">Strategy</span>
-                        <h3>How to Break 90: A Short Game Plan</h3>
-                        <p>The fastest path to breaking 90 isn't more range time. It's a structured short game plan.</p>
-                        <span class="news-card-link">Read article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
-                    </div>
-                </a>
-            </div>
-            <div class="reveal" style="text-align: center; margin-top: 3rem;">
-                <a href="blog/" class="btn-outline">View All Articles <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-            </div>
+            <ul class="blog-index-list reveal">
+                <li>
+                    <a href="blog/putting-guide.html" class="blog-index-row">
+                        <span class="blog-index-tag">Putting</span>
+                        <span class="blog-index-title">The Complete Putting Guide: Drills, Reads &amp; Distance Control</span>
+                        <svg class="blog-index-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog/short-game-guide.html" class="blog-index-row">
+                        <span class="blog-index-tag">Short Game</span>
+                        <span class="blog-index-title">The Complete Short Game Guide: Chipping, Pitching &amp; Scoring</span>
+                        <svg class="blog-index-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog/best-golf-apps-guide.html" class="blog-index-row">
+                        <span class="blog-index-tag">Apps</span>
+                        <span class="blog-index-title">Best Golf Apps Guide: Every Practice App Compared</span>
+                        <svg class="blog-index-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="blog/how-to-break-90.html" class="blog-index-row">
+                        <span class="blog-index-tag">Strategy</span>
+                        <span class="blog-index-title">How to Break 90: A Short Game Plan</span>
+                        <svg class="blog-index-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </li>
+            </ul>
         </div>
     </section>
 

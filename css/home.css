@@ -118,6 +118,23 @@
 }
 .hp-studio .process-grid::before { border-top-color: rgba(13, 26, 16, 0.22); }
 
+/* Compact blog index inside the studio chapter */
+.hp-studio .blog-index { border-top-color: var(--ink-hairline); }
+.hp-studio .blog-index-head h2 { color: var(--ink); text-shadow: none; }
+.hp-studio .blog-index-all { color: var(--green-ink); }
+.hp-studio .blog-index-list { border-bottom-color: var(--ink-hairline); }
+.hp-studio .blog-index-row {
+  border-top-color: var(--ink-hairline);
+  color: var(--ink);
+}
+.hp-studio .blog-index-row:hover { border-top-color: var(--green-ink); }
+.hp-studio .blog-index-tag { color: var(--green-ink); }
+.hp-studio .blog-index-title { color: var(--ink); }
+.hp-studio .blog-index-row:hover .blog-index-title { color: var(--green-ink); }
+.hp-studio .blog-index-arrow { color: var(--ink-3); }
+.hp-studio .blog-index-row:hover .blog-index-arrow { color: var(--green-ink); }
+.hp-studio .blog-index-row:focus-visible { outline-color: var(--green-ink); }
+
 /* ── Hero refinements (scoped via .hp-hero) ─────────────── */
 .hero.hp-hero .display-xl {
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
