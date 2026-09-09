@@ -1676,14 +1676,37 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 }
 .pf-chapter .container { padding-top: clamp(28px, 4vw, 52px); }
 
-.pf-band { border-radius: 20px; overflow: hidden; }
-.pf-band img {
-  display: block;
-  width: 100%;
+/* Three shots cut apart by diagonal white lines. Each panel owns its own
+   third plus the slant overrun, so every image is cropped to its own wedge
+   rather than to a slice of one wide picture.
+   s = horizontal slant (26px), g = the white gap between wedges (7px). */
+.pf-band {
+  position: relative;
   height: clamp(200px, 24vw, 340px);
-  object-fit: cover;
-  object-position: center 46%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
 }
+.pf-shot { position: absolute; top: 0; bottom: 0; }
+.pf-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.pf-shot--1 {
+  left: 0; width: calc(33.333% + 26px);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 52px) 100%, 0 100%);
+}
+.pf-shot--1 img { object-position: 55% 45%; }
+
+.pf-shot--2 {
+  left: calc(33.333% - 26px); width: calc(33.333% + 52px);
+  clip-path: polygon(59px 0, 100% 0, calc(100% - 52px) 100%, 7px 100%);
+}
+.pf-shot--2 img { object-position: 50% 55%; }
+
+.pf-shot--3 {
+  left: calc(66.667% - 26px); width: calc(33.333% + 26px);
+  clip-path: polygon(59px 0, 100% 0, 100% 100%, 7px 100%);
+}
+.pf-shot--3 img { object-position: 42% 50%; }
 
 .pf-grid {
   display: grid;
@@ -1754,8 +1777,10 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   line-height: 1.7;
   color: #46554a;
   max-width: 46ch;
-  margin: 0 0 26px;
+  margin: 0 0 16px;
 }
+.pf-body:last-of-type { margin-bottom: 26px; }
+.pf-body strong { color: var(--ink); font-weight: 700; }
 .pf-link {
   display: inline-flex; align-items: center;
   min-height: 44px;
@@ -1785,4 +1810,97 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 @media (max-width: 560px) {
   .pf-device--a { width: 74%; }
   .pf-device--b { width: 66%; margin-top: -12%; }
+}
+
+/* Narrow band: the 26px slant becomes ~half a panel, so ease it to 14px. */
+@media (max-width: 700px) {
+  .pf-shot--1 {
+    width: calc(33.333% + 14px);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%);
+  }
+  .pf-shot--2 {
+    left: calc(33.333% - 14px); width: calc(33.333% + 28px);
+    clip-path: polygon(33px 0, 100% 0, calc(100% - 28px) 100%, 5px 100%);
+  }
+  .pf-shot--3 {
+    left: calc(66.667% - 14px); width: calc(33.333% + 14px);
+    clip-path: polygon(33px 0, 100% 0, 100% 100%, 5px 100%);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SCORED CHAPTER — the white break that replaced the trial card
+   Same device treatment as the Performance Hub chapter above: the whole
+   phone, with the one row that carries the claim magnified in place over
+   its own position on the screen. Mirrored, copy first, so the two
+   chapters read as a pair rather than the same block twice. It also
+   carries id="signup", so the download CTA lives here.
+   ══════════════════════════════════════════════════════════════════ */
+.nx-chapter {
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
+  padding: clamp(64px, 8vw, 104px) 0;
+  overflow: hidden;
+}
+.nx-grid { align-items: center; }
+
+/* No photo band above this one, so the stack sits on the grid line rather
+   than being pulled up under a band. */
+.nx-stack { position: relative; margin-top: 0; padding-bottom: 20%; }
+.nx-device--a { width: 47%; margin-top: 10%; z-index: 1; }
+.nx-device--b { position: absolute; top: 20%; left: 41%; width: 48%; z-index: 3; }
+
+/* Centred on the row each one enlarges, bleeding past the bezels. Percentages
+   are of the device, so they track any rendered phone size. The back phone's
+   zoom bleeds left rather than right: its row is three cells wide and the
+   front phone would otherwise sit on top of the third one. */
+.nx-zoom--home { left: -22%; top: 76.4%; width: 108%; }
+.nx-zoom--chal { left: -6.5%; top: 26.9%; width: 113%; }
+
+.nx-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 0 0 16px; }
+.nx-btn-alt {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px; min-height: 52px;
+  border-radius: 11px;
+  border: 1px solid rgba(13, 26, 16, 0.22);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-weight: 700; font-size: 1rem;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.nx-btn-alt:hover { background: rgba(13, 26, 16, 0.05); border-color: rgba(13, 26, 16, 0.4); }
+.nx-btn-alt svg { flex: none; }
+.nx-note {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.11em; text-transform: uppercase;
+  color: var(--green-ink);
+  margin: 0;
+}
+.nx-note::before {
+  content: ""; flex: none;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor;
+}
+
+@media (max-width: 900px) {
+  .nx-stack { margin-top: 8px; padding-bottom: 14%; }
+  .nx-device--a { width: 60%; max-width: 300px; }
+  .nx-zoom--home { left: -5%; }
+  /* Pulled up and in, so the pair still reads as one overlapping group rather
+     than two phones at opposite corners of a tall empty column. */
+  .nx-device--b { position: relative; top: auto; left: auto; width: 54%; max-width: 275px; margin: -26% 7% 0 auto; }
+  .nx-copy { padding-top: 0; padding-bottom: 30px; }
+}
+
+@media (max-width: 560px) {
+  .nx-device--a { width: 74%; }
+  .nx-device--b { width: 66%; margin-top: -12%; }
+  .nx-actions > * { width: 100%; }
+  .nx-actions .btn-primary, .nx-btn-alt { width: 100%; justify-content: center; }
 }
