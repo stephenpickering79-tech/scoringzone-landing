@@ -1957,3 +1957,7 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   .nx-actions > * { width: 100%; }
   .nx-actions .btn-primary, .nx-btn-alt { width: 100%; justify-content: center; }
 }
+
+/* Anchor kept alive after its section was folded into another one. Zero height,
+   offset so the target does not land under the fixed nav. */
+.anchor-alias { display: block; height: 0; scroll-margin-top: 88px; }

@@ -1021,6 +1021,9 @@
         </div>
     </section>
 
+    <!-- Pricing lives in the section below now. The old anchor is kept because
+         roughly 460 links across the site still point at it. -->
+    <span id="pricing" class="anchor-alias" aria-hidden="true"></span>
     <!-- ========== SCORED CHAPTER (white break) ==========
          Replaces the old trial card. Same device treatment as the Performance
          Hub chapter: the whole phone with the row that carries the claim
@@ -1145,73 +1148,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ========== PRICING ========== -->
-    <section class="section" id="pricing" style="position:relative; z-index:1;">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="mono-label" style="text-shadow:0 1px 6px rgba(0,0,0,0.12);">PRICING</span>
-                <h2 class="display-lg" style="color:#0f1e10; text-shadow:0 2px 8px rgba(0,0,0,0.12);">Stop Practising.<br>Start <span style="color: var(--green);">Competing.</span></h2>
-                <p style="color:#374151; text-shadow:0 1px 5px rgba(0,0,0,0.1);">Join thousands of golfers who&rsquo;ve transformed their short game with structured, pressure-tested practice.</p>
-                <p style="margin-top: 8px; color:#374151; text-shadow:0 1px 5px rgba(0,0,0,0.1);">Every plan starts with a 7-day free trial of the full app.</p>
-            </div>
-
-            <!-- Billing toggle -->
-            <div class="pricing-toggle-wrap reveal">
-                <div class="pricing-toggle-track annual" role="switch" aria-checked="true" tabindex="0" aria-label="Toggle between monthly and annual billing">
-                    <div class="pricing-toggle-thumb"></div>
-                    <span class="pricing-toggle-label">Monthly</span>
-                    <span class="pricing-toggle-label active">Annual</span>
-                </div>
-                <span class="save-pill visible">Save up to 67%</span>
-            </div>
-
-            <!-- Pricing cards -->
-            <div class="pricing-grid pricing-grid--two annual">
-                <!-- Pro -->
-                <div class="pricing-card pricing-card--pro reveal">
-                    <div class="pricing-card-bar" style="background: linear-gradient(135deg, #22c55e, #16a34a);"></div>
-                    <div class="pricing-card-body">
-                        <span class="pricing-card-name">Pro</span>
-                        <div class="pricing-card-price"><span data-monthly="$4.99" data-annual="$23.99">$23.99</span><span class="pricing-card-period" data-period>/year</span><span class="pricing-was">$59.99</span></div>
-                        <span class="pricing-card-note" style="display:block;" data-note-monthly="7-day free trial &middot; Cancel anytime" data-note-annual="Around $2.00/month &middot; Save 60%">Around $2.00/month &middot; Save 60%</span>
-                        <ul class="pricing-features">
-                            <li>Full drill library &mdash; chipping, pitching, wedges, putting</li>
-                            <li>Ultimate Shortgame &amp; Putting Tests</li>
-                            <li>Century Drill &amp; every benchmark test</li>
-                            <li>Practice Assistant &amp; SIM Lab</li>
-                            <li>Performance Hub handicap tracking</li>
-                        </ul>
-                        <div class="btn-border-anim" style="width: 100%;"><a href="https://scoringzone.app" class="btn-primary" style="width: 100%; justify-content: center;">Start Free Trial &mdash; Android</a></div>
-                        <a href="https://apps.apple.com/us/app/scoring-zone-golf/id6769477447?pt=128906825&amp;ct=Scoring%20Zone%20Website&amp;mt=8" target="_blank" rel="noopener" class="pricing-ios-btn"><svg viewBox="0 0 384 512" width="15" height="15" fill="currentColor" aria-hidden="true" style="flex:none;"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span>Download on the App Store</span></a>
-                    </div>
-                </div>
-
-                <!-- Elite -->
-                <div class="pricing-card reveal">
-                    <div class="pricing-card-bar" style="background: linear-gradient(135deg, #f59e0b, #d97706);"></div>
-                    <div class="pricing-card-body">
-                        <span class="pricing-card-badge" style="background: rgba(245,158,11,0.1); color: var(--amber); border: 1px solid rgba(245,158,11,0.2);">Best Value</span>
-                        <span class="pricing-card-name">Elite</span>
-                        <div class="pricing-card-price"><span data-monthly="$9.99" data-annual="$39.99">$39.99</span><span class="pricing-card-period" data-period>/year</span><span class="pricing-was">$119.99</span></div>
-                        <span class="pricing-card-note" style="display:block;" data-note-monthly="7-day free trial &middot; Cancel anytime" data-note-annual="Around $3.33/month &middot; Save 67%">Around $3.33/month &middot; Save 67%</span>
-                        <ul class="pricing-features">
-                            <li>Everything in Pro, plus:</li>
-                            <li>Full round logging &amp; scorecard history</li>
-                            <li>Complete stats suite &mdash; rounds, short game, tests</li>
-                            <li>Strokes Gained tracking</li>
-                            <li>Personal-best benchmarks across every section</li>
-                        </ul>
-                        <div class="btn-border-anim btn-border-anim--amber" style="width: 100%;"><a href="https://scoringzone.app" class="btn-amber" style="width: 100%; justify-content: center;">Start Free Trial &mdash; Android</a></div>
-                        <a href="https://apps.apple.com/us/app/scoring-zone-golf/id6769477447?pt=128906825&amp;ct=Scoring%20Zone%20Website&amp;mt=8" target="_blank" rel="noopener" class="pricing-ios-btn"><svg viewBox="0 0 384 512" width="15" height="15" fill="currentColor" aria-hidden="true" style="flex:none;"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span>Download on the App Store</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
 
     </div><!-- /.blog-footer-serenity-wrap -->
 
