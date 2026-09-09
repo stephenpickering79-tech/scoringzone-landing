@@ -1,0 +1,236 @@
+/* ============================================================
+   SHARED BLOG POST COMPONENTS
+   Linked by every blog post. Two things live here so far: the
+   closing chapter, and the FAQ accordion.
+   ============================================================ */
+
+
+/* ============================================================
+   CLOSING CHAPTER
+   The white break that ends every blog post. Lifted from the
+   homepage "Scored chapter" (.nx-chapter in home.css) so the two
+   read as the same block: copy on the left, the offer carried by
+   weight, and two phones with the row that makes the claim
+   magnified in place over its own position on the screen.
+
+   home.css is index.html only, so the rules the chapter needs are
+   restated here rather than linked. Keep the two in step: if the
+   homepage chapter changes, change this too.
+   ============================================================ */
+
+.bx-chapter {
+  /* Light-chapter tokens. shared.css only carries the dark scale. */
+  --ink: #0d1a10;
+  --ink-2: #46554a;
+  --ink-3: #5b6b60;
+  --green-ink: #15803d;            /* AA-safe green on white; #22c55e is not */
+
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
+  padding: clamp(64px, 8vw, 104px) 0;
+  overflow: hidden;
+}
+
+.bx-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+/* ── Copy ─────────────────────────────────────────────────── */
+.bx-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+/* The offer is the number on this block, so it carries by weight and size. */
+.bx-offer {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--green-ink);
+  margin: 0 0 8px;
+}
+.bx-terms {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 26px;
+}
+.bx-lead {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+.bx-lead::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-ink);
+}
+.bx-features {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Actions ──────────────────────────────────────────────── */
+.bx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 16px;
+}
+.bx-btn-alt {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  min-height: 52px;
+  border-radius: 11px;
+  border: 1px solid rgba(13, 26, 16, 0.22);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.bx-btn-alt:hover { background: rgba(13, 26, 16, 0.05); border-color: rgba(13, 26, 16, 0.4); }
+.bx-btn-alt svg { flex: none; }
+
+/* ── Devices ──────────────────────────────────────────────── */
+.bx-stack { position: relative; padding-bottom: 12%; }
+.bx-device { position: relative; }
+.bx-device .bx-phone {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 26px 50px rgba(6, 11, 8, 0.32));
+}
+/* Staggered, not overlapped: both magnified rows are multi-cell, so a phone
+   sitting on one cuts a column out of it and the callout reads as a slab. */
+.bx-device--a { width: 46%; margin-top: 2%; z-index: 1; }
+.bx-device--b { position: absolute; top: 16%; left: 55%; width: 45%; z-index: 3; }
+
+/* Magnified in place: centred on the row it enlarges, bleeding left past the
+   bezel and stopping at the opposite edge. Percentages are of the device, so
+   the callout tracks any phone size. */
+.bx-zoom {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 42px rgba(6, 11, 8, 0.55);
+}
+.bx-zoom--home { left: -8%; top: 76.6%; width: 108%; }
+.bx-zoom--chal { left: -8%; top: 24.4%; width: 108%; }
+
+@media (max-width: 900px) {
+  .bx-grid { grid-template-columns: 1fr; }
+  .bx-copy { padding-top: 0; padding-bottom: 30px; }
+  .bx-stack { margin-top: 8px; padding-bottom: 14%; }
+  .bx-device--a { width: 60%; max-width: 300px; }
+  .bx-zoom--home { left: -5%; }
+  /* Offset up and in so the pair still reads as one group, but never far
+     enough to sit on the first phone's magnified row. */
+  .bx-device--b { position: relative; top: auto; left: auto; width: 54%; max-width: 275px; margin: -8% 6% 0 auto; }
+}
+
+@media (max-width: 560px) {
+  .bx-device--a { width: 74%; }
+  .bx-device--b { width: 66%; margin-top: -12%; }
+  .bx-actions > * { width: 100%; }
+  .bx-actions .btn-primary, .bx-btn-alt { width: 100%; justify-content: center; }
+}
+
+
+/* ============================================================
+   FAQ ACCORDION
+   The answers were a wall of open prose that ran longer than the
+   article's last section. Collapsed, the block reads as a list of
+   questions you can scan, which is how anyone uses an FAQ.
+
+   Native <details>, so it works with no JavaScript, is keyboard
+   operable for free, and keeps every answer in the DOM for the
+   FAQPage schema. The .faq-item rules that give the rows their
+   hairline and padding stay in each post's own <style> block.
+   ============================================================ */
+
+.faq-item > summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  list-style: none;               /* Firefox marker */
+  padding: 2px 0;
+  min-height: 44px;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::marker { content: ""; }
+.faq-item > summary h3 {
+  flex: 1;
+  margin-bottom: 0 !important;    /* the open answer owns the gap, not the question */
+  transition: color 0.2s ease;
+}
+.faq-item > summary:hover h3 { color: var(--green); }
+.faq-item > summary:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Chevron drawn from two borders, so no icon markup on every row */
+.faq-chevron {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform 0.25s ease, border-color 0.2s ease;
+}
+.faq-item[open] > summary .faq-chevron {
+  transform: translateY(1px) rotate(-135deg);
+  border-color: var(--green);
+}
+.faq-item > summary:hover .faq-chevron { border-color: var(--green); }
+
+.faq-item[open] > p { padding-top: 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-chevron, .faq-item > summary h3 { transition: none; }
+}
