@@ -21,6 +21,12 @@
   --green-ink: #15803d;
   /* Near-black ink for text on white chapters */
   --ink: #0d1a10;
+  /* Light-chapter companions to the dark ladder */
+  --paper: #ffffff;
+  --ink-2: #46554a;
+  --ink-3: #55645b;
+  --ink-hairline: rgba(13, 26, 16, 0.1);
+  --ink-hairline-strong: rgba(13, 26, 16, 0.16);
 }
 
 /* ── Primitives ─────────────────────────────────────────── */
@@ -1827,4 +1833,289 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
     left: calc(66.667% - 14px); width: calc(33.333% + 14px);
     clip-path: polygon(33px 0, 100% 0, 100% 100%, 5px 100%);
   }
+}
+
+/* ============================================================
+   INSIDE THE APP — the reel
+   A self-advancing filmstrip of app screens on a white chapter.
+   Replaces the 420vh pinned scroll-scrub deck.
+   Baseline (no JS): a plain horizontal scroller, all screens lit.
+   ============================================================ */
+.sz-reel {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  border-top: 1px solid var(--ink-hairline);
+  border-bottom: 1px solid var(--ink-hairline);
+  padding: 6.5rem 0;
+}
+.sz-reel-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+}
+
+/* ── Copy column ──────────────────────────────────────── */
+.sz-reel-copy { position: relative; z-index: 3; }
+.sz-reel-copy .mono-label { color: var(--green-ink); text-shadow: none; }
+.sz-reel-copy h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 3.3vw, 3.3rem);
+  line-height: 0.95;
+  letter-spacing: 0.008em;
+  color: var(--ink);
+  text-wrap: balance;
+  margin: 14px 0 18px;
+}
+.sz-reel-copy h2 .sz-reel-accent { color: var(--green-ink); }
+.sz-reel-lede {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 38ch;
+}
+
+/* ── Chapter list, doubles as the nav ─────────────────── */
+.sz-reel-nav {
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(5, auto);
+  column-gap: 20px;
+}
+.sz-reel-nav button {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ink-3);
+  transition: color 0.35s ease;
+}
+.sz-reel-nav button::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0;
+  height: 1px;
+  margin-left: 0;
+  background: var(--green-ink);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sz-reel-nav button:hover { color: var(--ink); }
+.sz-reel-nav button:focus-visible {
+  outline: 2px solid var(--green-ink);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.sz-reel-nav li.is-current button { color: var(--green-ink); }
+.sz-reel-nav li.is-current button::before { width: 20px; }
+
+/* ── Counter and dwell timer ──────────────────────────── */
+.sz-reel-meter {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sz-reel-count {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.sz-reel-count span { color: var(--ink-3); }
+.sz-reel-track {
+  position: relative;
+  flex: 0 1 160px;
+  height: 2px;
+  background: var(--ink-hairline-strong);
+  overflow: hidden;
+}
+.sz-reel-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--green-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ── Stage ────────────────────────────────────────────── */
+.sz-reel-stage { position: relative; min-width: 0; }
+/* The strip dissolves into the paper rather than being chopped by the viewport */
+.sz-reel-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* Reach past the container to the viewport edge so the strip dissolves, not stops */
+  right: calc(50% - 50vw);
+  width: clamp(120px, 18vw, 300px);
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), var(--paper) 78%);
+}
+html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: none; }
+.sz-reel-rail {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+.sz-reel-rail li {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  line-height: 0;
+}
+.sz-reel-rail img {
+  display: block;
+  height: clamp(400px, min(60vh, 34vw), 620px);
+  width: auto;
+  filter: drop-shadow(0 24px 44px rgba(13, 26, 16, 0.22));
+}
+
+/* Reel mode: JS drives the rail, so the browser must not scroll it */
+.sz-reel.is-live .sz-reel-stage {
+  overflow: visible;
+  /* Let the strip bleed right, but never across the copy column */
+  clip-path: inset(-140px -100vw -140px -60px);
+}
+.sz-reel.is-live .sz-reel-rail {
+  overflow: visible;
+  scroll-snap-type: none;
+  padding-bottom: 0;
+  will-change: transform;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: pan-y;
+}
+.sz-reel.is-live .sz-reel-rail li {
+  position: relative;
+  opacity: 0;
+  transform: scale(0.88);
+  transform-origin: center left;
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sz-reel.is-live .sz-reel-rail img {
+  filter: blur(2px) saturate(0.75);
+  transition: filter 0.8s ease;
+}
+.sz-reel.is-live .sz-reel-rail li.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.sz-reel.is-live .sz-reel-rail li.is-active img {
+  filter: drop-shadow(0 26px 48px rgba(13, 26, 16, 0.24));
+}
+
+/* The reticle: corner brackets frame whichever screen is in the gate */
+.sz-reel.is-live .sz-reel-rail li::before,
+.sz-reel.is-live .sz-reel-rail li::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.sz-reel.is-live .sz-reel-rail li::before {
+  top: -16px;
+  left: -16px;
+  border-top: 2px solid var(--green-ink);
+  border-left: 2px solid var(--green-ink);
+}
+.sz-reel.is-live .sz-reel-rail li::after {
+  bottom: -16px;
+  right: -16px;
+  border-bottom: 2px solid var(--green-ink);
+  border-right: 2px solid var(--green-ink);
+}
+.sz-reel.is-live .sz-reel-rail li.is-active::before,
+.sz-reel.is-live .sz-reel-rail li.is-active::after { opacity: 0.85; }
+
+/* Rewinding onto the original strip, and dragging: no glide, no cross-fade */
+.sz-reel.is-instant .sz-reel-rail,
+.sz-reel.is-instant .sz-reel-rail li,
+.sz-reel.is-instant .sz-reel-rail img { transition: none !important; }
+
+/* Dragging: kill the glide so the rail tracks the finger */
+.sz-reel.is-drag .sz-reel-rail { transition: none; cursor: grabbing; }
+
+/* ── Tablet and below ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  .sz-reel { padding: 5rem 0; }
+  .sz-reel-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .sz-reel-lede { max-width: 52ch; }
+  .sz-reel-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 26px -24px 0;
+    padding: 0 24px;
+  }
+  .sz-reel-nav::-webkit-scrollbar { display: none; }
+  .sz-reel-nav li { flex: 0 0 auto; }
+  .sz-reel-nav button {
+    width: auto;
+    padding: 0 14px;
+    border: 1px solid var(--ink-hairline-strong);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+  .sz-reel-nav button::before { display: none; }
+  .sz-reel-nav li.is-current button {
+    border-color: var(--green-ink);
+    color: var(--green-ink);
+  }
+  .sz-reel-meter { margin-top: 22px; }
+  .sz-reel-rail { gap: 28px; }
+}
+
+@media (max-width: 640px) {
+  .sz-reel { padding: 4rem 0; }
+  .sz-reel-rail img { height: min(62vh, 460px); }
+  .sz-reel.is-live .sz-reel-rail li::before,
+  .sz-reel.is-live .sz-reel-rail li::after { display: none; }
+}
+
+/* Motion off: no glide, no dwell timer, no depth-of-field blur */
+@media (prefers-reduced-motion: reduce) {
+  .sz-reel.is-live .sz-reel-rail,
+  .sz-reel.is-live .sz-reel-rail li,
+  .sz-reel.is-live .sz-reel-rail img,
+  .sz-reel-nav button,
+  .sz-reel-nav button::before { transition: none; }
+  .sz-reel.is-live .sz-reel-rail img { filter: saturate(0.8); }
+  .sz-reel.is-live .sz-reel-rail li { opacity: 0.45; transform: none; }
+  .sz-reel.is-live .sz-reel-rail li.is-active { opacity: 1; }
 }

@@ -641,87 +641,43 @@
         </div>
     </section>
 
-    <!-- ========== THE DECK (Inside the App scrolling reveal) ========== -->
-    <style>
-      .deck-outer { position: relative; z-index: 1; height: 420vh; }
-      .deck-sticky {
-        position: sticky; top: 0; height: 100vh; overflow: hidden;
-        display: flex; align-items: center;
-        background: radial-gradient(ellipse 60% 50% at 68% 50%, rgba(34,197,94,.09), transparent 65%), var(--bg);
-      }
-      .deck-sticky::before {
-        content: ""; position: absolute; inset: 0; pointer-events: none;
-        background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-        background-size: 56px 56px;
-        -webkit-mask-image: radial-gradient(ellipse 70% 62% at 62% 50%, #000 30%, transparent 75%);
-        mask-image: radial-gradient(ellipse 70% 62% at 62% 50%, #000 30%, transparent 75%);
-      }
-      .deck-container { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 48px; align-items: center; }
-      .deck-copy h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(2.6rem, 4.6vw, 4.2rem); line-height: .98; letter-spacing: .01em; margin: 16px 0 18px; }
-      .deck-copy h2 .deck-accent { color: var(--green); text-shadow: 0 0 24px var(--green-glow); }
-      .deck-copy > p { color: var(--text-muted); font-size: 1.02rem; line-height: 1.65; max-width: 380px; }
-      .deck-tracklist { list-style: none; margin: 34px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-      .deck-tracklist li { font-family: 'DM Mono', monospace; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: #3a4a40; display: flex; align-items: center; gap: 10px; transition: color .35s ease; }
-      .deck-tracklist li::before { content: ""; width: 0; height: 1px; background: var(--green); box-shadow: 0 0 8px var(--green-glow); transition: width .35s ease; }
-      .deck-tracklist li.active { color: var(--green-bright); text-shadow: 0 0 12px var(--green-glow); }
-      .deck-tracklist li.active::before { width: 22px; }
-      .deck-tracklist li.done { color: #56675d; }
-      .deck-progress { margin-top: 30px; display: flex; align-items: center; gap: 16px; }
-      .deck-counter { font-family: 'DM Mono', monospace; font-size: .82rem; letter-spacing: .14em; color: var(--text); white-space: nowrap; }
-      .deck-counter .deck-total { color: var(--text-muted); }
-      .deck-bar { position: relative; flex: 0 1 150px; height: 2px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden; }
-      .deck-bar-fill { position: absolute; inset: 0; transform-origin: left center; transform: scaleX(0); background: var(--green); box-shadow: 0 0 10px var(--green-glow); }
-      .deck-stage { position: relative; height: min(72vh, 640px); display: flex; align-items: center; justify-content: center; }
-      .deck-card { position: absolute; height: 100%; aspect-ratio: 1290 / 2796; border-radius: 26px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 50px rgba(34,197,94,.10); will-change: transform, opacity, filter; background: #f5f4ef; }
-      .deck-card img { width: 100%; height: 100%; object-fit: cover; }
-      /* Static fallback (mobile / reduced motion) */
-      .deck-outer.deck-static { height: auto; }
-      .deck-outer.deck-static .deck-sticky { position: relative; height: auto; overflow: visible; padding: 4.5rem 0; }
-      .deck-outer.deck-static .deck-container { grid-template-columns: 1fr; gap: 40px; }
-      .deck-outer.deck-static .deck-tracklist, .deck-outer.deck-static .deck-progress { display: none; }
-      .deck-outer.deck-static .deck-stage { height: auto; flex-direction: column; gap: 30px; }
-      .deck-outer.deck-static .deck-card { position: relative; height: auto; width: min(78vw, 340px); opacity: 0; transform: translateY(36px); transition: opacity .6s ease, transform .6s ease; }
-      .deck-outer.deck-static .deck-card.visible { opacity: 1; transform: none; }
-      @media (max-width: 900px) { .deck-container { grid-template-columns: 1fr; } }
-      @media (prefers-reduced-motion: reduce) { .deck-outer.deck-static .deck-card { transition: none; opacity: 1; transform: none; } }
-      /* ── Serenity-style background (white + green) ── */
-      .serenity-bg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-      .serenity-bg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-      @keyframes seren-line-draw { 0% { stroke-dashoffset:1000; opacity:0; } 50% { opacity:0.6; } 100% { stroke-dashoffset:0; opacity:0.4; } }
-      .seren-line { stroke:rgba(34,197,94,0.6); stroke-width:1; opacity:0; stroke-dasharray:6 4; stroke-dashoffset:1000; animation:seren-line-draw 1.2s ease-out forwards; }
-      .seren-dot { fill:#22c55e; opacity:0; animation:dsh-pulse-glow 2s ease-in-out infinite; }
-      .seren-corner { position:absolute; width:40px; height:40px; border:1px solid rgba(34,197,94,0.3); pointer-events:none; }
-      .seren-corner .seren-corner-dot { position:absolute; width:6px; height:6px; background:#22c55e; opacity:0.45; border-radius:50%; }
-      .seren-float { position:absolute; width:3px; height:3px; background:#22c55e; border-radius:50%; opacity:0; animation:dsh-float 3s ease-in-out infinite; }
-    </style>
-    <section class="deck-outer" id="deck-section">
-      <div class="deck-sticky">
-        <div class="deck-container">
-          <div class="deck-copy">
-            <span class="mono-label">Inside the App</span>
-            <h2>Everything you need <span class="deck-accent">to practise smarter.</span></h2>
-            <p>Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab. All in one app.</p>
-            <ul class="deck-tracklist" id="deck-tracklist">
-              <li>Short Game Handicap</li>
-              <li>Practice Hub</li>
-              <li>Challenges</li>
-              <li>Stats</li>
-              <li>Rounds</li>
-              <li>Sim Lab</li>
-            </ul>
-            <div class="deck-progress">
-              <span class="deck-counter"><span id="deck-num">01</span> <span class="deck-total">/ 06</span></span>
-              <div class="deck-bar"><div class="deck-bar-fill" id="deck-bar-fill"></div></div>
-            </div>
+    <!-- ========== INSIDE THE APP (the reel) ========== -->
+    <section class="sz-reel" id="deck-section" aria-label="Inside the Scoring Zone app" aria-roledescription="carousel">
+      <div class="container sz-reel-grid">
+        <div class="sz-reel-fade" aria-hidden="true"></div>
+        <div class="sz-reel-copy">
+          <span class="mono-label">Inside the App</span>
+          <h2>Everything you need <span class="sz-reel-accent">to practise smarter.</span></h2>
+          <p class="sz-reel-lede">Scored Drills, Pressure Tests, Real Stats, Elite Mode and Sim Lab. All in one app.</p>
+          <ul class="sz-reel-nav" id="reel-nav" role="tablist" aria-label="Choose an app screen">
+            <li class="is-current"><button type="button" role="tab" aria-selected="true" aria-controls="reel-slide-1" id="reel-tab-1">Short Game Handicap</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-2" id="reel-tab-2">Practice Hub</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-3" id="reel-tab-3">Next Up</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-4" id="reel-tab-4">Challenges</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-5" id="reel-tab-5">Stats</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-6" id="reel-tab-6">Rounds</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-7" id="reel-tab-7">Putting Test</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-8" id="reel-tab-8">Sim Lab</button></li>
+            <li><button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="reel-slide-9" id="reel-tab-9">Practice Assistant</button></li>
+          </ul>
+          <div class="sz-reel-meter">
+            <span class="sz-reel-count"><span class="sr-only">Screen </span><span id="reel-count">01</span> <span>/ 09</span></span>
+            <div class="sz-reel-track"><div class="sz-reel-fill" id="reel-fill"></div></div>
           </div>
-          <div class="deck-stage" id="deck-stage">
-            <div class="deck-card"><img src="app-screens/appstore-lower-short-game-handicap.webp" alt="Scoring Zone practice hub showing short game handicap dial" width="860" height="1864" loading="lazy" decoding="async"></div>
-            <div class="deck-card"><img src="app-screens/appstore-practice-hub-handicap.webp" alt="Calculate and improve your short game handicap in the practice hub" width="860" height="1864" loading="lazy" decoding="async"></div>
-            <div class="deck-card"><img src="app-screens/appstore-chipping-challenges.webp" alt="Over 35 performance based chipping and putting challenges" width="860" height="1864" loading="lazy" decoding="async"></div>
-            <div class="deck-card"><img src="app-screens/appstore-stats-strokes-gained.webp" alt="Track short game and round stats with strokes gained" width="860" height="1864" loading="lazy" decoding="async"></div>
-            <div class="deck-card"><img src="app-screens/appstore-record-rounds.webp" alt="Record your rounds on any golf course" width="860" height="1864" loading="lazy" decoding="async"></div>
-            <div class="deck-card"><img src="app-screens/appstore-sim-lab.webp" alt="Practice indoors with Sim Lab drills" width="860" height="1864" loading="lazy" decoding="async"></div>
-          </div>
+        </div>
+
+        <div class="sz-reel-stage">
+          <ul class="sz-reel-rail" id="reel-rail" aria-live="off">
+            <li class="is-active" id="reel-slide-1" role="tabpanel" aria-labelledby="reel-tab-1"><img src="app-screens/1.0.11/sz-1011-home.webp" alt="Scoring Zone home screen showing a 2.5 short game handicap over a sunset fairway" width="823" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-2" role="tabpanel" aria-labelledby="reel-tab-2"><img src="app-screens/1.0.11/sz-1011-hub.webp" alt="Practice hub dial reading a 2.5 short game handicap, 12.5 strokes under benchmark" width="811" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-3" role="tabpanel" aria-labelledby="reel-tab-3"><img src="app-screens/1.0.11/sz-1011-nextup.webp" alt="Next Up screen recommending the Ultimate Shortgame Test, a 65 shot assessment" width="827" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-4" role="tabpanel" aria-labelledby="reel-tab-4"><img src="app-screens/1.0.11/sz-1011-challenges.webp" alt="Chipping challenge list with XP rewards and a target score beside every drill" width="811" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-5" role="tabpanel" aria-labelledby="reel-tab-5"><img src="app-screens/1.0.11/sz-1011-stats.webp" alt="Stats screen breaking strokes gained down by category across the last nine rounds" width="830" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-6" role="tabpanel" aria-labelledby="reel-tab-6"><img src="app-screens/1.0.11/sz-1011-rounds.webp" alt="Hole by hole scorecard entry with approach result, putts and first putt distance" width="802" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-7" role="tabpanel" aria-labelledby="reel-tab-7"><img src="app-screens/1.0.11/sz-1011-putting.webp" alt="Ultimate Putting Test intro with short, medium and long putt sections" width="808" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-8" role="tabpanel" aria-labelledby="reel-tab-8"><img src="app-screens/1.0.11/sz-1011-sim.webp" alt="Sim Lab simulator tests including the Dial In 20 distance control test" width="812" height="1700" loading="lazy" decoding="async"></li>
+            <li id="reel-slide-9" role="tabpanel" aria-labelledby="reel-tab-9"><img src="app-screens/1.0.11/sz-1011-assist.webp" alt="Practice Assistant showing structured practice plans and the wedge clock system" width="818" height="1700" loading="lazy" decoding="async"></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1334,110 +1290,256 @@
     })();
     </script>
 
-    <!-- Deck scrolling reveal -->
+    <!-- Inside the App: the reel advances itself, forever -->
     <script>
     (function () {
-      var outer = document.getElementById('deck-section');
-      var stage = document.getElementById('deck-stage');
-      if (!outer || !stage) return;
-      var cards = Array.prototype.slice.call(stage.querySelectorAll('.deck-card'));
-      var tracks = Array.prototype.slice.call(document.querySelectorAll('#deck-tracklist li'));
-      var numEl = document.getElementById('deck-num');
-      var barFill = document.getElementById('deck-bar-fill');
-      var N = cards.length;
+      var section = document.getElementById('deck-section');
+      var rail = document.getElementById('reel-rail');
+      var nav = document.getElementById('reel-nav');
+      if (!section || !rail || !nav) return;
 
-      var baseRot = [-2.5, 2, -1.5, 2.5, -2, 1.5, -2.5, 0];
-      var flyDir = [-1, 1, -1, 1, -1, 1, -1, 1];
+      var real = Array.prototype.slice.call(rail.children);
+      var navItems = Array.prototype.slice.call(nav.children);
+      var tabs = navItems.map(function (li) { return li.firstElementChild; });
+      var countEl = document.getElementById('reel-count');
+      var fillEl = document.getElementById('reel-fill');
+      var N = real.length;
+      var DWELL = 3200;
+      var GLIDE = 900;
 
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-      var small = window.matchMedia('(max-width: 900px)');
-      var staticMode = null;
-      var ticking = false;
-      var io = null;
+      var pos = 0;
+      var timer = null;
+      var wrapTimer = null;
+      var startedAt = 0;
+      var remaining = DWELL;
+      var paused = { focus: false, hidden: false, offscreen: true, drag: false };
 
-      function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
-      function easeIn(t) { return t * t * (0.6 + 0.4 * t); }
+      section.classList.add('is-live');
 
-      function renderScrub() {
-        var rect = outer.getBoundingClientRect();
-        var total = rect.height - window.innerHeight;
-        var p = clamp(-rect.top / total, 0, 1);
-        var s = 1 / N;
-        var idx = clamp(Math.floor(p / s), 0, N - 1);
+      // A second copy of the strip sits to the right, so the reel can keep running
+      // forward past the last screen and be silently rewound onto the original set.
+      real.forEach(function (li) {
+        var clone = li.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.removeAttribute('role');
+        clone.removeAttribute('aria-labelledby');
+        clone.setAttribute('aria-hidden', 'true');
+        clone.firstElementChild.setAttribute('alt', '');
+        rail.appendChild(clone);
+      });
+      var slides = Array.prototype.slice.call(rail.children);
 
-        for (var i = 0; i < N; i++) {
-          var card = cards[i];
-          var t = clamp((p - i * s) / s, 0, 1);
-          if (i < N - 1 && t > 0) {
-            var e = easeIn(t);
-            card.style.transform = 'translateY(' + (-130 * e) + 'vh) rotate(' + (baseRot[i] + 22 * e * flyDir[i]) + 'deg)';
-            card.style.opacity = t > 0.82 ? String(1 - (t - 0.82) / 0.18) : '1';
-            card.style.filter = 'none';
-            card.style.zIndex = String(N + 2);
-            card.style.visibility = t >= 1 ? 'hidden' : 'visible';
-          } else {
-            var d = i - idx;
-            var dv = Math.min(d, 4);
-            card.style.transform = 'translateY(' + (dv * 17) + 'px) scale(' + (1 - dv * 0.05) + ') rotate(' + baseRot[i] + 'deg)';
-            card.style.opacity = d > 3 ? '0' : '1';
-            card.style.filter = 'brightness(' + (1 - dv * 0.09) + ')';
-            card.style.zIndex = String(N - i);
-            card.style.visibility = 'visible';
-          }
+      // Hovering is read two ways, because neither is reliable alone: enter/leave pairs
+      // get missed when the strip glides out from under a stationary cursor, and :hover
+      // can lag a frame behind. Either one saying "pointer is here" stops the reel.
+      var hoverLatch = false;
+      var canHover = window.matchMedia('(hover: hover)');
+      function hovering() {
+        // Touch screens can leave :hover stuck on the last thing tapped, which would
+        // stall the reel for good. Only a real pointer gets to hold it.
+        if (!canHover.matches) return false;
+        try { return section.matches(':hover'); } catch (e) { return false; }
+      }
+      function isPaused() {
+        return reduced.matches || hoverLatch || hovering() || paused.focus ||
+               paused.hidden || paused.offscreen || paused.drag;
+      }
+
+      // The active screen sits in the gate at the left of the stage; the rest trail off right.
+      function place() {
+        rail.style.transform = 'translate3d(' + (-slides[pos].offsetLeft) + 'px, 0, 0)';
+      }
+
+      function paint(animate) {
+        var current = ((pos % N) + N) % N;
+        // A rewind must land with no glide and no cross-fade, or it reads as a flash
+        if (animate === false) { section.classList.add('is-instant'); }
+        slides.forEach(function (li, i) {
+          var d = i - pos;
+          li.classList.toggle('is-active', i === pos);
+          if (reduced.matches) { li.style.opacity = ''; li.firstElementChild.style.filter = ''; return; }
+          // Screens that have passed the gate are gone; the ones still to come recede.
+          li.style.opacity = d < 0 ? 0 : d === 0 ? 1 : Math.max(0.18, 0.62 - (d - 1) * 0.12);
+          li.firstElementChild.style.filter = d <= 0 ? '' : 'blur(' + Math.min(4, 0.8 + d * 0.7) + 'px) saturate(0.78)';
+        });
+        navItems.forEach(function (li, i) { li.classList.toggle('is-current', i === current); });
+        tabs.forEach(function (btn, i) {
+          btn.setAttribute('aria-selected', i === current ? 'true' : 'false');
+          if (i === current) { btn.removeAttribute('tabindex'); } else { btn.setAttribute('tabindex', '-1'); }
+        });
+        countEl.textContent = ('0' + (current + 1)).slice(-2);
+        place();
+        if (animate === false) { void rail.offsetWidth; section.classList.remove('is-instant'); }
+        // On the chip strip the current label can sit off-screen, so bring it back
+        if (nav.scrollWidth > nav.clientWidth + 4) {
+          var b = tabs[current], want = b.offsetLeft - (nav.clientWidth - b.offsetWidth) / 2;
+          nav.scrollTo({ left: Math.max(0, want), behavior: reduced.matches ? 'auto' : 'smooth' });
         }
-
-        numEl.textContent = ('0' + (idx + 1)).slice(-2);
-        barFill.style.transform = 'scaleX(' + p + ')';
-        tracks.forEach(function (li, i) {
-          li.classList.toggle('active', i === idx);
-          li.classList.toggle('done', i < idx);
-        });
       }
 
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () { renderScrub(); ticking = false; });
+      // Once the glide onto a clone has finished, drop back onto the original set.
+      // Clone k is pixel-identical to screen k, so the rewind is invisible.
+      function scheduleRewind() {
+        if (wrapTimer) { clearTimeout(wrapTimer); wrapTimer = null; }
+        if (pos < N) return;
+        wrapTimer = setTimeout(function () {
+          wrapTimer = null;
+          pos -= N;
+          paint(false);
+        }, GLIDE + 60);
       }
 
-      function enableScrub() {
-        outer.classList.remove('deck-static');
-        if (io) { io.disconnect(); io = null; }
-        cards.forEach(function (c) { c.classList.remove('visible'); });
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
-        renderScrub();
+      function armFill(ms) {
+        if (reduced.matches) return;
+        fillEl.style.transition = 'none';
+        fillEl.style.transform = 'scaleX(' + (1 - ms / DWELL) + ')';
+        void fillEl.offsetWidth;
+        fillEl.style.transition = 'transform ' + ms + 'ms linear';
+        fillEl.style.transform = 'scaleX(1)';
       }
 
-      function enableStatic() {
-        window.removeEventListener('scroll', onScroll);
-        window.removeEventListener('resize', onScroll);
-        outer.classList.add('deck-static');
-        cards.forEach(function (c) {
-          c.style.transform = ''; c.style.opacity = ''; c.style.filter = '';
-          c.style.zIndex = ''; c.style.visibility = '';
-        });
-        io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
-          });
-        }, { threshold: 0.12 });
-        cards.forEach(function (c) { io.observe(c); });
+      // Hold the bar where the current dwell actually stands, not where it was painted
+      function freezeFill() {
+        fillEl.style.transition = 'none';
+        fillEl.style.transform = 'scaleX(' + (1 - remaining / DWELL) + ')';
       }
 
-      function applyMode() {
-        var wantStatic = reduced.matches || small.matches;
-        if (wantStatic === staticMode) return;
-        staticMode = wantStatic;
-        if (wantStatic) { enableStatic(); } else { enableScrub(); }
+      function stop() {
+        if (timer) { clearTimeout(timer); timer = null; }
       }
 
-      function onMq(mq, fn) {
-        if (mq.addEventListener) { mq.addEventListener('change', fn); } else { mq.addListener(fn); }
+      function run() {
+        stop();
+        if (isPaused()) { freezeFill(); return; }
+        startedAt = Date.now();
+        armFill(remaining);
+        timer = setTimeout(function () {
+          timer = null;
+          // Backstop: never advance out from under a pointer, whatever the events said
+          if (isPaused()) { remaining = DWELL; freezeFill(); return; }
+          go(pos + 1);
+        }, remaining);
       }
-      onMq(reduced, applyMode);
-      onMq(small, applyMode);
-      applyMode();
+
+      // Start or stop to match the current state, without restarting a healthy dwell
+      function sync() {
+        if (isPaused()) { hold(); } else if (!timer) { run(); }
+      }
+
+      function hold() {
+        if (!timer) return;
+        remaining = Math.max(400, remaining - (Date.now() - startedAt));
+        stop();
+        freezeFill();
+      }
+
+      function go(next, fromUser) {
+        if (wrapTimer) { clearTimeout(wrapTimer); wrapTimer = null; }
+        // Stepping back off the front: hop silently onto the identical clone first,
+        // so the reel glides backwards instead of snapping across the whole strip.
+        if (next < 0) { pos += N; paint(false); next = pos - 1; }
+        pos = next;
+        remaining = DWELL;
+        paint(true);
+        scheduleRewind();
+        if (fromUser) { tabs[((pos % N) + N) % N].focus(); }
+        run();
+      }
+
+      // Jump to a screen by the shorter route, forwards or back
+      function goTo(target, fromUser) {
+        var here = ((pos % N) + N) % N;
+        if (target === here) return;
+        var fwd = (target - here + N) % N;
+        go(fwd <= N / 2 ? pos + fwd : pos - (N - fwd), fromUser);
+      }
+
+      paint(false);
+
+      tabs.forEach(function (btn, i) {
+        btn.addEventListener('click', function () { goTo(i); });
+      });
+      nav.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
+              : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+        if (d) { e.preventDefault(); go(pos + d, true); return; }
+        if (e.key === 'Home') { e.preventDefault(); goTo(0, true); }
+        if (e.key === 'End') { e.preventDefault(); goTo(N - 1, true); }
+      });
+
+      // Pause whenever the visitor is reading rather than watching
+      function pauseOn(key, el, onEvt, offEvt) {
+        el.addEventListener(onEvt, function () { paused[key] = true; hold(); });
+        el.addEventListener(offEvt, function () { paused[key] = false; run(); });
+      }
+      pauseOn('focus', section, 'focusin', 'focusout');
+
+      function setHover(on) {
+        if (hoverLatch === on) return;
+        hoverLatch = on;
+        sync();
+      }
+      // Mouse only: a tap must not latch the reel paused on a touch screen
+      ['pointerenter', 'pointerover'].forEach(function (evt) {
+        section.addEventListener(evt, function (e) {
+          if (e.pointerType === 'mouse') { setHover(true); }
+        }, { passive: true });
+      });
+      section.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'mouse') { setHover(false); }
+      }, { passive: true });
+      // Watchdog: any mouse movement re-reads the truth, so the latch cannot stick
+      document.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse') return;
+        setHover(section.contains(e.target) || hovering());
+      }, { passive: true });
+      document.addEventListener('visibilitychange', function () {
+        paused.hidden = document.hidden;
+        if (document.hidden) { hold(); } else { run(); }
+      });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          paused.offscreen = !entries[0].isIntersecting;
+          if (paused.offscreen) { hold(); } else { run(); }
+        }, { threshold: 0.2 }).observe(section);
+      } else {
+        paused.offscreen = false;
+        run();
+      }
+
+      // Drag and swipe the rail
+      var dragX = 0, baseX = 0, dragging = false;
+      rail.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        dragging = true;
+        dragX = e.clientX;
+        baseX = -slides[pos].offsetLeft;
+        paused.drag = true;
+        hold();
+        section.classList.add('is-drag');
+        rail.setPointerCapture(e.pointerId);
+      });
+      rail.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        rail.style.transform = 'translate3d(' + (baseX + (e.clientX - dragX)) + 'px, 0, 0)';
+      });
+      function endDrag(e) {
+        if (!dragging) return;
+        dragging = false;
+        section.classList.remove('is-drag');
+        var moved = e.clientX - dragX;
+        paused.drag = false;
+        go(Math.abs(moved) > 48 ? pos + (moved < 0 ? 1 : -1) : pos);
+      }
+      rail.addEventListener('pointerup', endDrag);
+      rail.addEventListener('pointercancel', endDrag);
+
+      window.addEventListener('resize', function () { paint(false); });
+      if (reduced.addEventListener) {
+        reduced.addEventListener('change', function () { remaining = DWELL; paint(false); run(); });
+      }
     })();
     </script>
 
