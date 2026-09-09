@@ -907,16 +907,16 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 /* Card deck: the front card folds under the stack, right to left */
 .tb-deck {
   position: relative;
-  right: 48px;                    /* nudged left of centre in its column */
+  right: 0;
   width: max-content;
   margin: 0 auto;
-  padding: 24px 24px 44px 88px;   /* room for the cards that have folded under to the left */
+  padding: 24px;                  /* the fanned cards are transformed, so they overflow freely */
 }
 /* Baseline (no JS, small screens, reduced motion): a plain readable list */
 .tb-deck-inner {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 /* Deck mode: every card shares one cell so they stack and fold */
 .tb-deck.is-deck .tb-deck-inner {
@@ -936,8 +936,8 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   background: rgba(34, 197, 94, 0.05);
   pointer-events: none;
 }
-.tb-deck::before { left: 18px; bottom: 4px; }
-.tb-deck::after { right: 0; top: 0; }
+.tb-deck::before { left: -104px; bottom: -34px; }
+.tb-deck::after { right: -104px; top: -34px; }
 
 .tb-card {
   position: relative;
@@ -952,10 +952,11 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 }
 /* Scroll drives the transform directly, so no CSS transition to lag behind it */
 .tb-deck.is-deck .tb-card { will-change: transform, opacity; }
-.tb-deck.is-deck .tb-card:nth-child(1) { z-index: 1; }
-.tb-deck.is-deck .tb-card:nth-child(2) { z-index: 2; }
-.tb-deck.is-deck .tb-card:nth-child(3) { z-index: 3; }
-.tb-deck.is-deck .tb-card:nth-child(4) { z-index: 4; }
+/* Pre-JS order only — update() restacks these by distance from the front */
+.tb-deck.is-deck .tb-card:nth-child(1) { z-index: 4; }
+.tb-deck.is-deck .tb-card:nth-child(2) { z-index: 3; }
+.tb-deck.is-deck .tb-card:nth-child(3) { z-index: 2; }
+.tb-deck.is-deck .tb-card:nth-child(4) { z-index: 1; }
 
 .tb-stars { display: flex; gap: 4px; margin-bottom: 14px; }
 .tb-stars svg { width: 16px; height: 16px; display: block; }
@@ -1039,7 +1040,7 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
 .tb-dots button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
 
 /* Pinned span: the deck holds still while this scrolls past, folding a card per screen */
-.tb-scroll-span.is-pinned { height: 260vh; }
+.tb-scroll-span.is-pinned { height: 205vh; }
 .tb-scroll-span.is-pinned .tb-wrap {
   position: sticky;
   top: 0;
@@ -1056,6 +1057,31 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   .tb-dots { display: none; }   /* the list shows every card, so there is nothing to page through */
   .tb-card { width: 265px; }
 }
+
+/* Light band: the section sits on white, the cards stay dark */
+#testimonials-b {
+  border-top: 1px solid rgba(6, 11, 8, 0.1);
+  overflow-x: clip;   /* the fan overflows its column; clip (not hidden) keeps the sticky pin working */
+}
+#testimonials-b .tb-pill {
+  border-color: rgba(6, 11, 8, 0.14);
+  background: rgba(6, 11, 8, 0.03);
+  color: #4a564f;
+}
+#testimonials-b .tb-desc { color: #4a564f; }
+#testimonials-b .tb-dots button { background: rgba(6, 11, 8, 0.2); }
+#testimonials-b .tb-dots button[aria-current="true"] { background: var(--green); }
+#testimonials-b .tb-ctas .btn-outline {
+  background: #ffffff;
+  color: #060b08;
+  border-color: rgba(6, 11, 8, 0.2);
+}
+#testimonials-b .tb-ctas .btn-outline:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+#testimonials-b .tb-deck::before,
+#testimonials-b .tb-deck::after { background: rgba(34, 197, 94, 0.1); }
 
 /* ── Slimmed signup card ────────────────────────────────── */
 .hp-signup-card {

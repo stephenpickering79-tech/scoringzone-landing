@@ -371,14 +371,14 @@
     </section>
 
     <!-- ========== SOCIAL PROOF / TESTIMONIALS ========== -->
-    <section class="section" id="testimonials-b" style="background:#060b08; position:relative; z-index:1;">
+    <section class="section" id="testimonials-b" style="background:#ffffff; position:relative; z-index:1;">
         <div class="container">
             <div class="tb-scroll-span">
             <div class="tb-wrap">
                 <!-- Left rail (sticky) -->
                 <div class="tb-rail reveal">
                     <span class="tb-pill"><span class="tb-dot"></span>Real Golfers, Real Results</span>
-                    <h2 class="display-lg" style="color:var(--text);">Loved by Golfers &amp; Coaches</h2>
+                    <h2 class="display-lg" style="color:#060b08;">Loved by Golfers &amp; Coaches</h2>
                     <p class="tb-desc">From single-figure players to first-season beginners &mdash; and the coaches who train them.</p>
                     <div class="tb-dots" role="tablist" aria-label="Choose a testimonial">
                         <button type="button" aria-current="true" aria-label="Show testimonial 1"></button>
@@ -479,31 +479,29 @@
       // Keyframes by offset from the front of the deck.
       //  0 = front, negative = folded under to the left, positive = still off-stage right
       var KEY = {
-        '1':  { x:  64, y: -17, s: 0.96, o: 0 },   // waiting, off to the right
-        '0':  { x:   0, y:   0, s: 1.00, o: 1 },   // front
-        '-1': { x: -41, y:  19, s: 0.94, o: 0.5 }, // folded under once
-        '-2': { x: -77, y:  36, s: 0.88, o: 0 }    // folded away
+        '2':  { x: 148, y: -60, s: 0.88, o: 0.78 }, // third in line, up and right
+        '1':  { x:  78, y: -30, s: 0.94, o: 0.92 }, // next up
+        '0':  { x:   0, y:   0, s: 1.00, o: 1 },    // front
+        '-1': { x: -78, y:  30, s: 0.94, o: 0.92 }, // folded under once
+        '-2': { x: -148, y: 60, s: 0.88, o: 0.78 }, // folded under twice
+        '-3': { x: -200, y: 82, s: 0.84, o: 0 }     // folded away
       };
 
       function lerp(a, b, t) { return a + (b - a) * t; }
 
       function frame(offset) {
         var lo = Math.floor(offset), hi = lo + 1, t = offset - lo;
-        if (lo < -2) return KEY['-2'];
-        if (lo >= 1) return KEY['1'];
+        if (lo < -3) return KEY['-3'];
+        if (lo >= 2) return KEY['2'];
         var a = KEY[String(lo)], b = KEY[String(hi)];
         return { x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t), s: lerp(a.s, b.s, t), o: lerp(a.o, b.o, t) };
       }
 
-      function easeInOut(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
-
-      // Scroll progress -> deck position, with a dwell at each card so it can be read
+      // Scroll progress -> deck position. Linear on purpose: an ease or a dwell
+      // per card drops the velocity to zero every time one reaches the front,
+      // which reads as the fan stopping. Constant rate keeps the sweep smooth.
       function deckPos(p) {
-        var raw = p * (n - 1);
-        var base = Math.min(Math.floor(raw), n - 2);
-        var f = raw - base;
-        var moved = Math.min(Math.max((f - 0.25) / 0.6, 0), 1);
-        return base + easeInOut(moved);
+        return p * (n - 1);
       }
 
       var isDeck = false;
@@ -527,6 +525,8 @@
           var f = frame(i - t);
           card.style.transform = 'translate(' + f.x.toFixed(2) + 'px,' + f.y.toFixed(2) + 'px) scale(' + f.s.toFixed(3) + ')';
           card.style.opacity = f.o.toFixed(3);
+          // Nearest the front paints on top, so the fan reads front-to-back
+          card.style.zIndex = String(100 - Math.round(Math.abs(i - t) * 10));
         });
 
         var near = Math.round(t);
