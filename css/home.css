@@ -1812,6 +1812,7 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   .pf-device--b { width: 66%; margin-top: -12%; }
 }
 
+
 /* Narrow band: the 26px slant becomes ~half a panel, so ease it to 14px. */
 @media (max-width: 700px) {
   .pf-shot--1 {

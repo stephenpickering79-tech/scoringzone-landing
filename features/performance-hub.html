@@ -634,33 +634,29 @@
     }
 
     /* ── Screenshot placeholder ── */
+    /* The screenshots now carry their own device frame, so this container no
+       longer draws one — a border, dark fill and 9:19 box behind a framed
+       phone read as a second, mismatched outline around it. */
     .screenshot {
       width: 100%;
       max-width: 224px;
-      aspect-ratio: 9 / 19;
-      border-radius: 28px;
-      border: 2px solid rgba(155, 111, 232, 0.25);
-      background: #0a0a0f;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
       color: var(--text-muted);
       font-size: 0.85rem;
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(155, 111, 232, 0.08), 0 20px 60px rgba(0, 0, 0, 0.4);
+      filter: drop-shadow(0 20px 46px rgba(0, 0, 0, 0.45));
     }
 
     .screenshot img {
+      display: block;
       width: 100%;
       height: auto;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 26px;
+      /* in flow now: with no aspect-ratio on the box, an absolute image would
+         leave the container with no height at all */
+      position: relative;
     }
 
     .screenshot::before {
@@ -692,7 +688,6 @@
 
     .screenshot-inline {
       max-width: 240px;
-      aspect-ratio: 9 / 19;
     }
 
     .screenshot-row {
@@ -1475,7 +1470,7 @@
         </div>
         <div class="hero-screenshot">
           <div class="screenshot">
-            <img src="../golf images/scoring-zone-3-screens.webp" alt="Scoring Zone Performance Hub screens showing Short Game Handicap, scored drill breakdown, and performance report" width="1200" height="742" fetchpriority="high" decoding="async">
+            <img src="../app-screens/detail/hub-phone.webp" alt="The Scoring Zone Performance Hub showing a Short Game Handicap of 2.5, 12.5 strokes better than the benchmark" width="724" height="1517" fetchpriority="high" decoding="async">
           </div>
         </div>
       </div>
@@ -1582,7 +1577,7 @@
 
         <div class="reveal reveal-delay-4 screenshot-row">
           <div class="screenshot screenshot-inline">
-            <img loading="lazy" decoding="async" src="images/nextup-1011.webp" width="605" height="1319" alt="The Scoring Zone Next Up screen recommending the Ultimate Shortgame Test, with the Ultimate Putting Test scoring plus 1.9">
+            <img loading="lazy" decoding="async" src="../app-screens/detail/hub-phone2.webp" width="667" height="1371" alt="The Scoring Zone Next Up screen recommending the Ultimate Shortgame Test, with the Ultimate Putting Test scoring plus 1.9">
           </div>
         </div>
       </div>
