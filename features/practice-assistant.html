@@ -1321,6 +1321,47 @@
       height: 28px;
     }
   </style>
+  <!-- Nav download pair. These classes live in css/shared.css, which this page does
+       not load, so without them the Android button fell back to a bare blue link. -->
+  <style>
+    .nav-cta-group {
+      display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+      align-items: center; gap: 8px; flex: none;
+    }
+    .nav-cta-group .btn-sm { padding: 8px 14px; min-height: 44px; gap: 7px; }
+    .nav-btn-android {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 7px; padding: 8px 15px; min-height: 44px;
+      border-radius: 10px;
+      border: 1px solid var(--border-bright, rgba(255,255,255,0.13));
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.82rem;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .nav-btn-android:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(34,197,94,0.55);
+      color: var(--green-light, #4ade80);
+    }
+    .nav-btn-android svg { flex: none; }
+    /* "iOS" must survive an uppercase transform as iOS, not IOS. */
+    .nocase { text-transform: none; }
+    @media (max-width: 1100px) {
+      .nav-cta-group { gap: 6px; }
+      .nav-cta-group .btn-sm, .nav-btn-android { padding: 8px 10px; font-size: 0.78rem; }
+    }
+    @media (max-width: 1000px) {
+      /* The nav needs ~1000px to seat the links and both platform buttons; below
+         that it folds into the mobile menu, which carries both download links. */
+      .nav-links { display: none; }
+      .nav-cta-group { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+  </style>
 </head>
 <body>
   <div class="noise"></div>
@@ -1390,6 +1431,7 @@
     <a href="https://www.scoringzone.net/features/elite-mode.html">Elite Mode</a>
     <a href="https://www.scoringzone.net/blog/">Blog</a>
     <a href="https://apps.apple.com/us/app/scoring-zone-golf/id6769477447?pt=128906825&amp;ct=Scoring%20Zone%20Website&amp;mt=8" target="_blank" rel="noopener" style="color: var(--green);">Get the App</a>
+    <a href="https://scoringzone.app/?utm_source=scoringzone.net&amp;utm_medium=mobile_menu&amp;utm_campaign=app_download&amp;utm_content=android" target="_blank" rel="noopener" style="color: var(--green);" data-cta="mobile_android">Install for Android</a>
   </div>
 
   <div class="page-wrapper">

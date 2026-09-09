@@ -201,7 +201,7 @@
     <main id="main">
 
     <!-- ========== HERO ========== -->
-    <section class="hero hp-hero hp-hero-c">
+    <section class="hero hp-hero hp-hero-c" id="hero">
         <div class="hc-bg" aria-hidden="true">
             <!-- Pebble Beach video plays once, then the course slideshow takes over.
                  No autoplay/preload: the 1.9MB file used to be fetched during parse and starved
@@ -223,17 +223,7 @@
             <div class="hero-content">
 
                 <div class="hc-col-copy">
-                    <!-- Real: 5.0 average on the App Store, verified via the iTunes lookup API -->
-                    <span class="hc-rating reveal">
-                        <span class="hc-rating-stars" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        </span>
-                        <span class="hc-rating-copy"><b>5.0</b> on the App&nbsp;Store</span>
-                    </span>
+                    <span class="hc-offer reveal">7-day free trial</span>
 
                     <h1 class="display-xl reveal">Pressure Test Your <span class="hero-accent">Short Game</span></h1>
 
@@ -244,12 +234,6 @@
                         <li>Measure</li>
                         <li>Improve</li>
                     </ol>
-
-                    <ul class="hero-bullets reveal">
-                        <li>Turn Practice Into Scoring</li>
-                        <li>Perform Better Under Pressure</li>
-                        <li>6 Skill Areas</li>
-                    </ul>
 
                     <div class="hc-actions reveal">
                         <div class="hc-actions-row">
@@ -262,7 +246,17 @@
                                 Install for Android
                             </a>
                         </div>
-                        <span class="hc-offer">7-day free trial</span>
+                        <!-- Real: 5.0 average on the App Store, verified via the iTunes lookup API -->
+                        <span class="hc-rating">
+                            <span class="hc-rating-stars" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="#e0b53c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
+                            <span class="hc-rating-copy"><b>5.0</b> on the App&nbsp;Store</span>
+                        </span>
                     </div>
 
                     <!-- Proof strip: a hairline, then the two numbers that carry the
@@ -317,6 +311,50 @@
                     <span class="hc-callout" data-place="br" id="hc-callout-br"></span>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PERFORMANCE HUB CHAPTER (white break) ==========
+         Wide photo band with zoomed-in slices of the real app hanging off its
+         bottom edge, so the product detail is legible without a phone frame. -->
+    <section class="section pf-chapter" id="performance-hub">
+        <div class="container">
+            <div class="pf-band reveal">
+                <img src="golf images/celebration-band.webp" alt="A golfer celebrating a putt with arms raised" width="1024" height="360" loading="lazy" decoding="async">
+            </div>
+
+            <div class="pf-grid">
+                <div class="pf-stack reveal">
+                    <div class="pf-device pf-device--a">
+                        <img class="pf-phone" src="app-screens/detail/hub-phone.webp"
+                             alt="The Scoring Zone Performance Hub showing a Short Game Handicap of 2.5"
+                             width="724" height="1517" loading="lazy" decoding="async">
+                        <img class="pf-zoom pf-zoom--a" src="app-screens/detail/hub-zoom-week.webp"
+                             alt="This week's work: try the Putting Test to benchmark"
+                             width="628" height="174" loading="lazy" decoding="async">
+                    </div>
+                    <div class="pf-device pf-device--b">
+                        <img class="pf-phone" src="app-screens/detail/hub-phone2.webp"
+                             alt="The Next Up screen recommending the Ultimate Shortgame Test"
+                             width="667" height="1371" loading="lazy" decoding="async">
+                        <img class="pf-zoom pf-zoom--b" src="app-screens/detail/hub-zoom-row.webp"
+                             alt="Ultimate Putting Test, 30 putts, scoring plus 1.9"
+                             width="568" height="126" loading="lazy" decoding="async">
+                    </div>
+                </div>
+
+                <div class="pf-copy reveal">
+                    <span class="pf-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                            <circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/>
+                            <path d="M12 3.5V1.6M12 22.4v-1.9M3.5 12H1.6M22.4 12h-1.9"/>
+                        </svg>
+                    </span>
+                    <h2 class="pf-title">Know exactly where your short game stands</h2>
+                    <p class="pf-body">The Performance Hub turns practice into one number: your Short Game Handicap. Take the benchmark tests and every drill you score feeds a live picture of where you actually stand across chipping, pitching, bunkers and putting. It tells you what to work on next, and shows the strokes coming off your card.</p>
+                    <a href="features/performance-hub.html" class="pf-link">Read more</a>
+                </div>
             </div>
         </div>
     </section>

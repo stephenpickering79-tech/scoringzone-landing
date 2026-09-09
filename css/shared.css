@@ -2671,6 +2671,17 @@ body::after {
   .pricing-grid--two { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
 }
 
+/* ── Nav fold point ──
+   The nav's widest layout needs ~1000px to seat the logo, the links and both
+   platform buttons. Below that the Android button was pushed past the right edge
+   and clipped, so the nav folds into the mobile menu here rather than at 640. */
+@media (max-width: 1000px) {
+  .nav-links { display: none; }
+  .nav-inner .btn-primary.btn-sm { display: none; }
+  .nav-cta-group { display: none; }   /* both platform buttons live in the mobile menu */
+  .mobile-menu-btn { display: flex; }
+}
+
 @media (max-width: 640px) {
   .nav-links { display: none; }
   .nav-inner .btn-primary.btn-sm { display: none; }
