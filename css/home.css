@@ -1216,7 +1216,7 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   opacity: 0;
   transform: translateY(14px);
   pointer-events: none;
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 #drills .fc-slide.is-active {
   opacity: 1;

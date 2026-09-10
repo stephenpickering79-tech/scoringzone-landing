@@ -1390,16 +1390,19 @@ body::after {
   padding: 24px;
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform 0.2s var(--ease-out), border-color 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border);
   background: var(--bg-card);
   will-change: transform;
 }
 
-.bento-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 12px rgba(255,255,255,0.03);
-  border-color: var(--border-bright);
+/* Hover lifts are gated to real pointers: a touch screen fires :hover on tap and leaves the card raised. */
+@media (hover: hover) and (pointer: fine) {
+  .bento-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 12px rgba(255,255,255,0.03);
+    border-color: var(--border-bright);
+  }
 }
 
 .bento-item.bento-col-2 { grid-column: span 2; }
@@ -1575,14 +1578,16 @@ body::after {
   border-radius: 12px;
   padding: 22px 24px;
   position: relative;
-  transition: all 0.3s;
+  transition: transform 0.2s var(--ease-out), border-color 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
-.xp-card:hover {
-  border-color: var(--card-border-hover);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .xp-card:hover {
+    border-color: var(--card-border-hover);
+    transform: translateY(-2px);
+  }
 }
 
 .xp-card .bento-dots {
@@ -1675,12 +1680,14 @@ body::after {
   border-radius: 10px;
   padding: 16px 12px;
   text-align: center;
-  transition: all 0.3s;
+  transition: transform 0.2s var(--ease-out), border-color 0.3s ease;
 }
 
-.badge-item:hover {
-  border-color: var(--card-border-hover);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .badge-item:hover {
+    border-color: var(--card-border-hover);
+    transform: translateY(-2px);
+  }
 }
 
 .badge-emoji { font-size: 1.5rem; margin-bottom: 6px; }
@@ -1700,16 +1707,18 @@ body::after {
   padding: 28px 28px 36px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform 0.2s var(--ease-out), border-color 0.3s ease, box-shadow 0.3s ease;
   will-change: transform;
   display: flex;
   flex-direction: column;
 }
 
-.challenge-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-bright);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+@media (hover: hover) and (pointer: fine) {
+  .challenge-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-bright);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+  }
 }
 
 .challenge-card .bento-dots {
@@ -1918,9 +1927,11 @@ body::after {
   transition: transform 0.25s ease, color 0.25s ease;
 }
 
-.blog-index-row:hover .blog-index-arrow {
-  color: var(--green);
-  transform: translateX(4px);
+@media (hover: hover) and (pointer: fine) {
+  .blog-index-row:hover .blog-index-arrow {
+    color: var(--green);
+    transform: translateX(4px);
+  }
 }
 
 .blog-index-row:focus-visible {
@@ -2038,15 +2049,17 @@ body::after {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0,0,0,0.28), 0 1px 4px rgba(0,0,0,0.18);
-  transition: all 0.3s;
+  transition: transform 0.2s var(--ease-out), border-color 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
-.pricing-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--card-border-hover);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+@media (hover: hover) and (pointer: fine) {
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-border-hover);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
 }
 
 .pricing-card--pro {
@@ -2055,10 +2068,12 @@ body::after {
   transform: scale(1.03);
 }
 
-.pricing-card--pro:hover {
-  border-color: rgba(34, 197, 94, 0.4);
-  box-shadow: 0 0 40px rgba(34, 197, 94, 0.12), 0 12px 40px rgba(0,0,0,0.4);
-  transform: scale(1.03) translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .pricing-card--pro:hover {
+    border-color: rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.12), 0 12px 40px rgba(0,0,0,0.4);
+    transform: scale(1.03) translateY(-4px);
+  }
 }
 
 .pricing-card-bar {
@@ -2121,10 +2136,12 @@ body::after {
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 
-.pricing-ios-btn:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .pricing-ios-btn:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
 }
 
 .pricing-was {
@@ -2190,12 +2207,14 @@ body::after {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
-  transition: all 0.3s;
+  transition: transform 0.2s var(--ease-out), border-color 0.3s ease;
 }
 
-.testimonial-card:hover {
-  border-color: var(--card-border-hover);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .testimonial-card:hover {
+    border-color: var(--card-border-hover);
+    transform: translateY(-2px);
+  }
 }
 
 .testimonial-stars { display: flex; gap: 2px; margin-bottom: 14px; }
@@ -2630,16 +2649,18 @@ body::after {
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
-  transition: all 0.3s;
+  transition: transform 0.2s var(--ease-out), border-color 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
   color: var(--text);
   display: block;
 }
 
-.blog-card:hover {
-  border-color: var(--card-border-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+@media (hover: hover) and (pointer: fine) {
+  .blog-card:hover {
+    border-color: var(--card-border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
 }
 
 .blog-card img {
