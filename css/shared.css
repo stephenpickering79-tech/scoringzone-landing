@@ -312,9 +312,13 @@ body::after {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+  /* Anchored to the trigger above it, so it scales from the top edge, not from
+     its own centre. Material's 0.4,0,0.2,1 eases IN at the start, which delays
+     the first movement — the panel wants ease-out. */
+  transform-origin: top center;
+  transition: opacity 0.2s var(--ease-out),
               visibility 0.2s,
-              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+              transform 0.2s var(--ease-out);
   z-index: 200;
   box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
 }
@@ -504,10 +508,21 @@ body::after {
 .mobile-dropdown-items {
   display: none;
   padding-left: 16px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.18s var(--ease-out),
+              transform 0.18s var(--ease-out),
+              display 0.18s allow-discrete;
 }
 
 .mobile-dropdown-items.open {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@starting-style {
+  .mobile-dropdown-items.open { opacity: 0; transform: translateY(-4px); }
 }
 
 .mobile-dropdown-items a {
@@ -2558,9 +2573,31 @@ body::after {
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 24px;
+  /* allow-discrete lets `display` participate, so the panel can fade out
+     before it leaves the box tree. Browsers without it fall back to the
+     instant show/hide this used to do. */
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s var(--ease-out),
+              transform 0.2s var(--ease-out),
+              display 0.2s allow-discrete;
 }
 
-.mobile-menu.open { display: block; }
+.mobile-menu.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@starting-style {
+  .mobile-menu.open { opacity: 0; transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu { transform: none; transition: opacity 0.15s ease, display 0.15s allow-discrete; }
+  .mobile-menu.open { transform: none; }
+  @starting-style { .mobile-menu.open { transform: none; } }
+}
 
 .mobile-menu a {
   display: flex;
