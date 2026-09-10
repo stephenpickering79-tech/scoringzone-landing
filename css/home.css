@@ -1076,9 +1076,11 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
   .tb-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
   .tb-deck { padding: 0; margin: 0; width: auto; right: 0; }
   .tb-deck::before, .tb-deck::after { display: none; }
-  .tb-card { width: 100%; max-width: 380px; }
+  /* One width only. A second `.tb-card { width: 265px }` used to follow and
+     win, stranding every card in a 265px block against a 342px column with a
+     dead gutter down the right. */
+  .tb-card { width: 100%; max-width: 380px; margin: 0 auto; }
   .tb-dots { display: none; }   /* the list shows every card, so there is nothing to page through */
-  .tb-card { width: 265px; }
 }
 
 /* Light band: the section sits on white, the cards stay dark */
@@ -1685,7 +1687,11 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
                above the fold, product underneath, bullets last. */
             /* shared.css styles `.hero-content > div:first-child` at <=1024, which
                outranks a bare class — so these all carry the parent selector. */
-            .hp-hero-c .hero-content { display: flex; flex-direction: column; gap: 26px; }
+            /* `align-items` is the CROSS axis here, and .hero-content inherits
+               `end` from the two-column desktop rule — which in a column flex
+               pinned every child to the right edge. The <=1024 rule above only
+               sets `justify-items`, which a flex container ignores. */
+            .hp-hero-c .hero-content { display: flex; flex-direction: column; align-items: center; gap: 26px; }
             .hp-hero-c .hero-content > .hc-col-copy { display: contents; }
             .hp-hero-c .hc-offer   { order: 1; margin-bottom: 0; }
             .hp-hero-c h1          { order: 2; margin: 0; max-width: none; }
@@ -2267,4 +2273,247 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   .sz-reel.is-live .sz-reel-rail img { filter: saturate(0.8); }
   .sz-reel.is-live .sz-reel-rail li { opacity: 0.45; transform: none; }
   .sz-reel.is-live .sz-reel-rail li.is-active { opacity: 1; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PLATFORM GRID — compact, category-coloured
+   Same bento components as before, tightened, with each card carrying
+   its app category colour on the icon via --cat. Scoped to #features
+   so the shared .bento-* rules (professionals page, challenge cards)
+   are untouched.
+   ══════════════════════════════════════════════════════════════════ */
+
+#features .bento-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0;
+}
+
+#features .bento-item {
+  padding: 16px;
+  border-radius: var(--r-card);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+}
+#features .bento-item.bento-col-2 { grid-column: span 2; }
+#features .bento-glow { border-radius: var(--r-card); }
+#features .bento-inner { gap: 10px; }
+
+/* Category colour, one property per card */
+#features .bento-item { --cat: var(--green); }
+#features .cat-chipping { --cat: var(--chips); }
+#features .cat-putting  { --cat: var(--putting); }
+#features .cat-elite    { --cat: var(--pressure); }
+#features .cat-sim      { --cat: var(--sim-lab); }
+#features .cat-assist   { --cat: var(--assistant); }
+
+#features .bento-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-tile);
+  color: var(--cat);
+  background: color-mix(in srgb, var(--cat) 15%, transparent);
+  transition: background 0.3s ease;
+}
+#features .bento-icon svg { width: 16px; height: 16px; }
+#features .bento-item:hover .bento-icon {
+  background: color-mix(in srgb, var(--cat) 28%, transparent);
+}
+#features .bento-item:hover {
+  border-color: color-mix(in srgb, var(--cat) 36%, transparent);
+}
+
+#features .bento-status {
+  font-size: 0.62rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+#features .bento-item:hover .bento-status { color: var(--text-2); }
+
+#features .bento-body h3 {
+  display: block;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+}
+#features .bento-item:hover .bento-body h3 { color: var(--cat); }
+
+#features .bento-body p {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-top: 4px;
+}
+
+@media (max-width: 1024px) {
+  #features .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #features .bento-item.bento-col-2 { grid-column: span 2; }
+}
+
+/* Phone: two up, so seven cards are four rows rather than seven. The
+   wide card keeps its span and leads the grid. */
+@media (max-width: 640px) {
+  #features .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  #features .bento-item { padding: 13px; }
+  #features .bento-item.bento-col-2 { grid-column: span 2; }
+  #features .bento-icon { width: 26px; height: 26px; }
+  #features .bento-icon svg { width: 14px; height: 14px; }
+  #features .bento-inner { gap: 8px; }
+  #features .bento-body h3 { font-size: 0.98rem; }
+  #features .bento-body p { font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #features .bento-item,
+  #features .bento-icon,
+  #features .bento-body h3,
+  #features .bento-status { transition: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE SWEEP  (<= 640px)
+   One place for the phone-width corrections, so the desktop rules
+   above stay readable. Two things were wrong across the homepage:
+
+   1. The device collages were laid out for a 1200px column and merely
+      re-stacked for phones, so both phones stayed near their desktop
+      share of the width. On a 390px screen that is a ~250px phone —
+      over 700px tall — with the magnified rows bleeding off both
+      edges and ~300px of dead white underneath.
+   2. Chapter headings disagreed: .section-header centres, while every
+      hand-built chapter (pf, nx, reel, photo, testimonials) started at
+      the left, so the page alternated alignment as you scrolled.
+
+   The fix for (1) is to stop treating the pair as a stacked column and
+   go back to the desktop's overlapping composition, scaled to fit —
+   the whole group is given an explicit aspect box and both phones are
+   placed inside it as percentages, so it fits any phone width without
+   ever leaving the container. Long body prose stays left-aligned for
+   (2); only the heading group is centred.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Device collages: Performance Hub + Ready-to-improve ──────────
+   Runs to 900px, because the same sprawl showed up on tablets: the old
+   rules only re-stacked the pair into a column, so at 768px the group
+   was 1240px tall. Everything below is percentage-based inside one
+   aspect box, so the composition just scales. */
+@media (max-width: 900px) {
+
+  /* An explicit aspect box. Both phones are absolutely placed inside
+     it, so the stack's height is known up front and there is no
+     percentage-against-auto-height guesswork and no trailing void.
+     The clamp keeps it phone-sized on phones and lets it grow on a
+     tablet without ever chasing the full column width. */
+  .pf-stack,
+  .nx-stack {
+    position: relative;
+    width: 100%;
+    max-width: clamp(330px, 46vw, 420px);
+    margin-inline: auto;
+    aspect-ratio: 330 / 462;
+    padding-bottom: 0;
+  }
+  .pf-stack { margin-top: clamp(-56px, -9vw, -28px); }
+  .nx-stack { margin-top: 0; margin-bottom: 26px; }
+
+  /* Back phone: top-left. Front phone: offset right and down so the
+     two overlap by roughly a bezel, the same read as the desktop
+     composition rather than two phones in a column. */
+  .pf-device--a,
+  .nx-device--a {
+    position: absolute;
+    top: 0; left: 0;
+    width: 50%;
+    max-width: none;
+    margin: 0;
+    z-index: 1;
+  }
+  .pf-device--b,
+  .nx-device--b {
+    position: absolute;
+    top: 22%; left: auto; right: 0;
+    width: 52%;
+    max-width: none;
+    margin: 0;
+    z-index: 3;
+  }
+
+  /* Softer drop shadow — the desktop one is tuned for a 400px phone
+     and reads as a smudge at this size. */
+  .pf-device .pf-phone,
+  .nx-device .pf-phone {
+    filter: drop-shadow(0 14px 26px rgba(6, 11, 8, 0.28));
+  }
+
+  /* The magnified rows keep their overhang, trimmed so the widest one
+     still lands inside the 24px page gutter. */
+  .pf-zoom { border-radius: 9px; box-shadow: 0 12px 24px rgba(6, 11, 8, 0.45); }
+  /* -4% of a 50%-wide device is ~6px, which is exactly the slack between
+     the 330px stack and the 342px content box — so the widest overhang
+     stops on the page gutter instead of crossing it. */
+  .pf-zoom--a { left: -4%; top: 73%;   width: 108%; }
+  .pf-zoom--b { left: -4%; top: 38%;   width: 106%; }
+  .nx-zoom--home { left: -4%; top: 76.6%; width: 106%; }
+  .nx-zoom--chal { left: -4%; top: 24.4%; width: 106%; }
+
+}
+
+@media (max-width: 640px) {
+
+  /* The band above the hub is 200px of photo carrying three diagonal
+     cuts; at this width it only needs to establish the chapter. */
+  .pf-band { height: 168px; border-radius: 14px; }
+  .pf-chapter { padding-bottom: 56px; }
+
+
+  /* ── Chapter headings: agree with .section-header ──────────────── */
+
+  .pf-copy,
+  .nx-copy,
+  .sz-reel-copy,
+  .hp-photo-text,
+  .tb-rail { text-align: center; }
+
+  /* Centring is for the heading group only. Multi-line prose stays
+     left-aligned and keeps its measure — a centred four-line paragraph
+     is harder to read, not tidier. */
+  .pf-body,
+  .hp-checklist,
+  .hp-checklist li { text-align: left; }
+  .pf-body { margin-inline: auto; max-width: 100%; }
+
+  /* Blocks that were inline-level and therefore left-hugging. */
+  .pf-icon { margin-inline: auto; }
+  .pf-link,
+  .sz-reel-lede,
+  .tb-desc,
+  .hp-photo-kicker { margin-inline: auto; }
+  .tb-desc { max-width: 38ch; }
+
+  /* CTA rows read as one column of full-width buttons. */
+  .tb-ctas,
+  .nx-actions { justify-content: center; }
+  .tb-ctas { flex-direction: column; align-items: stretch; }
+  .tb-ctas .btn-primary,
+  .tb-ctas .btn-outline { width: 100%; justify-content: center; }
+
+  /* The reel's tab rail is a horizontal scroller — it has to start at
+     the left edge, so it opts out of the centring above. */
+  .sz-reel-nav,
+  .sz-reel-meter { text-align: left; }
+
+
+  /* ── Feature grid ──────────────────────────────────────────────── */
+
+  /* Two-up put a 6-line paragraph in a 165px card. One column reads,
+     and the wide card no longer needs a span. */
+  #features .bento-grid { grid-template-columns: 1fr; gap: 10px; }
+  #features .bento-item,
+  #features .bento-item.bento-col-2 { grid-column: span 1; padding: 16px; }
+  #features .bento-body p { font-size: 0.9rem; }
+
+  /* .bento-tags is a bare flex row, so a third tag pushed the last one
+     out through the card's right edge. */
+  #features .bento-tags { flex-wrap: wrap; gap: 6px; }
+  #features .bento-bottom { flex-wrap: wrap; gap: 10px; }
 }
