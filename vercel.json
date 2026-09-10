@@ -16,6 +16,16 @@
       "permanent": false
     },
     {
+      "source": "/blog/handicap-calculator.html",
+      "destination": "/tools/golf-handicap-calculator.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/handicap-calculator",
+      "destination": "/tools/golf-handicap-calculator.html",
+      "permanent": true
+    },
+    {
       "source": "/:path(.*)",
       "has": [
         {

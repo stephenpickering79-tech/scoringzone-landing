@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08M47VV5NM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-08M47VV5NM');
+  </script>
+
+  <title>Free Golf Tools | Scoring Zone</title>
+  <meta name="description" content="Free golf calculators from Scoring Zone. Work out your WHS/GHIN Handicap Index, your Course Handicap, and see where your handicap sits against the field.">
+  <link rel="canonical" href="https://www.scoringzone.net/tools/">
+
+  <meta property="og:title" content="Free Golf Tools | Scoring Zone">
+  <meta property="og:description" content="Free golf calculators. Work out your Handicap Index with the official WHS/GHIN formula and see where you sit against the field.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.scoringzone.net/tools/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Golf Tools | Scoring Zone">
+  <meta name="twitter:description" content="Free golf calculators from Scoring Zone.">
+
+  <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/favicon-32.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
+      { "@type": "ListItem", "position": 2, "name": "Tools" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060b08;
+      --bg-card: #0c1410;
+      --green: #22c55e;
+      --green-light: #4ade80;
+      --green-glow: rgba(34, 197, 94, 0.25);
+      --green-subtle: rgba(34, 197, 94, 0.08);
+      --text: #f0fdf4;
+      --text-dim: rgba(240, 253, 244, 0.65);
+      --text-muted: rgba(240, 253, 244, 0.4);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-green: rgba(34, 197, 94, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; line-height: 1.6; overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;
+      letter-spacing: -0.01em; font-weight: 700; line-height: 1.15;
+    }
+    a { color: var(--green-light); text-decoration: none; }
+    a:hover { color: var(--green); }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0; z-index: 1000;
+      background: var(--green); color: var(--bg); padding: 12px 18px;
+      border-radius: 8px; font-weight: 700;
+    }
+    .skip-link:focus { left: 12px; top: 12px; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; color: var(--text); }
+    .nav-logo { width: 32px; height: 32px; }
+    .nav-wordmark {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .nav-wordmark em { color: var(--green); font-style: normal; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a {
+      color: var(--text-dim); padding: 12px 14px; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 500;
+      min-height: 44px; display: inline-flex; align-items: center;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-cta {
+      padding: 0 20px; min-height: 44px; display: inline-flex; align-items: center;
+      border-radius: 8px; background: var(--green); color: var(--bg);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--green-glow); color: var(--bg); }
+    @media (max-width: 720px) { .nav-links { display: none; } }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    .breadcrumb { padding: 24px 0 0; font-size: 0.82rem; }
+    .breadcrumb ol { list-style: none; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--text-muted); }
+    .breadcrumb .sep { color: var(--text-muted); opacity: 0.4; }
+    .breadcrumb .current { color: var(--green-light); }
+
+    .hero { padding: 48px 0 8px; }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; margin-bottom: 16px; }
+    .hero h1 span { color: var(--green); }
+    .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 62ch; }
+
+    .tool-list { display: grid; gap: 16px; margin: 40px 0 0; }
+    .tool {
+      display: block; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 26px 28px; color: var(--text);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .tool:hover { border-color: var(--border-green); transform: translateY(-2px); color: var(--text); }
+    .tool h2 { font-size: 1.5rem; margin-bottom: 8px; }
+    .tool p { color: var(--text-dim); font-size: 0.98rem; max-width: 62ch; }
+    .tool .go {
+      display: inline-block; margin-top: 14px; color: var(--green);
+      font-family: 'DM Mono', monospace; font-size: 0.875rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .tool.soon { opacity: 0.72; }
+    .tool.soon:hover { transform: none; border-color: var(--border); }
+    .tool .tag {
+      display: inline-block; margin-bottom: 10px;
+      font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    .more { margin: 56px 0 0; padding-top: 28px; border-top: 1px solid var(--border); }
+    .more h2 { font-size: 1.35rem; margin-bottom: 14px; }
+    .more-links { display: grid; gap: 10px; }
+    .more-links a { font-size: 1rem; min-height: 44px; display: inline-flex; align-items: center; }
+
+    .final-cta { text-align: center; padding: 64px 0 72px; }
+    .final-cta h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 14px; }
+    .final-cta h2 span { color: var(--green); }
+    .final-cta p { color: var(--text-dim); max-width: 56ch; margin: 0 auto 26px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; min-height: 44px;
+      padding: 14px 32px; border-radius: 10px;
+      background: var(--green); color: var(--bg);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 24px var(--green-glow); color: var(--bg); }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 28px 24px; text-align: center;
+      color: var(--text-muted); font-size: 0.85rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="nav">
+    <a href="https://www.scoringzone.net" class="nav-brand">
+      <img src="../logo/new-log.webp" alt="Scoring Zone" class="nav-logo" width="32" height="32" onerror="this.style.display='none'">
+      <span class="nav-wordmark">Scoring <em>Zone</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://www.scoringzone.net">Home</a></li>
+      <li><a href="https://www.scoringzone.net/#features">Features</a></li>
+      <li><a href="https://www.scoringzone.net/blog/">Blog</a></li>
+    </ul>
+    <a href="https://apps.apple.com/us/app/scoring-zone-golf/id6769477447?pt=128906825&amp;ct=Scoring%20Zone%20Website&amp;mt=8" class="nav-cta" target="_blank" rel="noopener">Get the App</a>
+  </nav>
+
+  <div class="container breadcrumb">
+    <ol>
+      <li><a href="https://www.scoringzone.net">Home</a></li>
+      <li class="sep">&rarr;</li>
+      <li class="current">Tools</li>
+    </ol>
+  </div>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <h1>Free Golf <span>Tools</span></h1>
+      <p>Calculators that answer one question each, with no sign up and nothing to install. Built on the published World Handicap System formulas, and free to embed on your own site.</p>
+    </section>
+
+    <div class="tool-list">
+      <a href="golf-handicap-calculator.html" class="tool">
+        <h2>Golf Handicap Calculator</h2>
+        <p>Work out your Handicap Index from 3 to 20 rounds using the official WHS/GHIN formula, or convert an index into a Course Handicap for any set of tees. Shows you where your number sits against the field.</p>
+        <span class="go">Open the calculator &rarr;</span>
+      </a>
+
+      <div class="tool soon">
+        <span class="tag">In development</span>
+        <h2>Wedge Distance Calculator</h2>
+        <p>Turn your full swing wedge carries into a nine shot clock system matrix, and print it as a yardage card for your bag.</p>
+      </div>
+    </div>
+
+    <section class="more">
+      <h2>Go Deeper</h2>
+      <div class="more-links">
+        <a href="https://www.scoringzone.net/blog/what-is-a-handicap-in-golf.html">What is a golf handicap, and how does the WHS work?</a>
+        <a href="https://www.scoringzone.net/blog/average-golf-handicap-by-age.html">Average golf handicap by age, gender and experience</a>
+        <a href="https://www.scoringzone.net/blog/how-to-lower-your-golf-handicap.html">How to lower your golf handicap</a>
+        <a href="https://www.scoringzone.net/features/performance-hub.html">The Performance Hub: your Short Game Handicap</a>
+        <a href="https://www.scoringzone.net/features/practice-assistant.html">The Practice Assistant: wedge distances and session plans</a>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Your Handicap Hides <span>Where You Lose Shots</span></h2>
+      <p>A single number tells you how you score, not why. Scoring Zone calculates a separate Short Game Handicap from 60 scored shots and shows you which category is holding your index up.</p>
+      <a href="https://apps.apple.com/us/app/scoring-zone-golf/id6769477447?pt=128906825&amp;ct=Scoring%20Zone%20Website&amp;mt=8" class="btn-primary" target="_blank" rel="noopener">Start Your Performance Test</a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Scoring Zone &middot; <a href="https://www.scoringzone.net/privacy.html" style="color: var(--text-muted);">Privacy</a> &middot; <a href="https://www.scoringzone.net/contact.html" style="color: var(--text-muted);">Contact</a>
+  </footer>
+</body>
+</html>
