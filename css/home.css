@@ -2350,18 +2350,6 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   #features .bento-item.bento-col-2 { grid-column: span 2; }
 }
 
-/* Phone: two up, so seven cards are four rows rather than seven. The
-   wide card keeps its span and leads the grid. */
-@media (max-width: 640px) {
-  #features .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  #features .bento-item { padding: 13px; }
-  #features .bento-item.bento-col-2 { grid-column: span 2; }
-  #features .bento-icon { width: 26px; height: 26px; }
-  #features .bento-icon svg { width: 14px; height: 14px; }
-  #features .bento-inner { gap: 8px; }
-  #features .bento-body h3 { font-size: 0.98rem; }
-  #features .bento-body p { font-size: 0.85rem; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   #features .bento-item,
@@ -2408,35 +2396,49 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   .nx-stack {
     position: relative;
     width: 100%;
-    max-width: clamp(330px, 46vw, 420px);
     margin-inline: auto;
-    aspect-ratio: 330 / 462;
     padding-bottom: 0;
   }
   .pf-stack { margin-top: clamp(-56px, -9vw, -28px); }
   .nx-stack { margin-top: 0; margin-bottom: 26px; }
 
-  /* Back phone: top-left. Front phone: offset right and down so the
-     two overlap by roughly a bezel, the same read as the desktop
-     composition rather than two phones in a column. */
-  .pf-device--a,
-  .nx-device--a {
+  .pf-device--a, .nx-device--a,
+  .pf-device--b, .nx-device--b {
     position: absolute;
-    top: 0; left: 0;
-    width: 50%;
     max-width: none;
     margin: 0;
-    z-index: 1;
   }
-  .pf-device--b,
-  .nx-device--b {
-    position: absolute;
-    top: 22%; left: auto; right: 0;
-    width: 52%;
-    max-width: none;
-    margin: 0;
-    z-index: 3;
+  .pf-device--a, .nx-device--a { top: 0;   left: 0;             z-index: 1; }
+  .pf-device--b, .nx-device--b { top: 22%; left: auto; right: 0; z-index: 3; }
+
+  /* ── Performance Hub: overlapped, matching the desktop composition ──
+     Desktop puts the front phone at left:34% against a 47%-wide back
+     phone, so it covers 27.7% of it. That ratio is reproduced here
+     rather than the near-miss 2% touch the first pass had.
+
+     Sizing: the phones are 20% narrower than the previous mobile pass
+     (165px -> 132px at the 330px tier). Because they now overlap by
+     36.5px instead of 6px, the group is 233px wide, and the box is
+     sized to the group so `left:0` / `right:0` still place them —
+     hence the separate clamp and aspect ratio from .nx-stack below.
+     462 -> 362 tall follows from the front phone: 0.22H + 282px. */
+  .pf-stack {
+    max-width: clamp(233px, 32.5vw, 296px);
+    aspect-ratio: 233 / 362;
   }
+  .pf-device--a { width: 56.7%; }   /* 132px  of 233 */
+  .pf-device--b { width: 59.0%; }   /* 137px  of 233, overlapping a by 15.7% */
+
+  /* ── Ready to improve: unchanged from the last pass ──────────────
+     Desktop deliberately staggers this pair rather than overlapping
+     them, because both magnified rows are multi-cell and a phone on
+     top of one cuts a column out of it. Left as-is. */
+  .nx-stack {
+    max-width: clamp(330px, 46vw, 420px);
+    aspect-ratio: 330 / 462;
+  }
+  .nx-device--a { width: 50%; }
+  .nx-device--b { width: 52%; }
 
   /* Softer drop shadow — the desktop one is tuned for a 400px phone
      and reads as a smudge at this size. */
@@ -2448,11 +2450,11 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   /* The magnified rows keep their overhang, trimmed so the widest one
      still lands inside the 24px page gutter. */
   .pf-zoom { border-radius: 9px; box-shadow: 0 12px 24px rgba(6, 11, 8, 0.45); }
-  /* -4% of a 50%-wide device is ~6px, which is exactly the slack between
-     the 330px stack and the 342px content box — so the widest overhang
-     stops on the page gutter instead of crossing it. */
-  .pf-zoom--a { left: -4%; top: 73%;   width: 108%; }
-  .pf-zoom--b { left: -4%; top: 38%;   width: 106%; }
+  /* The Hub's 233px box leaves ~55px of slack each side of the 342px
+     content column, so these can carry the desktop's fuller overhang
+     and still land well inside the page gutter. */
+  .pf-zoom--a { left: -13%; top: 73%; width: 112%; }
+  .pf-zoom--b { left: -6%;  top: 38%; width: 110%; }
   .nx-zoom--home { left: -4%; top: 76.6%; width: 106%; }
   .nx-zoom--chal { left: -4%; top: 24.4%; width: 106%; }
 
@@ -2505,15 +2507,15 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
 
   /* ── Feature grid ──────────────────────────────────────────────── */
 
-  /* Two-up put a 6-line paragraph in a 165px card. One column reads,
-     and the wide card no longer needs a span. */
-  #features .bento-grid { grid-template-columns: 1fr; gap: 10px; }
-  #features .bento-item,
-  #features .bento-item.bento-col-2 { grid-column: span 1; padding: 16px; }
+  /* One-up was right for the old cards: a six-line paragraph in a 165px
+     column does not read. These carry one short line and no tag row, so
+     two-up fits and halves the section. The wide card leads, full width. */
+  #features .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  #features .bento-item { padding: 13px; }
+  #features .bento-item.bento-col-2 { grid-column: span 2; }
+  #features .bento-icon { width: 26px; height: 26px; }
+  #features .bento-icon svg { width: 14px; height: 14px; }
+  #features .bento-inner { gap: 8px; }
+  #features .bento-body h3 { font-size: 0.98rem; }
   #features .bento-body p { font-size: 0.9rem; }
-
-  /* .bento-tags is a bare flex row, so a third tag pushed the last one
-     out through the card's right edge. */
-  #features .bento-tags { flex-wrap: wrap; gap: 6px; }
-  #features .bento-bottom { flex-wrap: wrap; gap: 10px; }
 }
