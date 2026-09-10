@@ -2745,3 +2745,27 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   }
   .footer-tagline { margin-bottom: 4px; }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Performance Hub: no "Read more"
+   Both breakpoints, unlike most of the rules above. The chapter's job
+   on this page is to state the claim; the deep-dive page it linked to
+   is still reachable from the nav and the sitemap.
+   ══════════════════════════════════════════════════════════════════ */
+#performance-hub .pf-link { display: none; }
+
+@media (max-width: 640px) {
+  /* ── Footer: copyright last ───────────────────────────────────────
+     .footer-copy sits inside .footer-brand, so it cannot be reordered
+     against .footer-grid while that wrapper is a box. `display:
+     contents` dissolves the wrapper and hands the logo and the
+     copyright straight to .footer-content's grid, where `order` can
+     put the copyright after the links.
+
+     Phones only. Above 1024px .footer-content is a 1fr/2fr two-column
+     grid with the brand as the left column — dissolving the wrapper
+     there would drop the logo and the copyright into separate columns
+     and take the layout apart. */
+  .footer-brand { display: contents; }
+  .footer-copy { order: 1; margin-top: 4px; }
+}
