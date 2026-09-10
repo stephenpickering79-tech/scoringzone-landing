@@ -2429,16 +2429,18 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   .pf-device--a { width: 56.7%; }   /* 132px  of 233 */
   .pf-device--b { width: 59.0%; }   /* 137px  of 233, overlapping a by 15.7% */
 
-  /* ── Ready to improve: unchanged from the last pass ──────────────
-     Desktop deliberately staggers this pair rather than overlapping
-     them, because both magnified rows are multi-cell and a phone on
-     top of one cuts a column out of it. Left as-is. */
+  /* ── Ready to improve: the same overlapped composition ───────────
+     Desktop staggers this pair rather than overlapping them, but on a
+     phone a stagger reads as two unrelated phones sitting in a column,
+     so this one follows the Hub. Identical widths and overlap; only
+     the aspect box differs, because these two screenshots are a shade
+     taller than the Hub's — 0.22H + 288px gives 369, not 362. */
   .nx-stack {
-    max-width: clamp(330px, 46vw, 420px);
-    aspect-ratio: 330 / 462;
+    max-width: clamp(233px, 32.5vw, 296px);
+    aspect-ratio: 233 / 369;
   }
-  .nx-device--a { width: 50%; }
-  .nx-device--b { width: 52%; }
+  .nx-device--a { width: 56.7%; }
+  .nx-device--b { width: 59.0%; }
 
   /* Softer drop shadow — the desktop one is tuned for a 400px phone
      and reads as a smudge at this size. */
@@ -2455,8 +2457,8 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
      and still land well inside the page gutter. */
   .pf-zoom--a { left: -13%; top: 73%; width: 112%; }
   .pf-zoom--b { left: -6%;  top: 38%; width: 110%; }
-  .nx-zoom--home { left: -4%; top: 76.6%; width: 106%; }
-  .nx-zoom--chal { left: -4%; top: 24.4%; width: 106%; }
+  .nx-zoom--home { left: -13%; top: 76.6%; width: 112%; }
+  .nx-zoom--chal { left: -6%;  top: 24.4%; width: 110%; }
 
 }
 
@@ -2518,4 +2520,81 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   #features .bento-inner { gap: 8px; }
   #features .bento-body h3 { font-size: 0.98rem; }
   #features .bento-body p { font-size: 0.9rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE — dropped sections and the social-proof marquee
+   ══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+
+  /* Two sections the phone build does without. Both are still in the
+     markup and still served to crawlers, which index the mobile page —
+     display:none is a rendering choice, not a removal — but neither
+     carries copy that exists nowhere else on the page. */
+  #process,   /* How It Works / Get Started in Minutes */
+  #drills {   /* Performance Tests / Featured Challenges */
+    display: none;
+  }
+
+  /* ── Social proof: a right-to-left marquee of the cards ──────────
+     Cards only. The rail above them (pill, heading, blurb, buttons)
+     stays put and stays centred.
+
+     The track is built by the script in index.html, which moves the
+     cards into one group and clones that group once. Each group
+     carries its own trailing gap rather than the track carrying a
+     gap between the two, so -50% lands exactly on the clone and the
+     loop has no seam. */
+  #testimonials-b .tb-deck {
+    /* Break out of .container so cards run off both screen edges
+       instead of stopping at the 24px gutter. */
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .tb-deck.is-marquee .tb-deck-inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0;
+    width: max-content;
+    animation: tb-marquee linear infinite;
+    will-change: transform;
+  }
+  .tb-marquee-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 14px;
+    padding-right: 14px;   /* the group's own trailing gap — see above */
+  }
+  .tb-deck.is-marquee .tb-card {
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: none;
+    margin: 0;
+  }
+
+  @keyframes tb-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+
+  /* Anyone who has asked for less movement gets a plain swipeable
+     rail instead of a moving one. */
+  @media (prefers-reduced-motion: reduce) {
+    .tb-deck.is-marquee .tb-deck-inner {
+      animation: none;
+      width: auto;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tb-deck.is-marquee .tb-card { scroll-snap-align: center; }
+    .tb-deck.is-marquee .tb-marquee-group[aria-hidden="true"] { display: none; }
+  }
 }

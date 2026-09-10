@@ -566,6 +566,94 @@
     })();
     </script>
 
+    <!-- #process and #drills are display:none on phones, and 322 links
+         across the site point at them (mostly footer nav: "Drills",
+         "How It Works"). A fragment pointing at a hidden element scrolls
+         nowhere, so on phones those two land on the feature grid instead
+         — the nearest section that still answers "what do I get?". -->
+    <script>
+    (function () {
+      var ALIAS = { '#process': '#features', '#drills': '#features' };
+      function reroute() {
+        if (!window.matchMedia('(max-width: 640px)').matches) return;
+        var to = ALIAS[window.location.hash];
+        if (!to) return;
+        var el = document.querySelector(to);
+        if (!el) return;
+        // Let the browser finish its own (failed) fragment jump first.
+        requestAnimationFrame(function () {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+      window.addEventListener('hashchange', reroute);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', reroute);
+      } else { reroute(); }
+      window.addEventListener('load', reroute);
+    })();
+    </script>
+
+    <!-- Social proof on phones: a right-to-left marquee of the cards.
+         Separate from the deck script above, which only ever runs above
+         900px — this one only ever runs at or below 640px, so the two
+         never drive the same cards at the same time. -->
+    <script>
+    (function () {
+      var deck = document.querySelector('#testimonials-b .tb-deck');
+      var inner = deck && deck.querySelector('.tb-deck-inner');
+      if (!inner) return;
+
+      var phone = window.matchMedia('(max-width: 640px)');
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var SPEED = 42;            // px per second — slow enough to read
+      var built = false;
+
+      function build() {
+        if (built) return;
+        var cards = [].slice.call(inner.querySelectorAll('.tb-card'));
+        if (cards.length < 2) return;
+
+        var group = document.createElement('div');
+        group.className = 'tb-marquee-group';
+        cards.forEach(function (c) { group.appendChild(c); });
+
+        // The clone is decoration, not content: it is the same three
+        // quotes again, so it is hidden from assistive tech and its
+        // links/controls are taken out of the tab order.
+        var clone = group.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        [].forEach.call(clone.querySelectorAll('a, button, [tabindex]'), function (el) {
+          el.setAttribute('tabindex', '-1');
+        });
+
+        inner.appendChild(group);
+        inner.appendChild(clone);
+        deck.classList.add('is-marquee');
+        built = true;
+        setDuration();
+      }
+
+      // Duration comes from the measured width so the speed stays the
+      // same whatever the card count or screen size.
+      function setDuration() {
+        var group = inner.querySelector('.tb-marquee-group');
+        if (!group) return;
+        var w = group.getBoundingClientRect().width;
+        if (w > 0) inner.style.animationDuration = (w / SPEED).toFixed(2) + 's';
+      }
+
+      function apply() {
+        if (phone.matches) { build(); setDuration(); }
+      }
+
+      apply();
+      window.addEventListener('resize', setDuration);
+      window.addEventListener('load', setDuration);
+      if (phone.addEventListener) phone.addEventListener('change', apply);
+      if (still.addEventListener) still.addEventListener('change', setDuration);
+    })();
+    </script>
+
     <!-- ========== HOW IT WORKS ========== -->
     <section class="section hp-studio" id="process">
         <div class="container">
