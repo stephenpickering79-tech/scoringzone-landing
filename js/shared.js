@@ -117,6 +117,26 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
+// Siblings that reveal together get a short cascade instead of arriving as one
+// slab. 50ms apart, capped at 200ms so a long row never feels like it is
+// loading. Elements that are the only .reveal under their parent get 0.
+(function stagger() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const groups = new Map();
+  document.querySelectorAll('.reveal').forEach(el => {
+    const parent = el.parentElement;
+    if (!parent) return;
+    if (!groups.has(parent)) groups.set(parent, []);
+    groups.get(parent).push(el);
+  });
+  groups.forEach(siblings => {
+    if (siblings.length < 2) return;
+    siblings.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i * 50, 200) + 'ms';
+    });
+  });
+})();
+
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ── Word-by-Word Reveal ──
