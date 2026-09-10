@@ -828,6 +828,16 @@
           <div class="sz-reel-meter">
             <span class="sz-reel-count"><span class="sr-only">Screen </span><span id="reel-count">01</span> <span>/ 09</span></span>
             <div class="sz-reel-track"><div class="sz-reel-fill" id="reel-fill"></div></div>
+            <!-- Phones only (see home.css): the strip is draggable, but with
+                 no cursor and no scrollbar there was nothing saying so. -->
+            <div class="sz-reel-arrows">
+              <button type="button" class="sz-reel-arrow" data-reel-prev aria-label="Previous screen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+              </button>
+              <button type="button" class="sz-reel-arrow" data-reel-next aria-label="Next screen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1498,6 +1508,14 @@
       tabs.forEach(function (btn, i) {
         btn.addEventListener('click', function () { goTo(i); });
       });
+
+      // Arrows step the reel. `fromUser` is deliberately not passed: it
+      // moves focus onto the matching nav chip, which would drag the chip
+      // strip sideways under the reader every time an arrow is tapped.
+      var prevBtn = section.querySelector('[data-reel-prev]');
+      var nextBtn = section.querySelector('[data-reel-next]');
+      if (prevBtn) prevBtn.addEventListener('click', function () { go(pos - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { go(pos + 1); });
       nav.addEventListener('keydown', function (e) {
         var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
               : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;

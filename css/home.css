@@ -2601,3 +2601,62 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
     .tb-deck.is-marquee .tb-card { scroll-snap-align: center; }
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   REEL ARROWS — phones only
+   The strip is draggable and self-advancing, but on a touch screen
+   there is no cursor and no scrollbar, so nothing announced that it
+   could be moved by hand. These sit in the meter row beside the
+   counter. Hidden by default; the phone block below turns them on.
+   ══════════════════════════════════════════════════════════════════ */
+.sz-reel-arrows { display: none; gap: 8px; margin-left: auto; }
+.sz-reel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--ink-hairline-strong);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.sz-reel-arrow svg { width: 17px; height: 17px; display: block; }
+.sz-reel-arrow:active { border-color: var(--green-ink); color: var(--green-ink); }
+.sz-reel-arrow:focus-visible { outline: 2px solid var(--green-ink); outline-offset: 2px; }
+
+@media (max-width: 640px) {
+
+  /* ── Loved by golfers ─────────────────────────────────────────── */
+
+  /* .tb-rail is a flex column, so the pill's own `align-self:
+     flex-start` beat the text-align:center on the rail and kept it
+     hugging the left edge while everything around it was centred. */
+  #testimonials-b .tb-pill { align-self: center; }
+
+  /* "See Features" drops on phones: the section already carries the
+     download button, and the feature grid is further down the page. */
+  #testimonials-b .tb-ctas .btn-outline { display: none; }
+
+  /* ── Ready to improve: copy and buttons only ──────────────────── */
+  /* The phones are shown twice on the way down this page — the Hub
+     chapter opens with the same treatment — so the second pair is
+     repetition rather than proof. */
+  .nx-stack { display: none; }
+
+  /* ── Inside the app ───────────────────────────────────────────── */
+
+  /* The white wash over the next screen in the strip. On a wide screen
+     it dissolves the strip into the paper; at phone width it covered
+     most of the neighbouring phone, so the strip read as one screen
+     fading into nothing rather than as a row you can move. */
+  .sz-reel-fade { display: none; }
+
+  /* 10% off: min(62vh, 460px) -> min(55.8vh, 414px) */
+  .sz-reel-rail img { height: min(55.8vh, 414px); }
+
+  .sz-reel-arrows { display: flex; }
+}
