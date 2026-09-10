@@ -2697,6 +2697,7 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
      lot of footer to scroll past on a phone when the download button is
      pinned to the bottom of the screen anyway. */
   .footer-col--social,          /* X, Instagram, YouTube, Facebook */
+  .footer-col--audience,        /* Beginners, Juniors, Seniors, ... */
   .footer-badges {              /* Toolfio + SaasHunt */
     display: none;
   }
@@ -2704,15 +2705,43 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
      stylesheet rule can beat. It moved to .footer-badges above so this
      hide works without !important. */
 
-  /* What is left gets tighter: two columns, less air around them.
-     The links themselves are NOT squeezed — shared.css gives them
-     min-height:44px, which is the touch-target floor and matters more
-     on a phone than anywhere else. The remaining height is 13 links x
-     44px, so anything further has to come from dropping links, not
-     from styling. */
-  .footer { padding-top: 40px; }
-  .footer-content { gap: 26px; }
-  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 18px; }
-  .footer-col h4 { margin-bottom: 2px; }
-  .footer-tagline { margin-bottom: 6px; }
+  /* What is left is reorganised rather than squeezed.
+
+     Thirteen links stacked in columns is 13 x 44px of vertical space no
+     matter how the padding is tuned — the height comes from the stack,
+     not the spacing. So the columns stop being columns: `display:
+     contents` drops each .footer-col out of the box tree and hands its
+     links straight to the wrapping flex row below, which fits three or
+     four to a line. Vertical space is the scarce thing on a phone;
+     horizontal space here was going spare.
+
+     The group headings go with it. They only mean something next to the
+     column they label, and once the links wrap into one list they are
+     four more rows describing an order that no longer exists.
+
+     Tap targets drop 44px -> 36px. That is under Apple's 44px guidance
+     and well over the 24px WCAG 2.2 AA minimum; side by side with an
+     18px gutter they stay comfortable, which they would not if they
+     were still stacked edge to edge. */
+  .footer { padding-top: 36px; }
+  .footer-content { gap: 22px; }
+  .footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 18px;
+  }
+  /* :not() rather than a bare .footer-col — at equal specificity this
+     rule comes after the display:none above and would otherwise put the
+     hidden columns' links straight back into the flex row. */
+  .footer-col:not(.footer-col--social):not(.footer-col--audience) {
+    display: contents;
+  }
+  .footer-col h3 { display: none; }   /* they are h3, not h4 */
+  .footer-col a {
+    min-height: 36px;
+    padding: 3px 0;
+    font-size: 0.86rem;
+  }
+  .footer-tagline { margin-bottom: 4px; }
 }
