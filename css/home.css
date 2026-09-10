@@ -2350,18 +2350,6 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   #features .bento-item.bento-col-2 { grid-column: span 2; }
 }
 
-/* Phone: two up, so seven cards are four rows rather than seven. The
-   wide card keeps its span and leads the grid. */
-@media (max-width: 640px) {
-  #features .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  #features .bento-item { padding: 13px; }
-  #features .bento-item.bento-col-2 { grid-column: span 2; }
-  #features .bento-icon { width: 26px; height: 26px; }
-  #features .bento-icon svg { width: 14px; height: 14px; }
-  #features .bento-inner { gap: 8px; }
-  #features .bento-body h3 { font-size: 0.98rem; }
-  #features .bento-body p { font-size: 0.85rem; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   #features .bento-item,
@@ -2505,15 +2493,15 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
 
   /* ── Feature grid ──────────────────────────────────────────────── */
 
-  /* Two-up put a 6-line paragraph in a 165px card. One column reads,
-     and the wide card no longer needs a span. */
-  #features .bento-grid { grid-template-columns: 1fr; gap: 10px; }
-  #features .bento-item,
-  #features .bento-item.bento-col-2 { grid-column: span 1; padding: 16px; }
+  /* One-up was right for the old cards: a six-line paragraph in a 165px
+     column does not read. These carry one short line and no tag row, so
+     two-up fits and halves the section. The wide card leads, full width. */
+  #features .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  #features .bento-item { padding: 13px; }
+  #features .bento-item.bento-col-2 { grid-column: span 2; }
+  #features .bento-icon { width: 26px; height: 26px; }
+  #features .bento-icon svg { width: 14px; height: 14px; }
+  #features .bento-inner { gap: 8px; }
+  #features .bento-body h3 { font-size: 0.98rem; }
   #features .bento-body p { font-size: 0.9rem; }
-
-  /* .bento-tags is a bare flex row, so a third tag pushed the last one
-     out through the card's right edge. */
-  #features .bento-tags { flex-wrap: wrap; gap: 6px; }
-  #features .bento-bottom { flex-wrap: wrap; gap: 10px; }
 }
