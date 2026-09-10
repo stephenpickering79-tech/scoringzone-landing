@@ -645,6 +645,9 @@
     .is-embed section:not(.calc-card):not(.hero),
     .is-embed .embed-hide { display: none !important; }
     .is-embed body { min-height: 0; }
+    /* The app bar is position:fixed bottom. In a host's iframe it would float
+       over the calculator, so it never runs inside an embed. */
+    .is-embed .sz-appbar { display: none !important; }
     .is-embed .hero { padding: 16px 0 6px; }
     .is-embed .hero h1 { font-size: 1.35rem; margin-bottom: 4px; }
     .is-embed .container { padding: 0 16px; }
@@ -2098,5 +2101,6 @@
     initEmbedBox();
     init();
   </script>
+  <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
 </html>
