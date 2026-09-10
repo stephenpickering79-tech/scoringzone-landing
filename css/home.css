@@ -2660,3 +2660,59 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
 
   .sz-reel-arrows { display: flex; }
 }
+
+/* Badge row layout, lifted out of the element's style attribute so the
+   phone rule below can hide it without !important. A media query adds no
+   specificity, so this base rule has to come FIRST — appended after the
+   phone block it would have won at every width and the badges would have
+   stayed visible. Desktop rendering is unchanged. */
+.footer-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  text-align: center;
+  padding: 24px 0 8px;
+}
+
+@media (max-width: 640px) {
+
+  /* ── Inside the app: no depth of field ────────────────────────────
+     paint() in index.html stops writing the inline blur at this width,
+     which hands the filter back to this rule. Without it the base
+     `.sz-reel.is-live img { blur(2px) saturate(0.75) }` would take over
+     and the neighbour would still look fogged. */
+  .sz-reel.is-live .sz-reel-rail img {
+    filter: drop-shadow(0 20px 36px rgba(13, 26, 16, 0.20));
+  }
+
+  /* ── Platform grid ────────────────────────────────────────────────
+     The reel above it already walks through the same nine screens, so
+     on a phone the grid restates it in words. */
+  #features { display: none; }
+
+  /* ── Footer: fewer links, no badges ───────────────────────────────
+     Four columns, sixteen links, two award badges and a social row is a
+     lot of footer to scroll past on a phone when the download button is
+     pinned to the bottom of the screen anyway. */
+  .footer-col--social,          /* X, Instagram, YouTube, Facebook */
+  .footer-badges {              /* Toolfio + SaasHunt */
+    display: none;
+  }
+  /* The badge row's layout used to live in a style attribute, which no
+     stylesheet rule can beat. It moved to .footer-badges above so this
+     hide works without !important. */
+
+  /* What is left gets tighter: two columns, less air around them.
+     The links themselves are NOT squeezed — shared.css gives them
+     min-height:44px, which is the touch-target floor and matters more
+     on a phone than anywhere else. The remaining height is 13 links x
+     44px, so anything further has to come from dropping links, not
+     from styling. */
+  .footer { padding-top: 40px; }
+  .footer-content { gap: 26px; }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 18px; }
+  .footer-col h4 { margin-bottom: 2px; }
+  .footer-tagline { margin-bottom: 6px; }
+}

@@ -569,11 +569,18 @@
     <!-- #process and #drills are display:none on phones, and 322 links
          across the site point at them (mostly footer nav: "Drills",
          "How It Works"). A fragment pointing at a hidden element scrolls
-         nowhere, so on phones those two land on the feature grid instead
-         — the nearest section that still answers "what do I get?". -->
+         nowhere. #features is hidden on phones as well now, and another 323
+         links point at that, so on phones all three land on the reel — the
+         section that still answers "what do I get?". -->
     <script>
     (function () {
-      var ALIAS = { '#process': '#features', '#drills': '#features' };
+      // #features is hidden on phones now too, so all three land on the reel
+      // — the section left that actually shows what the app does.
+      var ALIAS = {
+        '#process': '#deck-section',
+        '#drills': '#deck-section',
+        '#features': '#deck-section'
+      };
       function reroute() {
         if (!window.matchMedia('(max-width: 640px)').matches) return;
         var to = ALIAS[window.location.hash];
@@ -1243,7 +1250,7 @@
                     <a href="for-seniors.html">Seniors</a>
                     <a href="for-competitive-golfers.html">Competitive</a>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col footer-col--social">
                     <h3>Social</h3>
                     <a href="https://x.com/ScoringZone1" target="_blank" rel="noopener" class="footer-social-link">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg>
@@ -1264,7 +1271,7 @@
                 </div>
             </div>
         </div>
-        <div style="text-align: center; padding: 24px 0 8px; display: flex; justify-content: center; align-items: center; gap: 24px; flex-wrap: wrap;">
+        <div class="footer-badges">
             <a href="https://toolfio.com" target="_blank" rel="dofollow"><img src="https://toolfio.com/toolfio-dark-badge.png" alt="Featured on Toolfio" width="200" height="54" /></a>
             <a href="https://saashunt.best/projects/scoring-zone" target="_blank" rel="dofollow" title="SaasHunt Top 1 Daily Winner"><img src="https://saashunt.best/images/badges/top1-dark.svg" alt="SaasHunt Top 1 Daily Winner" style="width: 195px; height: auto;" /></a>
         </div>
@@ -1356,6 +1363,8 @@
       var GLIDE = 900;
 
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+      // Phones get no depth of field — see paint()
+      var flat = window.matchMedia('(max-width: 640px)');
       var pos = 0;
       var timer = null;
       var wrapTimer = null;
@@ -1407,6 +1416,17 @@
           var d = i - pos;
           li.classList.toggle('is-active', i === pos);
           if (reduced.matches) { li.style.opacity = ''; li.firstElementChild.style.filter = ''; return; }
+          // On a phone the screens still to come stay at full strength. The
+          // recede below steps each one down (0.62, 0.50, 0.38...) and over
+          // white paper that reads as a white wash spreading across the
+          // strip — the neighbour looked greyed out rather than merely
+          // behind. Clearing the filter hands it back to CSS, which drops
+          // the blur at this width.
+          if (flat.matches) {
+            li.style.opacity = d < 0 ? 0 : 1;
+            li.firstElementChild.style.filter = '';
+            return;
+          }
           // Screens that have passed the gate are gone; the ones still to come recede.
           li.style.opacity = d < 0 ? 0 : d === 0 ? 1 : Math.max(0.18, 0.62 - (d - 1) * 0.12);
           li.firstElementChild.style.filter = d <= 0 ? '' : 'blur(' + Math.min(4, 0.8 + d * 0.7) + 'px) saturate(0.78)';
@@ -1593,6 +1613,7 @@
       rail.addEventListener('pointercancel', endDrag);
 
       window.addEventListener('resize', function () { paint(false); });
+      if (flat.addEventListener) flat.addEventListener('change', function () { paint(false); });
       if (reduced.addEventListener) {
         reduced.addEventListener('change', function () { remaining = DWELL; paint(false); run(); });
       }
