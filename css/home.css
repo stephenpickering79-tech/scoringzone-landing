@@ -2552,8 +2552,19 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
     width: 100vw;
     margin-inline: calc(50% - 50vw);
     padding: 0;
-    overflow: hidden;
+    /* A real scroller, not a transform. The drift is driven by
+       scrollLeft in index.html, because a CSS animation on the track
+       and native touch scrolling cannot share the same element —
+       the transform would keep running underneath the finger and
+       snap back the moment the user let go. */
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;   /* no page-back swipe from the rail */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  #testimonials-b .tb-deck::-webkit-scrollbar { display: none; }
 
   .tb-deck.is-marquee .tb-deck-inner {
     display: flex;
@@ -2561,8 +2572,6 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
     flex-wrap: nowrap;
     gap: 0;
     width: max-content;
-    animation: tb-marquee linear infinite;
-    will-change: transform;
   }
   .tb-marquee-group {
     display: flex;
@@ -2579,22 +2588,16 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
     margin: 0;
   }
 
-  @keyframes tb-marquee {
-    from { transform: translate3d(0, 0, 0); }
-    to   { transform: translate3d(-50%, 0, 0); }
-  }
-
-  /* Anyone who has asked for less movement gets a plain swipeable
-     rail instead of a moving one. */
+  /* Anyone who has asked for less movement keeps the rail but loses
+     the drift — the script never starts, so this is just a swipeable
+     carousel. Snapping is only safe here: with the auto-scroll running
+     it would fight every frame the script writes. */
   @media (prefers-reduced-motion: reduce) {
-    .tb-deck.is-marquee .tb-deck-inner {
-      animation: none;
-      width: auto;
-      overflow-x: auto;
+    .tb-deck.is-marquee .tb-deck-inner { scroll-snap-type: none; }
+    #testimonials-b .tb-deck {
       scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      scroll-padding-inline: 24px;
     }
     .tb-deck.is-marquee .tb-card { scroll-snap-align: center; }
-    .tb-deck.is-marquee .tb-marquee-group[aria-hidden="true"] { display: none; }
   }
 }

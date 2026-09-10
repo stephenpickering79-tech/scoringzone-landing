@@ -593,10 +593,20 @@
     })();
     </script>
 
-    <!-- Social proof on phones: a right-to-left marquee of the cards.
-         Separate from the deck script above, which only ever runs above
-         900px — this one only ever runs at or below 640px, so the two
-         never drive the same cards at the same time. -->
+    <!-- Social proof on phones: a right-to-left rail of the review
+         cards that drifts on its own and can be swiped by hand.
+
+         It drives scrollLeft rather than animating a transform. A CSS
+         animation cannot share an element with native scrolling — the
+         transform keeps running under the finger and snaps back on
+         release — so the drift is a rAF loop writing scrollLeft, which
+         a touch simply takes over.
+
+         Three identical groups, not two. The content repeats every
+         group width, so any position and that position plus one group
+         show the same thing; parking in the middle group leaves a full
+         group of runway on BOTH sides, which is what lets a backwards
+         swipe wrap as seamlessly as the forward drift. -->
     <script>
     (function () {
       var deck = document.querySelector('#testimonials-b .tb-deck');
@@ -605,52 +615,119 @@
 
       var phone = window.matchMedia('(max-width: 640px)');
       var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-      var SPEED = 42;            // px per second — slow enough to read
-      var built = false;
+      var SPEED = 42;          // px per second — slow enough to read
+      var RESUME_AFTER = 900;  // ms of stillness before the drift returns
+
+      var built = false, group = null, G = 0;
+      var pos = 0, last = 0, paused = false, raf = null, resumeTimer = null;
 
       function build() {
         if (built) return;
         var cards = [].slice.call(inner.querySelectorAll('.tb-card'));
         if (cards.length < 2) return;
 
-        var group = document.createElement('div');
+        group = document.createElement('div');
         group.className = 'tb-marquee-group';
         cards.forEach(function (c) { group.appendChild(c); });
-
-        // The clone is decoration, not content: it is the same three
-        // quotes again, so it is hidden from assistive tech and its
-        // links/controls are taken out of the tab order.
-        var clone = group.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        [].forEach.call(clone.querySelectorAll('a, button, [tabindex]'), function (el) {
-          el.setAttribute('tabindex', '-1');
-        });
-
         inner.appendChild(group);
-        inner.appendChild(clone);
+
+        // Two clones. They are the same quotes again, so they are hidden
+        // from assistive tech and taken out of the tab order.
+        for (var i = 0; i < 2; i++) {
+          var clone = group.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          [].forEach.call(clone.querySelectorAll('a, button, [tabindex]'), function (el) {
+            el.setAttribute('tabindex', '-1');
+          });
+          inner.appendChild(clone);
+        }
+
         deck.classList.add('is-marquee');
         built = true;
-        setDuration();
+        measure();
+        deck.scrollLeft = pos = G;      // start in the middle group
+        last = deck.scrollLeft;
       }
 
-      // Duration comes from the measured width so the speed stays the
-      // same whatever the card count or screen size.
-      function setDuration() {
-        var group = inner.querySelector('.tb-marquee-group');
+      function measure() {
         if (!group) return;
-        var w = group.getBoundingClientRect().width;
-        if (w > 0) inner.style.animationDuration = (w / SPEED).toFixed(2) + 's';
+        G = group.getBoundingClientRect().width;
       }
+
+      // Keep the position inside the middle group. Both directions wrap,
+      // and because the jump is exactly one group the content does not
+      // move a pixel on screen.
+      function wrap() {
+        if (G <= 0) return;
+        if (pos >= 2 * G) pos -= G;
+        else if (pos < G) pos += G;
+      }
+
+      function tick(now) {
+        raf = requestAnimationFrame(tick);
+        if (paused || still.matches || !phone.matches || G <= 0) { tick.t = now; return; }
+        var dt = tick.t ? Math.min((now - tick.t) / 1000, 0.05) : 0;
+        tick.t = now;
+        pos += SPEED * dt;
+        wrap();
+        deck.scrollLeft = pos;
+        last = deck.scrollLeft;
+      }
+
+      function pause() {
+        paused = true;
+        clearTimeout(resumeTimer);
+      }
+
+      // Resume only once the rail has actually stopped: a flick keeps
+      // scrolling after touchend, and taking over mid-momentum reads as
+      // the carousel fighting the user.
+      function scheduleResume() {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(function () {
+          pos = deck.scrollLeft;
+          wrap();
+          if (Math.abs(deck.scrollLeft - pos) > 0.5) deck.scrollLeft = pos;
+          last = deck.scrollLeft;
+          tick.t = 0;
+          paused = false;
+        }, RESUME_AFTER);
+      }
+
+      deck.addEventListener('pointerdown', pause);
+      deck.addEventListener('touchstart', pause, { passive: true });
+      ['pointerup', 'pointercancel', 'touchend', 'touchcancel'].forEach(function (e) {
+        deck.addEventListener(e, scheduleResume, { passive: true });
+      });
+
+      // Any scroll we did not write is the user (touch drag, momentum,
+      // trackpad). Follow it, and hold the drift off until it settles.
+      deck.addEventListener('scroll', function () {
+        if (Math.abs(deck.scrollLeft - last) < 1.5) return;
+        pos = deck.scrollLeft;
+        var before = pos;
+        wrap();
+        if (before !== pos) deck.scrollLeft = pos;
+        last = deck.scrollLeft;
+        pause();
+        scheduleResume();
+      }, { passive: true });
 
       function apply() {
-        if (phone.matches) { build(); setDuration(); }
+        if (!phone.matches) return;
+        build();
+        measure();
+        if (!raf) raf = requestAnimationFrame(tick);
       }
 
       apply();
-      window.addEventListener('resize', setDuration);
-      window.addEventListener('load', setDuration);
+      window.addEventListener('load', function () { measure(); });
+      window.addEventListener('resize', function () {
+        measure();
+        pos = deck.scrollLeft;
+        wrap();
+      });
       if (phone.addEventListener) phone.addEventListener('change', apply);
-      if (still.addEventListener) still.addEventListener('change', setDuration);
     })();
     </script>
 
