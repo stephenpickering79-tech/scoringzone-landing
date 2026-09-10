@@ -2769,3 +2769,25 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
   .footer-brand { display: contents; }
   .footer-copy { order: 1; margin-top: 4px; }
 }
+
+@media (max-width: 640px) {
+  /* ── Footer: less of it ───────────────────────────────────────────
+     297px broke down as 84px of padding, a 36px logo, two 22px gaps
+     and 112px of links. The links are the only part earning their
+     height (8 links, 3 rows, 36px targets), so everything else gives
+     ground and they are left alone — dropping them below 36px would
+     go under the touch-target size already traded down once.
+
+     The 48px bottom padding in particular was doing nothing: the app
+     bar is pinned below it and body already reserves that height, so
+     it was dead space under dead space. */
+  .footer { padding-top: 26px; padding-bottom: 28px; }
+  .footer-content { gap: 14px; }
+  .footer .nav-logo { font-size: 1rem; }
+  /* !important because the footer logo carries width/height in a style
+     attribute on all 159 pages. The badge row's inline layout was worth
+     lifting into a class; 159 files of inline sizing is not, and this is
+     what !important is actually for. */
+  .footer .nav-logo img { width: 28px !important; height: 28px !important; }
+  .footer-copy { margin-top: 2px; font-size: 0.7rem; }
+}
