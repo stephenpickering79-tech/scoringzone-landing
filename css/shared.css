@@ -27,6 +27,12 @@
   --distance-wedge: hsl(200, 70%, 55%);
   --assistant: hsl(263, 70%, 58%);
   --pressure: hsl(0, 84%, 60%);
+
+  /* Motion. The built-in CSS easings are too weak to read as intentional;
+     these are the stronger variants. ease-out for anything entering or
+     responding, ease-in-out for something moving across the screen. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* ── Base ── */
@@ -544,16 +550,22 @@ body::after {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.3s;
+  transition: background 0.2s ease, transform 0.16s var(--ease-out), box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-.btn-primary:hover {
-  background: var(--green-bright);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 24px rgba(34, 197, 94, 0.3);
+/* Touch screens fire :hover on tap and then leave it stuck on the last thing
+   pressed, so the lift and the shine sweep are gated to real pointers. */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: var(--green-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 24px rgba(34, 197, 94, 0.3);
+  }
 }
+
+.btn-primary:active { transform: scale(0.97); }
 
 .btn-primary::after {
   content: '';
@@ -563,12 +575,16 @@ body::after {
   width: 40%;
   height: 200%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.6s ease;
+  /* translateX rather than `left`: `left` reflows the button on every frame,
+     transform stays on the compositor. */
+  transform: translateX(0) skewX(-20deg);
+  transition: transform 0.6s ease;
   pointer-events: none;
 }
 
-.btn-primary:hover::after { left: 120%; }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover::after { transform: translateX(450%) skewX(-20deg); }
+}
 
 /* ── Animated border wrapper for primary CTAs ── */
 @property --btn-glow-angle {
@@ -637,14 +653,18 @@ body::after {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.16s var(--ease-out);
 }
 
-.btn-outline:hover {
-  border-color: var(--green);
-  color: var(--green);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline:hover {
+    border-color: var(--green);
+    color: var(--green);
+    transform: translateY(-1px);
+  }
 }
+
+.btn-outline:active { transform: scale(0.97); }
 
 .btn-amber {
   display: inline-flex;
@@ -664,14 +684,18 @@ body::after {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: filter 0.2s ease, transform 0.16s var(--ease-out), box-shadow 0.2s ease;
 }
 
-.btn-amber:hover {
-  filter: brightness(1.1);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 24px rgba(245, 158, 11, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .btn-amber:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 24px rgba(245, 158, 11, 0.3);
+  }
 }
+
+.btn-amber:active { transform: scale(0.97); }
 
 .btn-gray {
   display: inline-flex;
@@ -689,13 +713,17 @@ body::after {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: background 0.2s ease, transform 0.16s var(--ease-out);
 }
 
-.btn-gray:hover {
-  background: rgba(255,255,255,0.08);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-gray:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-1px);
+  }
 }
+
+.btn-gray:active { transform: scale(0.97); }
 
 .btn-sm { padding: 8px 20px; font-size: 0.82rem; }
 
@@ -2510,7 +2538,7 @@ body::after {
   width: 22px;
   height: 2px;
   background: var(--text);
-  transition: all 0.3s;
+  transition: transform 0.3s var(--ease-out), opacity 0.2s ease;
   transform-origin: center;
 }
 
