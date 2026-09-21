@@ -1,5 +1,11 @@
 {
+  "cleanUrls": true,
   "redirects": [
+    {
+      "source": "/blog/handicap-calculator.html",
+      "destination": "/tools/golf-handicap-calculator",
+      "permanent": true
+    },
     {
       "source": "/go/ios",
       "destination": "https://apps.apple.com/app/apple-store/id6769477447?pt=128906825&ct=Scoring%20Zone%20Website&mt=8",
@@ -16,13 +22,8 @@
       "permanent": false
     },
     {
-      "source": "/blog/handicap-calculator.html",
-      "destination": "/tools/golf-handicap-calculator.html",
-      "permanent": true
-    },
-    {
       "source": "/blog/handicap-calculator",
-      "destination": "/tools/golf-handicap-calculator.html",
+      "destination": "/tools/golf-handicap-calculator",
       "permanent": true
     },
     {
@@ -48,12 +49,12 @@
     },
     {
       "source": "/short-game-practice",
-      "destination": "/features/performance-hub.html",
+      "destination": "/features/performance-hub",
       "permanent": true
     },
     {
       "source": "/short-game-practice/",
-      "destination": "/features/performance-hub.html",
+      "destination": "/features/performance-hub",
       "permanent": true
     }
   ]
