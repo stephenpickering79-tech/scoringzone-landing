@@ -1070,8 +1070,9 @@
       var AGE_LABEL = {'U18':'under 18','20-29':'20–29','30-39':'30–39','40-49':'40–49','50-59':'50–59','60-69':'60–69','70+':'70+'};
 
       function cdf(z){
-        var t = 1 / (1 + 0.3275911 * Math.abs(z));
-        var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-z * z / 2);
+        // Abramowitz-Stegun erf, applied at z/sqrt(2): the standard normal CDF, good to about 1e-7.
+        var x = Math.abs(z) / Math.SQRT2, t = 1 / (1 + 0.3275911 * x);
+        var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
         return 0.5 * (1 + (z < 0 ? -y : y));
       }
       // "" -> null, junk or out of range -> NaN, "+2" -> -2 (a plus handicap).

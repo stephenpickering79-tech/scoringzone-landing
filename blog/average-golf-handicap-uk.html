@@ -31,7 +31,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Inconsolata:wght@500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/blog-post.css">
 
@@ -57,7 +57,7 @@
   "description": "The average golf handicap in the UK is around 17 for men and 28 for women. The full breakdown by age, gender, and what separates each bracket.",
   "author": {"@type": "Person", "name": "Stephen Pickering", "url": "https://www.scoringzone.net/about"},
   "publisher": {"@type": "Organization", "name": "Scoring Zone", "logo": {"@type": "ImageObject", "url": "https://www.scoringzone.net/logo.png"}},
-  "dateModified": "2026-04-08",
+  "dateModified": "2026-09-30",
   "datePublished": "2026-08-29",
   "mainEntityOfPage": "https://www.scoringzone.net/blog/average-golf-handicap-uk"
 }
@@ -263,7 +263,173 @@
         font-size: 0.85rem;
         margin-left: 4px;
       }
+      /* Calculator card: the design system from the junior tracker ("Junior Tracker Card" handoff, 2026-09-30),
+         shared with the handicap calculator's result card. */
+      .jt {
+        --jt-green: #22E06B; --jt-green-hover: #3BEA7E; --jt-on-green: #062910;
+        --jt-card: #0D110F; --jt-panel: #121614; --jt-inset: #0A0D0B;
+        --jt-text: #F4F4F5; --jt-dim: rgba(235,235,245,0.68); --jt-muted: rgba(235,235,245,0.62);
+        --jt-label: rgba(235,235,245,0.55); --jt-faint: rgba(235,235,245,0.5); --jt-faint2: rgba(235,235,245,0.45);
+        --jt-line: rgba(255,255,255,0.07); --jt-line2: rgba(255,255,255,0.09); --jt-danger: #F87171;
+        --jt-ease: cubic-bezier(0.22,1,0.36,1);
+        width: 100%; max-width: 760px; margin: 2.5rem 0; box-sizing: border-box; overflow: hidden;
+        background: var(--jt-card); border: 1px solid rgba(34,224,107,0.22); border-radius: 20px;
+        font-family: 'DM Sans', sans-serif; color: var(--jt-text);
+        container-type: inline-size;
+      }
+      .jt *, .jt *::before, .jt *::after { box-sizing: border-box; }
+      .jt-eyebrow {
+        font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.6px;
+        text-transform: uppercase; color: var(--jt-green); line-height: 1.3;
+      }
+      .jt-label {
+        font-family: 'Inconsolata', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+        text-transform: uppercase; color: var(--jt-label); line-height: 1.2;
+      }
+
+      /* Zone 1: form */
+      .jt-form { padding: 34px 38px; display: flex; flex-direction: column; gap: 28px; }
+      .jt-head { display: flex; flex-direction: column; gap: 8px; }
+      .jt .jt-title {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 38px; font-weight: 700; line-height: 1;
+        text-transform: uppercase; letter-spacing: 0; color: var(--jt-text); margin: 0;
+      }
+      .jt-body { margin: 4px 0 0; max-width: 580px; font-size: 15px; line-height: 1.6; color: var(--jt-dim); text-wrap: pretty; }
+      .jt-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+      .jt-field { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+      .jt-field.g { flex: 1.4 1 190px; }
+      .jt-field.a { flex: 0.7 1 96px; }
+      .jt-field.h { flex: 0.8 1 110px; }
+      .jt-seg {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; height: 50px;
+        background: var(--jt-inset); border: 1px solid var(--jt-line2); border-radius: 10px;
+      }
+      .jt-seg button {
+        border: 0; border-radius: 7px; background: transparent; color: rgba(235,235,245,0.6); cursor: pointer;
+        font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        transition: background 160ms, color 160ms;
+      }
+      .jt-seg button[aria-checked="true"] { background: var(--jt-green); color: var(--jt-on-green); }
+      .jt-seg button:focus-visible { outline: 2px solid var(--jt-green); outline-offset: 1px; }
+      .jt-selwrap { position: relative; display: block; }
+      .jt-selwrap svg { position: absolute; right: 12px; top: 18px; color: rgba(235,235,245,0.6); pointer-events: none; }
+      .jt select, .jt input {
+        width: 100%; height: 50px; margin: 0; background: var(--jt-inset); color: var(--jt-text);
+        border: 1px solid var(--jt-line2); border-radius: 10px; outline: none;
+        font-family: 'Inconsolata', monospace; font-size: 18px; font-weight: 700; transition: border-color 160ms, box-shadow 160ms;
+      }
+      .jt select { appearance: none; -webkit-appearance: none; padding: 0 34px 0 14px; cursor: pointer; }
+      .jt input { padding: 0 14px; }
+      .jt input::placeholder { color: rgba(235,235,245,0.3); }
+      .jt select:focus, .jt input:focus { border-color: var(--jt-green); box-shadow: 0 0 0 3px rgba(34,224,107,0.12); }
+      .jt input[aria-invalid="true"] { border-color: var(--jt-danger); }
+      .jt-go {
+        flex: 1.2 1 210px; height: 50px; padding: 0 20px; border: 0; border-radius: 10px; background: var(--jt-green); color: var(--jt-on-green);
+        font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        white-space: nowrap; box-shadow: 0 8px 24px rgba(34,224,107,0.2);
+        cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 160ms, opacity 160ms;
+      }
+      .jt-go:hover:not(:disabled) { background: var(--jt-green-hover); }
+      .jt-go:disabled { opacity: 0.55; cursor: default; }
+      .jt-go:focus-visible { outline: 2px solid var(--jt-text); outline-offset: 2px; }
+      .jt-error { font-size: 13px; color: var(--jt-danger); margin-top: -12px; }
+
+      /* Zone 2: result */
+      .jt-r { padding: 30px 38px 36px; border-top: 1px solid var(--jt-line); display: flex; flex-direction: column; gap: 28px; }
+      .jt-r[hidden] { display: none; }
+      .jt-r.in { animation: jt-rise 400ms var(--jt-ease) both; }
+      @keyframes jt-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+      .jt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px 32px; align-items: end; }
+      .jt-headline { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+      .jt-big {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 60px; font-weight: 700; line-height: 0.9;
+        text-transform: uppercase; color: var(--jt-text); white-space: nowrap;
+      }
+      /* 60px at the design's 760px card; it scales down with narrower article columns so the headline stays on one line. */
+      @container (max-width: 759px) { .jt-big { font-size: clamp(44px, 7.6cqi, 60px); } }
+      .jt-big span { color: var(--jt-green); }
+      .jt-sub { font-size: 14px; color: var(--jt-muted); }
+      .jt-stats { display: grid; grid-template-columns: 1fr 1.2fr 1fr; border: 1px solid var(--jt-line2); border-radius: 12px; overflow: hidden; }
+      .jt-stat { padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+      .jt-stat + .jt-stat { border-left: 1px solid var(--jt-line2); }
+      .jt-stat .jt-label { font-size: 10.5px; white-space: nowrap; }
+      @container (max-width: 700px) { .jt-stat { padding: 12px 11px; } .jt-stat .jt-label { letter-spacing: 0.5px; } }
+      .jt-stat b { font-family: 'Inconsolata', monospace; font-size: 22px; font-weight: 700; line-height: 1.2; white-space: nowrap; }
+
+      .jt-spread { display: flex; flex-direction: column; gap: 8px; }
+      .jt-bar { position: relative; height: 12px; }
+      .jt-track { position: absolute; left: 0; right: 0; top: 3px; height: 6px; border-radius: 3px; overflow: hidden; display: flex; background: rgba(255,255,255,0.08); }
+      .jt-track .lo { background: rgba(255,255,255,0.10); transition: width 600ms var(--jt-ease); }
+      .jt-track .hi { flex: 1; background: rgba(34,224,107,0.55); }
+      .jt-tick { position: absolute; left: 50%; top: -3px; width: 2px; height: 18px; margin-left: -1px; border-radius: 1px; background: rgba(235,235,245,0.55); }
+      .jt-you {
+        position: absolute; top: -4px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%;
+        background: var(--jt-card); border: 3px solid var(--jt-green); box-shadow: 0 0 0 4px rgba(34,224,107,0.18);
+        transition: left 600ms var(--jt-ease);
+      }
+      .jt-scale {
+        display: flex; justify-content: space-between; gap: 8px; font-family: 'Inconsolata', monospace; font-size: 11px;
+        font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--jt-faint2);
+      }
+
+      .jt-explain { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; align-items: stretch; }
+      .jt-summary { margin: 0; font-size: 14px; line-height: 1.55; color: var(--jt-dim); text-wrap: pretty; align-self: center; }
+      .jt-proj {
+        padding: 16px 18px; border-radius: 12px; background: var(--jt-panel); border: 1px solid var(--jt-line);
+        display: flex; flex-direction: column; gap: 8px;
+      }
+      .jt-proj[hidden] { display: none; }
+      .jt-proj-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+      .jt-proj-row .jt-label { font-size: 10.5px; }
+      .jt-by { display: flex; align-items: baseline; gap: 6px; font-size: 13px; color: var(--jt-dim); }
+      .jt-by b { font-family: 'Inconsolata', monospace; font-size: 20px; font-weight: 700; color: var(--jt-green); }
+      .jt-proj-note { font-size: 11.5px; line-height: 1.45; color: var(--jt-faint); }
+
+      .jt-cta {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px 28px; align-items: center;
+        padding: 26px 24px; border-radius: 14px; border: 1px solid rgba(34,224,107,0.32);
+        background: linear-gradient(180deg, rgba(34,224,107,0.09), rgba(34,224,107,0.03));
+      }
+      .jt-cta-copy { display: flex; flex-direction: column; gap: 6px; }
+      .jt-cta-title {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 700; line-height: 1;
+        text-transform: uppercase; color: var(--jt-text); text-wrap: balance;
+      }
+      .jt-cta-body { font-size: 13.5px; line-height: 1.5; color: var(--jt-dim); text-wrap: pretty; }
+      .jt-cta-act { display: flex; flex-direction: column; gap: 8px; }
+      .jt-plan {
+        height: 50px; border: 0; border-radius: 12px; background: var(--jt-green); color: var(--jt-on-green); cursor: pointer;
+        font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        box-shadow: 0 10px 30px rgba(34,224,107,0.25); transition: background 160ms;
+      }
+      .jt-plan:hover { background: var(--jt-green-hover); }
+      .jt-plan:focus-visible { outline: 2px solid var(--jt-text); outline-offset: 2px; }
+      .jt-foot {
+        display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Inconsolata', monospace;
+        font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--jt-faint2);
+      }
+
+      /* Zone 3: footer link */
+      .jt-more { padding: 18px 38px; border-top: 1px solid var(--jt-line); background: var(--jt-inset); font-size: 13.5px; color: var(--jt-muted); }
+      .jt-more a { color: var(--jt-green); font-weight: 700; text-decoration: none; }
+      .jt-more a:hover { color: var(--jt-text); }
+
+      @media (prefers-reduced-motion: reduce) { .jt-r.in { animation: none; } .jt-track .lo, .jt-you { transition: none; } }
+      /* Phone: the article column is ~340px, so the card's own padding comes down. */
+      @media (max-width: 560px) {
+        .jt-form { padding: 26px 20px; gap: 24px; }
+        .jt .jt-title { font-size: 34px; }
+        .jt-r { padding: 24px 20px 28px; gap: 24px; }
+        .jt-more { padding: 16px 20px; }
+        .jt-big { font-size: 52px !important; }
+        .jt-cta { padding: 22px 18px; }
+        .jt-stat { padding: 10px 10px; }
+        .jt-stat b { font-size: 19px; }
+      }
+      /* UK rank: the age select holds "Under 30", so it needs more room than the tracker's 7-18. */
+      .jt-field.uk-age { flex: 1 1 150px; }
     </style>
+    <link rel="stylesheet" href="../css/plan-funnel.css">
     <!-- In-content blog advert -->
     <link rel="stylesheet" href="../css/blog-ad.css">
     <script src="../js/blog-ad.js" data-asset-base="../" defer></script>
@@ -405,6 +571,95 @@
             <p class="reveal">The average golf handicap in the UK is <strong>around 17 for men and around 28 for women</strong>, based on England Golf data from the World Handicap System era. That&rsquo;s a shot or three higher than the equivalent US figures &mdash; not because British golfers are worse, but because the 2020 switch to WHS pulled thousands of previously unrecorded higher handicaps into the official numbers.</p>
 
             <p class="reveal">By age, the UK average follows a familiar curve: under-30s sit around 12&ndash;14, 30&ndash;50 year olds around 15&ndash;18, and it climbs gently from there. This guide breaks the numbers down by age and gender, shows how the UK compares with the US, and &mdash; more usefully &mdash; what actually separates each bracket.</p>
+
+            <!-- ======================== -->
+            <!-- INTERACTIVE: UK HANDICAP RANK (same design system as the junior tracker) -->
+            <section class="jt reveal" id="uk-rank" aria-labelledby="uk-title">
+                <div class="jt-form">
+                    <div class="jt-head">
+                        <span class="jt-eyebrow">UK handicap calculator</span>
+                        <h2 class="jt-title" id="uk-title">Where do you rank in the UK?</h2>
+                        <p class="jt-body">See how your handicap compares with UK club golfers, and how far you are from the next milestone. Figures use the England Golf data in this guide.</p>
+                    </div>
+                    <div class="jt-row">
+                        <div class="jt-field g">
+                            <span class="jt-label" id="uk-g-label">You are a</span>
+                            <div class="jt-seg" role="radiogroup" aria-labelledby="uk-g-label" id="uk-gender">
+                                <button type="button" role="radio" aria-checked="true" tabindex="0" data-g="men">Man</button>
+                                <button type="button" role="radio" aria-checked="false" tabindex="-1" data-g="women">Woman</button>
+                            </div>
+                        </div>
+                        <label class="jt-field a uk-age">
+                            <span class="jt-label">Age</span>
+                            <span class="jt-selwrap">
+                                <select id="uk-age">
+                                    <option value="">Any age</option>
+                                    <option value="u30">Under 30</option>
+                                    <option value="30-50">30 to 50</option>
+                                    <option value="50-65">50 to 65</option>
+                                    <option value="65+">Over 65</option>
+                                </select>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                            </span>
+                        </label>
+                        <label class="jt-field h">
+                            <span class="jt-label">Handicap index</span>
+                            <input id="uk-hcp" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 17.4" aria-describedby="uk-error">
+                        </label>
+                        <button type="button" class="jt-go" id="uk-go" disabled><span id="uk-go-label">See where I rank</span><span aria-hidden="true">&rarr;</span></button>
+                    </div>
+                    <div class="jt-error" id="uk-error" role="alert" hidden>Enter an index between +10 and 54.</div>
+                </div>
+
+                <div class="jt-r" id="uk-result" aria-live="polite" hidden>
+                    <div class="jt-grid">
+                        <div class="jt-headline">
+                            <span class="jt-eyebrow" id="uk-tier"></span>
+                            <span class="jt-big">Ahead of <span id="uk-pct"></span></span>
+                            <span class="jt-sub" id="uk-sub"></span>
+                        </div>
+                        <div class="jt-stats">
+                            <div class="jt-stat"><span class="jt-label">Index</span><b id="uk-s-you"></b></div>
+                            <div class="jt-stat"><span class="jt-label">UK average</span><b id="uk-s-avg" style="color: var(--jt-muted);"></b></div>
+                            <div class="jt-stat" id="uk-s-gapcell"><span class="jt-label">Vs average</span><b id="uk-s-gap"></b></div>
+                        </div>
+                    </div>
+
+                    <div class="jt-spread">
+                        <div class="jt-bar" aria-hidden="true">
+                            <div class="jt-track"><span class="lo" id="uk-lo"></span><span class="hi"></span></div>
+                            <span class="jt-tick"></span>
+                            <span class="jt-you" id="uk-you"></span>
+                        </div>
+                        <div class="jt-scale" aria-hidden="true"><span>&larr; Lower handicaps</span><span>UK average</span><span>Higher &rarr;</span></div>
+                    </div>
+
+                    <div class="jt-explain">
+                        <p class="jt-summary" id="uk-summary"></p>
+                        <div class="jt-proj">
+                            <div class="jt-proj-row" id="uk-next-row"></div>
+                            <span class="jt-proj-note" id="uk-next-note"></span>
+                        </div>
+                    </div>
+
+                    <div class="jt-cta">
+                        <div class="jt-cta-copy">
+                            <span class="jt-eyebrow">Free &middot; 2-week plan</span>
+                            <span class="jt-cta-title" id="uk-plan-title"></span>
+                            <span class="jt-cta-body">Answer a few quick questions and we&rsquo;ll build 4 short game sessions around your weakest area, with targets set for <span id="uk-plan-hcp"></span> handicap.</span>
+                        </div>
+                        <div class="jt-cta-act">
+                            <button type="button" class="jt-plan" id="uk-plan-go">Build free short game plan &rarr;</button>
+                            <span class="jt-foot">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                                Sent to your inbox as a PDF
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="jt-more">Want your official Handicap Index? <a href="/tools/golf-handicap-calculator">Use the free calculator &rarr;</a></div>
+            </section>
 
             <!-- ======================== -->
             <h2 class="reveal">The Average UK Golf Handicap: The Headline Numbers</h2>
@@ -649,6 +904,153 @@
         <p class="footer-copy" style="margin-top:32px;">&copy; 2026 Scoring Zone. All rights reserved.</p>
     </footer>
 
+    <script>
+    (function(){
+      // Every figure is read off this guide (England Golf, WHS era), so the tool never contradicts the article.
+      var AVG = { men: 17, women: 28 };
+      // Spreads chosen to reproduce the guide's milestones: for men, single figures is the top 20-25%,
+      // under 12 the top third, under 5 the top 5-10%; for women, most sit between 20 and 36.
+      var SD = { men: 9, women: 9.5 };
+      var AGE = { 'u30': [12, 14, 'under 30'], '30-50': [15, 18, '30 to 50'], '50-65': [18, 20, '50 to 65'], '65+': [21, 24, 'over 65'] };
+      var MILESTONES = {
+        men: [[17, 'The UK average'], [12, 'The top third'], [9.9, 'Single figures'], [5, 'The top 5–10%'], [0, 'Scratch']],
+        women: [[28, 'The UK average'], [20, 'Comfortably better than average'], [12, 'Elite club level'], [0, 'Scratch']]
+      };
+
+      function cdf(z){
+        // Abramowitz-Stegun erf, applied at z/sqrt(2): the standard normal CDF, good to about 1e-7.
+        var x = Math.abs(z) / Math.SQRT2, t = 1 / (1 + 0.3275911 * x);
+        var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+        return 0.5 * (1 + (z < 0 ? -y : y));
+      }
+      // "" -> null, junk or out of range -> NaN, "+2" -> -2 (a plus handicap).
+      function parseHcp(s){
+        var t = String(s || '').trim();
+        if (!t) return null;
+        var plus = t.charAt(0) === '+';
+        var body = plus ? t.slice(1) : t;
+        if (!/^\d{1,2}([.,]\d)?$/.test(body)) return NaN;
+        var n = parseFloat(body.replace(',', '.'));
+        var v = plus ? -n : n;
+        return (v < -10 || v > 54) ? NaN : v;
+      }
+      function fmt(v){
+        var s = Math.abs(v).toFixed(1).replace(/\.0$/, '');
+        return v < 0 ? '+' + s : s;
+      }
+      function shots(n){ var s = fmt(n); return s + (s === '1' ? ' shot' : ' shots'); }
+      function $(id){ return document.getElementById(id); }
+
+      var gender = 'men', result = null;
+      var seg = $('uk-gender'), hcpEl = $('uk-hcp'), go = $('uk-go'), err = $('uk-error'), out = $('uk-result');
+
+      function pick(btn, focus){
+        gender = btn.getAttribute('data-g');
+        [].forEach.call(seg.children, function(b){
+          var on = b === btn;
+          b.setAttribute('aria-checked', on ? 'true' : 'false');
+          b.tabIndex = on ? 0 : -1;
+        });
+        if (focus) btn.focus();
+      }
+      seg.addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) pick(b); });
+      seg.addEventListener('keydown', function(e){
+        if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].indexOf(e.key) < 0) return;
+        e.preventDefault();
+        var cur = seg.querySelector('[aria-checked="true"]');
+        pick(cur.nextElementSibling || cur.previousElementSibling, true);
+      });
+
+      function validate(){
+        var v = parseHcp(hcpEl.value);
+        var ok = v !== null && !isNaN(v);
+        go.disabled = !ok;
+        err.hidden = !(v !== null && isNaN(v));
+        hcpEl.setAttribute('aria-invalid', err.hidden ? 'false' : 'true');
+        return ok ? v : null;
+      }
+      hcpEl.addEventListener('input', validate);
+      hcpEl.addEventListener('keydown', function(e){ if (e.key === 'Enter') submit(); });
+      go.addEventListener('click', submit);
+
+      function submit(){
+        var v = validate();
+        if (v === null) return;
+        var age = $('uk-age').value;
+        var avg = AVG[gender], who = gender === 'men' ? 'UK men' : 'UK women';
+        var pct = Math.max(1, Math.min(99, Math.round((1 - cdf((v - avg) / SD[gender])) * 100)));
+
+        // Tier names are the guide's own milestones; a milestone counts as reached at or below its number.
+        var tier;
+        if (gender === 'men') {
+          tier = v <= 0 ? 'Scratch or better' : v <= 5 ? 'The top 5–10%' : v <= 9.9 ? 'Single figures' : v <= 12 ? 'The top third' : v <= avg - 0.5 ? 'Better than average' : v < avg + 0.5 ? 'Right on the average' : 'Room to climb';
+        } else {
+          tier = v <= 12 ? 'Elite club level' : v <= 20 ? 'Comfortably better than average' : v <= avg - 0.5 ? 'Better than average' : v < avg + 0.5 ? 'Right on the average' : 'Room to climb';
+        }
+        var better = v < avg;
+        $('uk-tier').textContent = (tier + ' · ' + who).toUpperCase();
+        $('uk-tier').style.color = v < avg + 0.5 ? 'var(--jt-green)' : 'var(--jt-muted)';
+        $('uk-pct').textContent = pct + '%';
+        $('uk-sub').textContent = 'of ' + who + ' with a handicap (estimate)';
+        var marker = Math.max(3, Math.min(97, 100 - pct)) + '%';
+        $('uk-lo').style.width = marker;
+        $('uk-you').style.left = marker;
+        $('uk-s-you').textContent = fmt(v);
+        $('uk-s-avg').textContent = String(avg);
+        var diff = avg - v, even = Math.abs(diff) < 0.5, gap = $('uk-s-gap');
+        gap.textContent = even ? '±0' : (diff > 0 ? '−' : '+') + fmt(Math.abs(diff));
+        gap.style.color = even ? 'var(--jt-text)' : diff > 0 ? 'var(--jt-green)' : 'var(--jt-danger)';
+        $('uk-s-gapcell').style.background = diff > 0.5 ? 'rgba(34,224,107,0.08)' : 'transparent';
+
+        // The sentence: the national average, then the age band when the guide has one.
+        var person = gender === 'men' ? 'man' : 'woman';
+        var s = 'The average UK ' + person + ' plays to ' + avg + '. ' + (even ? 'You’re right on it.' : 'At ' + fmt(v) + ', you’re ' + shots(Math.abs(diff)) + ' ' + (diff > 0 ? 'better' : 'behind') + '.');
+        if (age && gender === 'men') {
+          var b = AGE[age];
+          s += ' Golfers aged ' + b[2] + ' typically play to ' + b[0] + '–' + b[1] + (v < b[0] ? ', so you’re ahead of your age band.' : v > b[1] ? ', so there are ' + shots(v - b[1]) + ' to find on your age band.' : ', so you’re right in your age band.');
+        } else if (age) {
+          s += ' The guide’s age bands aren’t split by gender, so this compares you with the UK women’s average.';
+        }
+        $('uk-summary').textContent = s;
+
+        // Next milestone: the first one below the golfer's index.
+        var next = null;
+        MILESTONES[gender].forEach(function(m){ if (!next && v > m[0]) next = m; });
+        if (next) {
+          $('uk-next-row').innerHTML = '<span class="jt-label">Next milestone</span><span class="jt-by">' + next[1] + ' <b>' + fmt(next[0]) + '</b></span>';
+          $('uk-next-note').textContent = shots(v - next[0]) + ' away. For most club golfers, the quickest shots are inside 100 yards.';
+        } else {
+          $('uk-next-row').innerHTML = '<span class="jt-label">Next milestone</span><span class="jt-by">Every one in this guide <b>✓</b></span>';
+          $('uk-next-note').textContent = 'You’re past every milestone here. Keeping it is a short game job.';
+        }
+
+        $('uk-plan-title').textContent = pct >= 90 ? 'Create your free custom short game plan'
+          : pct >= 50 ? 'Push into the top 10% from 100 yards in'
+          : 'Find your fastest shots from 100 yards in';
+        var h = fmt(v); // "an 8", "an 11", "an 18", "an 80"; "a 14", "a +2"
+        $('uk-plan-hcp').textContent = (/^(8|11|18)(\D|$)/.test(h) || /^8\d/.test(h) ? 'an ' : 'a ') + h;
+
+        var first = !result;
+        result = { hcp: v };
+        $('uk-go-label').textContent = 'Update';
+        out.hidden = false;
+        out.classList.remove('in'); void out.offsetWidth; out.classList.add('in');
+        if (first && window.matchMedia('(max-width: 760px)').matches) {
+          out.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+        try { if (window.gtag) gtag('event', 'uk_rank_result', { hcp: v, gender: gender, age: age || 'any', pct: pct }); } catch (e) {}
+      }
+
+      // Free plan: the app's questions, hosted here (js/plan-funnel.js), ending at the email step.
+      $('uk-plan-go').addEventListener('click', function(){
+        var hcp = result && result.hcp >= 0 ? result.hcp : null; // a plus index starts the field blank
+        if (!window.SZFunnel) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=blog&utm_campaign=uk_rank_plan'; return; }
+        SZFunnel.open({ hcp: hcp, src: 'uk_rank' });
+      });
+    })();
+    </script>
+    <script src="../js/plan-engine.js" defer></script>
+    <script src="../js/plan-funnel.js" defer></script>
     <script src="../js/shared.js"></script>
     <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
