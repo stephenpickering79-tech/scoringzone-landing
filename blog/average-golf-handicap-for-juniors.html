@@ -306,150 +306,169 @@
         font-size: 0.85rem;
         margin-left: 4px;
       }
-      /* Handicap rank calculator (design handoff 2026-09-30) */
-      .rk {
-        --rk-green: #22E06B; --rk-on-green: #062910; --rk-card: #141416; --rk-surface: #0F0F12;
-        --rk-text: #F4F4F5; --rk-dim: rgba(235,235,245,0.55); --rk-dim2: rgba(235,235,245,0.38);
-        --rk-border: rgba(255,255,255,0.09); --rk-ink08: rgba(255,255,255,0.08); --rk-ink10: rgba(255,255,255,0.10);
-        --rk-danger: #F87171; --rk-ease: cubic-bezier(0.22,1,0.36,1);
-        width: 100%; max-width: 880px; margin: 2.5rem 0; box-sizing: border-box;
-        background: var(--rk-card); border: 1px solid var(--rk-border); border-radius: 14px; overflow: hidden;
-        font-family: 'DM Sans', sans-serif; color: var(--rk-text);
+      /* Junior handicap tracker (design handoff "Junior Tracker Card", 2026-09-30).
+         Same visual system as the handicap calculator's result card. */
+      .jt {
+        --jt-green: #22E06B; --jt-green-hover: #3BEA7E; --jt-on-green: #062910;
+        --jt-card: #0D110F; --jt-panel: #121614; --jt-inset: #0A0D0B;
+        --jt-text: #F4F4F5; --jt-dim: rgba(235,235,245,0.68); --jt-muted: rgba(235,235,245,0.62);
+        --jt-label: rgba(235,235,245,0.55); --jt-faint: rgba(235,235,245,0.5); --jt-faint2: rgba(235,235,245,0.45);
+        --jt-line: rgba(255,255,255,0.07); --jt-line2: rgba(255,255,255,0.09); --jt-danger: #F87171;
+        --jt-ease: cubic-bezier(0.22,1,0.36,1);
+        width: 100%; max-width: 760px; margin: 2.5rem 0; box-sizing: border-box; overflow: hidden;
+        background: var(--jt-card); border: 1px solid rgba(34,224,107,0.22); border-radius: 20px;
+        font-family: 'DM Sans', sans-serif; color: var(--jt-text);
+        container-type: inline-size;
       }
-      .rk *, .rk *::before, .rk *::after { box-sizing: border-box; }
-      .rk-accent { height: 3px; background: linear-gradient(90deg, var(--rk-green) 0%, transparent 100%); }
-      .rk-q { padding: 36px 40px 32px; display: flex; flex-direction: column; gap: 28px; }
-      .rk-head { display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
-      .rk-eyebrow {
-        font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
-        text-transform: uppercase; color: var(--rk-green); line-height: 1.3;
+      .jt *, .jt *::before, .jt *::after { box-sizing: border-box; }
+      .jt-eyebrow {
+        font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.6px;
+        text-transform: uppercase; color: var(--jt-green); line-height: 1.3;
       }
-      .rk .rk-title {
-        font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.8px;
-        line-height: 1.1; color: var(--rk-text); margin: 0; text-transform: none;
+      .jt-label {
+        font-family: 'Inconsolata', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+        text-transform: uppercase; color: var(--jt-label); line-height: 1.2;
       }
-      .rk-body { font-size: 16px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
-      .rk-formwrap { display: flex; flex-direction: column; gap: 10px; }
-      .rk-form { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; }
-      .rk-field { display: flex; flex-direction: column; gap: 8px; margin: 0; }
-      .rk-field.g { flex: 1.3 1 240px; }
-      .rk-field.a, .rk-field.h { flex: 1 1 150px; }
-      .rk-label {
-        font-family: 'Inconsolata', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
-        text-transform: uppercase; color: var(--rk-dim); line-height: 1.2;
+
+      /* Zone 1: form */
+      .jt-form { padding: 34px 38px; display: flex; flex-direction: column; gap: 28px; }
+      .jt-head { display: flex; flex-direction: column; gap: 8px; }
+      .jt .jt-title {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 38px; font-weight: 700; line-height: 1;
+        text-transform: uppercase; letter-spacing: 0; color: var(--jt-text); margin: 0;
       }
-      .rk-seg {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; height: 52px;
-        background: var(--rk-surface); border: 1px solid var(--rk-border); border-radius: 10px;
+      .jt-body { margin: 4px 0 0; max-width: 580px; font-size: 15px; line-height: 1.6; color: var(--jt-dim); text-wrap: pretty; }
+      .jt-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+      .jt-field { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+      .jt-field.g { flex: 1.4 1 190px; }
+      .jt-field.a { flex: 0.7 1 96px; }
+      .jt-field.h { flex: 0.8 1 110px; }
+      .jt-seg {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; height: 50px;
+        background: var(--jt-inset); border: 1px solid var(--jt-line2); border-radius: 10px;
       }
-      .rk-seg button {
-        border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--rk-dim);
-        font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.2px;
-        cursor: pointer; transition: background 160ms, color 160ms, border-color 160ms; padding: 0 6px;
+      .jt-seg button {
+        border: 0; border-radius: 7px; background: transparent; color: rgba(235,235,245,0.6); cursor: pointer;
+        font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        transition: background 160ms, color 160ms;
       }
-      .rk-seg button[aria-checked="true"] { background: rgba(34,224,107,0.12); border-color: rgba(34,224,107,0.45); color: var(--rk-text); }
-      .rk-seg button:focus-visible { outline: 2px solid var(--rk-green); outline-offset: 1px; }
-      .rk-selwrap { position: relative; }
-      .rk-selwrap svg { position: absolute; right: 14px; top: 19px; color: var(--rk-dim); pointer-events: none; }
-      .rk select, .rk input {
-        width: 100%; height: 52px; margin: 0; background: var(--rk-surface); color: var(--rk-text);
-        border: 1px solid var(--rk-border); border-radius: 10px; outline: none;
-        transition: border-color 160ms, box-shadow 160ms;
+      .jt-seg button[aria-checked="true"] { background: var(--jt-green); color: var(--jt-on-green); }
+      .jt-seg button:focus-visible { outline: 2px solid var(--jt-green); outline-offset: 1px; }
+      .jt-selwrap { position: relative; display: block; }
+      .jt-selwrap svg { position: absolute; right: 12px; top: 18px; color: rgba(235,235,245,0.6); pointer-events: none; }
+      .jt select, .jt input {
+        width: 100%; height: 50px; margin: 0; background: var(--jt-inset); color: var(--jt-text);
+        border: 1px solid var(--jt-line2); border-radius: 10px; outline: none;
+        font-family: 'Inconsolata', monospace; font-size: 18px; font-weight: 700; transition: border-color 160ms, box-shadow 160ms;
       }
-      .rk select { appearance: none; -webkit-appearance: none; padding: 0 38px 0 14px; font-family: inherit; font-size: 16px; cursor: pointer; }
-      .rk input { padding: 0 14px; font-family: 'Inconsolata', monospace; font-size: 19px; font-weight: 700; }
-      .rk input::placeholder { color: var(--rk-dim2); }
-      .rk select:focus, .rk input:focus { border-color: var(--rk-green); box-shadow: 0 0 0 3px rgba(34,224,107,0.12); }
-      .rk-btn {
-        position: relative; overflow: hidden; height: 52px; padding: 0 22px; border: none; border-radius: 10px;
-        background: var(--rk-green); color: var(--rk-on-green); font-family: 'Space Grotesk', sans-serif;
-        font-size: 16px; font-weight: 700; letter-spacing: -0.2px; cursor: pointer;
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        box-shadow: 0 6px 18px rgba(34,224,107,0.18); transition: transform 120ms var(--rk-ease), opacity 160ms;
+      .jt select { appearance: none; -webkit-appearance: none; padding: 0 34px 0 14px; cursor: pointer; }
+      .jt input { padding: 0 14px; }
+      .jt input::placeholder { color: rgba(235,235,245,0.3); }
+      .jt select:focus, .jt input:focus { border-color: var(--jt-green); box-shadow: 0 0 0 3px rgba(34,224,107,0.12); }
+      .jt input[aria-invalid="true"] { border-color: var(--jt-danger); }
+      .jt-go {
+        flex: 1.2 1 210px; height: 50px; padding: 0 20px; border: 0; border-radius: 10px; background: var(--jt-green); color: var(--jt-on-green);
+        font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        white-space: nowrap; box-shadow: 0 8px 24px rgba(34,224,107,0.2);
+        cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 160ms, opacity 160ms;
       }
-      .rk-btn:active:not(:disabled) { transform: scale(0.98); }
-      .rk-btn:disabled { opacity: 0.55; cursor: default; }
-      .rk-btn:focus-visible { outline: 2px solid var(--rk-text); outline-offset: 2px; }
-      .rk-submit { flex: 1 1 200px; }
-      .rk-error { font-size: 13px; color: var(--rk-danger); }
-      .rk-r {
-        border-top: 1px solid var(--rk-border); padding: 32px 40px 40px;
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 36px; align-items: start;
+      .jt-go:hover:not(:disabled) { background: var(--jt-green-hover); }
+      .jt-go:disabled { opacity: 0.55; cursor: default; }
+      .jt-go:focus-visible { outline: 2px solid var(--jt-text); outline-offset: 2px; }
+      .jt-error { font-size: 13px; color: var(--jt-danger); margin-top: -12px; }
+
+      /* Zone 2: result */
+      .jt-r { padding: 30px 38px 36px; border-top: 1px solid var(--jt-line); display: flex; flex-direction: column; gap: 28px; }
+      .jt-r[hidden] { display: none; }
+      .jt-r.in { animation: jt-rise 400ms var(--jt-ease) both; }
+      @keyframes jt-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+      .jt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px 32px; align-items: end; }
+      .jt-headline { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+      .jt-big {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 60px; font-weight: 700; line-height: 0.9;
+        text-transform: uppercase; color: var(--jt-text); white-space: nowrap;
       }
-      .rk-r[hidden] { display: none; }
-      .rk-r.in { animation: rk-rise 400ms var(--rk-ease) both; }
-      @keyframes rk-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-      .rk-col { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-      .rk-headline { display: flex; flex-direction: column; gap: 10px; }
-      .rk-tier { font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
-      .rk-big { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -2px; line-height: 1; color: var(--rk-text); }
-      .rk-big span { color: var(--rk-green); }
-      .rk-sub { font-size: 16px; color: var(--rk-dim); }
-      .rk-spread { display: flex; flex-direction: column; gap: 8px; }
-      .rk-bar { position: relative; height: 28px; }
-      .rk-track { position: absolute; left: 0; right: 0; top: 11px; height: 6px; border-radius: 3px; background: var(--rk-ink08); overflow: hidden; display: flex; }
-      .rk-track .lo { background: var(--rk-ink10); transition: width 600ms var(--rk-ease); }
-      .rk-track .hi { flex: 1; background: var(--rk-green); }
-      .rk-tick { position: absolute; top: 5px; left: 50%; width: 2px; height: 18px; margin-left: -1px; background: var(--rk-dim2); border-radius: 1px; }
-      .rk-you {
-        position: absolute; top: 4px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%;
-        background: var(--rk-card); border: 3px solid var(--rk-green); box-shadow: 0 0 0 4px rgba(34,224,107,0.18);
-        transition: left 600ms var(--rk-ease);
+      /* 60px at the design's 760px card; it scales down with narrower article columns so the headline stays on one line. */
+      @container (max-width: 759px) { .jt-big { font-size: clamp(44px, 7.6cqi, 60px); } }
+      .jt-big span { color: var(--jt-green); }
+      .jt-sub { font-size: 14px; color: var(--jt-muted); }
+      .jt-stats { display: grid; grid-template-columns: 1fr 1.2fr 1fr; border: 1px solid var(--jt-line2); border-radius: 12px; overflow: hidden; }
+      .jt-stat { padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+      .jt-stat + .jt-stat { border-left: 1px solid var(--jt-line2); }
+      .jt-stat .jt-label { font-size: 10.5px; white-space: nowrap; }
+      @container (max-width: 700px) { .jt-stat { padding: 12px 11px; } .jt-stat .jt-label { letter-spacing: 0.5px; } }
+      .jt-stat b { font-family: 'Inconsolata', monospace; font-size: 22px; font-weight: 700; line-height: 1.2; white-space: nowrap; }
+
+      .jt-spread { display: flex; flex-direction: column; gap: 8px; }
+      .jt-bar { position: relative; height: 12px; }
+      .jt-track { position: absolute; left: 0; right: 0; top: 3px; height: 6px; border-radius: 3px; overflow: hidden; display: flex; background: rgba(255,255,255,0.08); }
+      .jt-track .lo { background: rgba(255,255,255,0.10); transition: width 600ms var(--jt-ease); }
+      .jt-track .hi { flex: 1; background: rgba(34,224,107,0.55); }
+      .jt-tick { position: absolute; left: 50%; top: -3px; width: 2px; height: 18px; margin-left: -1px; border-radius: 1px; background: rgba(235,235,245,0.55); }
+      .jt-you {
+        position: absolute; top: -4px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%;
+        background: var(--jt-card); border: 3px solid var(--jt-green); box-shadow: 0 0 0 4px rgba(34,224,107,0.18);
+        transition: left 600ms var(--jt-ease);
       }
-      .rk-scale {
+      .jt-scale {
         display: flex; justify-content: space-between; gap: 8px; font-family: 'Inconsolata', monospace; font-size: 11px;
-        font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--rk-dim2);
+        font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--jt-faint2);
       }
-      .rk-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--rk-border); border-radius: 10px; overflow: hidden; }
-      .rk-stat { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
-      .rk-stat + .rk-stat { border-left: 1px solid var(--rk-border); }
-      .rk-stat b { font-family: 'Inconsolata', monospace; font-size: 26px; font-weight: 700; line-height: 1.1; }
-      .rk-summary { font-size: 16px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
-      .rk-cta {
-        background: var(--rk-surface); border: 1px solid rgba(34,224,107,0.28); border-radius: 12px;
-        padding: 28px 26px 22px; display: flex; flex-direction: column; gap: 18px;
+
+      .jt-explain { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; align-items: stretch; }
+      .jt-summary { margin: 0; font-size: 14px; line-height: 1.55; color: var(--jt-dim); text-wrap: pretty; align-self: center; }
+      .jt-proj {
+        padding: 16px 18px; border-radius: 12px; background: var(--jt-panel); border: 1px solid var(--jt-line);
+        display: flex; flex-direction: column; gap: 8px;
       }
-      .rk-cta-copy { display: flex; flex-direction: column; gap: 10px; }
-      .rk-cta-title {
-        font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.6px;
-        line-height: 1.15; color: var(--rk-text); text-wrap: balance;
+      .jt-proj[hidden] { display: none; }
+      .jt-proj-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+      .jt-proj-row .jt-label { font-size: 10.5px; }
+      .jt-by { display: flex; align-items: baseline; gap: 6px; font-size: 13px; color: var(--jt-dim); }
+      .jt-by b { font-family: 'Inconsolata', monospace; font-size: 20px; font-weight: 700; color: var(--jt-green); }
+      .jt-proj-note { font-size: 11.5px; line-height: 1.45; color: var(--jt-faint); }
+
+      .jt-cta {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px 28px; align-items: center;
+        padding: 26px 24px; border-radius: 14px; border: 1px solid rgba(34,224,107,0.32);
+        background: linear-gradient(180deg, rgba(34,224,107,0.09), rgba(34,224,107,0.03));
       }
-      .rk-cta-body { font-size: 15px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
-      .rk-plan { height: 54px; width: 100%; box-shadow: 0 10px 30px rgba(34,224,107,0.33); }
-      .rk-shine {
-        position: absolute; top: 0; bottom: 0; left: 0; width: 40%; pointer-events: none;
-        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
-        transform: translateX(-150%) skewX(-20deg);
-        animation: rk-shine 3.8s var(--rk-ease) 1.2s infinite;
+      .jt-cta-copy { display: flex; flex-direction: column; gap: 6px; }
+      .jt-cta-title {
+        font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 700; line-height: 1;
+        text-transform: uppercase; color: var(--jt-text); text-wrap: balance;
       }
-      @keyframes rk-shine { from { transform: translateX(-150%) skewX(-20deg); } 60%, to { transform: translateX(300%) skewX(-20deg); } }
-      @media (prefers-reduced-motion: reduce) { .rk-shine { display: none; } .rk-r.in { animation: none; } }
-      .rk-foot {
+      .jt-cta-body { font-size: 13.5px; line-height: 1.5; color: var(--jt-dim); text-wrap: pretty; }
+      .jt-cta-act { display: flex; flex-direction: column; gap: 8px; }
+      .jt-plan {
+        height: 50px; border: 0; border-radius: 12px; background: var(--jt-green); color: var(--jt-on-green); cursor: pointer;
+        font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        box-shadow: 0 10px 30px rgba(34,224,107,0.25); transition: background 160ms;
+      }
+      .jt-plan:hover { background: var(--jt-green-hover); }
+      .jt-plan:focus-visible { outline: 2px solid var(--jt-text); outline-offset: 2px; }
+      .jt-foot {
         display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Inconsolata', monospace;
-        font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--rk-dim2);
+        font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--jt-faint2);
       }
-      .rk-more { font-size: 14px; color: var(--rk-dim); }
-      .rk-more a { color: var(--rk-green); font-weight: 600; text-decoration: none; }
-      .rk-more a:hover { color: var(--rk-text); }
+
+      /* Zone 3: footer link */
+      .jt-more { padding: 18px 38px; border-top: 1px solid var(--jt-line); background: var(--jt-inset); font-size: 13.5px; color: var(--jt-muted); }
+      .jt-more a { color: var(--jt-green); font-weight: 700; text-decoration: none; }
+      .jt-more a:hover { color: var(--jt-text); }
+
+      @media (prefers-reduced-motion: reduce) { .jt-r.in { animation: none; } .jt-track .lo, .jt-you { transition: none; } }
       /* Phone: the article column is ~340px, so the card's own padding comes down. */
       @media (max-width: 560px) {
-        .rk-q { padding: 28px 20px 24px; gap: 24px; }
-        .rk-r { padding: 26px 20px 28px; gap: 28px; }
-        .rk .rk-title { font-size: 30px; }
-        .rk-big { font-size: 48px; }
-        .rk-cta { padding: 24px 20px 20px; }
+        .jt-form { padding: 26px 20px; gap: 24px; }
+        .jt .jt-title { font-size: 34px; }
+        .jt-r { padding: 24px 20px 28px; gap: 24px; }
+        .jt-more { padding: 16px 20px; }
+        .jt-big { font-size: 52px !important; }
+        .jt-cta { padding: 22px 18px; }
+        .jt-stat { padding: 10px 10px; }
+        .jt-stat b { font-size: 19px; }
       }
-      /* Junior tracker additions */
-      .rk-stat b.sm { font-size: 20px; line-height: 1.4; }
-      .rk-proj {
-        display: flex; flex-direction: column; gap: 10px; padding: 14px 16px;
-        background: var(--rk-surface); border: 1px solid var(--rk-border); border-radius: 10px;
-      }
-      .rk-proj[hidden] { display: none; }
-      .rk-proj-row { display: flex; flex-wrap: wrap; gap: 10px 28px; }
-      .rk-proj-row div { display: flex; align-items: baseline; gap: 8px; font-size: 15px; color: var(--rk-dim); }
-      .rk-proj-row b { font-family: 'Inconsolata', monospace; font-size: 24px; font-weight: 700; color: var(--rk-green); }
-      .rk-proj-note { font-size: 13px; line-height: 1.5; color: var(--rk-dim2); }
     </style>
     <link rel="stylesheet" href="../css/plan-funnel.css">
     <!-- In-content blog advert -->
@@ -609,93 +628,99 @@
             <p class="reveal">The pattern is consistent: the number falls quickly between about 10 and 16 for any junior who plays regularly, then settles as they reach adult strength and a full schedule. Age sets the ceiling; practice volume sets where inside the range they land.</p>
 
             <!-- ======================== -->
-            <!-- INTERACTIVE: JUNIOR HANDICAP TRACKER -->
-            <section class="rk reveal" id="junior-tracker" aria-labelledby="rk-title">
-                <div class="rk-accent" aria-hidden="true"></div>
-                <div class="rk-q">
-                    <div class="rk-head">
-                        <div class="rk-eyebrow">Junior handicap tracker</div>
-                        <h2 class="rk-title" id="rk-title">Is your junior on track?</h2>
-                        <div class="rk-body">Compare your child&rsquo;s handicap with the typical range for their age, and see where they&rsquo;d land by 16 and 18 if they hold the same place on the curve. Ranges come from the table above.</div>
+            <!-- INTERACTIVE: JUNIOR HANDICAP TRACKER (design handoff "Junior Tracker Card", 2026-09-30) -->
+            <section class="jt reveal" id="junior-tracker" aria-labelledby="rk-title">
+                <div class="jt-form">
+                    <div class="jt-head">
+                        <span class="jt-eyebrow">Junior handicap tracker</span>
+                        <h2 class="jt-title" id="rk-title">Is your junior on track?</h2>
+                        <p class="jt-body">Compare your child&rsquo;s handicap with the typical range for their age, and see where they&rsquo;d land by 16 and 18 if they hold the same place on the curve. Ranges come from the table above.</p>
                     </div>
-                    <div class="rk-formwrap">
-                        <div class="rk-form">
-                            <div class="rk-field g">
-                                <span class="rk-label" id="rk-g-label">Your junior is a</span>
-                                <div class="rk-seg" role="radiogroup" aria-labelledby="rk-g-label" id="rk-gender">
-                                    <button type="button" role="radio" aria-checked="true" tabindex="0" data-g="boy">Boy</button>
-                                    <button type="button" role="radio" aria-checked="false" tabindex="-1" data-g="girl">Girl</button>
-                                </div>
+                    <div class="jt-row">
+                        <div class="jt-field g">
+                            <span class="jt-label" id="rk-g-label">Your junior is a</span>
+                            <div class="jt-seg" role="radiogroup" aria-labelledby="rk-g-label" id="rk-gender">
+                                <button type="button" role="radio" aria-checked="true" tabindex="0" data-g="boy">Boy</button>
+                                <button type="button" role="radio" aria-checked="false" tabindex="-1" data-g="girl">Girl</button>
                             </div>
-                            <label class="rk-field a">
-                                <span class="rk-label">Their age</span>
-                                <span class="rk-selwrap">
-                                    <select id="rk-age">
-                                        <option value="8">7&ndash;8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12" selected>12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                    </select>
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-                                </span>
-                            </label>
-                            <label class="rk-field h">
-                                <span class="rk-label">Handicap index</span>
-                                <input id="rk-hcp" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 24.5" aria-describedby="rk-error">
-                            </label>
-                            <button type="button" class="rk-btn rk-submit" id="rk-go" disabled><span id="rk-go-label">Check their progress</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
                         </div>
-                        <div class="rk-error" id="rk-error" role="alert" hidden>Enter an index between +10 and 54.</div>
+                        <label class="jt-field a">
+                            <span class="jt-label">Their age</span>
+                            <span class="jt-selwrap">
+                                <select id="rk-age">
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12" selected>12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                </select>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                            </span>
+                        </label>
+                        <label class="jt-field h">
+                            <span class="jt-label">Handicap index</span>
+                            <input id="rk-hcp" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 24.5" aria-describedby="rk-error">
+                        </label>
+                        <button type="button" class="jt-go" id="rk-go" disabled><span id="rk-go-label">Check their progress</span><span aria-hidden="true">&rarr;</span></button>
+                    </div>
+                    <div class="jt-error" id="rk-error" role="alert" hidden>Enter an index between +10 and 54.</div>
+                </div>
+
+                <div class="jt-r" id="rk-result" aria-live="polite" hidden>
+                    <div class="jt-grid">
+                        <div class="jt-headline">
+                            <span class="jt-eyebrow" id="rk-tier"></span>
+                            <span class="jt-big">Ahead of <span id="rk-pct"></span></span>
+                            <span class="jt-sub" id="rk-sub"></span>
+                        </div>
+                        <div class="jt-stats">
+                            <div class="jt-stat"><span class="jt-label">Index</span><b id="rk-s-you"></b></div>
+                            <div class="jt-stat"><span class="jt-label" id="rk-s-agelabel">Typical</span><b id="rk-s-range" style="color: var(--jt-muted);"></b></div>
+                            <div class="jt-stat" id="rk-s-gapcell"><span class="jt-label">Vs range</span><b id="rk-s-gap"></b></div>
+                        </div>
+                    </div>
+
+                    <div class="jt-spread">
+                        <div class="jt-bar" aria-hidden="true">
+                            <div class="jt-track"><span class="lo" id="rk-lo"></span><span class="hi"></span></div>
+                            <span class="jt-tick"></span>
+                            <span class="jt-you" id="rk-you"></span>
+                        </div>
+                        <div class="jt-scale" aria-hidden="true"><span>&larr; Lower handicaps</span><span>Typical</span><span>Higher &rarr;</span></div>
+                    </div>
+
+                    <div class="jt-explain">
+                        <p class="jt-summary" id="rk-summary"></p>
+                        <div class="jt-proj" id="rk-proj" hidden>
+                            <div class="jt-proj-row" id="rk-proj-row"></div>
+                            <span class="jt-proj-note">A typical-curve estimate, not a forecast. Structured practice is what moves a junior down the range.</span>
+                        </div>
+                    </div>
+
+                    <div class="jt-cta">
+                        <div class="jt-cta-copy">
+                            <span class="jt-eyebrow">Free &middot; 2-week plan</span>
+                            <span class="jt-cta-title" id="rk-plan-title"></span>
+                            <span class="jt-cta-body">Answer a few quick questions and we&rsquo;ll build 4 short game sessions around their weakest area, with targets set for <span id="rk-plan-hcp"></span> handicap.</span>
+                        </div>
+                        <div class="jt-cta-act">
+                            <button type="button" class="jt-plan" id="rk-plan-go">Get the free plan &rarr;</button>
+                            <span class="jt-foot">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                                Sent to your inbox as a PDF
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <div class="rk-r" id="rk-result" aria-live="polite" hidden>
-                    <div class="rk-col">
-                        <div class="rk-headline">
-                            <div class="rk-tier" id="rk-tier"></div>
-                            <div class="rk-big">Ahead of <span id="rk-pct"></span></div>
-                            <div class="rk-sub" id="rk-sub"></div>
-                        </div>
-                        <div class="rk-spread">
-                            <div class="rk-bar" aria-hidden="true">
-                                <div class="rk-track"><div class="lo" id="rk-lo"></div><div class="hi"></div></div>
-                                <div class="rk-tick"></div>
-                                <div class="rk-you" id="rk-you"></div>
-                            </div>
-                            <div class="rk-scale" aria-hidden="true"><span>&larr; Lower handicaps</span><span>Typical</span><span>Higher &rarr;</span></div>
-                        </div>
-                        <div class="rk-stats">
-                            <div class="rk-stat"><span class="rk-label">Index</span><b id="rk-s-you"></b></div>
-                            <div class="rk-stat"><span class="rk-label" id="rk-s-agelabel">Typical</span><b class="sm" id="rk-s-range" style="color: var(--rk-dim);"></b></div>
-                            <div class="rk-stat" id="rk-s-gapcell"><span class="rk-label">Vs range</span><b class="sm" id="rk-s-gap"></b></div>
-                        </div>
-                        <div class="rk-summary" id="rk-summary"></div>
-                        <div class="rk-proj" id="rk-proj" hidden>
-                            <span class="rk-label">On the same curve</span>
-                            <div class="rk-proj-row" id="rk-proj-row"></div>
-                            <div class="rk-proj-note">A typical-curve estimate, not a forecast. Structured practice is what moves a junior down the range.</div>
-                        </div>
-                        <div class="rk-more">Need their official Handicap Index? <a href="/tools/golf-handicap-calculator">Use the free calculator &rarr;</a></div>
-                    </div>
-                    <div class="rk-cta">
-                        <div class="rk-cta-copy">
-                            <div class="rk-eyebrow">Free &middot; 2-week plan</div>
-                            <div class="rk-cta-title" id="rk-plan-title"></div>
-                            <div class="rk-cta-body">Answer a few quick questions and we&rsquo;ll build 4 short game sessions around their weakest area, with targets set for <span id="rk-plan-hcp"></span> handicap.</div>
-                        </div>
-                        <button type="button" class="rk-btn rk-plan" id="rk-plan-go"><span class="rk-shine" aria-hidden="true"></span>Get the free plan<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
-                        <div class="rk-foot">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-                            Sent to your inbox as a PDF
-                        </div>
-                    </div>
-                </div>
+
+                <div class="jt-more">Need their official Handicap Index? <a href="/tools/golf-handicap-calculator">Use the free calculator &rarr;</a></div>
             </section>
 
             <a href="average-golf-handicap-by-age" class="blog-internal-link reveal">
@@ -947,10 +972,10 @@
 
     <script>
     (function(){
-      // Typical ranges from the age table in this guide. 7–8 is keyed as 8.
-      var RANGE = {8:[45,54], 9:[32,45], 10:[28,36], 11:[25,32], 12:[22,28], 13:[19,26], 14:[16,22], 15:[14,20], 16:[12,18], 17:[11,17], 18:[10,16]};
+      // Typical ranges from the age table in this guide. Its 7–8 row covers both ages.
+      var RANGE = {7:[45,54], 8:[45,54], 9:[32,45], 10:[28,36], 11:[25,32], 12:[22,28], 13:[19,26], 14:[16,22], 15:[14,20], 16:[12,18], 17:[11,17], 18:[10,16]};
       var GIRL_ADD = 4.5; // the guide: add three to six strokes for an average junior girl
-      var AGE_TXT = function(a){ return a === 8 ? '7–8' : String(a); };
+      var AGE_TXT = function(a){ return String(a); };
 
       function range(g, a){
         var r = RANGE[a], add = g === 'girl' ? GIRL_ADD : 0;
@@ -1029,7 +1054,7 @@
         var rangeTxt = whole(m.lo) + '–' + whole(m.hi);
 
         $('rk-tier').textContent = ({ ahead: 'Ahead of the curve', on_track: 'On track', building: 'Building' })[band].toUpperCase() + ' · ' + kids.toUpperCase() + ' AGED ' + ageTxt;
-        $('rk-tier').style.color = band === 'building' ? 'var(--rk-dim)' : 'var(--rk-green)';
+        $('rk-tier').style.color = band === 'building' ? 'var(--jt-muted)' : 'var(--jt-green)';
         $('rk-pct').textContent = pct + '%';
         $('rk-sub').textContent = 'of ' + kids + ' aged ' + ageTxt + ' who play regularly (estimate)';
         var marker = Math.max(3, Math.min(97, 100 - pct)) + '%';
@@ -1039,9 +1064,9 @@
         $('rk-s-agelabel').textContent = 'Typical at ' + ageTxt;
         $('rk-s-range').textContent = rangeTxt;
         var gap = $('rk-s-gap'), shots;
-        if (band === 'ahead') { shots = m.lo - v; gap.textContent = '−' + fmt(shots); gap.style.color = 'var(--rk-green)'; }
-        else if (band === 'building') { shots = v - m.hi; gap.textContent = '+' + fmt(shots); gap.style.color = 'var(--rk-danger)'; }
-        else { gap.textContent = 'In range'; gap.style.color = 'var(--rk-text)'; }
+        if (band === 'ahead') { shots = m.lo - v; gap.textContent = '−' + fmt(shots); gap.style.color = 'var(--jt-green)'; }
+        else if (band === 'building') { shots = v - m.hi; gap.textContent = '+' + fmt(shots); gap.style.color = 'var(--jt-danger)'; }
+        else { gap.textContent = 'In range'; gap.style.color = 'var(--jt-text)'; }
         $('rk-s-gapcell').style.background = band === 'ahead' ? 'rgba(34,224,107,0.08)' : 'transparent';
 
         var who = (gender === 'boy' ? 'a boy' : 'a girl') + ' aged ' + ageTxt;
@@ -1056,10 +1081,10 @@
         var ahead = [16, 18].filter(function(a){ return a > age; });
         var proj = $('rk-proj');
         proj.hidden = !ahead.length;
-        $('rk-proj-row').innerHTML = ahead.map(function(a){
+        $('rk-proj-row').innerHTML = '<span class="jt-label">On the same curve</span>' + ahead.map(function(a){
           var p = model(gender, a);
           var est = Math.max(-5, Math.min(54, p.mid + z * p.sd));
-          return '<div>By ' + a + ' <b>' + whole(est) + '</b></div>';
+          return '<span class="jt-by">By ' + a + ' <b>' + whole(est) + '</b></span>';
         }).join('');
 
         $('rk-plan-title').textContent = band === 'ahead' ? 'Keep them ahead of the curve'
