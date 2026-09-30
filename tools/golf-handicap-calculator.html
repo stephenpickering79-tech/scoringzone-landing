@@ -31,7 +31,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Inconsolata:wght@500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Breadcrumb Schema -->
   <script type="application/ld+json">
@@ -122,7 +122,7 @@
     "url": "https://www.scoringzone.net/tools/golf-handicap-calculator#handicap-distribution",
     "temporalCoverage": "2025",
     "spatialCoverage": "United States",
-    "dateModified": "2026-09-10",
+    "dateModified": "2026-09-30",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "isBasedOn": "https://www.usga.org/handicapping/world-handicap-system/whs-stats.html",
     "creator": {
@@ -833,7 +833,234 @@
       white-space: nowrap;
       border: 0;
     }
+
+    /* ===== Calculator + result card (design handoff "Handicap Result Card", 2026-09-30) =====
+       One design language for all three tabs and the result. Scoped to .calc-card so the
+       page's other sections keep the site styles. */
+    .calc-card {
+      --hc-green: #22E06B; --hc-green-hover: #3BEA7E; --hc-on-green: #062910; --hc-amber: #F5A623;
+      --hc-card: #0D110F; --hc-panel: #121614; --hc-inset: #0A0D0B;
+      --hc-text: #F4F4F5; --hc-dim: rgba(235,235,245,0.68); --hc-muted: rgba(235,235,245,0.62);
+      --hc-faint: rgba(235,235,245,0.5); --hc-faint2: rgba(235,235,245,0.45);
+      --hc-line: rgba(255,255,255,0.07); --hc-line2: rgba(255,255,255,0.09); --hc-line3: rgba(255,255,255,0.12);
+      background: none; border: 0; border-radius: 0; padding: 0; margin: 32px auto;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      color: var(--hc-text); font-family: 'DM Sans', sans-serif;
+    }
+    .calc-card .calc-in, .calc-card .results, .calc-card .disclaimer { width: 100%; max-width: 760px; box-sizing: border-box; }
+    .calc-card .calc-in {
+      background: var(--hc-card); border: 1px solid rgba(34,224,107,0.22); border-radius: 20px; padding: 28px 40px 32px;
+    }
+    .calc-card .res-eyebrow {
+      font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--hc-green); line-height: 1.3;
+    }
+
+    /* Tabs: the Men/Women segmented control, at tab size */
+    .calc-card .tabs {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; margin-bottom: 24px;
+      background: var(--hc-inset); border: 1px solid var(--hc-line2); border-radius: 10px;
+    }
+    .calc-card .tab-btn {
+      min-height: 44px; padding: 6px 8px; border: 0; border-radius: 7px; background: transparent; color: rgba(235,235,245,0.6);
+      font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      line-height: 1.1; cursor: pointer; transition: background 160ms, color 160ms;
+    }
+    .calc-card .tab-btn:hover { color: var(--hc-text); }
+    .calc-card .tab-btn.active { background: var(--hc-green); color: var(--hc-on-green); }
+    .calc-card .tab-btn:focus-visible { outline: 2px solid var(--hc-green); outline-offset: 2px; }
+    .calc-card .tab-panel > p:first-child { font-size: 15px; line-height: 1.6; color: var(--hc-dim) !important; }
+
+    /* Inputs */
+    .calc-card .form-row { gap: 14px; margin-bottom: 14px; }
+    .calc-card .form-field label {
+      font-family: 'Inconsolata', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--hc-faint); margin-bottom: 8px;
+    }
+    .calc-card .form-field input {
+      height: 48px; padding: 0 14px; box-sizing: border-box; background: var(--hc-inset); color: var(--hc-text);
+      border: 1px solid var(--hc-line2); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 16px;
+    }
+    .calc-card .form-field input::placeholder { color: rgba(235,235,245,0.3); }
+    .calc-card .form-field input:focus { border-color: var(--hc-green); background: var(--hc-inset); box-shadow: 0 0 0 3px rgba(34,224,107,0.12); }
+    .calc-card .form-field input.error { border-color: #F87171; }
+    .calc-card .rounds-header h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .calc-card .rounds-count { font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--hc-faint); }
+    .calc-card .form-row-label { font-family: 'Inconsolata', monospace; font-size: 12px; letter-spacing: 1px; color: var(--hc-faint); height: 48px; align-self: end; }
+    @media (max-width: 600px) { .calc-card .form-row-label { height: auto; align-self: auto; border-top-color: var(--hc-line); } }
+    .calc-card .btn-icon { height: 48px; width: 48px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-color: var(--hc-line2); border-radius: 10px; background: var(--hc-inset); color: var(--hc-faint); }
+
+    /* Buttons: primary is the card's green action, ghost the footer outline */
+    .calc-card .btn-row { gap: 10px; margin-top: 22px; }
+    .calc-card .btn {
+      height: 54px; padding: 0 24px; border-radius: 12px; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: background 160ms, box-shadow 160ms;
+    }
+    .calc-card .btn-primary { background: var(--hc-green); color: var(--hc-on-green); box-shadow: 0 10px 30px rgba(34,224,107,0.25); }
+    .calc-card .btn-primary:hover { background: var(--hc-green-hover); transform: none; box-shadow: 0 10px 30px rgba(34,224,107,0.25); }
+    .calc-card .btn-ghost { font-size: 15px; background: transparent; border: 1px solid var(--hc-line3); color: var(--hc-text); }
+    .calc-card .btn-ghost:hover { background: rgba(255,255,255,0.06); border-color: var(--hc-line3); color: var(--hc-text); }
+    .calc-card .btn:disabled { opacity: 0.5; cursor: default; }
+    .calc-card .btn:focus-visible { outline: 2px solid var(--hc-green); outline-offset: 2px; }
+
+    /* Result card */
+    .calc-card .results {
+      margin: 0; padding: 0; text-align: left; background: var(--hc-card);
+      border: 1px solid rgba(34,224,107,0.22); border-radius: 20px; overflow: hidden;
+    }
+    .calc-card .results.visible { display: block; }
+    .calc-card .res-est {
+      padding: 36px 40px 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px 36px; align-items: end;
+    }
+    .calc-card .res-est-head { display: flex; flex-direction: column; gap: 8px; }
+    .calc-card .result-value {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 112px; font-weight: 700; line-height: 0.85;
+      letter-spacing: -1px; color: var(--hc-green); margin: 0;
+    }
+    .calc-card .result-value span { color: inherit; }
+    .calc-card .result-sub { margin: 0; max-width: none; font-size: 15px; line-height: 1.6; color: var(--hc-dim); text-wrap: pretty; }
+    .calc-card .result-breakdown {
+      grid-column: 1 / -1; margin: 0; max-width: none; padding: 18px 20px; border-radius: 14px;
+      background: var(--hc-panel); border: 1px solid var(--hc-line); font-size: 14px; color: var(--hc-dim);
+    }
+    .calc-card .result-breakdown .diff-row { border-bottom-color: var(--hc-line); font-variant-numeric: tabular-nums; }
+    .calc-card .result-breakdown .diff-row.used { color: var(--hc-green); }
+    /* The check rides on the value, so the row keeps two items and the value stays right-aligned. */
+    .calc-card .result-breakdown .diff-row.used::after { content: none; }
+    .calc-card .result-breakdown .diff-row.used span:last-child::after { content: " \2713"; }
+
+    .calc-card .res-mid { padding: 30px 40px 34px; border-top: 1px solid var(--hc-line); display: flex; flex-direction: column; gap: 26px; }
+    .calc-card .res-mid[hidden] { display: none; }
+    .calc-card .field { margin: 0; max-width: none; padding: 0; border: 0; }
+    .calc-card .field.visible { display: flex; flex-direction: column; gap: 26px; }
+    .calc-card .field-pos { display: flex; flex-direction: column; gap: 10px; }
+    .calc-card .field-headline { gap: 12px; margin: 0; }
+    .calc-card .field-pct { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 700; line-height: 0.9; color: var(--hc-green); }
+    .calc-card .field-pct-caption { font-size: 18px; font-weight: 500; color: var(--hc-text); max-width: none; line-height: 1.35; }
+    .calc-card .field-bracket { margin: 0; font-size: 14px; color: var(--hc-muted); }
+
+    /* Spread bar: 0 (scratch) to 36+ */
+    .calc-card .field-rail { display: flex; flex-direction: column; gap: 8px; height: auto; margin: 0; }
+    .calc-card .rail-top { position: relative; height: 18px; }
+    .calc-card .rail-bar { position: relative; height: 12px; }
+    .calc-card .rail-bottom { position: relative; height: 20px; }
+    .calc-card .rail-avg-label, .calc-card .rail-end, .calc-card .rail-you-label {
+      position: absolute; font-family: 'Inconsolata', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px; white-space: nowrap;
+    }
+    .calc-card .rail-avg-label { transform: translateX(-50%); color: rgba(235,235,245,0.55); }
+    .calc-card .rail-end { left: 0; color: var(--hc-faint2); }
+    .calc-card .rail-end-r { left: auto; right: 0; }
+    .calc-card .rail-you-label { font-size: 14px; color: var(--hc-green); }
+    .calc-card .rail-track {
+      position: absolute; left: 0; right: 0; top: 3px; height: 6px; border-radius: 3px; overflow: hidden;
+      display: flex; background: rgba(255,255,255,0.08);
+    }
+    .calc-card .rail-fill { background: rgba(34,224,107,0.35); transition: width 400ms cubic-bezier(.2,.8,.2,1); }
+    .calc-card .rail-gap { width: 2px; flex: none; background: var(--hc-card); }
+    .calc-card .rail-rest { flex: 1; background: rgba(255,255,255,0.10); }
+    .calc-card .rail-avg { position: absolute; top: -3px; width: 2px; height: 18px; margin-left: -1px; border-radius: 1px; background: rgba(235,235,245,0.55); }
+    .calc-card .rail-you {
+      position: absolute; top: -4px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; box-sizing: border-box;
+      background: var(--hc-card); border: 3px solid var(--hc-green); box-shadow: 0 0 0 4px rgba(34,224,107,0.18);
+      transition: left 400ms cubic-bezier(.2,.8,.2,1);
+    }
+    @media (prefers-reduced-motion: reduce) { .calc-card .rail-fill, .calc-card .rail-you { transition: none; } }
+
+    /* Compare panel */
+    .calc-card .field-compare {
+      display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 14px;
+      background: var(--hc-panel); border: 1px solid var(--hc-line);
+    }
+    .calc-card .field-note { margin: 0; font-size: 15px; line-height: 1.55; color: var(--hc-text); }
+    .calc-card .field-note strong { color: var(--hc-green); font-weight: 700; }
+    .calc-card .field-controls { margin: 0; gap: 10px; }
+    .calc-card .seg {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; height: 48px; box-sizing: border-box;
+      background: var(--hc-inset); border: 1px solid var(--hc-line2); border-radius: 10px;
+    }
+    .calc-card .seg button {
+      min-width: 76px; min-height: 0; padding: 0 14px; border-radius: 7px; font-size: 15px; letter-spacing: 1px; color: rgba(235,235,245,0.6);
+    }
+    .calc-card .seg button[aria-pressed="true"] { background: var(--hc-green); color: var(--hc-on-green); }
+    .calc-card .field-age-wrap { position: relative; flex: 1 1 200px; max-width: 280px; }
+    .calc-card .field-age-wrap svg { position: absolute; right: 14px; top: 16px; color: rgba(235,235,245,0.6); pointer-events: none; }
+    .calc-card .field-age {
+      appearance: none; -webkit-appearance: none; width: 100%; height: 48px; min-height: 0; padding: 0 40px 0 14px; box-sizing: border-box;
+      background: var(--hc-inset); color: var(--hc-text); border: 1px solid var(--hc-line2); border-radius: 10px; font-size: 15px; cursor: pointer;
+    }
+    .calc-card .field-age:focus { outline: none; border-color: var(--hc-green); }
+    .calc-card .field-source { margin: 0; font-family: 'DM Sans', sans-serif; font-size: 12.5px; letter-spacing: 0; line-height: 1.55; color: var(--hc-faint); text-wrap: pretty; }
+    .calc-card .field-source a { color: rgba(235,235,245,0.75); text-underline-offset: 3px; }
+    .calc-card .field-source a:hover { color: var(--hc-text); }
+
+    /* Plan CTA: the primary action on the card */
+    .calc-card .plan-cta {
+      display: none; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px 28px; align-items: center;
+      padding: 26px 24px; border-radius: 14px; border: 1px solid rgba(34,224,107,0.32);
+      background: linear-gradient(180deg, rgba(34,224,107,0.09), rgba(34,224,107,0.03));
+    }
+    .calc-card .plan-cta.visible { display: grid; }
+    .calc-card .plan-cta-copy { display: flex; flex-direction: column; gap: 8px; }
+    .calc-card .plan-cta-title {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 700; line-height: 1;
+      text-transform: uppercase; color: var(--hc-text); text-wrap: balance;
+    }
+    .calc-card .plan-cta-body { font-size: 14.5px; line-height: 1.55; color: var(--hc-dim); text-wrap: pretty; }
+    .calc-card .plan-cta-act { display: flex; flex-direction: column; gap: 10px; }
+    .calc-card .plan-cta-btn {
+      height: 54px; border: 0; border-radius: 12px; background: var(--hc-green); color: var(--hc-on-green);
+      font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; box-shadow: 0 10px 30px rgba(34,224,107,0.25); transition: background 160ms;
+    }
+    .calc-card .plan-cta-btn:hover { background: var(--hc-green-hover); }
+    .calc-card .plan-cta-btn:focus-visible { outline: 2px solid var(--hc-text); outline-offset: 2px; }
+    .calc-card .plan-cta-foot { text-align: center; font-size: 12.5px; color: var(--hc-faint); }
+
+    /* Actions footer */
+    .calc-card .res-actions {
+      padding: 18px 40px; border-top: 1px solid var(--hc-line); background: var(--hc-inset);
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    }
+    .calc-card .res-btn {
+      display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 18px; border-radius: 10px;
+      border: 1px solid var(--hc-line3); background: transparent; color: var(--hc-text); text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: background 160ms;
+    }
+    .calc-card .res-btn:hover { background: rgba(255,255,255,0.06); color: var(--hc-text); }
+    .calc-card .res-btn:disabled { opacity: 0.6; cursor: default; }
+    .calc-card .res-btn:focus-visible { outline: 2px solid var(--hc-green); outline-offset: 2px; }
+    .calc-card .res-btn-trial { margin-left: auto; border-color: rgba(34,224,107,0.5); color: var(--hc-green); }
+    .calc-card .res-btn-trial:hover { background: rgba(34,224,107,0.10); color: var(--hc-green); }
+
+    /* Disclaimer */
+    .calc-card .disclaimer {
+      margin: 0; padding: 16px 20px; border-radius: 14px; background: rgba(245,166,35,0.06); border: 1px solid rgba(245,166,35,0.25);
+      font-size: 13px; line-height: 1.6; color: var(--hc-dim); text-wrap: pretty;
+    }
+    .calc-card .disclaimer strong { color: var(--hc-amber); font-weight: 700; }
+
+    /* Phone: the card's own padding comes down so the content keeps its width. */
+    @media (max-width: 600px) {
+      .calc-card .calc-in { padding: 20px 18px 24px; border-radius: 16px; }
+      .calc-card .tab-btn { font-size: 13px; letter-spacing: 0.6px; }
+      .calc-card .res-est { padding: 28px 20px 24px; }
+      .calc-card .res-mid { padding: 24px 20px 26px; }
+      .calc-card .res-actions { padding: 16px 20px; }
+      .calc-card .res-btn { flex: 1 1 auto; }
+      .calc-card .res-btn-trial { margin-left: 0; flex: 1 1 100%; height: auto; min-height: 44px; padding: 10px 18px; text-align: center; line-height: 1.2; }
+      .calc-card .result-value { font-size: 96px; }
+      .calc-card .field-compare { padding: 16px; }
+      .calc-card .plan-cta { padding: 22px 18px; }
+    }
+    .is-embed .calc-card { margin-top: 14px; padding: 0; }
+    .is-embed .calc-card .calc-in { padding: 18px 16px 20px; }
+    .is-embed .calc-card .res-est { padding: 22px 18px 20px; }
+    .is-embed .calc-card .res-mid { padding: 20px 18px 22px; }
+    .is-embed .calc-card .result-value { font-size: 80px; }
 </style>
+  <link rel="stylesheet" href="../css/plan-funnel.css">
     <!-- PostHog -->
     <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -880,6 +1107,7 @@
     <!-- CALCULATOR -->
     <section class="calc-card" aria-labelledby="calc-heading">
       <h2 id="calc-heading" class="sr-only">Golf Handicap Calculator</h2>
+      <div class="calc-in">
       <div class="tabs" role="tablist">
         <button class="tab-btn active" data-tab="quick" role="tab" aria-selected="true">Quick Estimate</button>
         <button class="tab-btn" data-tab="full" role="tab" aria-selected="false">Full Handicap Index</button>
@@ -952,50 +1180,75 @@
           <button class="btn btn-ghost" onclick="resetCourse()">Reset</button>
         </div>
       </div>
+      </div>
 
-      <!-- RESULTS -->
+      <!-- RESULTS (design handoff "Handicap Result Card", 2026-09-30) -->
       <div class="results" id="results" aria-live="polite">
-        <div class="result-label" id="result-label">Your Handicap Index</div>
-        <div class="result-value"><span id="result-value">-</span></div>
-        <div class="result-sub" id="result-sub"></div>
-        <div class="field" id="field" aria-live="polite">
-          <div class="field-label">Your position in the field</div>
-          <div class="field-headline">
-            <span class="field-pct" id="field-pct">-</span>
-            <span class="field-pct-caption" id="field-caption">of golfers play off a higher handicap</span>
+        <div class="res-est">
+          <div class="res-est-head">
+            <span class="res-eyebrow" id="result-label">Your Handicap Index</span>
+            <div class="result-value"><span id="result-value">-</span></div>
           </div>
-          <div class="field-bracket" id="field-bracket"></div>
-
-          <svg class="field-rail" id="field-rail" viewBox="0 0 600 78" aria-hidden="true" focusable="false"></svg>
-
-          <p class="field-note" id="field-note"></p>
-
-          <div class="field-controls">
-            <div class="seg" role="group" aria-label="Cohort">
-              <button type="button" data-gender="men" aria-pressed="true">Men</button>
-              <button type="button" data-gender="women" aria-pressed="false">Women</button>
-            </div>
-            <label class="sr-only" for="field-age">Age group</label>
-            <select class="field-age" id="field-age">
-              <option value="">Age group (optional)</option>
-              <option value="U18">Under 18</option>
-              <option value="20-29">20 to 29</option>
-              <option value="30-39">30 to 39</option>
-              <option value="40-49">40 to 49</option>
-              <option value="50-59">50 to 59</option>
-              <option value="60-69">60 to 69</option>
-              <option value="70+">70 and over</option>
-            </select>
-          </div>
-
-          <p class="field-source" id="field-source"></p>
+          <p class="result-sub" id="result-sub"></p>
+          <div class="result-breakdown" id="result-breakdown" style="display:none;"></div>
         </div>
 
-        <div class="result-breakdown" id="result-breakdown" style="display:none;"></div>
-        <div class="btn-row" style="justify-content: center;">
-          <button class="btn btn-ghost" onclick="saveCard(this)" id="save-card-btn">Save Card</button>
-          <button class="btn btn-ghost" onclick="copyResult(this)">Copy Result</button>
-          <a href="https://apps.apple.com/us/app/scoring-zone-golf/id6769477447?pt=128906825&amp;ct=Scoring%20Zone%20Website&amp;mt=8" class="btn btn-primary" target="_blank" rel="noopener">Track With Scoring Zone. Free 7-Day Trial</a>
+        <div class="res-mid" id="res-mid">
+          <div class="field" id="field" aria-live="polite">
+            <div class="field-pos">
+              <span class="res-eyebrow">Your position in the field</span>
+              <div class="field-headline">
+                <span class="field-pct" id="field-pct">-</span>
+                <span class="field-pct-caption" id="field-caption">of golfers play off a higher handicap</span>
+              </div>
+              <div class="field-bracket" id="field-bracket"></div>
+            </div>
+
+            <div class="field-rail" id="field-rail" aria-hidden="true"></div>
+
+            <div class="field-compare">
+              <p class="field-note" id="field-note"></p>
+              <div class="field-controls">
+                <div class="seg" role="group" aria-label="Cohort">
+                  <button type="button" data-gender="men" aria-pressed="true">Men</button>
+                  <button type="button" data-gender="women" aria-pressed="false">Women</button>
+                </div>
+                <label class="sr-only" for="field-age">Age group</label>
+                <span class="field-age-wrap">
+                  <select class="field-age" id="field-age">
+                    <option value="">Age group (optional)</option>
+                    <option value="U18">Under 18</option>
+                    <option value="20-29">20 to 29</option>
+                    <option value="30-39">30 to 39</option>
+                    <option value="40-49">40 to 49</option>
+                    <option value="50-59">50 to 59</option>
+                    <option value="60-69">60 to 69</option>
+                    <option value="70+">70 and over</option>
+                  </select>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </div>
+              <p class="field-source" id="field-source"></p>
+            </div>
+          </div>
+
+          <div class="plan-cta embed-hide" id="plan-cta">
+            <div class="plan-cta-copy">
+              <span class="res-eyebrow">Free &middot; 2-week plan</span>
+              <span class="plan-cta-title">Build a free short game plan</span>
+              <span class="plan-cta-body">Answer a few quick questions and we&rsquo;ll build 4 short game sessions around your weakest area, with targets set for <span id="plan-cta-hcp">your</span> handicap.</span>
+            </div>
+            <div class="plan-cta-act">
+              <button type="button" class="plan-cta-btn" id="plan-cta-go">Get my free plan &rarr;</button>
+              <span class="plan-cta-foot">Sent to your inbox as a PDF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="res-actions">
+          <button class="res-btn" onclick="saveCard(this)" id="save-card-btn">Save Card</button>
+          <button class="res-btn" onclick="copyResult(this)">Copy Result</button>
+          <a href="https://apps.apple.com/us/app/scoring-zone-golf/id6769477447?pt=128906825&amp;ct=Scoring%20Zone%20Website&amp;mt=8" class="res-btn res-btn-trial" target="_blank" rel="noopener">Track With Scoring Zone. Free 7-Day Trial</a>
         </div>
       </div>
 
@@ -1738,7 +1991,8 @@
         label: 'Your Course Handicap',
         value: ch.toString(),
         sub: `At Course Rating ${rating}, Slope ${slope}, Par ${par}. Formula: ${index.toFixed(1)} × (${slope}/113) + (${rating} − ${par}) = ${ch}. A Course Handicap is specific to these tees, so there is no population comparison for it.`,
-        breakdown: null
+        breakdown: null,
+        planIndex: index
       });
     }
 
@@ -1755,8 +2009,9 @@
     // RESULTS UI
     // =====================================================
 
-    function showResults({ label, value, sub, breakdown, benchmark }) {
+    function showResults({ label, value, sub, breakdown, benchmark, planIndex }) {
       document.getElementById('result-label').textContent = label;
+      renderPlanCta(typeof planIndex === 'number' ? planIndex : typeof benchmark === 'number' ? benchmark : null);
       document.getElementById('result-value').textContent = value;
       document.getElementById('result-sub').textContent = sub;
       renderField(typeof benchmark === 'number' ? benchmark : null);
@@ -1768,11 +2023,30 @@
         bd.style.display = 'none';
       }
       const results = document.getElementById('results');
+      const embed = document.documentElement.classList.contains('is-embed');
+      document.getElementById('res-mid').hidden = !(document.getElementById('field').classList.contains('visible') ||
+        (!embed && document.getElementById('plan-cta').classList.contains('visible')));
       results.classList.add('visible');
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+    // Free plan: the app's questions, hosted here (js/plan-funnel.js), ending at the email step.
+    var planHcp = null;
+    function renderPlanCta(index) {
+      var box = document.getElementById('plan-cta');
+      if (index === null) { box.classList.remove('visible'); planHcp = null; return; }
+      planHcp = index >= 0 ? Math.round(index * 10) / 10 : null; // a plus index starts the field blank
+      var h = index < 0 ? '+' + Math.abs(index).toFixed(1) : index.toFixed(1);
+      document.getElementById('plan-cta-hcp').textContent = (/^(8|11|18)(\D|$)/.test(h) || /^8\d/.test(h) ? 'an ' : 'a ') + h;
+      box.classList.add('visible');
+    }
+    document.getElementById('plan-cta-go').addEventListener('click', function(){
+      if (!window.SZFunnel) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=tool&utm_campaign=hcp_calc_plan'; return; }
+      SZFunnel.open({ hcp: planHcp, src: 'hcp_calculator' });
+    });
+
     function hideResults() {
+      document.getElementById('plan-cta').classList.remove('visible');
       document.getElementById('results').classList.remove('visible');
       document.getElementById('field').classList.remove('visible');
       currentIndex = null;
@@ -1815,38 +2089,26 @@
     }
 
     function drawRail(index, gender) {
-      var rail = document.getElementById('field-rail');
-      // Draw in real pixel coordinates. A stretched viewBox distorts the type
-      // and clips descenders on narrow screens.
-      var W = Math.max(rail.clientWidth || 0, 260);
-      var H = 78;
-      rail.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-      rail.setAttribute('height', H);
-
-      var PAD = 30, TRACK = W - PAD * 2, MAXH = 36;
-      var RAIL_Y = 30, TICK_Y = 37, END_LABEL_Y = 52, PIN_TOP = 31, PIN_BOT = 52, PIN_LABEL_Y = 70;
-      var x = function (h) { return PAD + (Math.min(Math.max(h, 0), MAXH) / MAXH) * TRACK; };
+      var MAXH = 36;
+      var pct = function (h) { return Math.min(Math.max(h, 0), MAXH) / MAXH * 100; };
       var avg = SZ_HCP.OVERALL_AVG[gender];
-      var out = [];
-
-      out.push('<line class="rail-line" x1="' + PAD + '" y1="' + RAIL_Y + '" x2="' + (W - PAD) + '" y2="' + RAIL_Y + '"/>');
-      [0, 5, 10, 15, 20, 25, 30, 36].forEach(function (t) {
-        var tx = x(t).toFixed(1);
-        out.push('<line class="rail-tick" x1="' + tx + '" y1="' + RAIL_Y + '" x2="' + tx + '" y2="' + TICK_Y + '"/>');
-      });
-      out.push('<text class="rail-end" x="' + PAD + '" y="' + END_LABEL_Y + '" text-anchor="start">SCRATCH</text>');
-      out.push('<text class="rail-end" x="' + (W - PAD) + '" y="' + END_LABEL_Y + '" text-anchor="end">36+</text>');
-
-      var ax = x(avg).toFixed(1);
-      out.push('<line class="rail-avg" x1="' + ax + '" y1="16" x2="' + ax + '" y2="' + RAIL_Y + '"/>');
-      out.push('<text class="rail-avg-label" x="' + ax + '" y="11" text-anchor="middle">AVG ' + avg.toFixed(1) + '</text>');
-
-      // the golfer: the only saturated mark on the rail
-      var px = x(index);
-      var anchorPos = px < PAD + 22 ? 'start' : (px > W - PAD - 22 ? 'end' : 'middle');
-      out.push('<line class="rail-you" x1="' + px.toFixed(1) + '" y1="' + PIN_TOP + '" x2="' + px.toFixed(1) + '" y2="' + PIN_BOT + '"/>');
-      out.push('<text class="rail-you-label" x="' + px.toFixed(1) + '" y="' + PIN_LABEL_Y + '" text-anchor="' + anchorPos + '">' + index.toFixed(1) + '</text>');
-      return out.join('');
+      var a = pct(avg).toFixed(1) + '%', pv = pct(index), p = pv.toFixed(1) + '%';
+      // Keep the golfer's value on the card at the ends, and let it replace an end label it would collide with.
+      var shift = pv < 6 ? '0' : pv > 94 ? '-100%' : '-50%';
+      // Collisions are a pixel question: the same percent is roomy on desktop and cramped on a phone.
+      // The rail is drawn before the card is shown, so fall back to the input card's width (same column).
+      var W = document.getElementById('field-rail').clientWidth ||
+        (document.querySelector('.calc-in').clientWidth - (innerWidth <= 600 ? 40 : 80)) || 600;
+      var px = W * pv / 100;
+      var hideStart = px < 96, hideEnd = px > W - 64;
+      var fmt = index < 0 ? '+' + Math.abs(index).toFixed(1) : index.toFixed(1);
+      return '<div class="rail-top"><span class="rail-avg-label" style="left:' + a + '">AVG ' + avg.toFixed(1) + '</span></div>' +
+        '<div class="rail-bar"><div class="rail-track"><span class="rail-fill" style="width:' + p + '"></span>' +
+        '<span class="rail-gap"></span><span class="rail-rest"></span></div>' +
+        '<span class="rail-avg" style="left:' + a + '"></span><span class="rail-you" style="left:' + p + '"></span></div>' +
+        '<div class="rail-bottom"><span class="rail-end"' + (hideStart ? ' style="visibility:hidden"' : '') + '>SCRATCH</span>' +
+        '<span class="rail-you-label" style="left:' + p + ';transform:translateX(' + shift + ')">' + fmt + '</span>' +
+        '<span class="rail-end rail-end-r"' + (hideEnd ? ' style="visibility:hidden"' : '') + '>36+</span></div>';
     }
 
     function renderField(index) {
@@ -2109,6 +2371,8 @@
     initEmbedBox();
     init();
   </script>
+  <script src="../js/plan-engine.js" defer></script>
+  <script src="../js/plan-funnel.js" defer></script>
   <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
 </html>

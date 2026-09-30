@@ -121,7 +121,7 @@
     return {
       step: 'area', weakest: null, frequency: null, hcpText: hcp == null ? '' : String(hcp), noIndex: false,
       upDowns: null, threePutts: null, bunkerUpDowns: null, shortPutts: null, shortSided: null, pitchShots: null,
-      email: '', sending: false, error: '', built: false,
+      email: '', sending: false, error: '', built: false, fromCalc: hcp != null,
     };
   }
 
@@ -227,7 +227,7 @@
         }).join('') + '</div><div class="szf-spacer"></div><p class="szf-foot szf-in"' + dl(0.8) + '>Free 2-week plan · sent as a PDF</p></div>';
     } else if (state.step === 'basics') {
       var bad = !hcpValid();
-      var lbl = state.noIndex ? 'No index · we’ll use a typical round' : (src === 'rank_finder' && state.hcpText !== '' ? 'From your calculator' : 'Your handicap index');
+      var lbl = state.noIndex ? 'No index · we’ll use a typical round' : (state.fromCalc && state.hcpText !== '' ? 'From your calculator' : 'Your handicap index');
       h = '<div class="szf-step"><h1 class="szf-h1 szf-in"' + dl(0.05) + '>Let’s build <em>a plan</em></h1>' +
         '<p class="szf-label szf-in" id="szf-hcp-l" style="--d:0.25s;margin-top:28px">' + lbl + '</p>' +
         '<label class="szf-hcp szf-in"' + dl(0.3) + '><input id="szf-hcp" type="text" inputmode="decimal" autocomplete="off" placeholder="00.0" aria-labelledby="szf-hcp-l" value="' + esc(state.hcpText) + '"' + (state.noIndex ? ' disabled' : '') + (bad ? ' aria-invalid="true"' : '') + '></label>' +
@@ -422,6 +422,7 @@
     if (!EMAIL_RE.test(email)) { state.error = 'That doesn’t look like an email address.'; render(); return; }
     var hp = form.querySelector('[name="company"]');
     var payload = window.SZEngine.leadBody(email, answers(), anonId());
+    payload.src = src;
     payload.company = hp ? hp.value : '';
     state.sending = true; state.error = ''; render();
     track('lead_submit', { src: src, weakest: payload.weakest, has_index: payload.hcp !== null });

@@ -31,7 +31,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&family=Inconsolata:wght@700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/blog-post.css">
 
@@ -57,7 +57,7 @@
   "author": { "@type": "Person", "name": "Stephen Pickering", "url": "https://www.scoringzone.net/about" },
   "publisher": { "@type": "Organization", "name": "Scoring Zone", "url": "https://www.scoringzone.net", "logo": {"@type": "ImageObject", "url": "https://www.scoringzone.net/logo/new-scoring-zone-logo.png"} },
   "datePublished": "2026-06-24",
-  "dateModified": "2026-06-24",
+  "dateModified": "2026-09-30",
   "description": "Typical golf handicap ranges for junior golfers by single age (7–18), for boys and girls, with how juniors get an official World Handicap System index and how to lower it."
 }
     </script>
@@ -306,7 +306,152 @@
         font-size: 0.85rem;
         margin-left: 4px;
       }
+      /* Handicap rank calculator (design handoff 2026-09-30) */
+      .rk {
+        --rk-green: #22E06B; --rk-on-green: #062910; --rk-card: #141416; --rk-surface: #0F0F12;
+        --rk-text: #F4F4F5; --rk-dim: rgba(235,235,245,0.55); --rk-dim2: rgba(235,235,245,0.38);
+        --rk-border: rgba(255,255,255,0.09); --rk-ink08: rgba(255,255,255,0.08); --rk-ink10: rgba(255,255,255,0.10);
+        --rk-danger: #F87171; --rk-ease: cubic-bezier(0.22,1,0.36,1);
+        width: 100%; max-width: 880px; margin: 2.5rem 0; box-sizing: border-box;
+        background: var(--rk-card); border: 1px solid var(--rk-border); border-radius: 14px; overflow: hidden;
+        font-family: 'DM Sans', sans-serif; color: var(--rk-text);
+      }
+      .rk *, .rk *::before, .rk *::after { box-sizing: border-box; }
+      .rk-accent { height: 3px; background: linear-gradient(90deg, var(--rk-green) 0%, transparent 100%); }
+      .rk-q { padding: 36px 40px 32px; display: flex; flex-direction: column; gap: 28px; }
+      .rk-head { display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
+      .rk-eyebrow {
+        font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+        text-transform: uppercase; color: var(--rk-green); line-height: 1.3;
+      }
+      .rk .rk-title {
+        font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.8px;
+        line-height: 1.1; color: var(--rk-text); margin: 0; text-transform: none;
+      }
+      .rk-body { font-size: 16px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
+      .rk-formwrap { display: flex; flex-direction: column; gap: 10px; }
+      .rk-form { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; }
+      .rk-field { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+      .rk-field.g { flex: 1.3 1 240px; }
+      .rk-field.a, .rk-field.h { flex: 1 1 150px; }
+      .rk-label {
+        font-family: 'Inconsolata', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+        text-transform: uppercase; color: var(--rk-dim); line-height: 1.2;
+      }
+      .rk-seg {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; height: 52px;
+        background: var(--rk-surface); border: 1px solid var(--rk-border); border-radius: 10px;
+      }
+      .rk-seg button {
+        border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--rk-dim);
+        font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.2px;
+        cursor: pointer; transition: background 160ms, color 160ms, border-color 160ms; padding: 0 6px;
+      }
+      .rk-seg button[aria-checked="true"] { background: rgba(34,224,107,0.12); border-color: rgba(34,224,107,0.45); color: var(--rk-text); }
+      .rk-seg button:focus-visible { outline: 2px solid var(--rk-green); outline-offset: 1px; }
+      .rk-selwrap { position: relative; }
+      .rk-selwrap svg { position: absolute; right: 14px; top: 19px; color: var(--rk-dim); pointer-events: none; }
+      .rk select, .rk input {
+        width: 100%; height: 52px; margin: 0; background: var(--rk-surface); color: var(--rk-text);
+        border: 1px solid var(--rk-border); border-radius: 10px; outline: none;
+        transition: border-color 160ms, box-shadow 160ms;
+      }
+      .rk select { appearance: none; -webkit-appearance: none; padding: 0 38px 0 14px; font-family: inherit; font-size: 16px; cursor: pointer; }
+      .rk input { padding: 0 14px; font-family: 'Inconsolata', monospace; font-size: 19px; font-weight: 700; }
+      .rk input::placeholder { color: var(--rk-dim2); }
+      .rk select:focus, .rk input:focus { border-color: var(--rk-green); box-shadow: 0 0 0 3px rgba(34,224,107,0.12); }
+      .rk-btn {
+        position: relative; overflow: hidden; height: 52px; padding: 0 22px; border: none; border-radius: 10px;
+        background: var(--rk-green); color: var(--rk-on-green); font-family: 'Space Grotesk', sans-serif;
+        font-size: 16px; font-weight: 700; letter-spacing: -0.2px; cursor: pointer;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        box-shadow: 0 6px 18px rgba(34,224,107,0.18); transition: transform 120ms var(--rk-ease), opacity 160ms;
+      }
+      .rk-btn:active:not(:disabled) { transform: scale(0.98); }
+      .rk-btn:disabled { opacity: 0.55; cursor: default; }
+      .rk-btn:focus-visible { outline: 2px solid var(--rk-text); outline-offset: 2px; }
+      .rk-submit { flex: 1 1 200px; }
+      .rk-error { font-size: 13px; color: var(--rk-danger); }
+      .rk-r {
+        border-top: 1px solid var(--rk-border); padding: 32px 40px 40px;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 36px; align-items: start;
+      }
+      .rk-r[hidden] { display: none; }
+      .rk-r.in { animation: rk-rise 400ms var(--rk-ease) both; }
+      @keyframes rk-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+      .rk-col { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+      .rk-headline { display: flex; flex-direction: column; gap: 10px; }
+      .rk-tier { font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+      .rk-big { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -2px; line-height: 1; color: var(--rk-text); }
+      .rk-big span { color: var(--rk-green); }
+      .rk-sub { font-size: 16px; color: var(--rk-dim); }
+      .rk-spread { display: flex; flex-direction: column; gap: 8px; }
+      .rk-bar { position: relative; height: 28px; }
+      .rk-track { position: absolute; left: 0; right: 0; top: 11px; height: 6px; border-radius: 3px; background: var(--rk-ink08); overflow: hidden; display: flex; }
+      .rk-track .lo { background: var(--rk-ink10); transition: width 600ms var(--rk-ease); }
+      .rk-track .hi { flex: 1; background: var(--rk-green); }
+      .rk-tick { position: absolute; top: 5px; left: 50%; width: 2px; height: 18px; margin-left: -1px; background: var(--rk-dim2); border-radius: 1px; }
+      .rk-you {
+        position: absolute; top: 4px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%;
+        background: var(--rk-card); border: 3px solid var(--rk-green); box-shadow: 0 0 0 4px rgba(34,224,107,0.18);
+        transition: left 600ms var(--rk-ease);
+      }
+      .rk-scale {
+        display: flex; justify-content: space-between; gap: 8px; font-family: 'Inconsolata', monospace; font-size: 11px;
+        font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--rk-dim2);
+      }
+      .rk-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--rk-border); border-radius: 10px; overflow: hidden; }
+      .rk-stat { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+      .rk-stat + .rk-stat { border-left: 1px solid var(--rk-border); }
+      .rk-stat b { font-family: 'Inconsolata', monospace; font-size: 26px; font-weight: 700; line-height: 1.1; }
+      .rk-summary { font-size: 16px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
+      .rk-cta {
+        background: var(--rk-surface); border: 1px solid rgba(34,224,107,0.28); border-radius: 12px;
+        padding: 28px 26px 22px; display: flex; flex-direction: column; gap: 18px;
+      }
+      .rk-cta-copy { display: flex; flex-direction: column; gap: 10px; }
+      .rk-cta-title {
+        font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.6px;
+        line-height: 1.15; color: var(--rk-text); text-wrap: balance;
+      }
+      .rk-cta-body { font-size: 15px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
+      .rk-plan { height: 54px; width: 100%; box-shadow: 0 10px 30px rgba(34,224,107,0.33); }
+      .rk-shine {
+        position: absolute; top: 0; bottom: 0; left: 0; width: 40%; pointer-events: none;
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+        transform: translateX(-150%) skewX(-20deg);
+        animation: rk-shine 3.8s var(--rk-ease) 1.2s infinite;
+      }
+      @keyframes rk-shine { from { transform: translateX(-150%) skewX(-20deg); } 60%, to { transform: translateX(300%) skewX(-20deg); } }
+      @media (prefers-reduced-motion: reduce) { .rk-shine { display: none; } .rk-r.in { animation: none; } }
+      .rk-foot {
+        display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Inconsolata', monospace;
+        font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--rk-dim2);
+      }
+      .rk-more { font-size: 14px; color: var(--rk-dim); }
+      .rk-more a { color: var(--rk-green); font-weight: 600; text-decoration: none; }
+      .rk-more a:hover { color: var(--rk-text); }
+      /* Phone: the article column is ~340px, so the card's own padding comes down. */
+      @media (max-width: 560px) {
+        .rk-q { padding: 28px 20px 24px; gap: 24px; }
+        .rk-r { padding: 26px 20px 28px; gap: 28px; }
+        .rk .rk-title { font-size: 30px; }
+        .rk-big { font-size: 48px; }
+        .rk-cta { padding: 24px 20px 20px; }
+      }
+      /* Junior tracker additions */
+      .rk-stat b.sm { font-size: 20px; line-height: 1.4; }
+      .rk-proj {
+        display: flex; flex-direction: column; gap: 10px; padding: 14px 16px;
+        background: var(--rk-surface); border: 1px solid var(--rk-border); border-radius: 10px;
+      }
+      .rk-proj[hidden] { display: none; }
+      .rk-proj-row { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+      .rk-proj-row div { display: flex; align-items: baseline; gap: 8px; font-size: 15px; color: var(--rk-dim); }
+      .rk-proj-row b { font-family: 'Inconsolata', monospace; font-size: 24px; font-weight: 700; color: var(--rk-green); }
+      .rk-proj-note { font-size: 13px; line-height: 1.5; color: var(--rk-dim2); }
     </style>
+    <link rel="stylesheet" href="../css/plan-funnel.css">
     <!-- In-content blog advert -->
     <link rel="stylesheet" href="../css/blog-ad.css">
     <script src="../js/blog-ad.js" data-asset-base="../" defer></script>
@@ -462,6 +607,96 @@
             </div>
 
             <p class="reveal">The pattern is consistent: the number falls quickly between about 10 and 16 for any junior who plays regularly, then settles as they reach adult strength and a full schedule. Age sets the ceiling; practice volume sets where inside the range they land.</p>
+
+            <!-- ======================== -->
+            <!-- INTERACTIVE: JUNIOR HANDICAP TRACKER -->
+            <section class="rk reveal" id="junior-tracker" aria-labelledby="rk-title">
+                <div class="rk-accent" aria-hidden="true"></div>
+                <div class="rk-q">
+                    <div class="rk-head">
+                        <div class="rk-eyebrow">Junior handicap tracker</div>
+                        <h2 class="rk-title" id="rk-title">Is your junior on track?</h2>
+                        <div class="rk-body">Compare your child&rsquo;s handicap with the typical range for their age, and see where they&rsquo;d land by 16 and 18 if they hold the same place on the curve. Ranges come from the table above.</div>
+                    </div>
+                    <div class="rk-formwrap">
+                        <div class="rk-form">
+                            <div class="rk-field g">
+                                <span class="rk-label" id="rk-g-label">Your junior is a</span>
+                                <div class="rk-seg" role="radiogroup" aria-labelledby="rk-g-label" id="rk-gender">
+                                    <button type="button" role="radio" aria-checked="true" tabindex="0" data-g="boy">Boy</button>
+                                    <button type="button" role="radio" aria-checked="false" tabindex="-1" data-g="girl">Girl</button>
+                                </div>
+                            </div>
+                            <label class="rk-field a">
+                                <span class="rk-label">Their age</span>
+                                <span class="rk-selwrap">
+                                    <select id="rk-age">
+                                        <option value="8">7&ndash;8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12" selected>12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                    </select>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                                </span>
+                            </label>
+                            <label class="rk-field h">
+                                <span class="rk-label">Handicap index</span>
+                                <input id="rk-hcp" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 24.5" aria-describedby="rk-error">
+                            </label>
+                            <button type="button" class="rk-btn rk-submit" id="rk-go" disabled><span id="rk-go-label">Check their progress</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+                        </div>
+                        <div class="rk-error" id="rk-error" role="alert" hidden>Enter an index between +10 and 54.</div>
+                    </div>
+                </div>
+                <div class="rk-r" id="rk-result" aria-live="polite" hidden>
+                    <div class="rk-col">
+                        <div class="rk-headline">
+                            <div class="rk-tier" id="rk-tier"></div>
+                            <div class="rk-big">Ahead of <span id="rk-pct"></span></div>
+                            <div class="rk-sub" id="rk-sub"></div>
+                        </div>
+                        <div class="rk-spread">
+                            <div class="rk-bar" aria-hidden="true">
+                                <div class="rk-track"><div class="lo" id="rk-lo"></div><div class="hi"></div></div>
+                                <div class="rk-tick"></div>
+                                <div class="rk-you" id="rk-you"></div>
+                            </div>
+                            <div class="rk-scale" aria-hidden="true"><span>&larr; Lower handicaps</span><span>Typical</span><span>Higher &rarr;</span></div>
+                        </div>
+                        <div class="rk-stats">
+                            <div class="rk-stat"><span class="rk-label">Index</span><b id="rk-s-you"></b></div>
+                            <div class="rk-stat"><span class="rk-label" id="rk-s-agelabel">Typical</span><b class="sm" id="rk-s-range" style="color: var(--rk-dim);"></b></div>
+                            <div class="rk-stat" id="rk-s-gapcell"><span class="rk-label">Vs range</span><b class="sm" id="rk-s-gap"></b></div>
+                        </div>
+                        <div class="rk-summary" id="rk-summary"></div>
+                        <div class="rk-proj" id="rk-proj" hidden>
+                            <span class="rk-label">On the same curve</span>
+                            <div class="rk-proj-row" id="rk-proj-row"></div>
+                            <div class="rk-proj-note">A typical-curve estimate, not a forecast. Structured practice is what moves a junior down the range.</div>
+                        </div>
+                        <div class="rk-more">Need their official Handicap Index? <a href="/tools/golf-handicap-calculator">Use the free calculator &rarr;</a></div>
+                    </div>
+                    <div class="rk-cta">
+                        <div class="rk-cta-copy">
+                            <div class="rk-eyebrow">Free &middot; 2-week plan</div>
+                            <div class="rk-cta-title" id="rk-plan-title"></div>
+                            <div class="rk-cta-body">Answer a few quick questions and we&rsquo;ll build 4 short game sessions around their weakest area, with targets set for <span id="rk-plan-hcp"></span> handicap.</div>
+                        </div>
+                        <button type="button" class="rk-btn rk-plan" id="rk-plan-go"><span class="rk-shine" aria-hidden="true"></span>Get the free plan<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+                        <div class="rk-foot">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                            Sent to your inbox as a PDF
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <a href="average-golf-handicap-by-age" class="blog-internal-link reveal">
                 <p>Want the full picture across every age group, not just juniors?</p>
@@ -710,6 +945,150 @@
         <p class="footer-copy" style="margin-top:32px;">&copy; 2026 Scoring Zone. All rights reserved.</p>
     </footer>
 
+    <script>
+    (function(){
+      // Typical ranges from the age table in this guide. 7–8 is keyed as 8.
+      var RANGE = {8:[45,54], 9:[32,45], 10:[28,36], 11:[25,32], 12:[22,28], 13:[19,26], 14:[16,22], 15:[14,20], 16:[12,18], 17:[11,17], 18:[10,16]};
+      var GIRL_ADD = 4.5; // the guide: add three to six strokes for an average junior girl
+      var AGE_TXT = function(a){ return a === 8 ? '7–8' : String(a); };
+
+      function range(g, a){
+        var r = RANGE[a], add = g === 'girl' ? GIRL_ADD : 0;
+        return [Math.min(54, r[0] + add), Math.min(54, r[1] + add)];
+      }
+      // The table range read as the middle half of juniors at that age.
+      function model(g, a){
+        var r = range(g, a);
+        return { lo: r[0], hi: r[1], mid: (r[0] + r[1]) / 2, sd: Math.max(1, (r[1] - r[0]) / 2 / 0.674) };
+      }
+      function cdf(z){
+        var t = 1 / (1 + 0.3275911 * Math.abs(z));
+        var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-z * z / 2);
+        return 0.5 * (1 + (z < 0 ? -y : y));
+      }
+      // "" -> null, junk or out of range -> NaN, "+2" -> -2 (a plus handicap).
+      function parseHcp(s){
+        var t = String(s || '').trim();
+        if (!t) return null;
+        var plus = t.charAt(0) === '+';
+        var body = plus ? t.slice(1) : t;
+        if (!/^\d{1,2}([.,]\d)?$/.test(body)) return NaN;
+        var n = parseFloat(body.replace(',', '.'));
+        var v = plus ? -n : n;
+        return (v < -10 || v > 54) ? NaN : v;
+      }
+      function fmt(v){
+        var s = Math.abs(v).toFixed(1).replace(/\.0$/, '');
+        return v < 0 ? '+' + s : s;
+      }
+      function whole(v){ var r = Math.round(v); return r < 0 ? '+' + (-r) : String(r); }
+      function $(id){ return document.getElementById(id); }
+
+      var gender = 'boy', result = null;
+      var seg = $('rk-gender'), hcpEl = $('rk-hcp'), go = $('rk-go'), err = $('rk-error'), out = $('rk-result');
+
+      function pick(btn, focus){
+        gender = btn.getAttribute('data-g');
+        [].forEach.call(seg.children, function(b){
+          var on = b === btn;
+          b.setAttribute('aria-checked', on ? 'true' : 'false');
+          b.tabIndex = on ? 0 : -1;
+        });
+        if (focus) btn.focus();
+      }
+      seg.addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) pick(b); });
+      seg.addEventListener('keydown', function(e){
+        if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].indexOf(e.key) < 0) return;
+        e.preventDefault();
+        var cur = seg.querySelector('[aria-checked="true"]');
+        pick(cur.nextElementSibling || cur.previousElementSibling, true);
+      });
+
+      function validate(){
+        var v = parseHcp(hcpEl.value);
+        var ok = v !== null && !isNaN(v);
+        go.disabled = !ok;
+        err.hidden = !(v !== null && isNaN(v));
+        hcpEl.setAttribute('aria-invalid', err.hidden ? 'false' : 'true');
+        return ok ? v : null;
+      }
+      hcpEl.addEventListener('input', validate);
+      hcpEl.addEventListener('keydown', function(e){ if (e.key === 'Enter') submit(); });
+      go.addEventListener('click', submit);
+
+      function submit(){
+        var v = validate();
+        if (v === null) return;
+        var age = parseInt($('rk-age').value, 10);
+        var m = model(gender, age);
+        var z = (v - m.mid) / m.sd;
+        var pct = Math.max(1, Math.min(99, Math.round((1 - cdf(z)) * 100)));
+        var band = v < m.lo ? 'ahead' : v > m.hi ? 'building' : 'on_track';
+        var kids = gender === 'boy' ? 'boys' : 'girls';
+        var ageTxt = AGE_TXT(age);
+        var rangeTxt = whole(m.lo) + '–' + whole(m.hi);
+
+        $('rk-tier').textContent = ({ ahead: 'Ahead of the curve', on_track: 'On track', building: 'Building' })[band].toUpperCase() + ' · ' + kids.toUpperCase() + ' AGED ' + ageTxt;
+        $('rk-tier').style.color = band === 'building' ? 'var(--rk-dim)' : 'var(--rk-green)';
+        $('rk-pct').textContent = pct + '%';
+        $('rk-sub').textContent = 'of ' + kids + ' aged ' + ageTxt + ' who play regularly (estimate)';
+        var marker = Math.max(3, Math.min(97, 100 - pct)) + '%';
+        $('rk-lo').style.width = marker;
+        $('rk-you').style.left = marker;
+        $('rk-s-you').textContent = fmt(v);
+        $('rk-s-agelabel').textContent = 'Typical at ' + ageTxt;
+        $('rk-s-range').textContent = rangeTxt;
+        var gap = $('rk-s-gap'), shots;
+        if (band === 'ahead') { shots = m.lo - v; gap.textContent = '−' + fmt(shots); gap.style.color = 'var(--rk-green)'; }
+        else if (band === 'building') { shots = v - m.hi; gap.textContent = '+' + fmt(shots); gap.style.color = 'var(--rk-danger)'; }
+        else { gap.textContent = 'In range'; gap.style.color = 'var(--rk-text)'; }
+        $('rk-s-gapcell').style.background = band === 'ahead' ? 'rgba(34,224,107,0.08)' : 'transparent';
+
+        var who = (gender === 'boy' ? 'a boy' : 'a girl') + ' aged ' + ageTxt;
+        var sh = shots !== undefined ? fmt(shots) + (shots === 1 ? ' shot' : ' shots') : '';
+        $('rk-summary').textContent = band === 'ahead'
+          ? 'The typical range for ' + who + ' who plays regularly is ' + rangeTxt + '. At ' + fmt(v) + ', they’re ' + sh + ' better than the low end of it.'
+          : band === 'building'
+          ? 'The typical range for ' + who + ' who plays regularly is ' + rangeTxt + '. At ' + fmt(v) + ', they’re ' + sh + ' above it, which usually means fewer rounds or less structured practice, not less ability.'
+          : 'The typical range for ' + who + ' who plays regularly is ' + rangeTxt + '. At ' + fmt(v) + ', they’re right in it.';
+
+        // Same z-score carried to 16 and 18.
+        var ahead = [16, 18].filter(function(a){ return a > age; });
+        var proj = $('rk-proj');
+        proj.hidden = !ahead.length;
+        $('rk-proj-row').innerHTML = ahead.map(function(a){
+          var p = model(gender, a);
+          var est = Math.max(-5, Math.min(54, p.mid + z * p.sd));
+          return '<div>By ' + a + ' <b>' + whole(est) + '</b></div>';
+        }).join('');
+
+        $('rk-plan-title').textContent = band === 'ahead' ? 'Keep them ahead of the curve'
+          : band === 'on_track' ? 'Help them pull clear from 100 yards in'
+          : 'Find their fastest shots from 100 yards in';
+        var h = fmt(v); // "an 8", "an 11", "an 18", "an 80"; "a 14", "a +2"
+        $('rk-plan-hcp').textContent = (/^(8|11|18)(\D|$)/.test(h) || /^8\d/.test(h) ? 'an ' : 'a ') + h;
+
+        var first = !result;
+        result = { hcp: v };
+        $('rk-go-label').textContent = 'Update';
+        out.hidden = false;
+        out.classList.remove('in'); void out.offsetWidth; out.classList.add('in');
+        if (first && window.matchMedia('(max-width: 760px)').matches) {
+          out.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+        try { if (window.gtag) gtag('event', 'junior_result', { hcp: v, gender: gender, age: age, band: band, pct: pct }); } catch (e) {}
+      }
+
+      // Free plan: the app's questions, hosted here (js/plan-funnel.js), ending at the email step.
+      $('rk-plan-go').addEventListener('click', function(){
+        var hcp = result && result.hcp >= 0 ? result.hcp : null; // a plus index starts the field blank
+        if (!window.SZFunnel) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=blog&utm_campaign=junior_plan'; return; }
+        SZFunnel.open({ hcp: hcp, src: 'junior_tracker' });
+      });
+    })();
+    </script>
+    <script src="../js/plan-engine.js" defer></script>
+    <script src="../js/plan-funnel.js" defer></script>
     <script src="../js/shared.js"></script>
     <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
