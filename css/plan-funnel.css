@@ -1,0 +1,232 @@
+/* Calculator lead funnel (js/plan-funnel.js), 2026-09-30.
+   The app's onboarding cards, hosted on the website: the same palette, type and
+   motion as the app's standardised cards (obStd.css) and area picker
+   (AreaPickerCard.tsx). A copy; nothing here is loaded from or changes the app.
+   Barlow Condensed 700 headings, DM Sans body, JetBrains Mono labels and figures,
+   #00FF88 on #0A0A0F. Full screen on phones, a phone-sized card above 640px. */
+.szf {
+  --bg: #0A0A0F; --fg: #F5F5F5; --card: #101016; --border: #1D1D23; --track: #1E1E24;
+  --green: #00FF88; --on-green: #0A0A0F; --dim: #A3A3AD; --faint: #4A4A53; --warn: #F5A524; --danger: #F87171;
+  --putt: #C084FC; --chip: #F6C85F; --sw: #22E06B; --dw: #60A5FA;
+  --head: 'Barlow Condensed', 'Oswald', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --glow: 0 0 24px rgba(0,255,136,0.15);
+  position: fixed; inset: 0; z-index: 10000; display: none;
+  font-family: var(--sans); color: var(--fg); -webkit-font-smoothing: antialiased;
+}
+.szf *, .szf *::before, .szf *::after { box-sizing: border-box; }
+.szf.open { display: block; }
+html.szf-lock, html.szf-lock body { overflow: hidden; }
+.szf-scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.78); opacity: 0; transition: opacity 260ms cubic-bezier(0.16,1,0.3,1); }
+.szf.open .szf-scrim { opacity: 1; }
+.szf-sheet {
+  position: absolute; inset: 0; background: var(--bg); display: flex; flex-direction: column; overflow: hidden; overflow: clip;
+  opacity: 0; transform: translateY(18px); transition: opacity 260ms cubic-bezier(0.16,1,0.3,1), transform 420ms cubic-bezier(0.16,1,0.3,1);
+}
+.szf.open .szf-sheet { opacity: 1; transform: none; }
+@media (min-width: 640px) {
+  .szf-sheet {
+    inset: auto; left: 50%; top: 50%; width: 430px; height: min(880px, calc(100vh - 40px));
+    border-radius: 28px; border: 1px solid var(--border); box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+    transform: translate(-50%, calc(-50% + 18px));
+  }
+  .szf.open .szf-sheet { transform: translate(-50%, -50%); }
+}
+/* the app's top glow (cards 01 and the reveal) */
+.szf-glow {
+  position: absolute; left: -40px; right: -40px; top: -180px; height: 440px; pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0,255,136,0.12), transparent 70%);
+  opacity: 0; transition: opacity 500ms;
+}
+.szf-sheet.glow .szf-glow { opacity: 1; }
+
+/* ── chrome ── */
+.szf-chrome { position: relative; z-index: 2; padding: 18px 24px 0; flex: none; }
+.szf-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 32px; }
+.szf-back, .szf-x {
+  display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; cursor: pointer;
+  color: var(--dim); font: 14px var(--sans); padding: 10px 0; min-height: 44px;
+}
+.szf-back { justify-self: start; }
+.szf-x { justify-self: end; padding: 10px; margin-right: -10px; }
+.szf-back:hover, .szf-x:hover { color: var(--fg); }
+.szf-back[hidden] { visibility: hidden; display: inline-flex; }
+.szf-back:focus-visible, .szf-x:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; border-radius: 8px; }
+.szf-toplabel { font: 11px var(--mono); letter-spacing: 0.24em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+.szf-prog { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
+.szf-segs { flex: 1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+.szf-seg { height: 3px; border-radius: 2px; background: var(--track); overflow: hidden; }
+.szf-seg i { display: block; height: 100%; width: 0; background: var(--green); box-shadow: 0 0 8px var(--green); transition: width 600ms cubic-bezier(0.16,1,0.3,1); }
+.szf-pct { font: 11px var(--mono); color: var(--green); width: 38px; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── body ── */
+.szf-body {
+  position: relative; z-index: 1; flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
+  padding: 0 24px max(22px, env(safe-area-inset-bottom)); display: flex; flex-direction: column;
+}
+.szf-body::-webkit-scrollbar { width: 0; }
+.szf-step { display: flex; flex-direction: column; flex: 1; }
+.szf-in { animation: szfIn 0.7s cubic-bezier(0.16,1,0.3,1) both; animation-delay: var(--d, 0s); }
+.szf-pop { animation: szfPop 0.5s cubic-bezier(0.2,1.2,0.4,1) both; animation-delay: var(--d, 0s); }
+@keyframes szfIn { from { opacity: 0; transform: translateY(14px); } }
+@keyframes szfPop { from { opacity: 0; transform: scale(0.85); } }
+.szf-h1 {
+  font-family: var(--head); font-weight: 700; font-size: 44px; line-height: 0.95; letter-spacing: 0.005em;
+  text-transform: uppercase; margin: 26px 0 0; text-wrap: balance; color: var(--fg);
+}
+.szf-h1 em { font-style: normal; color: var(--green); }
+.szf-sub { margin: 10px 0 0; font-size: 15px; line-height: 1.45; color: var(--dim); text-wrap: pretty; }
+.szf-label { font: 11px/1.6 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+.szf-hint { font: 10px var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); white-space: nowrap; }
+.szf-note { margin: 12px 0 0; font-size: 14px; line-height: 1.45; color: var(--dim); }
+.szf-spacer { flex: 1; min-height: 20px; }
+.szf-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+
+/* ── card 01 · the area picker (AreaPickerCard) ── */
+.szf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+.szf-tile {
+  position: relative; height: 200px; border-radius: 20px; overflow: hidden; cursor: pointer; padding: 0; border: 0;
+  display: flex; flex-direction: column; text-align: left; min-width: 0; color: var(--fg); font: inherit;
+  background: linear-gradient(180deg, #15151C 0%, #0B0B10 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.09), inset 0 0 0 1px rgba(255,255,255,0.06);
+  -webkit-tap-highlight-color: transparent; transition: transform 120ms;
+}
+.szf-tile:active { transform: scale(0.97); }
+.szf-tile:focus-visible { outline: 2px solid var(--hue); outline-offset: 2px; }
+.szf-tglow { position: absolute; inset: 0; background: var(--tglow); pointer-events: none; }
+.szf-art { position: relative; display: block; height: 112px; flex: 0 1 112px; min-height: 0; }
+.szf-ttext { position: relative; margin-top: auto; padding: 0 14px 16px; display: flex; flex-direction: column; gap: 3px; }
+.szf-tnum { font: 10px var(--mono); letter-spacing: 0.14em; color: var(--hue); }
+.szf-tname { font-family: var(--head); font-weight: 700; font-size: 26px; line-height: 1; text-transform: uppercase; }
+.szf-thint { font-size: 12.5px; color: rgba(245,245,245,0.62); }
+.szf-ring {
+  position: absolute; inset: 0; border-radius: 20px; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  box-shadow: inset 0 0 0 1.5px var(--hue), inset 0 0 40px -10px var(--hue);
+}
+.szf-check {
+  position: absolute; top: 12px; right: 12px; width: 20px; height: 20px; border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18); display: grid; place-items: center;
+}
+.szf-check i { width: 20px; height: 20px; border-radius: 50%; background: var(--hue); display: grid; place-items: center; opacity: 0; transition: opacity 0.3s; }
+.szf-tile[aria-checked="true"] .szf-ring, .szf-tile[aria-checked="true"] .szf-check i { opacity: 1; }
+
+/* ── card 02 · handicap + practice ── */
+.szf-hcp { position: relative; display: flex; align-items: baseline; margin-top: 6px; }
+.szf-hcp input {
+  width: 100%; border: 0; background: transparent; outline: none; padding: 0; color: var(--fg);
+  font-family: var(--head); font-weight: 700; font-size: 96px; line-height: 1; letter-spacing: -0.01em;
+  caret-color: var(--green); font-variant-numeric: tabular-nums;
+}
+.szf-hcp input::placeholder { color: #2A2A31; }
+.szf-hcp input:disabled { opacity: 0.3; }
+.szf-hcp::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: var(--border); }
+.szf-hcp:focus-within::after { background: var(--green); box-shadow: 0 0 8px var(--green); }
+.szf-hcp input[aria-invalid="true"] { color: var(--danger); }
+.szf-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; min-height: 44px; align-self: flex-start;
+  background: none; border: 0; padding: 0; cursor: pointer; color: var(--fg); font: 500 15px var(--sans);
+}
+.szf-link .box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid #3A3A42; display: grid; place-items: center; }
+.szf-link[aria-pressed="true"] .box { background: var(--green); border-color: var(--green); }
+.szf-err { margin: 8px 0 0; font-size: 13px; color: var(--danger); }
+
+/* answer buttons (ob-opt) */
+.szf-opts { display: grid; gap: 6px; }
+.szf-opt {
+  height: 50px; border-radius: 14px; border: 1px solid var(--border); background: var(--card); color: var(--fg);
+  display: flex; align-items: center; justify-content: center; font: 500 15px var(--sans); cursor: pointer; padding: 0;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s; -webkit-tap-highlight-color: transparent;
+}
+.szf-opt.sm { height: 42px; border-radius: 12px; font-size: 14px; }
+.szf-opt[aria-checked="true"] { background: var(--green); border-color: var(--green); color: var(--on-green); font-weight: 600; box-shadow: var(--glow); }
+.szf-opt:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+/* ── cards 03/04 · questions ── */
+.szf-qs { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+.szf-q { padding: 16px; }
+.szf-qhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.szf-qhead > div { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.szf-qnum { font: 12px var(--mono); letter-spacing: 0.12em; color: var(--green); }
+.szf-qname { font-family: var(--head); font-weight: 700; font-size: 20px; line-height: 1.05; text-transform: uppercase; }
+.szf-qtext { margin: 6px 0 12px; font-size: 14px; line-height: 1.45; color: var(--fg); }
+
+/* ── the reveal · estimate ── */
+.szf-est { margin-top: 22px; }
+.szf-esttop { display: flex; align-items: center; gap: 16px; }
+.szf-fig { font-family: var(--head); font-weight: 700; font-size: 64px; line-height: 0.9; letter-spacing: -0.01em; color: var(--green); min-width: 92px; font-variant-numeric: tabular-nums; }
+.szf-vr { width: 1px; align-self: stretch; background: var(--border); }
+.szf-pill { display: inline-flex; align-items: center; gap: 6px; font: 10px var(--mono); letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid; padding: 4px 9px; border-radius: 999px; }
+.szf-estname { font-size: 16px; font-weight: 600; margin-top: 6px; }
+.szf-weak { display: flex; align-items: center; gap: 6px; margin-top: 4px; font: 11px var(--mono); letter-spacing: 0.2em; text-transform: uppercase; }
+.szf-weak span { width: 5px; height: 5px; border-radius: 3px; }
+.szf-rule { margin: 18px -20px; border-top: 1px solid var(--border); }
+.szf-bars { display: flex; flex-direction: column; gap: 16px; }
+.szf-bar { display: grid; grid-template-columns: 132px minmax(0,1fr) 36px; align-items: center; gap: 10px; }
+.szf-bar .l { display: flex; align-items: center; gap: 8px; font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+.szf-bar .l i { width: 6px; height: 6px; border-radius: 3px; flex: none; }
+.szf-bar .t { height: 6px; border-radius: 3px; background: var(--track); position: relative; }
+.szf-bar .t i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 3px; transition: width 1.1s cubic-bezier(0.65,0,0.35,1); }
+.szf-bar .v { font: 12.5px var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+.szf-bar.focus .l { color: var(--fg); }
+.szf-gapline { margin-top: 16px; display: flex; align-items: center; gap: 6px; font: 10px var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); }
+
+/* ── building your plan ── */
+.szf-build { display: flex; flex-direction: column; align-items: center; margin-top: 40px; }
+.szf-build .szf-h1 { text-align: center; margin: 0; min-height: 2em; }
+.szf-build .szf-sub { text-align: center; min-height: 1.5em; }
+.szf-dial { width: 208px; height: 208px; margin-top: 26px; }
+.szf-dial .tick { transition: stroke 0.15s, stroke-opacity 0.15s; }
+.szf-dial .done { opacity: 0; transform-origin: 104px 104px; transform: scale(0.7); transition: opacity 0.4s, transform 0.5s cubic-bezier(0.2,1.2,0.4,1); }
+.szf-dial.ready .done { opacity: 1; transform: none; }
+.szf-rail { display: flex; gap: 8px; margin-top: 26px; flex-wrap: wrap; justify-content: center; }
+.szf-rail span { font: 10px var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); border: 1px solid var(--border); border-radius: 999px; padding: 6px 10px; transition: color 0.3s, border-color 0.3s; }
+.szf-rail span.on { color: var(--green); border-color: rgba(0,255,136,0.4); }
+.szf-rail span.done { color: var(--dim); }
+
+/* ── email + confirmation ── */
+.szf-plan { margin-top: 18px; padding: 8px 16px; }
+.szf-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; font-size: 14px; }
+.szf-row + .szf-row { border-top: 1px solid var(--border); }
+.szf-row .r { font: 10.5px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.szf-row.locked { color: var(--dim); }
+.szf-fieldgroup { margin-top: 16px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 0.2s; }
+.szf-fieldgroup:focus-within { border-color: rgba(0,255,136,0.5); }
+.szf-fieldgroup.bad { border-color: var(--danger); }
+.szf-field { display: flex; align-items: center; gap: 10px; height: 54px; padding: 0 14px; color: var(--dim); }
+.szf-field input { flex: 1; min-width: 0; height: 100%; border: 0; background: transparent; outline: none; padding: 0; color: var(--fg); font: 16px var(--sans); }
+.szf-field input::placeholder { color: var(--dim); }
+.szf-legal { margin: 12px 0 0; text-align: center; font-size: 12px; line-height: 1.5; color: var(--dim); }
+.szf-legal a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
+.szf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.szf-mail { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; margin-top: 40px; color: var(--green); background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.35); box-shadow: 0 0 40px rgba(0,255,136,0.15); }
+.szf-alt { margin-top: 14px; text-align: center; font-size: 14px; color: var(--dim); }
+.szf-alt a { color: var(--green); font-weight: 600; }
+
+/* ── the button (ob-btn) ── */
+.szf-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 56px; margin-top: 16px;
+  border: 0; border-radius: 9999px; cursor: pointer; font: 600 16px var(--sans); white-space: nowrap; text-decoration: none;
+  background: var(--green); color: var(--on-green); transition: background-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 120ms;
+  -webkit-tap-highlight-color: transparent;
+}
+.szf-btn:hover { box-shadow: var(--glow); }
+.szf-btn:active:not(:disabled) { transform: scale(0.98); }
+.szf-btn:disabled { opacity: 0.5; cursor: default; }
+.szf-btn.secondary { background: #1F1F26; color: var(--fg); }
+.szf-btn.secondary:hover { box-shadow: none; background: #26262E; }
+.szf-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+.szf-btn svg { width: 16px; height: 16px; flex: none; }
+.szf-foot { margin-top: 12px; text-align: center; font: 11px var(--mono); letter-spacing: 0.06em; color: var(--dim); }
+.szf-spin { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(10,10,15,0.25); border-top-color: var(--on-green); animation: szfSpin 0.7s linear infinite; }
+@keyframes szfSpin { to { transform: rotate(360deg); } }
+
+@media (max-height: 700px) {
+  .szf-h1 { font-size: 36px; margin-top: 18px; }
+  .szf-tile { height: 176px; }
+  .szf-hcp input { font-size: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .szf-in, .szf-pop { animation-duration: 0.001s !important; animation-delay: 0s !important; }
+  .szf-sheet, .szf-scrim, .szf-bar .t i, .szf-seg i { transition: none !important; }
+}

@@ -31,7 +31,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&family=Inconsolata:wght@700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/blog-post.css">
 
@@ -323,70 +323,141 @@
         margin-left: 4px;
       }
       /* ===== Handicap Percentile Finder (interactive) ===== */
-      .hcp-finder {
-        background: linear-gradient(180deg, rgba(34,197,94,0.06), rgba(34,197,94,0.02));
-        border: 1px solid rgba(34,197,94,0.2);
-        border-radius: 16px;
-        padding: 28px 24px;
-        margin: 2.5rem 0;
+      /* Handicap rank calculator (design handoff 2026-09-30) */
+      .rk {
+        --rk-green: #22E06B; --rk-on-green: #062910; --rk-card: #141416; --rk-surface: #0F0F12;
+        --rk-text: #F4F4F5; --rk-dim: rgba(235,235,245,0.55); --rk-dim2: rgba(235,235,245,0.38);
+        --rk-border: rgba(255,255,255,0.09); --rk-ink08: rgba(255,255,255,0.08); --rk-ink10: rgba(255,255,255,0.10);
+        --rk-danger: #F87171; --rk-ease: cubic-bezier(0.22,1,0.36,1);
+        width: 100%; max-width: 880px; margin: 2.5rem 0; box-sizing: border-box;
+        background: var(--rk-card); border: 1px solid var(--rk-border); border-radius: 14px; overflow: hidden;
+        font-family: 'DM Sans', sans-serif; color: var(--rk-text);
       }
-      .hcp-finder h2 {
-        font-family: 'Barlow Condensed', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.01em;
-        margin: 0 0 4px;
-        color: var(--text);
+      .rk *, .rk *::before, .rk *::after { box-sizing: border-box; }
+      .rk-accent { height: 3px; background: linear-gradient(90deg, var(--rk-green) 0%, transparent 100%); }
+      .rk-q { padding: 36px 40px 32px; display: flex; flex-direction: column; gap: 28px; }
+      .rk-head { display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
+      .rk-eyebrow {
+        font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+        text-transform: uppercase; color: var(--rk-green); line-height: 1.3;
       }
-      .hcp-sub { color: var(--text-muted); font-size: 0.88rem; margin: 0 0 20px; line-height: 1.6; }
-      .hcp-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-      .hcp-field { display: flex; flex-direction: column; gap: 6px; }
-      .hcp-field.full { margin-bottom: 16px; }
-      .hcp-field label {
-        font-family: 'DM Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
-        letter-spacing: 0.08em; color: var(--text-muted);
+      .rk .rk-title {
+        font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.8px;
+        line-height: 1.1; color: var(--rk-text); margin: 0; text-transform: none;
       }
-      .hcp-field select, .hcp-field input {
-        background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px;
-        padding: 12px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
-        width: 100%; -webkit-appearance: none; appearance: none;
+      .rk-body { font-size: 16px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
+      .rk-formwrap { display: flex; flex-direction: column; gap: 10px; }
+      .rk-form { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; }
+      .rk-field { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+      .rk-field.g { flex: 1.3 1 240px; }
+      .rk-field.a, .rk-field.h { flex: 1 1 150px; }
+      .rk-label {
+        font-family: 'Inconsolata', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+        text-transform: uppercase; color: var(--rk-dim); line-height: 1.2;
       }
-      .hcp-field select:focus, .hcp-field input:focus { outline: none; border-color: var(--green); }
-      .hcp-seg { display: flex; gap: 8px; }
-      .hcp-seg button {
-        flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px;
-        padding: 12px; color: var(--text-muted); font-family: 'Barlow Condensed', sans-serif;
-        font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.02em;
-        cursor: pointer; transition: all 0.15s;
+      .rk-seg {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; height: 52px;
+        background: var(--rk-surface); border: 1px solid var(--rk-border); border-radius: 10px;
       }
-      .hcp-seg button.active { background: rgba(34,197,94,0.14); border-color: var(--green); color: var(--green); }
-      .hcp-btn {
-        width: 100%; margin-top: 4px; background: var(--green); color: #000; border: none; border-radius: 10px;
-        padding: 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem;
-        text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer;
+      .rk-seg button {
+        border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--rk-dim);
+        font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.2px;
+        cursor: pointer; transition: background 160ms, color 160ms, border-color 160ms; padding: 0 6px;
       }
-      .hcp-btn:hover { filter: brightness(1.05); }
-      .hcp-result {
-        margin-top: 20px; padding: 22px; background: rgba(0,0,0,0.25);
-        border: 1px solid rgba(34,197,94,0.25); border-radius: 12px; display: none;
+      .rk-seg button[aria-checked="true"] { background: rgba(34,224,107,0.12); border-color: rgba(34,224,107,0.45); color: var(--rk-text); }
+      .rk-seg button:focus-visible { outline: 2px solid var(--rk-green); outline-offset: 1px; }
+      .rk-selwrap { position: relative; }
+      .rk-selwrap svg { position: absolute; right: 14px; top: 19px; color: var(--rk-dim); pointer-events: none; }
+      .rk select, .rk input {
+        width: 100%; height: 52px; margin: 0; background: var(--rk-surface); color: var(--rk-text);
+        border: 1px solid var(--rk-border); border-radius: 10px; outline: none;
+        transition: border-color 160ms, box-shadow 160ms;
       }
-      .hcp-result.show { display: block; }
-      .hcp-big { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--green); line-height: 1.05; }
-      .hcp-big span { font-size: 0.95rem; color: var(--text-muted); font-weight: 600; }
-      .hcp-bracket {
-        font-family: 'DM Mono', monospace; font-size: 0.72rem; text-transform: uppercase;
-        letter-spacing: 0.08em; color: var(--text-muted); margin-top: 8px;
+      .rk select { appearance: none; -webkit-appearance: none; padding: 0 38px 0 14px; font-family: inherit; font-size: 16px; cursor: pointer; }
+      .rk input { padding: 0 14px; font-family: 'Inconsolata', monospace; font-size: 19px; font-weight: 700; }
+      .rk input::placeholder { color: var(--rk-dim2); }
+      .rk select:focus, .rk input:focus { border-color: var(--rk-green); box-shadow: 0 0 0 3px rgba(34,224,107,0.12); }
+      .rk-btn {
+        position: relative; overflow: hidden; height: 52px; padding: 0 22px; border: none; border-radius: 10px;
+        background: var(--rk-green); color: var(--rk-on-green); font-family: 'Space Grotesk', sans-serif;
+        font-size: 16px; font-weight: 700; letter-spacing: -0.2px; cursor: pointer;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        box-shadow: 0 6px 18px rgba(34,224,107,0.18); transition: transform 120ms var(--rk-ease), opacity 160ms;
       }
-      .hcp-bar { height: 10px; border-radius: 6px; background: rgba(255,255,255,0.08); margin: 16px 0 6px; overflow: hidden; }
-      .hcp-bar span { display: block; height: 100%; background: var(--green); border-radius: 6px; width: 0; transition: width 0.6s ease; }
-      .hcp-scale { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-muted); }
-      .hcp-note { color: var(--text); font-size: 0.92rem; line-height: 1.7; margin: 16px 0 0; }
-      .hcp-cta { font-size: 0.9rem; line-height: 1.8; margin: 16px 0 0; }
-      .hcp-cta a { color: var(--green); font-weight: 600; text-decoration: none; }
-      .hcp-cta a:hover { text-decoration: underline; }
-      @media (max-width: 520px) { .hcp-controls { grid-template-columns: 1fr; } }
+      .rk-btn:active:not(:disabled) { transform: scale(0.98); }
+      .rk-btn:disabled { opacity: 0.55; cursor: default; }
+      .rk-btn:focus-visible { outline: 2px solid var(--rk-text); outline-offset: 2px; }
+      .rk-submit { flex: 1 1 200px; }
+      .rk-error { font-size: 13px; color: var(--rk-danger); }
+      .rk-r {
+        border-top: 1px solid var(--rk-border); padding: 32px 40px 40px;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 36px; align-items: start;
+      }
+      .rk-r[hidden] { display: none; }
+      .rk-r.in { animation: rk-rise 400ms var(--rk-ease) both; }
+      @keyframes rk-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+      .rk-col { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+      .rk-headline { display: flex; flex-direction: column; gap: 10px; }
+      .rk-tier { font-family: 'Inconsolata', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+      .rk-big { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -2px; line-height: 1; color: var(--rk-text); }
+      .rk-big span { color: var(--rk-green); }
+      .rk-sub { font-size: 16px; color: var(--rk-dim); }
+      .rk-spread { display: flex; flex-direction: column; gap: 8px; }
+      .rk-bar { position: relative; height: 28px; }
+      .rk-track { position: absolute; left: 0; right: 0; top: 11px; height: 6px; border-radius: 3px; background: var(--rk-ink08); overflow: hidden; display: flex; }
+      .rk-track .lo { background: var(--rk-ink10); transition: width 600ms var(--rk-ease); }
+      .rk-track .hi { flex: 1; background: var(--rk-green); }
+      .rk-tick { position: absolute; top: 5px; left: 50%; width: 2px; height: 18px; margin-left: -1px; background: var(--rk-dim2); border-radius: 1px; }
+      .rk-you {
+        position: absolute; top: 4px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%;
+        background: var(--rk-card); border: 3px solid var(--rk-green); box-shadow: 0 0 0 4px rgba(34,224,107,0.18);
+        transition: left 600ms var(--rk-ease);
+      }
+      .rk-scale {
+        display: flex; justify-content: space-between; gap: 8px; font-family: 'Inconsolata', monospace; font-size: 11px;
+        font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--rk-dim2);
+      }
+      .rk-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--rk-border); border-radius: 10px; overflow: hidden; }
+      .rk-stat { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+      .rk-stat + .rk-stat { border-left: 1px solid var(--rk-border); }
+      .rk-stat b { font-family: 'Inconsolata', monospace; font-size: 26px; font-weight: 700; line-height: 1.1; }
+      .rk-summary { font-size: 16px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
+      .rk-cta {
+        background: var(--rk-surface); border: 1px solid rgba(34,224,107,0.28); border-radius: 12px;
+        padding: 28px 26px 22px; display: flex; flex-direction: column; gap: 18px;
+      }
+      .rk-cta-copy { display: flex; flex-direction: column; gap: 10px; }
+      .rk-cta-title {
+        font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.6px;
+        line-height: 1.15; color: var(--rk-text); text-wrap: balance;
+      }
+      .rk-cta-body { font-size: 15px; line-height: 1.6; color: var(--rk-dim); text-wrap: pretty; }
+      .rk-plan { height: 54px; width: 100%; box-shadow: 0 10px 30px rgba(34,224,107,0.33); }
+      .rk-shine {
+        position: absolute; top: 0; bottom: 0; left: 0; width: 40%; pointer-events: none;
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+        transform: translateX(-150%) skewX(-20deg);
+        animation: rk-shine 3.8s var(--rk-ease) 1.2s infinite;
+      }
+      @keyframes rk-shine { from { transform: translateX(-150%) skewX(-20deg); } 60%, to { transform: translateX(300%) skewX(-20deg); } }
+      @media (prefers-reduced-motion: reduce) { .rk-shine { display: none; } .rk-r.in { animation: none; } }
+      .rk-foot {
+        display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Inconsolata', monospace;
+        font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--rk-dim2);
+      }
+      .rk-more { font-size: 14px; color: var(--rk-dim); }
+      .rk-more a { color: var(--rk-green); font-weight: 600; text-decoration: none; }
+      .rk-more a:hover { color: var(--rk-text); }
+      /* Phone: the article column is ~340px, so the card's own padding comes down. */
+      @media (max-width: 560px) {
+        .rk-q { padding: 28px 20px 24px; gap: 24px; }
+        .rk-r { padding: 26px 20px 28px; gap: 28px; }
+        .rk .rk-title { font-size: 30px; }
+        .rk-big { font-size: 48px; }
+        .rk-cta { padding: 24px 20px 20px; }
+      }
     </style>
+    <link rel="stylesheet" href="../css/plan-funnel.css">
     <!-- In-content blog advert -->
     <link rel="stylesheet" href="../css/blog-ad.css">
     <script src="../js/blog-ad.js" data-asset-base="../" defer></script>
@@ -531,44 +602,84 @@
 
             <!-- ======================== -->
             <!-- INTERACTIVE: HANDICAP PERCENTILE FINDER -->
-            <div class="hcp-finder reveal" id="rank-finder">
-                <h2>Where Do You Rank?</h2>
-                <p class="hcp-sub">Enter your details to see how your handicap compares to other golfers your age &mdash; and where you sit in the national spread. Figures use the USGA distribution data in this guide.</p>
-                <div class="hcp-field full">
-                    <label>I am a&hellip;</label>
-                    <div class="hcp-seg" id="hcp-gender">
-                        <button type="button" data-g="men" class="active">Male golfer</button>
-                        <button type="button" data-g="women">Female golfer</button>
+            <section class="rk reveal" id="rank-finder" aria-labelledby="rk-title">
+                <div class="rk-accent" aria-hidden="true"></div>
+                <div class="rk-q">
+                    <div class="rk-head">
+                        <div class="rk-eyebrow">Handicap calculator</div>
+                        <h2 class="rk-title" id="rk-title">Where do you rank?</h2>
+                        <div class="rk-body">See how your handicap compares to golfers your age, and where you sit in the national spread. Figures use the USGA distribution data in this guide.</div>
+                    </div>
+                    <div class="rk-formwrap">
+                        <div class="rk-form">
+                            <div class="rk-field g">
+                                <span class="rk-label" id="rk-g-label">I am a</span>
+                                <div class="rk-seg" role="radiogroup" aria-labelledby="rk-g-label" id="rk-gender">
+                                    <button type="button" role="radio" aria-checked="true" tabindex="0" data-g="male">Male golfer</button>
+                                    <button type="button" role="radio" aria-checked="false" tabindex="-1" data-g="female">Female golfer</button>
+                                </div>
+                            </div>
+                            <label class="rk-field a">
+                                <span class="rk-label">Age group</span>
+                                <span class="rk-selwrap">
+                                    <select id="rk-age">
+                                        <option value="U18">Under 18</option>
+                                        <option value="20-29">20&ndash;29</option>
+                                        <option value="30-39" selected>30&ndash;39</option>
+                                        <option value="40-49">40&ndash;49</option>
+                                        <option value="50-59">50&ndash;59</option>
+                                        <option value="60-69">60&ndash;69</option>
+                                        <option value="70+">70+</option>
+                                    </select>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                                </span>
+                            </label>
+                            <label class="rk-field h">
+                                <span class="rk-label">Handicap index</span>
+                                <input id="rk-hcp" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 14.2" aria-describedby="rk-error">
+                            </label>
+                            <button type="button" class="rk-btn rk-submit" id="rk-go" disabled><span id="rk-go-label">See where I rank</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+                        </div>
+                        <div class="rk-error" id="rk-error" role="alert" hidden>Enter an index between +10 and 54.</div>
                     </div>
                 </div>
-                <div class="hcp-controls">
-                    <div class="hcp-field">
-                        <label for="hcp-age">Age group</label>
-                        <select id="hcp-age">
-                            <option value="U18">Under 18</option>
-                            <option value="20-29">20&ndash;29</option>
-                            <option value="30-39" selected>30&ndash;39</option>
-                            <option value="40-49">40&ndash;49</option>
-                            <option value="50-59">50&ndash;59</option>
-                            <option value="60-69">60&ndash;69</option>
-                            <option value="70+">70+</option>
-                        </select>
+                <div class="rk-r" id="rk-result" aria-live="polite" hidden>
+                    <div class="rk-col">
+                        <div class="rk-headline">
+                            <div class="rk-tier" id="rk-tier"></div>
+                            <div class="rk-big">Ahead of <span id="rk-pct"></span></div>
+                            <div class="rk-sub" id="rk-sub"></div>
+                        </div>
+                        <div class="rk-spread">
+                            <div class="rk-bar" aria-hidden="true">
+                                <div class="rk-track"><div class="lo" id="rk-lo"></div><div class="hi"></div></div>
+                                <div class="rk-tick"></div>
+                                <div class="rk-you" id="rk-you"></div>
+                            </div>
+                            <div class="rk-scale" aria-hidden="true"><span>&larr; Lower handicaps</span><span>Age avg</span><span>Higher &rarr;</span></div>
+                        </div>
+                        <div class="rk-stats">
+                            <div class="rk-stat"><span class="rk-label">You</span><b id="rk-s-you"></b></div>
+                            <div class="rk-stat"><span class="rk-label">Age avg</span><b id="rk-s-avg" style="color: var(--rk-dim);"></b></div>
+                            <div class="rk-stat" id="rk-s-gapcell"><span class="rk-label">Gap</span><b id="rk-s-gap"></b></div>
+                        </div>
+                        <div class="rk-summary" id="rk-summary"></div>
+                        <div class="rk-more">Want your official Handicap Index? <a href="/tools/golf-handicap-calculator">Use the free calculator &rarr;</a></div>
                     </div>
-                    <div class="hcp-field">
-                        <label for="hcp-value">Your handicap</label>
-                        <input id="hcp-value" type="number" inputmode="decimal" min="-5" max="54" step="0.1" placeholder="e.g. 14">
+                    <div class="rk-cta">
+                        <div class="rk-cta-copy">
+                            <div class="rk-eyebrow">Free &middot; 2-week plan</div>
+                            <div class="rk-cta-title" id="rk-plan-title"></div>
+                            <div class="rk-cta-body">Answer a few quick questions and we&rsquo;ll build 4 practice sessions around your weakest area, with targets set for <span id="rk-plan-hcp"></span> handicap.</div>
+                        </div>
+                        <button type="button" class="rk-btn rk-plan" id="rk-plan-go"><span class="rk-shine" aria-hidden="true"></span>Get my free plan<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+                        <div class="rk-foot">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                            Sent to your inbox as a PDF
+                        </div>
                     </div>
                 </div>
-                <button type="button" class="hcp-btn" id="hcp-go">See where I rank &rarr;</button>
-                <div class="hcp-result" id="hcp-result" aria-live="polite">
-                    <div class="hcp-big" id="hcp-pct"></div>
-                    <div class="hcp-bracket" id="hcp-bracket"></div>
-                    <div class="hcp-bar"><span id="hcp-bar-fill"></span></div>
-                    <div class="hcp-scale"><span>Better players</span><span>Higher handicaps</span></div>
-                    <p class="hcp-note" id="hcp-note"></p>
-                    <p class="hcp-cta" id="hcp-cta"></p>
-                </div>
-            </div>
+            </section>
 
             <!-- ======================== -->
             <h2 class="reveal">Average Golf Handicap for Men and Women</h2>
@@ -947,84 +1058,129 @@
         <p class="footer-copy" style="margin-top:32px;">&copy; 2026 Scoring Zone. All rights reserved.</p>
     </footer>
 
-    <!-- Handicap Percentile Finder logic -->
+    <!-- Handicap rank calculator logic -->
     <script>
     (function(){
-      // Cumulative % of golfers at or below a given handicap (from the USGA distribution tables above)
-      var anchorsMen = [[0,2],[5,10],[10,25],[15,47],[20,72],[25,90],[36,100]];
-      var anchorsWomen = [[0,1],[10,8],[15,15],[25,45],[35,80],[45,100]];
-      // Age-group average handicap (midpoints of the ranges in this article)
-      var ageAvg = {
-        men:   {'U18':19,'20-29':14,'30-39':13,'40-49':14,'50-59':15,'60-69':17,'70+':22},
-        women: {'U18':32,'20-29':24,'30-39':24,'40-49':26,'50-59':27,'60-69':28,'70+':31}
+      // Age-group average handicaps from this guide (midpoints of its ranges).
+      var AVG = {
+        male:   {'U18':19,'20-29':14,'30-39':13,'40-49':14,'50-59':15,'60-69':17,'70+':22},
+        female: {'U18':32,'20-29':24,'30-39':24,'40-49':26,'50-59':27,'60-69':28,'70+':31}
       };
-      var gender = 'men';
+      var SD = { male: 7, female: 8 };
+      var AGE_LABEL = {'U18':'under 18','20-29':'20–29','30-39':'30–39','40-49':'40–49','50-59':'50–59','60-69':'60–69','70+':'70+'};
 
-      function interp(anchors, h){
-        if (h <= anchors[0][0]) return anchors[0][1];
-        for (var i=1; i<anchors.length; i++){
-          if (h <= anchors[i][0]){
-            var a = anchors[i-1], b = anchors[i];
-            return a[1] + (b[1]-a[1]) * ((h-a[0])/(b[0]-a[0]));
-          }
-        }
-        return 100;
+      function cdf(z){
+        var t = 1 / (1 + 0.3275911 * Math.abs(z));
+        var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-z * z / 2);
+        return 0.5 * (1 + (z < 0 ? -y : y));
       }
-      function bracket(g, h){
-        if (g === 'men'){
-          if (h < 5)  return 'Elite — top 10% of men';
-          if (h < 10) return 'Single figures — top 25% of men';
-          if (h < 15) return 'Better than the male average (14.2)';
-          if (h < 20) return 'Mid handicap — the biggest group';
-          if (h < 25) return 'Improving — room to gain';
-          return 'High handicap — fastest gains available';
-        } else {
-          if (h < 10) return 'Elite — top 5–8% of women';
-          if (h < 15) return 'Low handicap — top 15% of women';
-          if (h < 25) return 'Better than the female average (27.5)';
-          if (h < 35) return 'Mid handicap — the biggest group';
-          return 'High handicap — fastest gains available';
-        }
+      // "" -> null, junk or out of range -> NaN, "+2" -> -2 (a plus handicap).
+      function parseHcp(s){
+        var t = String(s || '').trim();
+        if (!t) return null;
+        var plus = t.charAt(0) === '+';
+        var body = plus ? t.slice(1) : t;
+        if (!/^\d{1,2}([.,]\d)?$/.test(body)) return NaN;
+        var n = parseFloat(body.replace(',', '.'));
+        var v = plus ? -n : n;
+        return (v < -10 || v > 54) ? NaN : v;
       }
+      function fmt(v){
+        var s = Math.abs(v).toFixed(1).replace(/\.0$/, '');
+        return v < 0 ? '+' + s : s;
+      }
+      function $(id){ return document.getElementById(id); }
 
-      var gEl = document.getElementById('hcp-gender');
-      gEl.addEventListener('click', function(e){
-        var b = e.target.closest('button');
-        if (!b) return;
-        gender = b.getAttribute('data-g');
-        [].forEach.call(gEl.children, function(c){ c.classList.toggle('active', c === b); });
+      var gender = 'male', result = null;
+      var seg = $('rk-gender'), hcpEl = $('rk-hcp'), go = $('rk-go'), err = $('rk-error'), out = $('rk-result');
+
+      function pick(btn, focus){
+        gender = btn.getAttribute('data-g');
+        [].forEach.call(seg.children, function(b){
+          var on = b === btn;
+          b.setAttribute('aria-checked', on ? 'true' : 'false');
+          b.tabIndex = on ? 0 : -1;
+        });
+        if (focus) btn.focus();
+      }
+      seg.addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) pick(b); });
+      seg.addEventListener('keydown', function(e){
+        if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].indexOf(e.key) < 0) return;
+        e.preventDefault();
+        var cur = seg.querySelector('[aria-checked="true"]');
+        pick(cur.nextElementSibling || cur.previousElementSibling, true);
       });
 
-      document.getElementById('hcp-go').addEventListener('click', function(){
-        var valEl = document.getElementById('hcp-value');
-        var v = parseFloat(valEl.value);
-        if (isNaN(v)) { valEl.focus(); return; }
-        var age = document.getElementById('hcp-age').value;
-        var anchors = gender === 'men' ? anchorsMen : anchorsWomen;
-        var youBeat = Math.max(1, Math.min(99, Math.round(100 - interp(anchors, v))));
-        var lbl = gender === 'men' ? 'man' : 'woman';
-        var plural = gender === 'men' ? 'male' : 'female';
+      function validate(){
+        var v = parseHcp(hcpEl.value);
+        var ok = v !== null && !isNaN(v);
+        go.disabled = !ok;
+        err.hidden = !(v !== null && isNaN(v));
+        hcpEl.setAttribute('aria-invalid', err.hidden ? 'false' : 'true');
+        return ok ? v : null;
+      }
+      hcpEl.addEventListener('input', validate);
+      hcpEl.addEventListener('keydown', function(e){ if (e.key === 'Enter') submit(); });
+      go.addEventListener('click', submit);
 
-        document.getElementById('hcp-pct').innerHTML = 'Ahead of ~' + youBeat + '% <span>of ' + plural + ' golfers</span>';
-        document.getElementById('hcp-bracket').textContent = bracket(gender, v);
-        document.getElementById('hcp-bar-fill').style.width = youBeat + '%';
+      function submit(){
+        var v = validate();
+        if (v === null) return;
+        var age = $('rk-age').value;
+        var avg = AVG[gender][age];
+        var pct = Math.max(1, Math.min(99, Math.round((1 - cdf((v - avg) / SD[gender])) * 100)));
+        var tier = pct >= 90 ? 'Elite · top 10%' : pct >= 75 ? 'Advanced · top 25%' : pct >= 50 ? 'Above average' : pct >= 25 ? 'Average range' : 'Building';
+        var who = gender === 'male' ? 'men' : 'women';
+        var person = gender === 'male' ? 'man' : 'woman';
+        var ageTxt = AGE_LABEL[age];
+        var diff = avg - v;
+        var d = Math.abs(diff).toFixed(1).replace(/\.0$/, '');
+        var even = Math.abs(diff) < 0.5;
 
-        var avg = ageAvg[gender][age];
-        var diff = Math.round((v - avg) * 10) / 10;
-        var ageTxt;
-        if (diff <= -0.5)      ageTxt = 'The average ' + lbl + ' in your age group plays to <strong>' + avg + '</strong>. Your ' + v + ' is <strong>' + Math.abs(diff) + ' shots better</strong> than your age-group average.';
-        else if (diff < 0.5)   ageTxt = 'The average ' + lbl + ' in your age group plays to <strong>' + avg + '</strong> — you’re right around your age-group average.';
-        else                   ageTxt = 'The average ' + lbl + ' in your age group plays to <strong>' + avg + '</strong>. You have <strong>' + diff + ' shots</strong> to gain to reach it — and it’s almost all hiding inside 100 yards.';
-        document.getElementById('hcp-note').innerHTML = ageTxt;
+        $('rk-tier').textContent = (tier + ' · ' + who + ' ' + ageTxt).toUpperCase();
+        $('rk-tier').style.color = pct >= 50 ? 'var(--rk-green)' : 'var(--rk-dim)';
+        $('rk-pct').textContent = pct + '%';
+        $('rk-sub').textContent = 'of ' + who + ' aged ' + ageTxt;
+        var marker = Math.max(3, Math.min(97, 100 - pct)) + '%';
+        $('rk-lo').style.width = marker;
+        $('rk-you').style.left = marker;
+        $('rk-s-you').textContent = fmt(v);
+        $('rk-s-avg').textContent = fmt(avg);
+        var gap = $('rk-s-gap');
+        gap.textContent = even ? '±0' : (diff > 0 ? '−' : '+') + d;
+        gap.style.color = even ? 'var(--rk-text)' : diff > 0 ? 'var(--rk-green)' : 'var(--rk-danger)';
+        $('rk-s-gapcell').style.background = diff > 0.5 ? 'rgba(34,224,107,0.08)' : 'transparent';
+        $('rk-summary').textContent = even
+          ? 'The average ' + person + ' aged ' + ageTxt + ' plays to ' + fmt(avg) + '. You’re right on it.'
+          : 'The average ' + person + ' aged ' + ageTxt + ' plays to ' + fmt(avg) + '. Your ' + fmt(v) + ' is ' + d + ' shots ' + (diff > 0 ? 'better than' : 'behind') + ' your age group.';
+        $('rk-plan-title').textContent = pct >= 90 ? 'Create your free custom short game plan'
+          : pct >= 50 ? 'Push into the top 10% from 100 yards in'
+          : 'Find your fastest shots from 100 yards in';
+        var h = fmt(v); // "an 8", "an 11", "an 18", "an 80"; "a 14", "a +2"
+        $('rk-plan-hcp').textContent = (/^(8|11|18)(\D|$)/.test(h) || /^8\d/.test(h) ? 'an ' : 'a ') + h;
 
-        document.getElementById('hcp-cta').innerHTML =
-          'Want your official Handicap Index? <a href="/tools/golf-handicap-calculator">Use the free calculator &rarr;</a><br>' +
-          'See which shots are costing you strokes with the <a href="/#signup">Scoring Zone Performance Hub &rarr;</a>';
-        document.getElementById('hcp-result').classList.add('show');
+        var first = !result;
+        result = { hcp: v };
+        $('rk-go-label').textContent = 'Update my rank';
+        out.hidden = false;
+        out.classList.remove('in'); void out.offsetWidth; out.classList.add('in');
+        if (first && window.matchMedia('(max-width: 760px)').matches) {
+          out.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+        try { if (window.gtag) gtag('event', 'rank_result', { hcp: v, gender: gender, age: age, pct: pct }); } catch (e) {}
+      }
+
+      // Free plan: the app's questions, hosted here (js/plan-funnel.js), ending at the email step.
+      $('rk-plan-go').addEventListener('click', function(){
+        var hcp = result && result.hcp >= 0 ? result.hcp : null; // a plus index starts the field blank
+        if (!window.SZFunnel) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=blog&utm_campaign=rank_plan'; return; }
+        SZFunnel.open({ hcp: hcp, src: 'rank_finder' });
       });
     })();
     </script>
 
+    <script src="../js/plan-engine.js" defer></script>
+    <script src="../js/plan-funnel.js" defer></script>
     <script src="../js/shared.js"></script>
     <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
