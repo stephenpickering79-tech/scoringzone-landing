@@ -23,7 +23,6 @@
   // The app's public (anon) key: already in every scoringzone.app page. The
   // function also requires it; access is limited by the function itself.
   var ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtbGZ0emFpa3hmbmVheG5haGt0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzODYzMDgsImV4cCI6MjA4NTk2MjMwOH0.qtJt3tuA6O9Upcwg6-7-GqKJCaNWuqceE1r7OruY7yo';
-  var APP_STORE = 'https://apps.apple.com/us/app/golf-practice-scoring-zone/id6769477447?pt=128906825&ct=Lead%20Funnel&mt=8';
   var WEB_APP = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=lead_funnel&utm_campaign=android';
 
   var HUE = { putting: '#C084FC', chips: '#F6C85F', 'short-wedges': '#22E06B', 'distance-wedges': '#60A5FA' };
@@ -298,9 +297,7 @@
         '<h1 class="szf-h1 szf-in"' + dl(0.2) + '>Check your <em>inbox</em></h1>' +
         '<p class="szf-sub szf-in"' + dl(0.3) + '>Your plan is on its way to <strong style="color:var(--fg);word-break:break-all">' + esc(state.email) + '</strong>. If it isn’t there in a few minutes, check spam or promotions.</p>' +
         '<div class="szf-spacer"></div>' +
-        '<button type="button" class="szf-btn szf-in"' + dl(0.45) + ' data-szf-close data-autofocus>Done</button>' +
-        '<a class="szf-btn secondary szf-in"' + dl(0.55) + ' href="' + APP_STORE + '" target="_blank" rel="noopener" data-szf-app="ios">Or start it in the app · 7 days free · iOS</a>' +
-        '<p class="szf-alt">Or go to <a href="' + WEB_APP + '" target="_blank" rel="noopener" data-szf-app="android">scoringzone.app</a> for Android</p></div>';
+        '<button type="button" class="szf-btn szf-in"' + dl(0.45) + ' data-szf-close data-autofocus>Done</button></div>';
     }
     body.innerHTML = h;
   }
