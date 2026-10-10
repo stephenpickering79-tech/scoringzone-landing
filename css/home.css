@@ -2723,7 +2723,7 @@ html:not(.hp-js) .sz-reel-fade, .sz-reel:not(.is-live) .sz-reel-fade { display: 
      pinned to the bottom of the screen anyway. */
   .footer-col--social,          /* X, Instagram, YouTube, Facebook */
   .footer-col--audience,        /* Beginners, Juniors, Seniors, ... */
-  .footer-badges {              /* Toolfio, SaasHunt, Fazier, Twelve Tools */
+  .footer-badges {              /* the launch-site badges */
     display: none;
   }
   /* The badge row's layout used to live in a style attribute, which no
