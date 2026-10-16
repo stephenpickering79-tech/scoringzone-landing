@@ -306,6 +306,16 @@
       "source": "/blog/golf-training-app-pricing-comparison.html",
       "destination": "/blog/golf-app-subscription-cost",
       "permanent": true
+    },
+    {
+      "source": "/blog/golfshot-vs-18birdies",
+      "destination": "/blog/18birdies-vs-golfshot-vs-thegrint",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golfshot-vs-18birdies.html",
+      "destination": "/blog/18birdies-vs-golfshot-vs-thegrint",
+      "permanent": true
     }
   ]
 }
