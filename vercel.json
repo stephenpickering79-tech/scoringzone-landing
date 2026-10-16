@@ -56,6 +56,256 @@
       "source": "/short-game-practice/",
       "destination": "/features/performance-hub",
       "permanent": true
+    },
+    {
+      "source": "/blog/how-to-improve-golf-short-game",
+      "destination": "/blog/short-game-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-improve-golf-short-game.html",
+      "destination": "/blog/short-game-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-break-90",
+      "destination": "/blog/what-percentage-of-golfers-break-90",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-break-90.html",
+      "destination": "/blog/what-percentage-of-golfers-break-90",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-practice-short-game",
+      "destination": "/blog/short-game-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-practice-short-game.html",
+      "destination": "/blog/short-game-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/scoring-zone-vs-18-birdies",
+      "destination": "/blog/18birdies-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/scoring-zone-vs-18-birdies.html",
+      "destination": "/blog/18birdies-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/18birdies-free-vs-premium",
+      "destination": "/blog/18birdies-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/18birdies-free-vs-premium.html",
+      "destination": "/blog/18birdies-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/free-golf-practice-app",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/free-golf-practice-app.html",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-golf-app-for-scoring",
+      "destination": "/blog/best-golf-apps-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-golf-app-for-scoring.html",
+      "destination": "/blog/best-golf-apps-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-short-game-training-aid",
+      "destination": "/blog/best-golf-chipping-training-aid",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-short-game-training-aid.html",
+      "destination": "/blog/best-golf-chipping-training-aid",
+      "permanent": true
+    },
+    {
+      "source": "/blog/putting-training-aid-review",
+      "destination": "/blog/puttmaster-golf-training-aid-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/putting-training-aid-review.html",
+      "destination": "/blog/puttmaster-golf-training-aid-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-practice-tracker-app",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-practice-tracker-app.html",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-strokes-gained-app",
+      "destination": "/blog/strokes-gained-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-strokes-gained-app.html",
+      "destination": "/blog/strokes-gained-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-putting-app-for-iphone",
+      "destination": "/blog/best-putting-apps-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-putting-app-for-iphone.html",
+      "destination": "/blog/best-putting-apps-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/scoring-zone-vs-arccos",
+      "destination": "/blog/arccos-golf-alternative",
+      "permanent": true
+    },
+    {
+      "source": "/blog/scoring-zone-vs-arccos.html",
+      "destination": "/blog/arccos-golf-alternative",
+      "permanent": true
+    },
+    {
+      "source": "/blog/calculating-a-golf-handicap",
+      "destination": "/tools/golf-handicap-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/blog/calculating-a-golf-handicap.html",
+      "destination": "/tools/golf-handicap-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-practice-app-free-trial",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-practice-app-free-trial.html",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-scoring-app-download",
+      "destination": "/blog/best-free-golf-apps",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-scoring-app-download.html",
+      "destination": "/blog/best-free-golf-apps",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-practice-app-with-drills",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-practice-app-with-drills.html",
+      "destination": "/blog/best-golf-practice-app",
+      "permanent": true
+    },
+    {
+      "source": "/blog/18birdies-alternative",
+      "destination": "/blog/18birdies-vs-golfshot-vs-thegrint",
+      "permanent": true
+    },
+    {
+      "source": "/blog/18birdies-alternative.html",
+      "destination": "/blog/18birdies-vs-golfshot-vs-thegrint",
+      "permanent": true
+    },
+    {
+      "source": "/blog/break-x-golf-alternative",
+      "destination": "/blog/break-x-golf-app-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/break-x-golf-alternative.html",
+      "destination": "/blog/break-x-golf-app-review",
+      "permanent": true
+    },
+    {
+      "source": "/blog/thegrint-alternative",
+      "destination": "/blog/18birdies-vs-golfshot-vs-thegrint",
+      "permanent": true
+    },
+    {
+      "source": "/blog/thegrint-alternative.html",
+      "destination": "/blog/18birdies-vs-golfshot-vs-thegrint",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-swing-analyzer-app",
+      "destination": "/blog/best-golf-swing-analyzer-apps",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-swing-analyzer-app.html",
+      "destination": "/blog/best-golf-swing-analyzer-apps",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-golf-app-for-scoring-lower",
+      "destination": "/blog/best-golf-apps-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-golf-app-for-scoring-lower.html",
+      "destination": "/blog/best-golf-apps-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/short-game-practice-plan",
+      "destination": "/blog/short-game-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/short-game-practice-plan.html",
+      "destination": "/blog/short-game-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-golf-app-for-iphone",
+      "destination": "/blog/best-free-golf-apps",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-golf-app-for-iphone.html",
+      "destination": "/blog/best-free-golf-apps",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-training-app-pricing-comparison",
+      "destination": "/blog/golf-app-subscription-cost",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-training-app-pricing-comparison.html",
+      "destination": "/blog/golf-app-subscription-cost",
+      "permanent": true
     }
   ]
 }
