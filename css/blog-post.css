@@ -306,3 +306,48 @@
   .author-box { flex-direction: column; gap: 14px; padding: 20px; }
   .author-box-photo { width: 72px; height: 72px; }
 }
+
+
+/* ============================================================
+   LIGHT READING THEME (opt-in)
+   Add class="post-light" to a post's breadcrumb, hero and
+   article sections to set the article black on white. The nav,
+   the in-content advert and the closing chapter keep their own
+   styling. Works by re-pointing the shared.css tokens, plus the
+   few rules that hard-code light-on-dark text.
+   ============================================================ */
+
+.post-light {
+  --text: #0d1a10;
+  --text-2: #1f2a22;
+  --text-muted: #4b5563;           /* 7.5:1 on white */
+  --green: #15803d;                /* AA-safe green on white; #22c55e is not */
+  --green-bright: #166534;
+  --border: rgba(13, 26, 16, 0.12);
+  --border-bright: rgba(13, 26, 16, 0.2);
+  --card-bg-hover: rgba(13, 26, 16, 0.03);
+  --card-border-hover: rgba(13, 26, 16, 0.2);
+
+  background: #ffffff;
+  color: var(--text);
+}
+.post-light .prose p,
+.post-light .prose ul,
+.post-light .prose ol { color: #1f2622; }
+.post-light .prose blockquote { color: #1f2622; }
+.post-light .prose > p a:not([class]),
+.post-light .prose > ul a:not([class]) { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+/* Shaded panels: tinted enough to read as blocks against white. */
+.post-light .author-box { background: #e9eee9; border-color: rgba(13, 26, 16, 0.14); }
+.post-light .author-box-bio { color: #374151; }
+.post-light .related-posts a { background: #e9eee9; border-color: rgba(13, 26, 16, 0.14); }
+.post-light .related-posts a:hover { background: #dfe9e1; border-color: rgba(21, 128, 61, 0.4); }
+/* Key takeaway box is styled inline on every post, so it needs !important. */
+.post-light .prose > div[style*="border-left: 3px solid var(--green)"] { background: #e3efe6 !important; }
+.post-light .blog-internal-link { background: #e3efe6; }
+.post-light .blog-internal-link:hover { background: #d6e8da; }
+.post-light .blog-table thead th { background: #d6e8da; border-bottom-color: rgba(21, 128, 61, 0.35); }
+.post-light .blog-table tbody tr:nth-child(even) { background: #f2f5f2; }
+.post-light .blog-tags span { background: #e3efe6; border-color: rgba(21, 128, 61, 0.28); color: #374151; }
+.post-light .drill-number { background: #d6e8da; border-color: rgba(21, 128, 61, 0.35); }
+.post-light .faq-item p { color: #374151; }
