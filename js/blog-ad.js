@@ -21,6 +21,9 @@
    marker, which always wins:
      <div data-sz-blogad></div>
 
+   A single post can swap the variant's phone image without
+   changing it for every other post on that variant:
+     <script ... data-shot="app-screens/x.webp" data-shot-alt="...">
    Overrides for testing:
      ?szad=off        disable
      ?szad=putting    force a variant
@@ -45,6 +48,8 @@
     if (script.dataset.assetBase) CFG.assetBase = script.dataset.assetBase;
     if (script.dataset.variant) CFG.variant = script.dataset.variant;
     if (script.dataset.minParagraphs) CFG.minParagraphs = parseInt(script.dataset.minParagraphs, 10);
+    if (script.dataset.shot) CFG.shot = script.dataset.shot;
+    if (script.dataset.shotAlt) CFG.shotAlt = script.dataset.shotAlt;
   }
 
   var params = new URLSearchParams(window.location.search);
@@ -230,7 +235,7 @@
     el.innerHTML =
       '<div class="szad-grid">' +
         '<div class="szad-shot' + (v.panelLight ? ' szad-shot--light' : '') + '">' +
-          '<img src="' + asset(v.shot) + '" loading="lazy" decoding="async" alt="' + v.alt + '">' +
+          '<img src="' + asset(CFG.shot || v.shot) + '" loading="lazy" decoding="async" alt="' + (CFG.shot ? (CFG.shotAlt || '') : v.alt) + '">' +
         '</div>' +
         '<div class="szad-body">' +
           '<p class="szad-label"><i aria-hidden="true"></i>' + v.label + '</p>' +

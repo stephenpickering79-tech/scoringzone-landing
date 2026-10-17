@@ -11,27 +11,27 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strokes Gained Explained: The Stat That Matters Most</title>
-    <meta name="description" content="Golf strokes gained in plain English. What it is, how it's calculated, and why it beats every other stat for diagnosing your game.">
+    <title>Strokes Gained Explained: How It&#x27;s Calculated, With Examples</title>
+    <meta name="description" content="Strokes gained in plain English: the formula, real PGA Tour baseline numbers, worked examples, the four categories (SG OTT, approach, around the green, putting) and what it says about amateurs.">
     <link rel="icon" type="image/png" href="https://www.scoringzone.net/logo/favicon-32.png">
     <link rel="canonical" href="https://www.scoringzone.net/blog/golf-strokes-gained-explained">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Strokes Gained Explained: The Stat That Matters Most">
-    <meta property="og:description" content="Golf strokes gained in plain English. What it is, how it's calculated, and why it beats every other stat for diagnosing your game.">
+    <meta property="og:title" content="Strokes Gained Explained: How It&#x27;s Calculated, With Examples">
+    <meta property="og:description" content="The strokes gained formula with real PGA Tour baselines, worked examples, the four categories and where amateurs actually lose shots.">
     <meta property="og:image" content="https://www.scoringzone.net/og-image.png">
     <meta property="og:url" content="https://www.scoringzone.net/blog/golf-strokes-gained-explained">
     <meta property="og:type" content="article">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Strokes Gained Explained: The Stat That Matters Most">
-    <meta name="twitter:description" content="Golf strokes gained in plain English. What it is, how it's calculated, and why it beats every other stat for diagnosing your game.">
+    <meta name="twitter:title" content="Strokes Gained Explained: How It&#x27;s Calculated, With Examples">
+    <meta name="twitter:description" content="The strokes gained formula with real PGA Tour baselines, worked examples, the four categories and where amateurs actually lose shots.">
     <meta name="twitter:image" content="https://www.scoringzone.net/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/blog-post.css">
 
@@ -43,7 +43,7 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.scoringzone.net" },
         { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.scoringzone.net/blog" },
-        { "@type": "ListItem", "position": 3, "name": "Strokes Gained Explained: The Stat That Matters Most" }
+        { "@type": "ListItem", "position": 3, "name": "Strokes Gained Explained" }
       ]
     }
     </script>
@@ -53,12 +53,12 @@
     {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Golf Strokes Gained Explained: The Stat That Actually Matters",
+  "headline": "Golf Strokes Gained Explained: How It's Calculated and What It Tells You",
   "author": { "@type": "Person", "name": "Stephen Pickering", "url": "https://www.scoringzone.net/about", "image": "https://www.scoringzone.net/authors/stephen-pickering.webp", "jobTitle": "Founder, Scoring Zone", "sameAs": ["https://www.linkedin.com/in/stephen-pickering/"] },
   "publisher": { "@type": "Organization", "name": "Scoring Zone", "url": "https://www.scoringzone.net", "logo": {"@type": "ImageObject", "url": "https://www.scoringzone.net/logo/new-scoring-zone-logo.png"} },
-  "dateModified": "2026-05-11",
+  "dateModified": "2026-10-18",
   "datePublished": "2026-04-28",
-  "description": "A plain-English breakdown of golf strokes gained — what the metric is, how Mark Broadie's PGA Tour data is used as the baseline, the four categories of strokes gained, and why it tells you more about your game than any other stat."
+  "description": "Strokes gained in plain English: the formula, real PGA Tour baseline numbers, worked examples, the four categories (SG OTT, approach, around the green, putting) and what it says about amateurs."
 }
     </script>
 
@@ -70,34 +70,42 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is strokes gained in golf?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Strokes gained measures how every shot you hit compares to a benchmark golfer (usually a PGA Tour pro) playing the same shot from the same spot. If a tour pro averages 2.0 strokes to hole out from 100 yards and you do it in 2.5, you've lost 0.5 strokes on that hole. Add it across 18 holes and you have a precise picture of where you're losing strokes — far more useful than fairways hit or putts per round."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "How is strokes gained calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Strokes gained = (expected strokes from your starting position) − (expected strokes from your ending position) − 1 for the shot itself. Mark Broadie's research at PGA Tour built the baseline expected-strokes table from millions of tour shots. Subtract that benchmark from your actual performance and you get how many strokes you gained or lost on each shot."
+        "text": "Strokes gained for a shot equals expected strokes to hole out before the shot, minus expected strokes after it, minus one for the shot itself. For example, from 150 yards in the fairway (2.92 expected) to 20 feet (1.874 expected): 2.92 minus 1.874 minus 1 equals +0.05. The expected values come from PGA Tour ShotLink data."
       }
     },
     {
       "@type": "Question",
-      "name": "What are the four categories of strokes gained?",
+      "name": "What does SG OTT mean in golf?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Off the tee (driving), Approach (irons from 100+ yards), Around the green (chipping, pitching, bunker shots within 30 yards), and Putting. Every shot you hit falls into one of these four categories. Tracking strokes gained by category tells you exactly which part of your game is leaking strokes — making it the best diagnostic stat in golf."
+        "text": "SG: OTT is Strokes Gained: Off the Tee. It measures tee shots on par 4s and par 5s against the PGA Tour baseline, so both distance and where the ball finishes count."
       }
     },
     {
       "@type": "Question",
-      "name": "Why is strokes gained better than fairways hit or putts per round?",
+      "name": "What is strokes gained approach?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Fairways hit doesn't account for distance or accuracy beyond the binary of fairway/not-fairway. Putts per round penalises golfers who chip close (fewer putts because the chip got near the hole). Strokes gained handles both — it measures the value of each shot relative to a benchmark, regardless of context. It's the only stat that tells you definitively where you're losing strokes vs better golfers."
+        "text": "Strokes Gained: Approach covers tee shots on par 3s and the first shot after the tee shot on par 4s and par 5s. It includes wedges as well as irons, as long as the shot is from outside 30 yards of the edge of the green."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does SG/Rd mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SG/Rd means strokes gained per round. A player with +1.5 SG: Putting per round gains one and a half shots a round on the greens compared with the baseline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do amateur golfers lose the most strokes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the long game. Mark Broadie found golfers shooting 84 to 97 lose about 15.5 shots a round to a scratch player: 9.3 from shots over 100 yards, 3.4 from the short game, 2.3 from putting and 0.6 from sand."
       }
     }
   ]
@@ -395,166 +403,162 @@
         </div>
     </nav>
 
-    <!-- ========== BREADCRUMB ========== -->
-    <section style="padding: 100px 0 0; position: relative; z-index: 1;">
-        <div class="container" style="max-width: 720px;">
-            <div class="blog-breadcrumb">
-                <a href="/">Home</a>
-                <span>&rsaquo;</span>
-                <a href="/blog/">Blog</a>
-                <span>&rsaquo;</span>
-                Strokes Gained Explained: The Stat That Matters Most
+    <!-- ========== ARTICLE HEADER (design 2a) ========== -->
+    <section class="post-light ph-hero">
+        <div class="container ph-wrap">
+            <div class="ph-inner">
+                <nav class="ph-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>Strokes Gained Explained</span></nav>
+                <div class="ph-head">
+                    <span class="ph-kicker">Practice &amp; Improvement</span>
+                    <h1 class="ph-title">Golf <span>strokes gained</span> explained</h1>
+                    <p class="ph-sub">How it's calculated, what the four categories mean, and where amateurs really lose shots</p>
+                </div>
+                <div class="ph-by">
+                    <a class="ph-by-name byline-author" href="/about" rel="author">Stephen Pickering</a>
+                    <span class="ph-by-meta">28 April 2026 &middot; Updated October 2026 &middot; 7 min read</span>
+                </div>
+                <img class="ph-img" src="../golf images/teen looking as his golf stats.webp" alt="Golfer reviewing strokes gained data on his phone — the most diagnostic stat in golf" width="1200" height="903" decoding="async" fetchpriority="high">
             </div>
-        </div>
-    </section>
-
-    <!-- ========== ARTICLE HERO ========== -->
-    <section style="padding: 32px 0 40px; position: relative; z-index: 1;">
-        <div class="container" style="text-align: center; max-width: 720px;">
-            <span class="mono-label" style="color: var(--green);">Practice & Improvement</span>
-            <h1 class="display-lg" style="margin-top: 12px; font-size: clamp(1.8rem, 4vw, 2.8rem);">Golf <span style="color: var(--green);">Strokes Gained Explained:</span> The Stat That Actually Matters</h1>
-            <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 16px; line-height: 1.6;">What It Is, How It&rsquo;s Calculated, and Why It Beats Every Other Golf Stat</p>
-            <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.1em; text-transform: uppercase;">April 28, 2026 &middot; Updated May 2026 &middot; 9 min read &middot; <a class="byline-author" href="/about" rel="author">Stephen Pickering</a></p>
-            <img src="../golf images/teen looking as his golf stats.webp" alt="Golfer reviewing strokes gained data on his phone — the most diagnostic stat in golf" style="width: 100%; height: auto; border-radius: 12px; margin-top: 32px;" width="1200" height="903" decoding="async">
         </div>
     </section>
 
     <!-- ========== ARTICLE CONTENT ========== -->
-    <section class="section" style="padding-top: 0; position: relative; z-index: 1;">
+    <section class="section post-light post-2a" style="padding-top: 40px; position: relative; z-index: 1;">
         <div class="container prose">
 
             <div class="reveal" style="background: rgba(34,197,94,0.04); border-left: 3px solid var(--green); border-radius: 0 12px 12px 0; padding: 20px 24px; margin-bottom: 2rem;">
-                <p style="color: var(--text); font-size: 0.95rem; line-height: 1.7; margin: 0;"><strong>Key takeaway:</strong> Strokes gained measures every shot you hit against a tour-pro benchmark. Mark Broadie&rsquo;s research at PGA Tour built the expected-strokes table that powers it. The four categories &mdash; off the tee, approach, around the green, putting &mdash; tell you exactly which part of your game is leaking strokes. For amateurs, it&rsquo;s usually around-the-green where the biggest gap to scratch lives.</p>
+                <p style="color: var(--text); font-size: 0.95rem; line-height: 1.7; margin: 0;"><strong>Key takeaway:</strong> Strokes gained compares every shot with a PGA Tour baseline. The formula is: expected strokes before the shot, minus expected strokes after it, minus one. Add the shots up by category (off the tee, approach, around the green, putting) and it shows exactly where you lose shots. For most amateurs, that&rsquo;s the long game, not the putter.</p>
             </div>
 
-            <p class="reveal"><strong>Strokes gained</strong> measures every shot against a Tour-pro baseline for the same distance and lie. If a Tour pro averages 2.8 shots to hole out from 150 yards and you take 3.0, you&rsquo;ve <strong>lost 0.2 strokes gained</strong> on that shot. Sum every shot across a round and you get a precise breakdown of where your strokes go &mdash; split across <strong>four categories: off-the-tee, approach, around-the-green, and putting</strong>. It&rsquo;s the only golf stat worth taking seriously because it isolates *your* performance from the noise of luck, conditions, and course design.</p>
+            <p class="reveal">Ask a room of club golfers where they lose shots and most will say putting. It&rsquo;s the part we remember. The three-putt on 18 stays with you all the way home.</p>
 
-            <p class="reveal">This guide explains strokes gained in plain English &mdash; what it is, how it&rsquo;s calculated, the four categories, why Tour analysts and Arccos/Shot Scope are built around it, and what it tells you about your game that no other stat can.</p>
+            <p class="reveal">The data says something different. When Columbia professor Mark Broadie compared golfers who shoot 84 to 97 with scratch players, the gap was <a href="https://business.columbia.edu/sites/default/files-efs/pubfiles/2851/broadie_wscg_v_200802.pdf" target="_blank" rel="noopener">15.5 shots a round</a>. 9.3 of those came from shots over 100 yards. Putting accounted for 2.3.</p>
 
-            <!-- ======================== -->
-            <h2 class="reveal">What Strokes Gained Actually Measures</h2>
+            <p class="reveal">That&rsquo;s the point of strokes gained. It doesn&rsquo;t care what you remember. It measures every shot against the same benchmark and tells you where the shots actually went.</p>
 
-            <p class="reveal">Strokes gained measures how each of your shots compares to a benchmark &mdash; usually a PGA Tour pro hitting the same shot from the same spot.</p>
-
-            <p class="reveal">Imagine you&rsquo;re 100 yards out, in the fairway. The PGA Tour data says a tour pro averages <strong>2.93 strokes</strong> from there to holing out. You hit your wedge to 25 feet, then two-putt. You took 3 strokes from that 100-yard mark.</p>
-
-            <p class="reveal">Strokes gained = 2.93 − 3.00 = <strong>−0.07 strokes</strong>.</p>
-
-            <p class="reveal">You lost 0.07 strokes against the tour benchmark on that hole&rsquo;s approach + putting sequence. Tiny amount. But across 18 holes, the small numbers add up.</p>
-
-            <p class="reveal">If a tour pro averages 70 and you shoot 90, your total strokes gained vs the tour benchmark is −20. The interesting question isn&rsquo;t *that* you&rsquo;re 20 strokes worse &mdash; it&rsquo;s *where* those 20 strokes are going. Strokes gained breaks the answer down to the shot level.</p>
+            <p class="reveal">Here&rsquo;s how it&rsquo;s calculated, what the four categories mean, and how to use it if you&rsquo;re not on tour.</p>
 
             <!-- ======================== -->
-            <h2 class="reveal">Where the Numbers Come From: Mark Broadie&rsquo;s Research</h2>
+            <h2 class="reveal">How Strokes Gained Is Calculated</h2>
 
-            <p class="reveal">Strokes gained didn&rsquo;t exist as a usable metric until 2011, when Columbia Business School professor <strong>Mark Broadie</strong> published the foundational research. Working with millions of PGA Tour ShotLink shots, Broadie built a giant table of &ldquo;expected strokes to hole out&rdquo; from every conceivable starting position on a golf course.</p>
+            <p class="reveal">Every position on a golf course has an expected score: the average number of strokes a tour player takes to hole out from there. The PGA Tour built those averages from millions of shots recorded by its ShotLink system.</p>
 
-            <p class="reveal">The table looks something like this (simplified):</p>
+            <p class="reveal">Strokes gained for a single shot is:</p>
 
-            <p class="reveal">- 100 yards in fairway → 2.93 expected strokes - 100 yards in rough → 3.20 expected strokes - 30 feet on green → 2.00 expected strokes - 6 feet on green → 1.32 expected strokes - 3 feet on green → 1.05 expected strokes</p>
+            <p class="reveal"><strong>Expected strokes before the shot &minus; expected strokes after the shot &minus; 1</strong></p>
 
-            <p class="reveal">Multiply this by every yardage, every lie, every putt distance, and you have a complete map of how many strokes a tour pro is expected to take from anywhere on a course.</p>
+            <p class="reveal">The minus one is the shot you just hit. If a shot leaves you better off than the average tour player would expect, the number is positive. If it leaves you worse off, it&rsquo;s negative.</p>
 
-            <p class="reveal">Once you have that map, you can score every individual shot. Did the shot save strokes vs the benchmark, or cost strokes? Strokes gained answers that for every shot in a round.</p>
+            <p class="reveal">Here are some of the baseline numbers the PGA Tour published when it <a href="http://web.archive.org/web/20160602031941/http://www.pgatour.com/news/2016/05/31/strokes-gained-defined.html" target="_blank" rel="noopener">explained the system in 2016</a>:</p>
+
+            <div class="blog-table-wrap reveal">
+                <table class="blog-table">
+                    <thead><tr><th>Position</th><th>Expected strokes to hole out</th></tr></thead>
+                    <tbody><tr><td>Tee, 410-yard par 4</td><td>4.0</td></tr><tr><td>150 yards, fairway</td><td>2.92</td></tr><tr><td>150 yards, rough</td><td>3.16</td></tr><tr><td>100 yards, rough</td><td>3.00</td></tr><tr><td>30 feet, on the green</td><td>1.977</td></tr><tr><td>20 feet</td><td>1.874</td></tr><tr><td>10 feet</td><td>1.625</td></tr><tr><td>3 feet</td><td>1.046</td></tr></tbody>
+                </table>
+            </div>
+
+            <p class="reveal">Three worked examples make it click.</p>
+
+            <h3 class="reveal">A good approach</h3>
+
+            <p class="reveal">You&rsquo;re 150 yards out in the fairway (2.92) and hit it to 20 feet (1.874).</p>
+
+            <p class="reveal">2.92 &minus; 1.874 &minus; 1 = <strong>+0.05</strong></p>
+
+            <p class="reveal">That surprises most people. A 150-yard shot to 20 feet is roughly what a tour player averages. It feels like a decent shot because it is one.</p>
+
+            <h3 class="reveal">A bad approach</h3>
+
+            <p class="reveal">Same 150 yards in the fairway (2.92), but you push it and finish 100 yards away in the rough (3.00).</p>
+
+            <p class="reveal">2.92 &minus; 3.00 &minus; 1 = <strong>&minus;1.08</strong></p>
+
+            <p class="reveal">You hit a shot and ended up further from holing out than when you started. That&rsquo;s more than a full stroke lost.</p>
+
+            <h3 class="reveal">A two-putt from 30 feet</h3>
+
+            <p class="reveal">Your first putt from 30 feet (1.977) finishes three feet away (1.046): 1.977 &minus; 1.046 &minus; 1 = <strong>&minus;0.07</strong>. Then you hole the three-footer: 1.046 &minus; 0 &minus; 1 = <strong>+0.05</strong>.</p>
+
+            <p class="reveal">Two putts from 30 feet costs you about two hundredths of a shot against tour average. In other words, a two-putt from that range is a perfectly good result. Pros only average two putts from <a href="https://business.columbia.edu/sites/default/files-efs/pubfiles/4996/assessing_golfer_performance.full.pdf" target="_blank" rel="noopener">about 33 feet</a>.</p>
 
             <!-- ======================== -->
-            <h2 class="reveal">The Formula in One Equation</h2>
+            <h2 class="reveal">Where Strokes Gained Came From</h2>
 
-            <p class="reveal">For any single shot:</p>
+            <p class="reveal">Mark Broadie is a professor at Columbia Business School, not a PGA Tour employee. He first published the idea in 2008, under the name &ldquo;shot value&rdquo;, using ShotLink data the Tour had opened up to researchers.</p>
 
-            <p class="reveal">> <strong>Strokes Gained = (Expected strokes BEFORE the shot) − (Expected strokes AFTER the shot) − 1</strong></p>
+            <p class="reveal">The Tour adopted <strong>Strokes Gained: Putting</strong> in May 2011, its first new core statistic in 15 years. <strong>Tee-to-green</strong> followed in 2014. The full breakdown into off the tee, approach and around the green arrived in June 2016.</p>
 
-            <p class="reveal">The −1 accounts for the shot you just hit (which counts as one stroke).</p>
-
-            <p class="reveal">Example: you&rsquo;re 150 yards out in the fairway (expected: 2.97 strokes to hole out). You hit your iron to 18 feet on the green (expected: 1.78 strokes to hole out).</p>
-
-            <p class="reveal">Strokes gained = 2.97 − 1.78 − 1 = <strong>+0.19 strokes</strong></p>
-
-            <p class="reveal">You gained nearly a fifth of a stroke on that shot vs a tour pro. Good shot.</p>
-
-            <p class="reveal">If you&rsquo;d duffed it 50 yards and ended up 100 yards out in rough (expected: 3.20):</p>
-
-            <p class="reveal">Strokes gained = 2.97 − 3.20 − 1 = <strong>−1.23 strokes</strong></p>
-
-            <p class="reveal">Lost more than a stroke. Bad shot.</p>
+            <p class="reveal">Broadie&rsquo;s main paper, <a href="https://pubsonline.informs.org/doi/10.1287/inte.1120.0626" target="_blank" rel="noopener">Assessing Golfer Performance on the PGA TOUR</a>, came out in 2012 and used more than 8 million shots. His book <em>Every Shot Counts</em> followed in 2014. If you want the full story, it&rsquo;s the book to read.</p>
 
             <!-- ======================== -->
-            <h2 class="reveal">The Four Categories of Strokes Gained</h2>
+            <h2 class="reveal">The Four Categories</h2>
 
-            <p class="reveal">Every shot you hit falls into one of four strokes-gained categories. This is the most useful part of the metric &mdash; it diagnoses *which part* of your game is leaking strokes.</p>
+            <p class="reveal">Every shot falls into one of four buckets. These are the PGA Tour&rsquo;s own definitions.</p>
 
-            <h3 class="reveal">1. Strokes Gained: Off the Tee (SG: OTT)</h3>
+            <h3 class="reveal">Strokes Gained: Off the Tee (SG: OTT)</h3>
 
-            <p class="reveal">Tee shots on par-4s and par-5s. Drivers, fairway woods, and long irons used from the tee. The benchmark accounts for both distance and accuracy &mdash; a 280-yard drive into the rough may score similarly to a 240-yard drive in the fairway.</p>
+            <p class="reveal">Tee shots on par 4s and par 5s. Distance and accuracy both count, because both change your expected score for the next shot.</p>
 
-            <p class="reveal">For amateurs: this is rarely where the biggest leak is. Most amateurs lose strokes elsewhere, even if their drives feel like the obvious problem. Tour pros average around +0.5 strokes gained off the tee vs the field; amateurs average around 0 (i.e., they&rsquo;re roughly average vs other amateurs).</p>
+            <h3 class="reveal">Strokes Gained: Approach (SG: APP)</h3>
 
-            <h3 class="reveal">2. Strokes Gained: Approach (SG: APP)</h3>
+            <p class="reveal">Tee shots on par 3s, plus the first shot after the tee shot on par 4s and par 5s. It isn&rsquo;t only long irons. A wedge from 90 yards counts as approach too.</p>
 
-            <p class="reveal">Iron shots from 100+ yards out. Hitting greens in regulation lives here. The benchmark cares about proximity to the hole &mdash; a 6-iron to 12 feet is hugely better than a 6-iron to 50 feet, even though both might count as &ldquo;GIR&rdquo; on a scorecard.</p>
+            <h3 class="reveal">Strokes Gained: Around the Green (SG: ARG)</h3>
 
-            <p class="reveal">For amateurs: this is often where the gap to scratch golfers is widest. The difference between a 15-handicapper and a scratch player on iron play from 150 yards is enormous.</p>
+            <p class="reveal">Any shot from within 30 yards of the edge of the green, not counting shots on the putting surface. Chips, pitches and greenside bunker shots.</p>
 
-            <h3 class="reveal">3. Strokes Gained: Around the Green (SG: ARG)</h3>
+            <h3 class="reveal">Strokes Gained: Putting (SG: PUTT)</h3>
 
-            <p class="reveal">Chipping, pitching, and bunker shots within 30 yards of the green. The benchmark expects most shots to finish close &mdash; pros average about 80% scrambling from 10 yards.</p>
+            <p class="reveal">Every shot on the green, measured against the baseline for that distance.</p>
 
-            <p class="reveal">For amateurs: this is the <strong>highest-leverage category</strong> for improvement. A 15-handicapper typically scrambles around 30% from 10 yards. Improving that to even 50% drops 2-3 shots a round.</p>
+            <p class="reveal">Add the first three together and you get <strong>Strokes Gained: Tee-to-Green</strong>. Add all four and you get <strong>Strokes Gained: Total</strong>. You&rsquo;ll usually see the numbers written per round, as SG/Rd.</p>
 
+            <!-- ======================== -->
+            <h2 class="reveal">What Strokes Gained Says About Amateurs</h2>
+
+            <p class="reveal">Broadie&rsquo;s 2008 study grouped amateurs by the scores they shoot, which makes it one of the few honest &ldquo;strokes gained by handicap&rdquo; comparisons out there. Golfers shooting 84 to 97, against a scratch player:</p>
+
+            <div class="blog-table-wrap reveal">
+                <table class="blog-table">
+                    <thead><tr><th>Part of the game</th><th>Shots lost per round</th></tr></thead>
+                    <tbody><tr><td>Long game (over 100 yards)</td><td>9.3</td></tr><tr><td>Short game (under 100 yards, not sand)</td><td>3.4</td></tr><tr><td>Putting</td><td>2.3</td></tr><tr><td>Sand</td><td>0.6</td></tr><tr><td><strong>Total</strong></td><td><strong>15.5</strong> (parts are rounded)</td></tr></tbody>
+                </table>
+            </div>
+
+            <p class="reveal">He found the same pattern higher up. Between a golfer who shoots 90 and one who shoots 80, approach shots account for <a href="https://golf.com/instruction/improving-your-approach-shots-is-the-fastest-way-to-lower-scores/" target="_blank" rel="noopener">about 4 of the 10 strokes</a>.</p>
+
+            <p class="reveal">So yes, I&rsquo;ll be honest, even though I built a short game app: for most amateurs, the biggest single leak is the long game. The study is from 2008 and it groups golfers by score rather than handicap, so treat the exact split as a guide.</p>
+
+            <p class="reveal">But here&rsquo;s the bit that matters for your practice. About 6 of those 15.5 shots are inside 100 yards: short game, sand and putting combined. That&rsquo;s around 40% of the gap, and it&rsquo;s the part you can practise properly in half an hour with a bucket of balls and a target.</p>
+
+            <!-- INTERNAL LINK -->
             <a href="/blog/short-game-guide" class="blog-internal-link reveal">
-                <p>This is exactly the gap Scoring Zone is built to close &mdash; see the breakdown of structured short game practice.</p>
-                <strong>How to Practice Short Game &rarr;</strong>
+                <p>For scored short game drills with benchmarks by handicap:</p>
+                <strong>How to Improve Your Golf Short Game &rarr;</strong>
             </a>
 
-            <h3 class="reveal">4. Strokes Gained: Putting (SG: PUTT)</h3>
+            <!-- ======================== -->
+            <h2 class="reveal">Why It Beats Fairways, Greens and Putts</h2>
 
-            <p class="reveal">Every putt counted, with the benchmark factoring in distance. A 30-foot putt that finishes 3 feet away gains strokes (good lag putt). A 30-foot putt that runs 8 feet past loses strokes.</p>
+            <p class="reveal"><strong>Fairways hit is yes or no.</strong> A drive that finishes a yard into the first cut counts the same as one out of bounds. Strokes gained knows the difference.</p>
 
-            <p class="reveal">For amateurs: putting is where the gap is *narrowest*. Tour pros are slightly better than amateurs from inside 6 feet, but the difference from 20+ feet is smaller than you&rsquo;d expect &mdash; most amateurs three-putt occasionally but their lag putting isn&rsquo;t catastrophically worse than tour level.</p>
+            <p class="reveal"><strong>Greens in regulation ignores distance.</strong> A green hit to 4 feet and a green hit to 60 feet both count as one. Strokes gained: approach doesn&rsquo;t treat them the same.</p>
+
+            <p class="reveal"><strong>Putts per round punishes good chippers.</strong> Chip it close and you take fewer putts, but that&rsquo;s credit for the chip, not the putter. Hit more greens and your putts per round can go up, because you&rsquo;re putting from further away. Strokes gained splits the credit properly.</p>
 
             <!-- ======================== -->
-            <h2 class="reveal">Why Strokes Gained Beats Other Stats</h2>
+            <h2 class="reveal">How to Track Strokes Gained as an Amateur</h2>
 
-            <h3 class="reveal">Fairways hit is binary</h3>
+            <p class="reveal"><strong>Shot tracking systems.</strong> Arccos and Shot Scope both record your shots and calculate strokes gained for you. Arccos Smart Sensors are $249.99 with the first year of membership included, then $199.99 a year. Shot Scope has no subscription; its trackers run from $149.99 (H4) to $249.99 (V5). Both are good at what they do. Prices checked on their US sites in October 2026.</p>
 
-            <p class="reveal">Fairways hit treats a 280-yard drive in the rough the same as a duck-hook out of bounds. Both are non-fairways. They&rsquo;re not equally bad shots. Strokes gained captures the difference.</p>
+            <p class="reveal"><strong>By hand.</strong> Possible, but slow. Log the distance and lie for every shot, look up the baseline, and do the sums. Most people who try it stop after a round or two.</p>
 
-            <h3 class="reveal">Putts per round penalises good chippers</h3>
+            <p class="reveal"><strong>Scoring Zone.</strong> I&rsquo;ll be straight about what ours does. When you log your rounds, Scoring Zone gives you a simplified strokes gained against your own handicap, built from fairways, greens, up-and-downs and putts. It isn&rsquo;t shot-by-shot like a tracker. It&rsquo;s a quick read on which part of your game is costing you against golfers at your level, so you know what to practise next. Then the drills give that practice a score.</p>
 
-            <p class="reveal">A golfer who chips it close has fewer putts because the chip did the work. Their &ldquo;putts per round&rdquo; looks worse than a golfer who misses every green and lag-putts to 3 feet. Strokes gained handles this &mdash; it credits the chipper for the close chip and the putter for the lag putt separately.</p>
+            <p class="reveal">Whichever you use, the rule is the same. Stop guessing where your shots go. Measure it, then practise the part that&rsquo;s costing you most.</p>
 
-            <h3 class="reveal">GIR ignores proximity</h3>
-
-            <p class="reveal">Two greens in regulation are not equal. One to 4 feet is worth maybe a stroke compared to one to 40 feet. Strokes gained: approach measures the difference. GIR doesn&rsquo;t.</p>
-
-            <h3 class="reveal">Strokes gained tells you what to practise</h3>
-
-            <p class="reveal">This is the killer feature. After 10&ndash;20 rounds of strokes gained data, you&rsquo;ll see a pattern &mdash; maybe you&rsquo;re average across the board except SG: ARG is −2 strokes per round. That&rsquo;s diagnostic. Now you know exactly what to practise: short game from inside 30 yards.</p>
-
-            <p class="reveal">Without strokes gained, you guess. With it, you measure.</p>
-
-            <!-- ======================== -->
-            <h2 class="reveal">How Amateurs Can Track Strokes Gained</h2>
-
-            <h3 class="reveal">Sensor-based systems (Arccos, Shot Scope)</h3>
-
-            <p class="reveal">The fully-automatic option. Grip sensors detect every shot, GPS logs the location, and the app calculates strokes gained for you against a tour benchmark. Arccos costs around $180 + ~$130/year. Shot Scope is a one-off purchase ($140&ndash;$300) with no subscription. Both are excellent for the right golfer.</p>
-
-            <p class="reveal">The catch: you need to play 10&ndash;20 rounds with the system before the data is meaningful. And the data tells you the leak &mdash; not the fix.</p>
-
-            <h3 class="reveal">Manual tracking</h3>
-
-            <p class="reveal">Possible but tedious. Note your shot location, distance, and result for every shot in a round. After the round, look up expected strokes from each position. Subtract. Sum by category.</p>
-
-            <p class="reveal">A handful of golfers do this manually in spreadsheets. Most stop after one round.</p>
-
-            <h3 class="reveal">Practice-side strokes gained (Scoring Zone)</h3>
-
-            <p class="reveal">Scoring Zone takes a different approach. Rather than tracking strokes gained on the course, it benchmarks your *practice* against handicap-level expectations. The Performance Hub assessment generates a Short Game Handicap by running you through scored drills (chipping inside 3 feet, lag putting within 3 feet of the hole, bunker scrambling, etc.) and comparing your scores to the benchmark for your handicap.</p>
-
-            <p class="reveal">It&rsquo;s strokes gained for practice rather than for rounds &mdash; useful because it tells you whether your practice is moving the needle, not just what happened on Saturday.</p>
-
-            <p class="reveal">The cleanest setup for serious improvement: an on-course tracker (Arccos or Shot Scope) for round data, and Scoring Zone for the practice that closes the gaps the tracker identifies.</p>
+            <p class="reveal">Stephen</p>
 
             <!-- ======================== -->
             <!-- FAQ SECTION -->
@@ -563,40 +567,46 @@
 
                 <details class="faq-item">
                     <summary>
-                        <h3>What is strokes gained in golf?</h3>
-                        <span class="faq-chevron" aria-hidden="true"></span>
-                    </summary>
-                    <p>Strokes gained measures how every shot you hit compares to a benchmark golfer (usually a PGA Tour pro) playing the same shot from the same spot. If a tour pro averages 2.0 strokes to hole out from 100 yards and you do it in 2.5, you&rsquo;ve lost 0.5 strokes on that hole. Add it across 18 holes and you have a precise picture of where you&rsquo;re losing strokes &mdash; far more useful than fairways hit or putts per round.</p>
-                </details>
-
-                <details class="faq-item">
-                    <summary>
                         <h3>How is strokes gained calculated?</h3>
                         <span class="faq-chevron" aria-hidden="true"></span>
                     </summary>
-                    <p>Strokes gained = (expected strokes from your starting position) − (expected strokes from your ending position) − 1 for the shot itself. Mark Broadie&rsquo;s research at PGA Tour built the baseline expected-strokes table from millions of tour shots. Subtract that benchmark from your actual performance and you get how many strokes you gained or lost on each shot.</p>
+                    <p>Strokes gained for a shot equals expected strokes to hole out before the shot, minus expected strokes after it, minus one for the shot itself. For example, from 150 yards in the fairway (2.92 expected) to 20 feet (1.874 expected): 2.92 minus 1.874 minus 1 equals +0.05. The expected values come from PGA Tour ShotLink data.</p>
                 </details>
 
                 <details class="faq-item">
                     <summary>
-                        <h3>What are the four categories of strokes gained?</h3>
+                        <h3>What does SG OTT mean in golf?</h3>
                         <span class="faq-chevron" aria-hidden="true"></span>
                     </summary>
-                    <p>Off the tee (driving), Approach (irons from 100+ yards), Around the green (chipping, pitching, bunker shots within 30 yards), and Putting. Every shot you hit falls into one of these four categories. Tracking strokes gained by category tells you exactly which part of your game is leaking strokes &mdash; making it the best diagnostic stat in golf.</p>
+                    <p>SG: OTT is Strokes Gained: Off the Tee. It measures tee shots on par 4s and par 5s against the PGA Tour baseline, so both distance and where the ball finishes count.</p>
                 </details>
 
                 <details class="faq-item">
                     <summary>
-                        <h3>Why is strokes gained better than fairways hit or putts per round?</h3>
+                        <h3>What is strokes gained approach?</h3>
                         <span class="faq-chevron" aria-hidden="true"></span>
                     </summary>
-                    <p>Fairways hit doesn&rsquo;t account for distance or accuracy beyond the binary of fairway/not-fairway. Putts per round penalises golfers who chip close (fewer putts because the chip got near the hole). Strokes gained handles both &mdash; it measures the value of each shot relative to a benchmark, regardless of context. It&rsquo;s the only stat that tells you definitively where you&rsquo;re losing strokes vs better golfers.</p>
+                    <p>Strokes Gained: Approach covers tee shots on par 3s and the first shot after the tee shot on par 4s and par 5s. It includes wedges as well as irons, as long as the shot is from outside 30 yards of the edge of the green.</p>
                 </details>
 
+                <details class="faq-item">
+                    <summary>
+                        <h3>What does SG/Rd mean?</h3>
+                        <span class="faq-chevron" aria-hidden="true"></span>
+                    </summary>
+                    <p>SG/Rd means strokes gained per round. A player with +1.5 SG: Putting per round gains one and a half shots a round on the greens compared with the baseline.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>
+                        <h3>Where do amateur golfers lose the most strokes?</h3>
+                        <span class="faq-chevron" aria-hidden="true"></span>
+                    </summary>
+                    <p>In the long game. Mark Broadie found golfers shooting 84 to 97 lose about 15.5 shots a round to a scratch player: 9.3 from shots over 100 yards, 3.4 from the short game, 2.3 from putting and 0.6 from sand.</p>
+                </details>
             </div>
 
 
-            <!-- AUTHOR -->
             <aside class="author-box reveal" aria-label="About the author">
                 <img class="author-box-photo" src="../authors/stephen-pickering.webp" alt="Stephen Pickering" width="88" height="88" loading="lazy" decoding="async">
                 <div>
@@ -734,6 +744,6 @@
     </footer>
 
     <script src="../js/shared.js"></script>
-    <script src="../js/app-bar.js" data-asset-base="../" defer></script>
+    <script src="../js/app-bar.js" data-asset-base="../" data-variant="floating" defer></script>
 </body>
 </html>

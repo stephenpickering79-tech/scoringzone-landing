@@ -26,10 +26,11 @@
      ?szbar=android force the Android link
 
    Variant "floating" (data-variant="floating" on the script tag):
-   the dark floating card from the "2a Floating App Bar" design.
-   It is inset, rounded and aligned to the 640px article column,
-   shows at every width, and has no dismiss button, because the
-   design has none. Pages without the attribute keep the white
+   the dark card from the "2a Floating App Bar" design, docked
+   flush to the bottom edge (Stephen, 2026-10-18: "at the very
+   bottom"). Aligned to the 640px article column on wide screens,
+   full width on phones, shown at every width, and no dismiss
+   button, because the design has none. Pages without the attribute keep the white
    phone-only bar below, unchanged.
    ============================================================ */
 
@@ -171,13 +172,13 @@
 
     /* ---- Floating variant (design 2a) ----------------------- */
     '.sz-appbar--float{',
-      'left:50%;right:auto;width:min(640px, calc(100% - 32px));',
-      'bottom:calc(20px + env(safe-area-inset-bottom,0px));',
+      'left:50%;right:auto;width:min(640px, 100%);bottom:0;',
       'gap:14px;padding:12px 12px 12px 14px;',
+      'padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));',
       'background:#0a0a0f;color:#f5f5f5;',
-      'border:1px solid #1c1c21;border-radius:18px;',
-      'box-shadow:0 12px 32px rgba(0,0,0,0.28);',
-      'transform:translate(-50%, calc(100% + 40px));',
+      'border:1px solid #1c1c21;border-bottom:0;border-radius:18px 18px 0 0;',
+      'box-shadow:0 -8px 28px rgba(0,0,0,0.22);',
+      'transform:translate(-50%, 100%);',
     '}',
     '.sz-appbar--float.is-in{transform:translate(-50%, 0)}',
     '.sz-appbar--float .sz-appbar-logo{width:44px;height:44px;border-radius:12px}',
@@ -196,7 +197,7 @@
     '.sz-appbar--float .sz-appbar-cta:active{transform:scale(0.97)}',
     '.sz-appbar--float .sz-appbar-cta:focus-visible{outline:2px solid #00ff88;outline-offset:2px}',
     '@media (max-width: 480px){',
-      '.sz-appbar--float{width:calc(100% - 24px);bottom:calc(12px + env(safe-area-inset-bottom,0px));gap:12px;padding:10px 10px 10px 12px}',
+      '.sz-appbar--float{width:100%;gap:12px;padding:10px 12px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));border-left:0;border-right:0;border-radius:16px 16px 0 0}',
       '.sz-appbar--float .sz-appbar-name{font-size:19px}',
       '.sz-appbar--float .sz-appbar-sub{font-size:13px}',
       '.sz-appbar--float .sz-appbar-cta{padding:0 16px}',
@@ -263,8 +264,8 @@
 
     // Reserve the bar's height so the last of the footer is reachable
     // rather than sitting permanently underneath it.
-    // The floating card also sits off the bottom edge, so clear that gap too.
-    var pad = bar.offsetHeight + (FLOAT ? parseFloat(getComputedStyle(bar).bottom) + 12 : 0);
+    // Docked bars get a little breathing room above them as well.
+    var pad = bar.offsetHeight + (FLOAT ? 12 : 0);
     var prev = document.body.style.paddingBottom;
     document.body.dataset.szAppbarPrevPad = prev || '';
     document.body.style.paddingBottom =
