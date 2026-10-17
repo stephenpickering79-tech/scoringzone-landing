@@ -1,5 +1,19 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/sz-relay/static/:path(.*)",
+      "destination": "https://us-assets.i.posthog.com/static/:path"
+    },
+    {
+      "source": "/sz-relay/array/:path(.*)",
+      "destination": "https://us-assets.i.posthog.com/array/:path"
+    },
+    {
+      "source": "/sz-relay/:path(.*)",
+      "destination": "https://us.i.posthog.com/:path"
+    }
+  ],
   "redirects": [
     {
       "source": "/blog/handicap-calculator.html",
