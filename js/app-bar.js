@@ -24,6 +24,13 @@
                     viewport check (so it can be seen on desktop)
      ?szbar=ios     force the iOS link
      ?szbar=android force the Android link
+
+   Variant "floating" (data-variant="floating" on the script tag):
+   the dark floating card from the "2a Floating App Bar" design.
+   It is inset, rounded and aligned to the 640px article column,
+   shows at every width, and has no dismiss button, because the
+   design has none. Pages without the attribute keep the white
+   phone-only bar below, unchanged.
    ============================================================ */
 
 (function () {
@@ -32,6 +39,7 @@
   var SCRIPT = document.currentScript ||
     (function () { var s = document.getElementsByTagName('script'); return s[s.length - 1]; })();
   var BASE = (SCRIPT && SCRIPT.getAttribute('data-asset-base')) || '';
+  var FLOAT = !!SCRIPT && SCRIPT.getAttribute('data-variant') === 'floating';
 
   var DISMISS_KEY = 'sz_appbar_dismissed_until';
   var DISMISS_DAYS = 30;
@@ -41,6 +49,10 @@
                 '?pt=128906825&ct=Scoring%20Zone%20App%20Bar&mt=8';
   var ANDROID_URL = 'https://scoringzone.app/?utm_source=scoringzone.net' +
                     '&utm_medium=app_bar&utm_campaign=app_download&utm_content=android';
+  // Desktops and anything else: same web app, tagged as web so the click is
+  // not counted as Android (matches webUrl in popup.js).
+  var WEB_URL = 'https://scoringzone.app/?utm_source=scoringzone.net' +
+                '&utm_medium=app_bar&utm_campaign=app_download&utm_content=web';
 
   var params = new URLSearchParams(window.location.search);
   var override = params.get('szbar');
@@ -67,7 +79,8 @@
 
   // Anything that is not an iPhone/iPad goes to the web app, which
   // is also where the Play listing points.
-  var href = platform === 'ios' ? IOS_URL : ANDROID_URL;
+  var href = platform === 'ios' ? IOS_URL :
+             platform === 'android' ? ANDROID_URL : WEB_URL;
 
   /* ---- Should it show at all? ---------------------------------- */
   function dismissed() {
@@ -79,7 +92,7 @@
     }
   }
 
-  if (override !== 'on') {
+  if (override !== 'on' && !FLOAT) {
     if (window.innerWidth > MAX_WIDTH) return;
     if (dismissed()) return;
   }
@@ -153,7 +166,43 @@
 
     /* Desktop never sees it, including after a resize. */
     '@media (min-width: ' + (MAX_WIDTH + 1) + 'px){',
-      '.sz-appbar:not(.is-forced){display:none}',
+      '.sz-appbar:not(.is-forced):not(.sz-appbar--float){display:none}',
+    '}',
+
+    /* ---- Floating variant (design 2a) ----------------------- */
+    '.sz-appbar--float{',
+      'left:50%;right:auto;width:min(640px, calc(100% - 32px));',
+      'bottom:calc(20px + env(safe-area-inset-bottom,0px));',
+      'gap:14px;padding:12px 12px 12px 14px;',
+      'background:#0a0a0f;color:#f5f5f5;',
+      'border:1px solid #1c1c21;border-radius:18px;',
+      'box-shadow:0 12px 32px rgba(0,0,0,0.28);',
+      'transform:translate(-50%, calc(100% + 40px));',
+    '}',
+    '.sz-appbar--float.is-in{transform:translate(-50%, 0)}',
+    '.sz-appbar--float .sz-appbar-logo{width:44px;height:44px;border-radius:12px}',
+    '.sz-appbar--float .sz-appbar-text{display:flex;flex-direction:column;gap:3px;line-height:1}',
+    '.sz-appbar--float .sz-appbar-name{',
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:22px;',
+      'line-height:1;text-transform:uppercase;letter-spacing:0.01em;color:#f5f5f5;',
+    '}',
+    '.sz-appbar--float .sz-appbar-sub{margin-top:0;font-size:14px;line-height:1.2;color:#828895}',
+    '.sz-appbar--float .sz-appbar-cta{',
+      'min-height:40px;padding:0 20px;background:#00ff88;color:#0a0a0f;',
+      'font-size:14px;font-weight:600;letter-spacing:0;',
+      'transition:background .2s ease, box-shadow .2s ease, transform .1s ease;',
+    '}',
+    '.sz-appbar--float .sz-appbar-cta:hover{background:#1aff94;color:#0a0a0f;box-shadow:0 0 24px rgba(0,255,136,0.15)}',
+    '.sz-appbar--float .sz-appbar-cta:active{transform:scale(0.97)}',
+    '.sz-appbar--float .sz-appbar-cta:focus-visible{outline:2px solid #00ff88;outline-offset:2px}',
+    '@media (max-width: 480px){',
+      '.sz-appbar--float{width:calc(100% - 24px);bottom:calc(12px + env(safe-area-inset-bottom,0px));gap:12px;padding:10px 10px 10px 12px}',
+      '.sz-appbar--float .sz-appbar-name{font-size:19px}',
+      '.sz-appbar--float .sz-appbar-sub{font-size:13px}',
+      '.sz-appbar--float .sz-appbar-cta{padding:0 16px}',
+    '}',
+    '@media (max-width: 360px){',
+      '.sz-appbar--float .sz-appbar-sub{display:block}',
     '}'
   ].join('');
 
@@ -163,7 +212,8 @@
 
   /* ---- Markup -------------------------------------------------- */
   var bar = document.createElement('div');
-  bar.className = 'sz-appbar' + (override === 'on' ? ' is-forced' : '');
+  bar.className = 'sz-appbar' + (FLOAT ? ' sz-appbar--float' : '') +
+    (override === 'on' ? ' is-forced' : '');
   bar.setAttribute('role', 'region');
   bar.setAttribute('aria-label', 'Get the Scoring Zone app');
 
@@ -177,10 +227,10 @@
 
   var logo = document.createElement('img');
   logo.className = 'sz-appbar-logo';
-  logo.src = BASE + 'logo/new-log.webp';
+  logo.src = BASE + (FLOAT ? 'logo/app-icon-88.webp' : 'logo/new-log.webp');
   logo.alt = '';
-  logo.width = 38;
-  logo.height = 38;
+  logo.width = FLOAT ? 44 : 38;
+  logo.height = FLOAT ? 44 : 38;
   logo.setAttribute('aria-hidden', 'true');
   logo.setAttribute('decoding', 'async');
 
@@ -199,10 +249,10 @@
   cta.className = 'sz-appbar-cta';
   cta.href = href;
   cta.textContent = 'Get app';
-  cta.setAttribute('data-cta', 'app_bar_' + platform);
+  cta.setAttribute('data-cta', (FLOAT ? 'app_bar_float_' : 'app_bar_') + platform);
   cta.setAttribute('rel', 'noopener');
 
-  bar.appendChild(close);
+  if (!FLOAT) bar.appendChild(close);
   bar.appendChild(logo);
   bar.appendChild(text);
   bar.appendChild(cta);
@@ -213,7 +263,8 @@
 
     // Reserve the bar's height so the last of the footer is reachable
     // rather than sitting permanently underneath it.
-    var pad = bar.offsetHeight;
+    // The floating card also sits off the bottom edge, so clear that gap too.
+    var pad = bar.offsetHeight + (FLOAT ? parseFloat(getComputedStyle(bar).bottom) + 12 : 0);
     var prev = document.body.style.paddingBottom;
     document.body.dataset.szAppbarPrevPad = prev || '';
     document.body.style.paddingBottom =

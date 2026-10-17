@@ -351,3 +351,55 @@
 .post-light .blog-tags span { background: #e3efe6; border-color: rgba(21, 128, 61, 0.28); color: #374151; }
 .post-light .drill-number { background: #d6e8da; border-color: rgba(21, 128, 61, 0.35); }
 .post-light .faq-item p { color: #374151; }
+
+
+/* ============================================================
+   POST HEADER 2a (opt-in, pairs with .post-light)
+   Left-aligned header from the "2a Floating App Bar" design:
+   breadcrumb, kicker, condensed title, subtitle, byline, then a
+   rounded hero photo. .post-2a on the article section narrows the
+   text column to the same 640px so the two edges line up.
+   ============================================================ */
+
+.post-2a .prose,
+.ph-wrap { max-width: 688px; }   /* 640px of text + the container's 24px padding */
+
+.ph-hero { padding: 104px 0 8px; position: relative; z-index: 1; }
+.ph-inner { display: flex; flex-direction: column; gap: 20px; }
+
+.ph-crumbs {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  font-family: 'Inconsolata', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px; letter-spacing: 0.04em; color: #666666;
+}
+.ph-crumbs a { color: #666666; text-decoration: none; }
+.ph-crumbs a:hover { color: #15803d; text-decoration: underline; }
+
+.ph-head { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.ph-kicker {
+  font-family: 'Inconsolata', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: hsl(142 71% 29%);
+}
+.ph-title {
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+  font-size: clamp(2.75rem, 9vw, 68px); line-height: 0.92;
+  text-transform: uppercase; letter-spacing: 0.005em;
+  color: hsl(0 0% 7%);
+}
+.ph-title span { color: hsl(142 71% 34%); }
+.ph-sub { margin: 0; font-size: clamp(1.125rem, 2.6vw, 21px); line-height: 1.4; color: #666666; }
+
+.ph-by { display: flex; flex-direction: column; gap: 2px; }
+.ph-by-name { font-size: 15px; font-weight: 600; color: hsl(0 0% 7%); text-decoration: none; }
+.ph-by-name:hover { color: #15803d; text-decoration: underline; }
+.ph-by-meta { font-size: 13px; color: #666666; }
+
+.ph-img {
+  display: block; width: 100%; height: 400px; margin-top: 20px;
+  object-fit: cover; border-radius: 16px;
+}
+@media (max-width: 600px) {
+  .ph-img { height: clamp(220px, 62vw, 400px); }
+}

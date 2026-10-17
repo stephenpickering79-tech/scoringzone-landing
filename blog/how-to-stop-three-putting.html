@@ -31,7 +31,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/blog-post.css">
 
@@ -364,32 +364,27 @@
         </div>
     </nav>
 
-    <!-- ========== BREADCRUMB ========== -->
-    <section class="post-light" style="padding: 100px 0 0; position: relative; z-index: 1;">
-        <div class="container" style="max-width: 720px;">
-            <div class="blog-breadcrumb">
-                <a href="/">Home</a>
-                <span>&rsaquo;</span>
-                <a href="/blog/">Blog</a>
-                <span>&rsaquo;</span>
-                How to Stop Three Putting
+    <!-- ========== ARTICLE HEADER (design 2a) ========== -->
+    <section class="post-light ph-hero">
+        <div class="container ph-wrap">
+            <div class="ph-inner">
+                <nav class="ph-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>How to Stop Three Putting</span></nav>
+                <div class="ph-head">
+                    <span class="ph-kicker">Practice &amp; Improvement</span>
+                    <h1 class="ph-title">How to stop <span>three putting</span></h1>
+                    <p class="ph-sub">Stop trying to hole the long ones</p>
+                </div>
+                <div class="ph-by">
+                    <a class="ph-by-name byline-author" href="/about" rel="author">Stephen Pickering</a>
+                    <span class="ph-by-meta">17 March 2026 &middot; Updated October 2026 &middot; 6 min read</span>
+                </div>
+                <img class="ph-img" src="../golf images/golfer lining up putt.webp" alt="Golfer crouched down reading the green before a putt" width="1024" height="1024" decoding="async" fetchpriority="high">
             </div>
         </div>
     </section>
 
-    <!-- ========== ARTICLE HERO ========== -->
-    <section class="post-light" style="padding: 32px 0 40px; position: relative; z-index: 1;">
-        <div class="container" style="text-align: center; max-width: 720px;">
-            <span class="mono-label" style="color: var(--green);">Practice & Improvement</span>
-            <h1 class="display-lg" style="margin-top: 12px; font-size: clamp(1.8rem, 4vw, 2.8rem);">How to Stop <span style="color: var(--green);">Three Putting</span></h1>
-            <p style="color: var(--text-muted); font-size: 1.05rem; margin-top: 16px; line-height: 1.6;">Stop trying to hole the long ones</p>
-            <p style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.1em; text-transform: uppercase;">March 17, 2026 &middot; Updated October 2026 &middot; 6 min read &middot; <a class="byline-author" href="/about" rel="author">Stephen Pickering</a></p>
-            <img src="../golf images/golfer lining up putt.webp" alt="Golfer crouched down reading the green before a putt" style="width: 100%; height: auto; border-radius: 12px; margin-top: 32px;" width="1024" height="1024" decoding="async">
-        </div>
-    </section>
-
     <!-- ========== ARTICLE CONTENT ========== -->
-    <section class="section post-light" style="padding-top: 0; position: relative; z-index: 1;">
+    <section class="section post-light post-2a" style="padding-top: 40px; position: relative; z-index: 1;">
         <div class="container prose">
 
             <div class="reveal" style="background: rgba(34,197,94,0.04); border-left: 3px solid var(--green); border-radius: 0 12px 12px 0; padding: 20px 24px; margin-bottom: 2rem;">
@@ -679,6 +674,6 @@
     </footer>
 
     <script src="../js/shared.js"></script>
-    <script src="../js/app-bar.js" data-asset-base="../" defer></script>
+    <script src="../js/app-bar.js" data-asset-base="../" data-variant="floating" defer></script>
 </body>
 </html>
