@@ -91,12 +91,24 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <!-- Only the weights this page renders. Barlow Condensed 400 and DM Sans 300 matched
+         no element here. DM Mono 700 is requested but Google does not publish it, so those
+         elements get a synthesised bold from 500 either way. -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <!-- On mobile the LCP element is the first phone screen, not the video poster
+         (Lighthouse, Nov 2026), so it is requested first and at high priority. The
+         poster stays preloaded: it is the hero background and paints in the same frame. -->
+    <link rel="preload" as="image" href="app-screens/hero/hero-1-home.webp" fetchpriority="high">
     <link rel="preload" as="image" href="video/pebble-beach-poster.webp" fetchpriority="high">
+    <!-- The h1 font (Barlow Condensed 700, latin). If it lands after the first paint, the
+         fallback h1 wraps to three lines, so the phone first paints 31px lower and jumps
+         up on the swap — a layout shift, and screen 2 then out-measures screen 1 and
+         becomes the LCP when it fades in ~4s later. This URL is copied from the css2
+         response above (Chrome and Safari get this file; Firefox gets another). If Google
+         bumps the version past v13, copy the new latin 700 URL or delete this line. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B46r2z3bWuYMBYro.woff2">
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/home.css">
-    <!-- LCP candidate: the hero background. Only one element can be the LCP, so it
-         is the only image given priority; the phone screen paints straight after. -->
     <!-- iOS Safari smart app banner — native "open in App Store" strip -->
     <meta name="apple-itunes-app" content="app-id=6769477447">
     <!-- PostHog -->
@@ -296,24 +308,32 @@
                     </div>
                 </div>
 
-                <!-- The product. Real screens, cross-fading. -->
-                <div class="hc-stage reveal">
+                <!-- The product. Real screens, cross-fading.
+                     The first screen is the mobile LCP element, so this stage is NOT a
+                     .reveal: that class holds it at opacity 0 until shared.js runs, which
+                     cost 4.5s of render delay. It has no entrance motion either — any
+                     offset at first paint shrinks the area Chrome records for screen 1,
+                     and screen 2 then takes over as the LCP when it fades in ~4s later.
+                     Screens 2-4 sit in the viewport, so without fetchpriority="low" Chrome
+                     fetches them at high priority alongside screen 1. Nothing shows them
+                     for the first 4s. -->
+                <div class="hc-stage">
                     <div class="hc-phone" id="hc-phone">
                         <img class="hc-screen is-active" src="app-screens/hero/hero-1-home.webp"
                              alt="The Scoring Zone home screen showing a 2.5 short game handicap"
-                             width="760" height="1560" decoding="async"
+                             width="760" height="1560" decoding="async" fetchpriority="high"
                              data-callout="Get better faster" data-place="tl">
                         <img class="hc-screen" src="app-screens/hero/hero-2-performance-hub.webp"
                              alt="The Performance Hub tracking your short game progress"
-                             width="760" height="1560" loading="lazy" decoding="async"
+                             width="760" height="1560" loading="lazy" decoding="async" fetchpriority="low"
                              data-callout="Track your progress" data-place="br">
                         <img class="hc-screen" src="app-screens/hero/hero-3-challenges.webp"
                              alt="Challenges covering every part of the short game"
-                             width="760" height="1560" loading="lazy" decoding="async"
+                             width="760" height="1560" loading="lazy" decoding="async" fetchpriority="low"
                              data-callout="Work on all parts of your short game" data-place="tl">
                         <img class="hc-screen" src="app-screens/hero/hero-4-putting-challenge.webp"
                              alt="A putting challenge played under pressure"
-                             width="760" height="1560" loading="lazy" decoding="async"
+                             width="760" height="1560" loading="lazy" decoding="async" fetchpriority="low"
                              data-callout="Improve putting under pressure" data-place="br">
                     </div>
                     <span class="hc-callout" data-place="tl" id="hc-callout-tl"></span>
@@ -332,13 +352,13 @@
             <!-- Three shots, split by diagonal white cuts -->
             <div class="pf-band reveal">
                 <div class="pf-shot pf-shot--1">
-                    <img src="golf images/band/putt-sunset.webp" alt="A golfer crouching to read a putt on the green at sunset, watched by a gallery" width="820" height="700" loading="lazy" decoding="async">
+                    <img src="golf images/band/putt-sunset.webp" srcset="golf%20images/band/putt-sunset-600w.webp 600w, golf%20images/band/putt-sunset.webp 820w" sizes="(max-width: 480px) 200px, (max-width: 640px) 230px, (max-width: 1024px) 380px, 440px" alt="A golfer crouching to read a putt on the green at sunset, watched by a gallery" width="820" height="700" loading="lazy" decoding="async">
                 </div>
                 <div class="pf-shot pf-shot--2">
-                    <img src="golf images/band/dubai.webp" alt="A golfer walking a desert course at sunset" width="820" height="700" loading="lazy" decoding="async">
+                    <img src="golf images/band/dubai.webp" srcset="golf%20images/band/dubai-600w.webp 600w, golf%20images/band/dubai.webp 820w" sizes="(max-width: 480px) 200px, (max-width: 640px) 230px, (max-width: 1024px) 380px, 440px" alt="A golfer walking a desert course at sunset" width="820" height="700" loading="lazy" decoding="async">
                 </div>
                 <div class="pf-shot pf-shot--3">
-                    <img src="golf images/band/pitch.webp" alt="A golfer playing a short pitch shot towards the flag" width="820" height="700" loading="lazy" decoding="async">
+                    <img src="golf images/band/pitch.webp" srcset="golf%20images/band/pitch-600w.webp 600w, golf%20images/band/pitch.webp 820w" sizes="(max-width: 480px) 200px, (max-width: 640px) 230px, (max-width: 1024px) 380px, 440px" alt="A golfer playing a short pitch shot towards the flag" width="820" height="700" loading="lazy" decoding="async">
                 </div>
             </div>
 
@@ -858,16 +878,20 @@
         </div>
 
         <div class="sz-reel-stage">
+          <!-- Keep loading="lazy" BEFORE src on these images. The reel script clones every
+               slide with cloneNode(), and a clone whose src is copied before its loading
+               attribute is fetched straight away: all nine screens (~600 KB) were being
+               downloaded on page load, for every visitor, from 4,000px below the fold. -->
           <ul class="sz-reel-rail" id="reel-rail" aria-live="off">
-            <li class="is-active" id="reel-slide-1" role="tabpanel" aria-labelledby="reel-tab-1"><img src="app-screens/1.0.11/sz-1011-home.webp" alt="Scoring Zone home screen showing a 2.5 short game handicap over a sunset fairway" width="823" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-2" role="tabpanel" aria-labelledby="reel-tab-2"><img src="app-screens/1.0.11/sz-1011-hub.webp" alt="Practice hub dial reading a 2.5 short game handicap, 12.5 strokes under benchmark" width="811" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-3" role="tabpanel" aria-labelledby="reel-tab-3"><img src="app-screens/1.0.11/sz-1011-nextup.webp" alt="Next Up screen recommending the Ultimate Shortgame Test, a 65 shot assessment" width="827" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-4" role="tabpanel" aria-labelledby="reel-tab-4"><img src="app-screens/1.0.11/sz-1011-challenges.webp" alt="Chipping challenge list with XP rewards and a target score beside every drill" width="811" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-5" role="tabpanel" aria-labelledby="reel-tab-5"><img src="app-screens/1.0.11/sz-1011-stats.webp" alt="Stats screen breaking strokes gained down by category across the last nine rounds" width="830" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-6" role="tabpanel" aria-labelledby="reel-tab-6"><img src="app-screens/1.0.11/sz-1011-rounds.webp" alt="Hole by hole scorecard entry with approach result, putts and first putt distance" width="802" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-7" role="tabpanel" aria-labelledby="reel-tab-7"><img src="app-screens/1.0.11/sz-1011-putting.webp" alt="Ultimate Putting Test intro with short, medium and long putt sections" width="808" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-8" role="tabpanel" aria-labelledby="reel-tab-8"><img src="app-screens/1.0.11/sz-1011-sim.webp" alt="Sim Lab simulator tests including the Dial In 20 distance control test" width="812" height="1700" loading="lazy" decoding="async"></li>
-            <li id="reel-slide-9" role="tabpanel" aria-labelledby="reel-tab-9"><img src="app-screens/1.0.11/sz-1011-assist.webp" alt="Practice Assistant showing structured practice plans and the wedge clock system" width="818" height="1700" loading="lazy" decoding="async"></li>
+            <li class="is-active" id="reel-slide-1" role="tabpanel" aria-labelledby="reel-tab-1"><img loading="lazy" src="app-screens/1.0.11/sz-1011-home.webp" alt="Scoring Zone home screen showing a 2.5 short game handicap over a sunset fairway" width="823" height="1700" decoding="async"></li>
+            <li id="reel-slide-2" role="tabpanel" aria-labelledby="reel-tab-2"><img loading="lazy" src="app-screens/1.0.11/sz-1011-hub.webp" alt="Practice hub dial reading a 2.5 short game handicap, 12.5 strokes under benchmark" width="811" height="1700" decoding="async"></li>
+            <li id="reel-slide-3" role="tabpanel" aria-labelledby="reel-tab-3"><img loading="lazy" src="app-screens/1.0.11/sz-1011-nextup.webp" alt="Next Up screen recommending the Ultimate Shortgame Test, a 65 shot assessment" width="827" height="1700" decoding="async"></li>
+            <li id="reel-slide-4" role="tabpanel" aria-labelledby="reel-tab-4"><img loading="lazy" src="app-screens/1.0.11/sz-1011-challenges.webp" alt="Chipping challenge list with XP rewards and a target score beside every drill" width="811" height="1700" decoding="async"></li>
+            <li id="reel-slide-5" role="tabpanel" aria-labelledby="reel-tab-5"><img loading="lazy" src="app-screens/1.0.11/sz-1011-stats.webp" alt="Stats screen breaking strokes gained down by category across the last nine rounds" width="830" height="1700" decoding="async"></li>
+            <li id="reel-slide-6" role="tabpanel" aria-labelledby="reel-tab-6"><img loading="lazy" src="app-screens/1.0.11/sz-1011-rounds.webp" alt="Hole by hole scorecard entry with approach result, putts and first putt distance" width="802" height="1700" decoding="async"></li>
+            <li id="reel-slide-7" role="tabpanel" aria-labelledby="reel-tab-7"><img loading="lazy" src="app-screens/1.0.11/sz-1011-putting.webp" alt="Ultimate Putting Test intro with short, medium and long putt sections" width="808" height="1700" decoding="async"></li>
+            <li id="reel-slide-8" role="tabpanel" aria-labelledby="reel-tab-8"><img loading="lazy" src="app-screens/1.0.11/sz-1011-sim.webp" alt="Sim Lab simulator tests including the Dial In 20 distance control test" width="812" height="1700" decoding="async"></li>
+            <li id="reel-slide-9" role="tabpanel" aria-labelledby="reel-tab-9"><img loading="lazy" src="app-screens/1.0.11/sz-1011-assist.webp" alt="Practice Assistant showing structured practice plans and the wedge clock system" width="818" height="1700" decoding="async"></li>
           </ul>
         </div>
       </div>
@@ -1039,7 +1063,7 @@
                         </div>
                         <div class="fc-stage">
                             <div class="fc-glow"></div>
-                            <img class="fc-phone" src="Featured images/Featured - Clock Drill.webp" alt="Clock Drill challenge in the Scoring Zone app — make putts from all around the hole">
+                            <img class="fc-phone" src="Featured images/Featured - Clock Drill.webp" alt="Clock Drill challenge in the Scoring Zone app — make putts from all around the hole" loading="lazy" decoding="async">
                         </div>
                     </article>
 
@@ -1070,7 +1094,7 @@
                         </div>
                         <div class="fc-stage">
                             <div class="fc-glow"></div>
-                            <img class="fc-phone" src="Featured images/Featured - Par in 2.webp" alt="Par in 2 challenge in the Scoring Zone app — nine chip shots, hole out in two or less">
+                            <img class="fc-phone" src="Featured images/Featured - Par in 2.webp" alt="Par in 2 challenge in the Scoring Zone app — nine chip shots, hole out in two or less" loading="lazy" decoding="async">
                         </div>
                     </article>
 
@@ -1101,7 +1125,7 @@
                         </div>
                         <div class="fc-stage">
                             <div class="fc-glow"></div>
-                            <img class="fc-phone" src="Featured images/Featured - short wedge test.webp" alt="Short Wedge Test challenge in the Scoring Zone app — ten wedge shots scored by proximity">
+                            <img class="fc-phone" src="Featured images/Featured - short wedge test.webp" alt="Short Wedge Test challenge in the Scoring Zone app — ten wedge shots scored by proximity" loading="lazy" decoding="async">
                         </div>
                     </article>
 
@@ -1278,11 +1302,11 @@
             </div>
         </div>
         <div class="footer-badges">
-            <a href="https://toolfio.com" target="_blank" rel="noopener"><img src="https://toolfio.com/toolfio-dark-badge.png" alt="Featured on Toolfio" width="200" height="54" /></a>
-            <a href="https://saashunt.best/projects/scoring-zone" target="_blank" rel="noopener" title="SaasHunt Top 1 Daily Winner"><img src="https://saashunt.best/images/badges/top1-dark.svg" alt="SaasHunt Top 1 Daily Winner" style="width: 195px; height: auto;" /></a>
-            <a href="https://fazier.com/launches/www.scoringzone.net" target="_blank" rel="noopener"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&amp;theme=dark" width="250" height="59" alt="Featured on Fazier" /></a>
-            <a href="https://twelve.tools" target="_blank" rel="noopener"><img src="https://twelve.tools/badge1-light.svg" alt="Featured on Twelve Tools" width="148" height="40" /></a>
-            <a href="https://startupfa.me/s/scoring-zone?utm_source=www.scoringzone.net" target="_blank" rel="noopener"><img src="https://startupfa.me/badges/featured-badge-small.webp" alt="Scoring Zone - Featured on Startup Fame" width="224" height="36" /></a>
+            <a href="https://toolfio.com" target="_blank" rel="noopener"><img src="https://toolfio.com/toolfio-dark-badge.png" alt="Featured on Toolfio" width="200" height="54" loading="lazy" /></a>
+            <a href="https://saashunt.best/projects/scoring-zone" target="_blank" rel="noopener" title="SaasHunt Top 1 Daily Winner"><img src="https://saashunt.best/images/badges/top1-dark.svg" alt="SaasHunt Top 1 Daily Winner" style="width: 195px; height: auto;" loading="lazy" /></a>
+            <a href="https://fazier.com/launches/www.scoringzone.net" target="_blank" rel="noopener"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&amp;theme=dark" width="250" height="59" alt="Featured on Fazier" loading="lazy" /></a>
+            <a href="https://twelve.tools" target="_blank" rel="noopener"><img src="https://twelve.tools/badge1-light.svg" alt="Featured on Twelve Tools" width="148" height="40" loading="lazy" /></a>
+            <a href="https://startupfa.me/s/scoring-zone?utm_source=www.scoringzone.net" target="_blank" rel="noopener"><img src="https://startupfa.me/badges/featured-badge-small.webp" alt="Scoring Zone - Featured on Startup Fame" width="224" height="36" loading="lazy" /></a>
         </div>
     </footer>
 

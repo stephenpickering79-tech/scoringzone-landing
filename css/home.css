@@ -1631,13 +1631,16 @@ html.hp-js .hp-chips[data-hud] .hp-chip-reward.visible { opacity: 1; }
             display: block;            /* kills the inline baseline gap under the in-flow frame */
             width: 100%; height: 100%;
             object-fit: contain;
-            opacity: 0;
             /* Sequential swap, not a true cross-fade: the outgoing screen clears
                first, then the incoming one arrives. Overlapping them ghosts one
                dark screen through the other. */
             transition: opacity .32s ease;
         }
-        .hc-screen.is-active { opacity: 1; transition: opacity .45s ease .3s; }
+        /* Visible is the default and hidden the exception, so the first screen (the
+           mobile LCP image, .is-active in the markup) never matches an opacity:0 rule
+           and paints in the first frame. Same computed values as before in every state. */
+        .hc-screen:not(.is-active) { opacity: 0; }
+        .hc-screen.is-active { transition: opacity .45s ease .3s; }
         /* First frame holds layout height; the rest stack on top of it */
         .hc-screen:first-child { position: relative; }
 
