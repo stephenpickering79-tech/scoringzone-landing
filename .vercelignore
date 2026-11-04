@@ -1,0 +1,52 @@
+# Files in this repo that are working material, not part of the public site.
+# Vercel leaves these out of the deployment. Patterns follow .gitignore syntax;
+# a leading "/" anchors a pattern to the repo root so it cannot match a
+# same-named file deeper in the tree. After changing this file, check a preview
+# deploy: /CLAUDE.md must return 404.
+#
+# Check what a pattern removes before adding it:
+#   git ls-files -ci --exclude-from=.vercelignore
+#   python3 scripts/check_deploy_refs.py      (no public page may load an ignored file)
+
+# Agent and product notes
+/CLAUDE.md
+/PRODUCT.md
+/DESIGN.md
+
+# Design previews, drafts and QA screenshots
+/homepage-redesign.html
+/blog-ad-preview.html
+/popup-preview.html
+/preview-subtext-styles.html
+/scrolling-reveal-preview.html
+/email-signature.html
+/hero-previews/
+/professionals/preview.html
+/professionals/qa-*.png
+
+# HTML templates used to render blog images. The rendered .png/.webp files
+# next to them stay published because posts load them.
+/blog/images/*.html
+
+# Repo tooling
+/scripts/
+
+# Working asset folders. No public page, stylesheet or script loads from these
+# (checked 4 Nov 2026), and no n8n workflow uses "Images for n8n" (Stephen, 4 Nov 2026).
+/Images for n8n/
+/social-templates/
+/social-assets/
+/social-images/
+/video-templates/
+/video-assets/
+/reels/
+/email-signatures/
+/scrolling-reveal/
+/18 birdies brand/
+/Scoring Zone for Professional Coaches/
+
+# Must stay published, do not add:
+#   /Scrolling Reveal/   /professionals/ loads its phone screenshots
+#   /email-assets/       emails already sent load their images from it
+#   /Featured images/, /Putting images/, /short-game-practice/, /social-proof/, /audio/
+#                        loaded by live pages
