@@ -44,6 +44,8 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Same rule as css/shared.css (this page does not load it): images with width/height attributes keep their proportions when CSS sets only a width. */
+    :where(img[width][height]) { height: auto; }
 
     :root {
       --bg: #060b08;

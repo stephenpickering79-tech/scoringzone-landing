@@ -49,6 +49,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Images carry width/height attributes (scripts/add_img_dimensions.py) so the
+   browser reserves their box before they load. This keeps the height in
+   proportion when CSS sets only a width, instead of the attribute height
+   stretching the image. :where() gives it zero specificity, so any class rule,
+   page <style> or inline style that sets a height still wins. */
+:where(img[width][height]) { height: auto; }
+
 /* ── Accessibility utilities ── */
 .sr-only {
   position: absolute;

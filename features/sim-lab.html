@@ -138,6 +138,8 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Same rule as css/shared.css (this page does not load it): images with width/height attributes keep their proportions when CSS sets only a width. */
+    :where(img[width][height]) { height: auto; }
 
     :root {
       --bg: #060b08;
@@ -1523,7 +1525,7 @@
 
           <div class="reveal reveal-delay-2">
             <div class="screenshot screenshot-inline" style="margin: 0 auto;">
-              <img loading="lazy" src="images/sim-3.webp" alt="Scoring Zone SIM Lab results">
+              <img loading="lazy" src="images/sim-3.webp" width="1280" height="2593" alt="Scoring Zone SIM Lab results">
             </div>
           </div>
         </div>
@@ -1624,7 +1626,7 @@
 
         <div class="reveal reveal-delay-4 screenshot-row">
           <div class="screenshot screenshot-inline">
-            <img loading="lazy" src="images/sim-2.webp" alt="Scoring Zone SIM Lab challenge in progress">
+            <img loading="lazy" src="images/sim-2.webp" width="1280" height="2559" alt="Scoring Zone SIM Lab challenge in progress">
           </div>
         </div>
       </div>
