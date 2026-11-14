@@ -275,6 +275,29 @@ html.sgp-lock, html.sgp-lock body { overflow: hidden; }
 /* Small phones: three stat cells at 16px padding don't fit "AGE AVG" or a "+10.5". */
 @media (max-width: 380px) { .sgp-rk-stats > div { padding: 12px 10px; } .sgp-rk-stats span { letter-spacing: .1em; } }
 
+/* Junior tracker card ("Junior Tracker Popup" handoff): the typical-range band, wrapping
+   stat labels ("TYPICAL AT 11"), the projections panel and the calculator pill. */
+.sgp-rk-band { top: 8px; height: 10px; border-radius: 3px; background: rgba(255,255,255,.14); }
+.sgp-rk-band ~ .sgp-rk-fill { opacity: .92; }
+.sgp-rk-stats.jr > div { padding: 12px 14px; }
+.sgp-rk-stats.jr span { letter-spacing: .14em; line-height: 1.3; white-space: normal; }
+.sgp-rk-stats.jr b { margin-top: auto; }
+.sgp-rk-proj {
+  margin-top: 14px; padding: 16px 18px; border-radius: 22px; background: var(--sgp-well); border: 1px solid rgba(255,255,255,.06);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.sgp-rk-proj-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.sgp-rk-proj-row > span { padding-bottom: 4px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: var(--sgp-mono); }
+.sgp-rk-proj-row > div { display: flex; gap: 22px; }
+.sgp-rk-proj-row > div > div { display: flex; align-items: baseline; gap: 8px; }
+.sgp-rk-proj-row > div span { font-size: 14px; font-weight: 500; color: var(--sgp-pill); }
+.sgp-rk-proj-row b { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 38px; line-height: .85; color: var(--sgp-green); text-shadow: 0 0 20px rgba(74,222,128,.3); }
+.sgp-rk-proj-note { font-size: 12.5px; line-height: 1.5; color: var(--sgp-mono); text-wrap: pretty; }
+.sgp-stack > .sgp-pill.sgp-rk-pill { padding: 10px 20px; font-size: 14px; color: var(--sgp-dim); flex-wrap: wrap; }
+.sgp-rk-pill a { color: var(--sgp-green); font-weight: 600; text-decoration: none; white-space: nowrap; transition: color 160ms; }
+.sgp-rk-pill a:hover { color: var(--sgp-text); }
+@media (max-width: 380px) { .sgp-rk-stats.jr > div { padding: 12px 10px; } .sgp-rk-stats.jr span { letter-spacing: .1em; } .sgp-rk-stats.jr b { font-size: 30px; } }
+
 @media (prefers-reduced-motion: reduce) {
   .sgp.open, .sgp-m { animation: none; }
   .sgp-c, .sgp-bar i, .sgp-rk-fill, .sgp-rk-you { transition: none; }

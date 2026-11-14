@@ -380,6 +380,7 @@
       /* Zone 2: result */
       .jt-r { padding: 30px 38px 36px; border-top: 1px solid var(--jt-line); display: flex; flex-direction: column; gap: 28px; }
       .jt-r[hidden] { display: none; }
+      #rk-result { scroll-margin-top: 88px; } /* clear the fixed nav when the result scrolls into view */
       .jt-r.in { animation: jt-rise 400ms var(--jt-ease) both; }
       @keyframes jt-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
       .jt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px 32px; align-items: end; }
@@ -471,6 +472,7 @@
       }
     </style>
     <link rel="stylesheet" href="../css/plan-funnel.css">
+    <link rel="stylesheet" href="../css/rank-popup.css">
     <!-- In-content blog advert -->
     <link rel="stylesheet" href="../css/blog-ad.css">
     <script src="../js/blog-ad.js" data-asset-base="../" defer></script>
@@ -1066,7 +1068,8 @@
         var ageTxt = AGE_TXT(age);
         var rangeTxt = whole(m.lo) + '–' + whole(m.hi);
 
-        $('rk-tier').textContent = ({ ahead: 'Ahead of the curve', on_track: 'On track', building: 'Building' })[band].toUpperCase() + ' · ' + kids.toUpperCase() + ' AGED ' + ageTxt;
+        var tierTxt = ({ ahead: 'Ahead of the curve', on_track: 'On track', building: 'Building' })[band];
+        $('rk-tier').textContent = tierTxt.toUpperCase() + ' · ' + kids.toUpperCase() + ' AGED ' + ageTxt;
         $('rk-tier').style.color = band === 'building' ? 'var(--jt-muted)' : 'var(--jt-green)';
         $('rk-pct').textContent = pct + '%';
         $('rk-sub').textContent = 'of ' + kids + ' aged ' + ageTxt + ' who play regularly (estimate)';
@@ -1091,13 +1094,14 @@
           : 'The typical range for ' + who + ' who plays regularly is ' + rangeTxt + '. At ' + fmt(v) + ', they’re right in it.';
 
         // Same z-score carried to 16 and 18.
-        var ahead = [16, 18].filter(function(a){ return a > age; });
-        var proj = $('rk-proj');
-        proj.hidden = !ahead.length;
-        $('rk-proj-row').innerHTML = '<span class="jt-label">On the same curve</span>' + ahead.map(function(a){
+        var projList = [16, 18].filter(function(a){ return a > age; }).map(function(a){
           var p = model(gender, a);
-          var est = Math.max(-5, Math.min(54, p.mid + z * p.sd));
-          return '<span class="jt-by">By ' + a + ' <b>' + whole(est) + '</b></span>';
+          return { age: a, v: whole(Math.max(-5, Math.min(54, p.mid + z * p.sd))) };
+        });
+        var proj = $('rk-proj');
+        proj.hidden = !projList.length;
+        $('rk-proj-row').innerHTML = '<span class="jt-label">On the same curve</span>' + projList.map(function(p){
+          return '<span class="jt-by">By ' + p.age + ' <b>' + p.v + '</b></span>';
         }).join('');
 
         $('rk-plan-title').textContent = band === 'ahead' ? 'Keep them ahead of the curve'
@@ -1111,22 +1115,29 @@
         $('rk-go-label').textContent = 'Update';
         out.hidden = false;
         out.classList.remove('in'); void out.offsetWidth; out.classList.add('in');
-        if (first && window.matchMedia('(max-width: 760px)').matches) {
-          out.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-        }
+        // Instant, not smooth: the popup opens over it, and closing it lands on the full result.
+        if (first && window.matchMedia('(max-width: 760px)').matches) out.scrollIntoView({ behavior: 'auto', block: 'start' });
         try { if (window.gtag) gtag('event', 'junior_result', { hcp: v, gender: gender, age: age, band: band, pct: pct }); } catch (e) {}
+        // The result as a popup (js/rank-card-popup.js), from the same numbers as the card above.
+        if (window.SZRankCard) SZRankCard.open({
+          kind: 'junior', hcp: v, hcpText: fmt(v), gender: gender, ageTxt: ageTxt, pct: pct, tier: tierTxt, band: band,
+          lo: m.lo, hi: m.hi, mid: m.mid, sd: m.sd, rangeTxt: rangeTxt, shots: shots, proj: projList, onPlan: openPlan
+        });
       }
 
       // Free plan: the app's questions, hosted here (js/plan-funnel.js), ending at the email step.
-      $('rk-plan-go').addEventListener('click', function(){
+      // Opened from the card's button and from the popup's.
+      function openPlan(){
         var hcp = result && result.hcp >= 0 ? result.hcp : null; // a plus index starts the field blank
         if (!window.SZFunnel) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=blog&utm_campaign=junior_plan'; return; }
         SZFunnel.open({ hcp: hcp, src: 'junior_tracker' });
-      });
+      }
+      $('rk-plan-go').addEventListener('click', openPlan);
     })();
     </script>
     <script src="../js/plan-engine.js" defer></script>
     <script src="../js/plan-funnel.js" defer></script>
+    <script src="../js/rank-card-popup.js" defer></script>
     <script src="../js/shared.js"></script>
     <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
