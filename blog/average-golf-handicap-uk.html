@@ -337,6 +337,7 @@
       /* Zone 2: result */
       .jt-r { padding: 30px 38px 36px; border-top: 1px solid var(--jt-line); display: flex; flex-direction: column; gap: 28px; }
       .jt-r[hidden] { display: none; }
+      #uk-result { scroll-margin-top: 88px; } /* clear the fixed nav when the result scrolls into view */
       .jt-r.in { animation: jt-rise 400ms var(--jt-ease) both; }
       @keyframes jt-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
       .jt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px 32px; align-items: end; }
@@ -429,7 +430,7 @@
       /* UK rank: the age select holds "Under 30", so it needs more room than the tracker's 7-18. */
       .jt-field.uk-age { flex: 1 1 150px; }
     </style>
-    <link rel="stylesheet" href="../css/plan-funnel.css">
+    <link rel="stylesheet" href="../css/rank-popup.css">
     <!-- In-content blog advert -->
     <link rel="stylesheet" href="../css/blog-ad.css">
     <script src="../js/blog-ad.js" data-asset-base="../" defer></script>
@@ -921,9 +922,10 @@
       // under 12 the top third, under 5 the top 5-10%; for women, most sit between 20 and 36.
       var SD = { men: 9, women: 9.5 };
       var AGE = { 'u30': [12, 14, 'under 30'], '30-50': [15, 18, '30 to 50'], '50-65': [18, 20, '50 to 65'], '65+': [21, 24, 'over 65'] };
+      // [index, the card's label, the popup's short form: "2.1 to single figures"]
       var MILESTONES = {
-        men: [[17, 'The UK average'], [12, 'The top third'], [9.9, 'Single figures'], [5, 'The top 5–10%'], [0, 'Scratch']],
-        women: [[28, 'The UK average'], [20, 'Comfortably better than average'], [12, 'Elite club level'], [0, 'Scratch']]
+        men: [[17, 'The UK average', 'the UK average'], [12, 'The top third', 'the top third'], [9.9, 'Single figures', 'single figures'], [5, 'The top 5–10%', 'the top 5–10%'], [0, 'Scratch', 'scratch']],
+        women: [[28, 'The UK average', 'the UK average'], [20, 'Comfortably better than average', 'an index of 20'], [12, 'Elite club level', 'elite club level'], [0, 'Scratch', 'scratch']]
       };
 
       function cdf(z){
@@ -1039,27 +1041,35 @@
         var h = fmt(v); // "an 8", "an 11", "an 18", "an 80"; "a 14", "a +2"
         $('uk-plan-hcp').textContent = (/^(8|11|18)(\D|$)/.test(h) || /^8\d/.test(h) ? 'an ' : 'a ') + h;
 
+        // The popup's condensed result (js/rank-popup.js), built from the same numbers as the card.
+        var popup = {
+          hcp: v, hcpText: fmt(v), gender: gender, age: age, avg: avg, pct: pct,
+          diffTxt: even ? 'On the UK average' : (diff > 0 ? '−' : '+') + fmt(Math.abs(diff)) + ' vs UK average',
+          diffGood: even || diff > 0,
+          nextTxt: next ? fmt(v - next[0]) + ' to ' + next[2] : 'Scratch or better'
+        };
+
         var first = !result;
-        result = { hcp: v };
+        result = { hcp: v, popup: popup };
         $('uk-go-label').textContent = 'Update';
         out.hidden = false;
         out.classList.remove('in'); void out.offsetWidth; out.classList.add('in');
-        if (first && window.matchMedia('(max-width: 760px)').matches) {
-          out.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-        }
+        // Instant, not smooth: the popup opens over it, and closing it lands on the full result.
+        if (first && window.matchMedia('(max-width: 760px)').matches) out.scrollIntoView({ behavior: 'auto', block: 'start' });
         try { if (window.gtag) gtag('event', 'uk_rank_result', { hcp: v, gender: gender, age: age || 'any', pct: pct }); } catch (e) {}
+        if (window.SZRankPopup) SZRankPopup.open(popup, 0);
       }
 
-      // Free plan: the app's questions, hosted here (js/plan-funnel.js), ending at the email step.
+      // Free plan: the popup's four questions and email gate (js/rank-popup.js).
       $('uk-plan-go').addEventListener('click', function(){
-        var hcp = result && result.hcp >= 0 ? result.hcp : null; // a plus index starts the field blank
-        if (!window.SZFunnel) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=blog&utm_campaign=uk_rank_plan'; return; }
-        SZFunnel.open({ hcp: hcp, src: 'uk_rank' });
+        if (!result) return;
+        if (!window.SZRankPopup) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=blog&utm_campaign=uk_rank_plan'; return; }
+        SZRankPopup.open(result.popup, 1);
       });
     })();
     </script>
     <script src="../js/plan-engine.js" defer></script>
-    <script src="../js/plan-funnel.js" defer></script>
+    <script src="../js/rank-popup.js" defer></script>
     <script src="../js/shared.js"></script>
     <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
