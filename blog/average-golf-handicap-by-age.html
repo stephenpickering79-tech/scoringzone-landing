@@ -394,6 +394,7 @@
         display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 36px; align-items: start;
       }
       .rk-r[hidden] { display: none; }
+      #rk-result { scroll-margin-top: 88px; } /* clear the fixed nav when the result scrolls into view */
       .rk-r.in { animation: rk-rise 400ms var(--rk-ease) both; }
       @keyframes rk-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
       .rk-col { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
@@ -458,6 +459,7 @@
       }
     </style>
     <link rel="stylesheet" href="../css/plan-funnel.css">
+    <link rel="stylesheet" href="../css/rank-popup.css">
     <!-- In-content blog advert -->
     <link rel="stylesheet" href="../css/blog-ad.css">
     <script src="../js/blog-ad.js" data-asset-base="../" defer></script>
@@ -1177,23 +1179,30 @@
         $('rk-go-label').textContent = 'Update my rank';
         out.hidden = false;
         out.classList.remove('in'); void out.offsetWidth; out.classList.add('in');
-        if (first && window.matchMedia('(max-width: 760px)').matches) {
-          out.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-        }
+        // Instant, not smooth: the popup opens over it, and closing it lands on the full result.
+        if (first && window.matchMedia('(max-width: 760px)').matches) out.scrollIntoView({ behavior: 'auto', block: 'start' });
         try { if (window.gtag) gtag('event', 'rank_result', { hcp: v, gender: gender, age: age, pct: pct }); } catch (e) {}
+        // The result as a popup (js/rank-card-popup.js), from the same numbers as the card above.
+        if (window.SZRankCard) SZRankCard.open({
+          hcp: v, hcpText: fmt(v), gender: gender, ageTxt: ageTxt, avg: avg, avgText: fmt(avg),
+          pct: pct, tier: tier, diff: diff, onPlan: openPlan
+        });
       }
 
       // Free plan: the app's questions, hosted here (js/plan-funnel.js), ending at the email step.
-      $('rk-plan-go').addEventListener('click', function(){
+      // Opened from the card's button and from the popup's.
+      function openPlan(){
         var hcp = result && result.hcp >= 0 ? result.hcp : null; // a plus index starts the field blank
         if (!window.SZFunnel) { location.href = 'https://scoringzone.app/?utm_source=scoringzone.net&utm_medium=blog&utm_campaign=rank_plan'; return; }
         SZFunnel.open({ hcp: hcp, src: 'rank_finder' });
-      });
+      }
+      $('rk-plan-go').addEventListener('click', openPlan);
     })();
     </script>
 
     <script src="../js/plan-engine.js" defer></script>
     <script src="../js/plan-funnel.js" defer></script>
+    <script src="../js/rank-card-popup.js" defer></script>
     <script src="../js/shared.js"></script>
     <script src="../js/app-bar.js" data-asset-base="../" defer></script>
 </body>
