@@ -170,6 +170,11 @@ Use the `golf-blog-copywriting` skill for writing blog content. Key rules:
 - CTA buttons have `.cta-pulse` green glow animation
 - Do NOT add emoji icons to headings on this page
 
+## Repo-only files stay off the live site
+`.vercelignore` keeps `CLAUDE.md`, `DESIGN.md`, `PRODUCT.md` and `scripts/` out of every deployment
+(until 16 Nov 2026 all four were readable at www.scoringzone.net/CLAUDE.md etc.). Any new internal
+file or folder in the repo is public unless you add it there.
+
 ## Things to Avoid
 - Don't use the old `images/` directory — it's empty. Use `golf images/` instead
 - Don't use `scoringzone.net` without `www.` in any canonical, OG, or schema URLs

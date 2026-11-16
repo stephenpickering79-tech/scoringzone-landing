@@ -1,0 +1,6 @@
+# Repo-only files: in git for people and agents, never served on www.scoringzone.net.
+# Add any new internal file here (a root-level .md or a tooling folder is otherwise public).
+/CLAUDE.md
+/DESIGN.md
+/PRODUCT.md
+/scripts
