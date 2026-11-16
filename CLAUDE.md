@@ -51,6 +51,24 @@ This was added on 9 Sep 2026 after two sessions collided on the homepage: one
 committed the other's in-progress section, and the same commit deleted the whole
 `id="signup"` section that ~370 links point at.
 
+## Automated SEO fixes land on `main` without a ship instruction
+
+Since 16 Nov 2026 the **SZ SEO fixer** (GitHub Actions in the private repo
+`stephenpickering79-tech/scoringzone-seo-report`) works Grokbot's SEO findings on
+its own, at Stephen's request: Claude checks each finding, fixes the ones that help,
+a second Claude reviews, and a passing fix is pushed straight to `main` (live within
+minutes). That is the one exception to "never push `main` without a ship
+instruction", and it covers only those fixes; every other change still needs one.
+
+- Its commits are authored "Stephen Pickering" with committer **"SZ SEO fixer"**
+  and a message ending "Automated SEO fix (SZ SEO fixer). Finding: …/issues/<n>".
+  Its working branches are `seo/sz-seo-<n>`. Don't revert or rebase them away.
+- It rebases onto the newest `origin/main` before pushing and never force-pushes
+  `main`, but `main` can move under you more often now: re-fetch before any
+  fast-forward and expect to rebase your branch.
+- To stop it putting anything live: `gh variable set SEO_AUTO_GOLIVE -b off -R
+  stephenpickering79-tech/scoringzone-seo-report`. Details: that repo's README.
+
 ## Project
 Static HTML marketing site for **Scoring Zone** — a golf short game practice app with scored drills, XP system, pressure tests, and stats tracking.
 
@@ -130,7 +148,7 @@ Use the `golf-blog-copywriting` skill for writing blog content. Key rules:
 - British English spelling (practise, colour, etc.) in body copy
 - Copyright: &copy; 2026 Scoring Zone
 - Contact email: hello@scoringzone.net
-- Author: "Scoring Zone Team" (in schema)
+- Author: `Person` "Stephen Pickering" with `url` `https://www.scoringzone.net/about` (Article schema on every post)
 
 ## Social Profiles
 - X: https://x.com/ScoringZone1
