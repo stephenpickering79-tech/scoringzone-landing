@@ -5,14 +5,16 @@
    are not used on these guides.
 
      kind 'age'     the handicap-by-age guide, "Where do you rank?"
-                    ("Rank Result Popup" handoff, 2026-11-14)
+                    ("Rank Result Popup" handoff, 2026-11-14; USGA 2025
+                    gender data, no age split, from the Nov 2026 rewrite)
      kind 'junior'  the juniors guide, "Is your junior on track?"
                     ("Junior Tracker Popup" handoff, 2026-11-14)
 
    SZRankCard.open(result). Every number comes from the page's calculator,
    so the popup and the inline card, which stays on the page, never disagree:
-     age     { hcp, hcpText, gender: 'male'|'female', ageTxt, avg, avgText,
-               pct, tier, diff, onPlan }
+     age     { hcp, hcpText, gender: 'male'|'female', avgText, diff, even,
+               pct, ahead, label, big: [before, number, after], sub,
+               oneLiner, summary, onPlan }
      junior  { kind: 'junior', hcp, hcpText, gender: 'boy'|'girl', ageTxt, pct,
                tier, band: 'ahead'|'on_track'|'building', lo, hi, mid, sd,
                rangeTxt, shots, proj: [{ age, v }], onPlan }
@@ -73,11 +75,11 @@
   }
   var GOOD = { bg: 'rgba(74,222,128,.07)', c: 'var(--sgp-green)' }, BEHIND = { bg: 'rgba(242,201,76,.06)', c: 'var(--sgp-warn)' };
 
-  function offerHtml(body, cta) {
+  function offerHtml(body, cta, title) {
     return '<div class="sgp-card sgp-rk-offer"><div class="sgp-cglow"></div>' +
       '<div class="sgp-keys">' + SKILLS.map(orb).join('') + '</div>' +
       '<span class="sgp-lbl">Free · 2-week plan</span>' +
-      '<h2 class="sgp-h3">Want to improve your handicap?</h2>' +
+      '<h2 class="sgp-h3">' + (title || 'Want to improve your handicap?') + '</h2>' +
       '<p class="sgp-body">' + body + '</p>' +
       '<button type="button" class="sgp-btn" data-sgp-plan><span>' + cta + '</span>' + ARROW + '</button>' +
       '<div class="sgp-rk-foot">' + MAIL + '<span>Sent to your inbox as a PDF</span></div>' +
@@ -85,26 +87,27 @@
   }
   function calcLink(q) { return q + ' <a href="' + CALC_URL + '">Use the free calculator →</a>'; }
 
+  // The handicap-by-age guide, ranked against the USGA 2025 gender distribution (Nov 2026 rewrite).
+  // The page computes every line; this only lays them out. No age split: the USGA doesn't publish one.
   function ageHtml(r) {
-    var who = r.gender === 'female' ? 'women' : 'men', person = r.gender === 'female' ? 'woman' : 'man';
-    var even = Math.abs(r.diff) < 0.5, d = Math.abs(r.diff).toFixed(1).replace(/\.0$/, '');
-    var good = even || r.diff > 0; // diff = age average − index: positive is better
-    var line = 'The average ' + person + ' aged ' + r.ageTxt + ' plays to ' + r.avgText + '. Your ' + r.hcpText + ' is ' +
-      (even ? 'right on your age group’s average.' : shots(d) + ' ' + (r.diff > 0 ? 'better than' : 'behind') + ' your age group.');
-    // The age average sits on the centre tick; the green runs from you to the right, the share you're ahead of.
+    var d = Math.abs(r.diff).toFixed(1);
+    var good = r.even || r.diff > 0; // diff = gender average − index: positive is better
+    // The average sits near the centre tick; the green runs from you to the right, the share you're ahead of.
     return '<div class="sgp-stack">' +
       '<div class="sgp-card sgp-res">' +
-        '<span class="sgp-lbl">' + esc((r.tier + ' · ' + who + ' ' + r.ageTxt).toUpperCase()) + '</span>' +
-        '<div class="sgp-disp sgp-rk-big" id="sgp-title">Ahead of <b>' + r.pct + '%</b></div>' +
-        '<span class="sgp-sub">of ' + who + ' aged ' + esc(r.ageTxt) + '</span>' +
-        slider(clamp(100 - r.pct, 4, 96)) +
-        '<div class="sgp-rk-legend" aria-hidden="true"><span>← LOWER</span><span>AGE AVG</span><span>HIGHER →</span></div>' +
-        '<div class="sgp-rk-stats">' + stat('YOU', r.hcpText) + stat('AGE AVG', r.avgText, { c: 'var(--sgp-dim)' }) +
-          stat('GAP', even ? '±0' : (r.diff > 0 ? '−' : '+') + d, good ? GOOD : BEHIND) + '</div>' +
-        '<p class="sgp-rk-line">' + esc(line) + '</p>' +
-        '<p class="sgp-rk-link">' + calcLink('Want your official Handicap Index?') + '</p>' +
+        '<span class="sgp-lbl">' + esc(r.label.toUpperCase()) + '</span>' +
+        '<div class="sgp-disp sgp-rk-big" id="sgp-title">' + esc(r.big[0]) + '<b>' + esc(r.big[1]) + '</b>' + esc(r.big[2]) + '</div>' +
+        '<span class="sgp-sub">' + esc(r.sub) + '</span>' +
+        slider(clamp(100 - r.ahead, 4, 96)) +
+        '<div class="sgp-rk-legend" aria-hidden="true"><span>← LOWER</span><span>AVERAGE</span><span>HIGHER →</span></div>' +
+        '<div class="sgp-rk-stats">' + stat('YOU', r.hcpText) + stat('AVERAGE', r.avgText, { c: 'var(--sgp-dim)' }) +
+          stat('GAP', r.even ? '±0' : (r.diff > 0 ? '−' : '+') + d, good ? GOOD : BEHIND) + '</div>' +
+        '<p class="sgp-rk-line">' + esc(r.oneLiner) + '</p>' +
+        '<p class="sgp-rk-line">' + esc(r.summary) + '</p>' +
+        '<p class="sgp-rk-note">Source: USGA 2025 Golf Scorecard. Ranked against golfers who keep a Handicap Index, not all golfers. We assume an even spread within each 5-stroke band, so treat it as an estimate.</p>' +
+        '<p class="sgp-rk-link wrap">No index yet? <a href="' + CALC_URL + '">Work out yours with the free handicap calculator →</a></p>' +
       '</div>' +
-      offerHtml('Answer a few quick questions and we’ll build 4 practice sessions around your weakest area, with targets set for ' + article(r.hcpText) + ' ' + esc(r.hcpText) + ' handicap.', 'Get my free plan') +
+      offerHtml('Answer a few quick questions and get 4 practice sessions, 20 to 30 minutes each, built around your weakest area, with targets set for your handicap.', 'Build my free short game plan', 'Start with your short game') +
     '</div>';
   }
 

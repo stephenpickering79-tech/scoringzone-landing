@@ -264,6 +264,9 @@ html.sgp-lock, html.sgp-lock body { overflow: hidden; }
 .sgp-rk-link { margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: var(--sgp-dim); }
 .sgp-rk-link a { color: var(--sgp-green); font-weight: 600; text-decoration: none; white-space: nowrap; transition: color 160ms; }
 .sgp-rk-link a:hover { color: var(--sgp-text); }
+/* By-age guide (USGA data, Nov 2026): the source note, and a calculator link long enough to wrap. */
+.sgp-rk-note { margin: 12px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--sgp-dim); text-wrap: pretty; }
+.sgp-rk-link.wrap a { white-space: normal; }
 .sgp-rk-offer { padding: 24px 22px 20px; gap: 12px; }
 .sgp-rk-offer .sgp-cglow { right: -100px; top: -120px; width: 340px; height: 260px; background: radial-gradient(50% 50% at 50% 50%, rgba(74,222,128,.10), transparent 70%); }
 .sgp-rk-offer .sgp-btn { margin-top: 8px; }
