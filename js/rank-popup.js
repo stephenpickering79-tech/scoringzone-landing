@@ -137,7 +137,7 @@
   }
 
   function resultHtml() {
-    var who = res.gender === 'women' ? 'UK women' : 'UK men';
+    var who = res.gender === 'women' ? 'women in England' : 'men in England';
     return '<div class="sgp-stack">' +
       '<div class="sgp-card sgp-res">' +
         '<span class="sgp-lbl">Your result · ' + who + '</span>' +
